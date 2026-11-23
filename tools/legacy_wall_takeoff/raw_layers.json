@@ -1,0 +1,38 @@
+{
+ "content_layers": [
+  "0",
+  "W",
+  "DIM",
+  "DASH",
+  "ST",
+  "PR",
+  "MASS",
+  "TEXT",
+  "COL",
+  "TEXT-D",
+  "WIN",
+  "PR1",
+  "Outer BORDER",
+  "-MASS",
+  "LOGO-L1",
+  "try",
+  "Etabs-col",
+  "Etabs-Slab",
+  "sidewalk"
+ ],
+ "empty_layers": [
+  "X",
+  "FUR",
+  "DEFPOINTS",
+  "HAT",
+  "W-100",
+  "CI",
+  "TEXT-DIM",
+  "-A-TEXT",
+  "x1",
+  "wall2",
+  "Ceiling Plan",
+  "Design Layer-1",
+  "MOE v02"
+ ]
+}

@@ -1,0 +1,4 @@
+*.dwg binary
+*.dxf -text
+*.py text eol=lf
+*.md text eol=lf
