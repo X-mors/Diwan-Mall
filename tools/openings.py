@@ -43,6 +43,19 @@ frame of diwan_common (rotation removed, structural-column corner = (0,0), metre
             facing a perpendicular wall (no wall on the far side) is only a
             'candidate' (JSON opening_candidates, not drawn, not totalled).
             DASH lines across the gap (lintel / soffit lines) reported as evidence.
+  ASSEMBLIES  a door + fixed glazing + frame pieces drawn side by side in ONE masonry
+            opening (F02 east terrace: 2.35 = 0.10 frame + door 1.00 + glass 1.25, and
+            1.35 = 0.15 + door 1.00 + 0.20).  The masonry deduction is the assembly's
+            masonry gap; its members carry 'in_assembly'.
+  MASONRY   summary.masonry_deduction_widths = what is really cut out of block walls,
+            by type and host wall thickness ('door|0.12', 'window|0.25', ...): no
+            curtain wall, no curved corner glazing, no glazed corner doors (they sit in
+            glazing, not in masonry), assemblies counted once at their masonry gap.
+  CHECKS    door_width_totals (block / clear W gap / smaller face-line gap = what a
+            surveyor snapping to W line ends gets), door_gap_vs_block (+ face_gaps),
+            windows_dim_projection (facade DIM showing a projection, e.g. 0.786 for a
+            0.80 window in the slanted wall), dims_along_solid_wall (architect DIM that
+            measures a stretch of solid wall = stale dim / moved window), legacy F03.
 
 Not doors / windows (checked on all floors, see docs/findings/openings.md):
   LP (layer W) = level-mark symbol, WB/P (FUR) = wash basin / WC, ST-2 (PR1) =
@@ -59,8 +72,11 @@ API:
     res["doors"][0]["width"], res["summary"]["doors"]["total_width"]
     rows = deduction_table(res, door_h=2.30, window_h=None)   # heights are NOT in the plans
 JSON (output/openings/F0x.json) is the same dict without the private geometry handle.
-Every item has: id (F03-D07 / F03-W12 / F03-O01), center [x,y] local, axis_deg, width (m),
-host {gap, gap_minus/plus, bound_*, wall_t_minus/plus} = masonry gap measured on the walls.
+Every item has: id (F03-D07 door / F03-W12 window / F03-O01 opening / F02-A01 assembly /
+F02-F03 frame piece / F03-C01 candidate), center [x,y] local, axis_deg, width (m),
+host {gap, gap_minus/plus, bound_*, wall_t_minus/plus, face_gaps[2]} = masonry gap measured
+on the walls, host_line {orientation N-S|E-W|slanted, offset_x|offset_y, from/to} = the
+wall line it sits in (for matching with tools/walls.py records).
 """
 from __future__ import annotations
 
@@ -87,6 +103,7 @@ WALL_LAYERS = ("W",)
 OBSTACLE_POLY_LAYERS = ("Etabs-col", "COL", "try")
 BUILDING_WINDOW = (-4.0, -4.0, 24.0, 44.0)   # local box that contains the building + terraces
 LEGACY_F03 = {"doors": 37, "door_width": 34.23}  # user's own AutoCAD dims, Sept 2026
+MAX_SEG = 30.0                                    # longer W/WIN pieces = sheet frame, not building
 
 # ----------------------------------------------------------------------------- vectors
 def _sub(a, b): return (a[0] - b[0], a[1] - b[1])
@@ -195,7 +212,9 @@ class FloorGeom:
                 })
             for poly in _flatten(e):
                 lp = [L(*p) for p in poly]
-                segs = [(a, b) for a, b in zip(lp, lp[1:]) if _len(_sub(b, a)) > 1e-4]
+                # drop degenerate pieces and the sheet-size frame polyline drawn on W
+                # (~110 x 85 m, far outside the building)
+                segs = [(a, b) for a, b in zip(lp, lp[1:]) if 1e-4 < _len(_sub(b, a)) < MAX_SEG]
                 if lay == "W":
                     self.wall_segs.extend((a, b, "W") for a, b in segs)
                     if t == "LINE":
@@ -351,7 +370,47 @@ class FloorGeom:
                 continue
             lo, hi = min(a, b), max(a, b)
             if abs(lo) <= tol and abs(hi - W) <= tol:
-                out.append({"value": _r(d["value"]), "along": _r(hi - lo), "layer": d["layer"], "handle": d["handle"]})
+                rec = {"value": _r(d["value"]), "along": _r(hi - lo), "layer": d["layer"], "handle": d["handle"]}
+                if d["value"] is not None and abs(d["value"] - (hi - lo)) > 0.005:
+                    # e.g. slanted east facade: a LINEAR dim rotated to the building axis
+                    # shows 0.786 = projection of a 0.80 window measured along the wall
+                    rec["note"] = ("dim value is a projection (linear dim not parallel to the wall); "
+                                   "true width along the wall = 'along'")
+                out.append(rec)
+        return out
+
+    def dims_along_solid_wall(self, anchors, tol=0.02):
+        """Architect DIMs (0.3-4 m) whose two defpoints sit on the SAME continuous W face,
+        at no vertex of any W / WIN / column / door element: the dim measures a stretch of
+        solid wall = a stale dimension (opening moved or deleted) -> review list."""
+        from shapely.strtree import STRtree as _T
+        vt = _T([Point(p) for p in anchors])
+        segs = [(a, b) for a, b, _ in self.wall_segs] + list(self.win_lines)
+        st = _T([LineString(s) for s in segs])
+        out = []
+        for d in self.dims:
+            v = d["value"]
+            if v is None or not (0.3 <= v <= 4.0):
+                continue
+            if any(len(vt.query(Point(p).buffer(tol), predicate="intersects")) for p in (d["p2"], d["p3"])):
+                continue
+            for a, b in segs[:len(self.wall_segs)]:
+                ln = LineString([a, b])
+                if not (ln.distance(Point(d["p2"])) < tol and ln.distance(Point(d["p3"])) < tol):
+                    continue
+                uw = _unit(_sub(b, a))
+                # a defpoint where another line CROSSES this face (T-junction drawn through,
+                # overdrawn face) is also a legitimate anchor
+                crossed = False
+                for p in (d["p2"], d["p3"]):
+                    for k in st.query(Point(p).buffer(tol), predicate="intersects"):
+                        q0, q1 = segs[k]
+                        if abs(_cross(_unit(_sub(q1, q0)), uw)) > 0.2:
+                            crossed = True
+                if not crossed:
+                    out.append({"value": _r(d["value"]), "p2": _r(d["p2"]), "p3": _r(d["p3"]),
+                                "along_wall": _r(_len(_sub(d["p3"], d["p2"]))), "handle": d["handle"]})
+                break
         return out
 
 
@@ -441,14 +500,55 @@ def _door_from_frame(fl, G, ja, jb, leaf, meta):
         rec["_sw"] = n if side > 0 else _mul(n, -1)
     else:
         rec["_sw"] = n
-    rec["host"] = measure_host(G, c, u, width, t)
+    rec["host"] = measure_host(G, c, u, width, t, face_offsets=(-t / 2, t / 2))
+    rec["host_line"] = host_line(c, u, width)
     dm = G.dim_match(ma, mb)
     rec["dim_check"] = dm[0] if dm else None
     rec["_u"], rec["_n"], rec["_c"] = u, n, c
     return rec
 
 
-def measure_host(G, c, u, width, t, extra=1.2, face_band=None):
+def face_gaps(G, c, u, offsets, reach=2.5, tol=0.006):
+    """Gap between the W pieces of EACH face line of the host wall (face lines at the given
+    signed offsets along n from the axis through c), i.e. what a surveyor gets by snapping
+    to the face-line ends.  Returns [gap on face -n, gap on face +n]; None where a face has
+    no piece on one side (wall end, T-junction) or runs straight through."""
+    n = _perp(u)
+    out = []
+    for off in offsets:
+        if off is None:
+            out.append(None)
+            continue
+        lo, hi, through = None, None, False
+        for a, b, _ in G.wall_segs:
+            v = _sub(b, a)
+            if _len(v) < 0.02 or abs(_cross(_unit(v), u)) > 0.01:
+                continue
+            if abs(_dot(_sub(a, c), n) - off) > tol:
+                continue
+            s0, s1 = sorted((_dot(_sub(a, c), u), _dot(_sub(b, c), u)))
+            if s0 < -1e-3 and s1 > 1e-3:
+                through = True
+            elif s1 <= 1e-3 and s1 > -reach and (lo is None or s1 > lo):
+                lo = s1
+            elif s0 >= -1e-3 and s0 < reach and (hi is None or s0 < hi):
+                hi = s0
+        out.append(None if through or lo is None or hi is None else _r(hi - lo))
+    return out
+
+
+def host_line(c, u, width):
+    """Where the opening sits: wall orientation, centre-line offset and the along-wall
+    range, in the local frame (N-S wall -> offset = x, along = y; E-W -> offset = y)."""
+    ang = _axis_angle(u)
+    if min(ang, 180 - ang) < 2:
+        return {"orientation": "E-W", "offset_y": _r(c[1]), "from_x": _r(c[0] - width / 2), "to_x": _r(c[0] + width / 2)}
+    if abs(ang - 90) < 2:
+        return {"orientation": "N-S", "offset_x": _r(c[0]), "from_y": _r(c[1] - width / 2), "to_y": _r(c[1] + width / 2)}
+    return {"orientation": f"slanted {ang:.1f} deg", "center": _r(c)}
+
+
+def measure_host(G, c, u, width, t, extra=1.2, face_band=None, face_offsets=None):
     """Masonry gap along the wall axis + host wall thickness beyond each jamb.
 
     On each side the gap ends at the FIRST of: a W line / column / shaft edge crossed by
@@ -478,14 +578,25 @@ def measure_host(G, c, u, width, t, extra=1.2, face_band=None):
             res[f"face_through_{nm}"] = True
     res["gap"] = _r(dist["minus"] + dist["plus"]) if len(dist) == 2 else None
     # wall thickness probes just beyond each jamb
-    th = []
+    th, faces = [], []
     for sgn, nm in ((-1, "minus"), (1, "plus")):
         dd = dist.get(nm, width / 2)
         p = _add(c, _mul(u, sgn * (dd + 0.05)))
         a, _ = G.ray(p, n, 0.6, kinds=("wall",))
         b, _ = G.ray(p, _mul(n, -1), 0.6, kinds=("wall",))
-        th.append(_r(a + b) if a is not None and b is not None and a + b < 0.6 else None)
+        ok = a is not None and b is not None and a + b < 0.6
+        th.append(_r(a + b) if ok else None)
+        if ok:
+            faces.append((-b, a))
     res["wall_t_minus"], res["wall_t_plus"] = th
+    # masonry gap on each face line: doors -> the block's own faces (+-t/2 about the jamb
+    # axis); windows -> the two face lines found by the thickness probes above
+    if face_offsets is not None:
+        res["face_gaps"] = face_gaps(G, c, u, face_offsets)
+    elif faces:
+        res["face_gaps"] = face_gaps(G, c, u, faces[0])
+    else:
+        res["face_gaps"] = [None, None]
     return res
 
 
@@ -585,6 +696,11 @@ def read_doors(fl, G):
                 "handle": a["handle"], "nominal_width": None, "nominal_wall_t": None,
                 "kind": "single swing, glazed (drawn on WIN)" if a["layer"] == "WIN" else "single swing (drawn)",
                 "mirrored": None}
+        arc_ends = [q for b in G.raw_arcs if b is not a and b["layer"] == "WIN" and not b["dashed"]
+                    for q in (b["p0"], b["p1"])]
+        if any(min(_len(_sub(q, c)), _len(_sub(q, far))) < 0.08 for q in arc_ends):
+            # leaf closes a gap in the curved corner glazing: no masonry around it
+            meta["host_type"] = "curved glazing (no masonry)"
         rec = _door_from_frame(fl, G, ja, jb, {"c": c, "pm": a["pm"], "r": a["r"]}, meta)
         rec["wall_t_block"] = None
         rec["glazing_gap_chord"] = _r(gap_chord)   # distance between the glazing ends the leaf closes
@@ -710,7 +826,8 @@ def read_windows(fl, G):
         dm = G.dim_match(e1, e2)
         wins.append({"kind": kind, "shape": "straight", "center": _r(c), "axis_deg": _r(_axis_angle(u), 2),
                      "width": _r(width), "span_all_lines": _r(u_hi - u_lo), "frame_depth": _r(depth), "n_lines": len(g),
-                     "ends": _r([e1, e2]), "host": host, "dim_check": dm[0] if dm else None,
+                     "ends": _r([e1, e2]), "host": host, "host_line": host_line(c, u, width),
+                     "dim_check": dm[0] if dm else None,
                      "adjoins_door": door_adj,
                      "rooms": [x for x in (G.room_on_side(c, n), G.room_on_side(c, _mul(n, -1))) if x],
                      "_u": u, "_n": n, "_c": c})
@@ -1030,6 +1147,7 @@ def find_openings(fl, G, doors, windows):
         return {"kind": "opening in concrete core/column wall (not masonry)" if near_col else "opening (no door/window)",
                 "center": _r(c), "axis_deg": _r(_axis_angle(w), 2),
                 "width": _r(g["width"]), "wall_t": _r(g["t"]), "ends": _r([g["c0"], g["c1"]]),
+                "host_line": host_line(c, w, g["width"]),
                 "found_by": sorted(g.get("found_by", {g["src"]})),
                 "dash_across": bool(dash), "dash_len_in_gap": _r(sum(ln.intersection(rb).length for ln in dash)),
                 "side_a": G.room_on_side(c, n), "side_b": G.room_on_side(c, _mul(n, -1)), "confidence": conf}
@@ -1057,7 +1175,95 @@ def find_openings(fl, G, doors, windows):
     return out, cand, n_expl
 
 
+# ----------------------------------------------------------------------------- assemblies
+def find_assemblies(fl, G, doors, windows, frame_pieces):
+    """Door + fixed glazing + frame pieces drawn side by side in ONE masonry opening
+    (F02 east terrace: 0.10 frame + door 1.00 + glazing 1.25 = masonry gap 2.35, and
+    0.15 + door 1.00 + 0.20 = 1.35).  For masonry / plaster the deduction is the masonry
+    gap of the whole group, not the sum of the products.  Returns a list of records."""
+    items = []
+    for d in doors:
+        if "jamb_a" in d:
+            items.append((d["id"], "door", _mid(*d["jamb_a"]), _mid(*d["jamb_b"])))
+    for w in windows + frame_pieces:
+        if w.get("shape") == "straight":
+            items.append((w["id"], "frame" if w["kind"].startswith("frame") else "window",
+                          tuple(w["ends"][0]), tuple(w["ends"][1])))
+    n = len(items)
+    parent = list(range(n))
+
+    def find(i):
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+    for i in range(n):
+        _, _, a0, a1 = items[i]
+        ua = _unit(_sub(a1, a0))
+        for j in range(i + 1, n):
+            _, _, b0, b1 = items[j]
+            ub = _unit(_sub(b1, b0))
+            if abs(_cross(ua, ub)) > 0.05 or abs(_cross(ua, _sub(b0, a0))) > 0.12:
+                continue                      # not collinear (perpendicular mullion lines etc.)
+            s = sorted((_dot(_sub(b0, a0), ua), _dot(_sub(b1, a0), ua)))
+            La = _len(_sub(a1, a0))
+            if s[0] <= La + 0.06 and s[1] >= -0.06:
+                parent[find(i)] = find(j)
+    groups = defaultdict(list)
+    for i in range(n):
+        groups[find(i)].append(i)
+    out = []
+    for g in groups.values():
+        kinds = {items[i][1] for i in g}
+        if len(g) < 2 or not (kinds & {"door"}):
+            continue
+        _, _, p0, p1 = items[g[0]]
+        u = _unit(_sub(p1, p0))
+        if u[0] < -1e-9 or (abs(u[0]) < 1e-9 and u[1] < 0):
+            u = _mul(u, -1)
+        ss = [_dot(_sub(p, p0), u) for i in g for p in items[i][2:]]
+        lo, hi = min(ss), max(ss)
+        ofs = sum(_cross(u, _sub(p, p0)) for i in g for p in items[i][2:]) / (2 * len(g))
+        n_ = _perp(u)
+        e1 = _add(_add(p0, _mul(u, lo)), _mul(n_, ofs))
+        e2 = _add(_add(p0, _mul(u, hi)), _mul(n_, ofs))
+        c = _mid(e1, e2)
+        host = measure_host(G, c, u, hi - lo, 0.12, extra=0.4)
+        # short W jamb/cap lines of the door frame may sit INSIDE the opening (F02: a W cap
+        # at y=15.835 between frame and leaf) -> prefer a face-line gap equal to the span
+        fgs = [x for x in host.get("face_gaps") or [] if x is not None and abs(x - (hi - lo)) <= 0.05]
+        if fgs:
+            host["gap"] = min(fgs, key=lambda x: abs(x - (hi - lo)))
+            host["gap_from"] = "face line"
+        out.append({"kind": "glazed door assembly (door + fixed glazing / frame in ONE masonry opening)",
+                    "members": [items[i][0] for i in sorted(g, key=lambda i: _dot(_sub(items[i][2], p0), u))],
+                    "center": _r(c), "axis_deg": _r(_axis_angle(u), 2), "ends": _r([e1, e2]),
+                    "span": _r(hi - lo), "masonry_gap": host.get("gap"), "host": host,
+                    "host_line": host_line(c, u, hi - lo),
+                    "width": host.get("gap") if host.get("gap") is not None else _r(hi - lo)})
+    out.sort(key=lambda o: (-round(o["center"][1] / 0.5), o["center"][0]))
+    for k, o in enumerate(out, 1):
+        o["id"] = f"{fl.label}-A{k:02d}"
+    return out
+
+
 # ----------------------------------------------------------------------------- floor analysis
+def _anchor_points(G, doors):
+    """Every vertex a dimension may legitimately snap to (W / WIN ends, column corners,
+    arc ends and centres, door jambs)."""
+    pts = [p for a, b, _ in G.wall_segs for p in (a, b)]
+    pts += [p for a, b in G.win_lines + G.win_dashed for p in (a, b)]
+    for pg, _ in G.polys:
+        if pg.geom_type == "Polygon":
+            pts += list(pg.exterior.coords)
+    for a in G.raw_arcs:
+        pts += [a["p0"], a["p1"], a["center"]]
+    for d in doors:
+        if "jamb_a" in d:
+            pts += [tuple(p) for p in d["jamb_a"]] + [tuple(p) for p in d["jamb_b"]]
+    return pts
+
+
 def _clean(o):
     if isinstance(o, dict):
         return {k: _clean(v) for k, v in o.items() if not k.startswith("_")}
@@ -1110,11 +1316,19 @@ def analyze_floor(floor):
     windows = [w for w in windows if not w["kind"].startswith("frame piece")]
     for k, w in enumerate(windows, 1):
         w["id"] = f"{fl.label}-W{k:02d}"
+    for k, w in enumerate(frame_pieces, 1):          # own id series (no clash with W..)
+        w["id"] = f"{fl.label}-F{k:02d}"
     openings, candidates, n_expl = find_openings(fl, G, doors, windows)
+    assemblies = find_assemblies(fl, G, doors, windows, frame_pieces)
+    owner = {m: a["id"] for a in assemblies for m in a["members"]}
+    for it in doors + windows + frame_pieces:
+        if it.get("id") in owner:
+            it["in_assembly"] = owner[it["id"]]
     checks = {
         "door_gap_vs_block": [
             {"id": d["id"], "block_w": d["width"], "gap": d["host"]["gap"],
-             "diff": _r(d["host"]["gap"] - d["width"]) if d["host"]["gap"] is not None else None}
+             "diff": _r(d["host"]["gap"] - d["width"]) if d["host"]["gap"] is not None else None,
+             "face_gaps": d["host"].get("face_gaps")}
             for d in doors if "host" in d and (d["host"]["gap"] is None or abs(d["host"]["gap"] - d["width"]) > 0.005)],
         "door_wall_t_vs_block": [
             {"id": d["id"], "block_t": d.get("nominal_wall_t"), "measured": [d["host"]["wall_t_minus"], d["host"]["wall_t_plus"]]}
@@ -1126,15 +1340,45 @@ def analyze_floor(floor):
             for w in windows if w.get("dim_check") and w["dim_check"]["value"] is not None
             and abs(w["dim_check"]["value"] - w["width"]) > 0.02],
         "doors_with_dim": sum(1 for d in doors if d.get("dim_check")),
+        "windows_dim_projection": [
+            {"id": w["id"], "width": w["width"], "dim": w["dim_check"]["value"]}
+            for w in windows if w.get("dim_check") and w["dim_check"].get("note")],
+        "dims_along_solid_wall": G.dims_along_solid_wall(_anchor_points(G, doors)),
         "other_inserts": sorted({f'{e.dxf.layer}:{e.dxf.name}' for e in G.other_inserts}),
         "wall_gaps_explained": n_expl,
     }
+    # door widths three ways: block (nominal, jamb-to-jamb), clear gap between the W lines
+    # (narrowest of both faces), and the smaller FACE-LINE gap (= snapping to W line ends)
+    bw = [d["width"] for d in doors if "width" in d]
+    # block-less glazed doors (in an assembly or in curved glazing) keep their leaf width
+    plain = [d for d in doors if "width" in d and d.get("block")]
+    hg = [d["host"]["gap"] if d["host"]["gap"] is not None else d["width"] for d in plain]
+    hg += [d["width"] for d in doors if "width" in d and not d.get("block")]
+    fg = [d["width"] for d in doors if "width" in d and not d.get("block")]
+    for d in plain:
+        v = [x for x in d["host"].get("face_gaps", []) if x is not None and abs(x - d["width"]) < 0.3]
+        fg.append(min(v) if v else d["width"])
+    checks["door_width_totals"] = {"block": _r(sum(bw)), "clear_gap_W": _r(sum(hg)),
+                                   "min_face_line_gap": _r(sum(fg))}
     res = {"floor": fl.label, "floor_no": fl.floor_no, "name_ar": fl.name_ar, "level": fl.level,
            "file": fl.file.name, "sheet_index": fl.sheet_index, "units": "m",
            "frame": "LOCAL (diwan_common.Floor.to_local: -10 deg, structural-column corner = 0,0)",
            "doors": doors, "windows": windows, "openings": openings, "opening_candidates": candidates,
-           "window_frame_pieces": frame_pieces,
+           "window_frame_pieces": frame_pieces, "assemblies": assemblies,
            "summary": summarize(doors, windows, openings), "checks": checks}
+    res["summary"]["assemblies"] = {"count": len(assemblies),
+                                    "masonry_width": _r(sum(a["width"] for a in assemblies)),
+                                    "members": {a["id"]: a["members"] for a in assemblies}}
+    # what is actually cut out of MASONRY walls (no curtain wall / curved glazing / glazed
+    # corner doors; assemblies as one masonry gap), by type and host wall thickness
+    md = {}
+    for r in deduction_table(res, door_h=None, window_h=None, opening_h=None):
+        t = r["wall_t"]
+        k = f'{r["type"]}|{t:.2f}' if t is not None else f'{r["type"]}|?'
+        b = md.setdefault(k, {"count": 0, "width": 0.0})
+        b["count"] += 1
+        b["width"] = _r(b["width"] + (r["width"] or 0.0))
+    res["summary"]["masonry_deduction_widths"] = dict(sorted(md.items()))
     if fl.floor_no == 3:
         res["checks"]["legacy_f03_user_dims"] = LEGACY_F03
     res["_G"] = G
@@ -1151,8 +1395,10 @@ DEFAULT_HEIGHTS = {"door": 2.30, "window": None, "opening": None}
 def deduction_table(res, door_h=DEFAULT_HEIGHTS["door"], window_h=DEFAULT_HEIGHTS["window"],
                     opening_h=DEFAULT_HEIGHTS["opening"], include_curtain_wall=False):
     """Rows {id, type, kind, width, height, area, wall_t} for masonry/plaster deductions.
-    height/area are None where no height was given.  Curtain-wall glazing (no masonry)
-    is skipped unless include_curtain_wall=True."""
+    height/area are None where no height was given.  Curtain-wall glazing and curved
+    corner glazing (no masonry there at all) are skipped unless include_curtain_wall=True.
+    Members of a glazed door ASSEMBLY are replaced by ONE row = the masonry gap of the
+    assembly (height = door_h: assumption, to confirm)."""
     rows = []
 
     def row(it, typ, h, t):
@@ -1160,15 +1406,22 @@ def deduction_table(res, door_h=DEFAULT_HEIGHTS["door"], window_h=DEFAULT_HEIGHT
         rows.append({"id": it["id"], "type": typ, "kind": it.get("kind"), "width": w, "height": h,
                      "area": _r(w * h) if (w is not None and h is not None) else None, "wall_t": t})
     for d in res["doors"]:
-        if "width" in d:
+        if "no masonry" in (d.get("host_type") or "") and not include_curtain_wall:
+            continue
+        if "width" in d and not d.get("in_assembly"):
             h = d.get("host") or {}
             t = d.get("nominal_wall_t") or h.get("wall_t_minus") or h.get("wall_t_plus")
             row(d, "door", door_h, t)
     for w in res["windows"]:
-        if "curtain" in w["kind"] and not include_curtain_wall:
+        if w.get("in_assembly"):
+            continue
+        if ("curtain" in w["kind"] or w["shape"] == "arc") and not include_curtain_wall:
             continue
         h = w.get("host") or {}
         row(w, "window", window_h, h.get("wall_t_minus") or h.get("wall_t_plus"))
+    for a in res.get("assemblies", []):
+        h = a.get("host") or {}
+        row(a, "assembly", door_h, h.get("wall_t_minus") or h.get("wall_t_plus"))
     for o in res["openings"]:
         row(o, "opening", opening_h, o.get("wall_t"))
     return rows
@@ -1286,6 +1539,20 @@ def render_review(res, out_png, zoom=None, dpi=110, label_size=5.5):
                 fontsize=label_size, color="#a04000", ha="center", va="center",
                 rotation=0 if (o["axis_deg"] < 45 or o["axis_deg"] > 135) else 90,
                 bbox=dict(fc="white", ec="none", alpha=0.6, pad=0.3), clip_on=True)
+    # glazed door assemblies (one masonry opening holding door + glazing): dashed outline
+    for a in res.get("assemblies", []):
+        if not inview(a["center"], 2):
+            continue
+        e1, e2 = a["ends"]
+        u = _unit(_sub(e2, e1))
+        n = _perp(u)
+        h = 0.22
+        q = [_add(e1, _mul(n, h)), _add(e2, _mul(n, h)), _add(e2, _mul(n, -h)), _add(e1, _mul(n, -h))]
+        ax.add_patch(MPoly(q, closed=True, fill=False, ec="#0b5d1e", lw=1.2, ls="--"))
+        tp = _add(a["center"], _mul(n, -0.45))
+        ax.text(tp[0], tp[1], f'{a["id"].split("-")[1]} masonry {a["width"]:.2f}', fontsize=label_size, color="#0b5d1e",
+                ha="center", va="center", rotation=0 if (a["axis_deg"] < 45 or a["axis_deg"] > 135) else 90,
+                bbox=dict(fc="white", ec="none", alpha=0.65, pad=0.3), clip_on=True)
     s = res["summary"]
     ax.set_title(f'{fl.label} {fl.name_ar} {fl.level:+.2f}  doors {s["doors"]["count"]} = {s["doors"]["total_width"]:.2f} m | '
                  f'windows {s["windows"]["count"]} = {s["windows"]["total_width"]:.2f} m | openings {s["openings"]["count"]}  '
@@ -1330,6 +1597,8 @@ def run(floors=None, png=True, tiles=True):
         print(f'{fl.label} {fl.level:+.2f}  doors {s["doors"]["count"]:3d} = {s["doors"]["total_width"]:6.2f} m [{bt}]'
               f' | windows {s["windows"]["count"]:3d} = {s["windows"]["total_width"]:6.2f} m'
               f' | openings {s["openings"]["count"]:3d} = {s["openings"]["total_width"]:6.2f} m')
+        md = ", ".join(f'{k} {v["count"]}={v["width"]:.2f}' for k, v in s["masonry_deduction_widths"].items())
+        print(f'      masonry deductions (type|wall t: n=width m): {md}')
     # items that are NOT on every analysed floor (same local position +-10 cm and width)
     labels = [f.label for f in fls]
     diff = []
