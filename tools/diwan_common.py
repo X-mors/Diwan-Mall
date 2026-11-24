@@ -50,11 +50,13 @@ DXF_FILES = [
     DXF_DIR / "Diwan_3rd_Floor_22.8.2026.dxf",
     DXF_DIR / "Diwan_4th_Floor_26.8.2026.dxf",
     DXF_DIR / "Diwan_5th_to_8th_Floor.dxf",
+    DXF_DIR / "Diwan_9th_to_11th_Floor.dxf",   # 3 sheets: F09 +31.30, F10 +34.50, F11 +37.70
 ]
 
 ORDINALS = {
     "الاول": 1, "الأول": 1, "الثاني": 2, "الثالث": 3, "الرابع": 4, "الخامس": 5,
     "السادس": 6, "السابع": 7, "الثامن": 8, "التاسع": 9, "العاشر": 10,
+    "الحادي عشر": 11, "الثاني عشر": 12, "الثالث عشر": 13,
 }
 STOREY_HEIGHT = 3.20  # m, from the level marks (+8.90, +12.10, ... +28.10)
 
@@ -238,13 +240,21 @@ def _identify(fl: Floor):
     fl.angle = detect_angle(msp, fl.sheet_bbox)
     # floor name + level
     texts = floor_texts(fl)
+    def _norm(w):
+        return w.replace("أ", "ا").replace("ا", "")
+
     for t in texts:
-        m = re.search(r"للدور\s+(\S+)", t["text"])
+        m = re.search(r"للدور\s+(\S+)(?:\s+(\S+))?", t["text"])
         if m and fl.floor_no is None:
-            word = m.group(1).replace("أ", "ا")
-            for k, v in ORDINALS.items():
-                if word.replace("ا", "") == k.replace("أ", "ا").replace("ا", ""):
-                    fl.floor_no, fl.name_ar = v, "الدور " + k
+            one = m.group(1)
+            two = f"{one} {m.group(2)}" if m.group(2) else None
+            # two-word ordinals first ('الحادي عشر' = 11), then one word
+            for cand in ([two] if two else []) + [one]:
+                for k, v in ORDINALS.items():
+                    if _norm(cand) == _norm(k):
+                        fl.floor_no, fl.name_ar = v, "الدور " + k
+                        break
+                if fl.floor_no is not None:
                     break
     lv = [t for t in texts if t["layer"] == "PR" and _LEVEL_RE.match(t["raw"])]
     if lv:

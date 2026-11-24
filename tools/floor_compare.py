@@ -71,7 +71,8 @@ MIN_PIECE = 0.05
 REGION_GAP = 0.35   # m: differences closer than this form one region
 LINE_LAYERS = ["W", "WIN", "ST", "DASH", "PR", "MASS", "X", "COL", "try", "Etabs-col", "HAT", "0", "FUR"]
 FLOOR_COLORS = {"F02": "#d62728", "F03": "#1f77b4", "F04": "#2ca02c", "F05": "#ff7f0e",
-                "F06": "#9467bd", "F07": "#8c564b", "F08": "#e377c2"}
+                "F06": "#9467bd", "F07": "#8c564b", "F08": "#e377c2", "F09": "#7f7f7f",
+                "F10": "#bcbd22", "F11": "#17becf"}
 
 
 def _r(v, n=3):
