@@ -66,6 +66,23 @@ LAYER_WINDOW = "WIN"
 LAYER_AXIS = ("X", "x1")
 LAYER_COLUMNS = ("Etabs-col", "COL")
 
+# On F09-F11 the 'try' layer ALSO holds two big closed polylines that are NOT shafts:
+# the floor outline (slab edge around the planters; 598.65 / 565.98 / 541.38 m2 on
+# F09 / F10 / F11 - the building steps back as it rises) and the plot boundary
+# (2028.08 m2, the same polygon as the MASS property line on F02-F08).  Shaft boxes
+# are <= ~2 m; anything spanning more than this is an outline, never a shaft.
+TRY_OUTLINE_MIN_SPAN = 6.0  # m
+
+
+def is_try_outline(pts) -> bool:
+    """True for a 'try' polyline that is a floor / plot outline (not a shaft box).
+    `pts` = list of (x, y) in any frame (world or local)."""
+    if len(pts) < 3:
+        return False
+    xs = [p[0] for p in pts]
+    ys = [p[1] for p in pts]
+    return max(max(xs) - min(xs), max(ys) - min(ys)) > TRY_OUTLINE_MIN_SPAN
+
 
 # --------------------------------------------------------------------------
 @lru_cache(maxsize=8)

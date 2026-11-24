@@ -103,7 +103,7 @@ from shapely.ops import unary_union
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from diwan_common import (OUT_DIR, all_floors, entity_bbox, floor_entities,  # noqa: E402
-                          get_floor, STOREY_HEIGHT)
+                          get_floor, STOREY_HEIGHT, is_try_outline)
 from sosa_decode import decode, is_arabic_style  # noqa: E402
 
 OUT = OUT_DIR / "structure"
@@ -920,7 +920,7 @@ def analyze_shafts(fl, D, grid):
     boxes = []
     for e in D.ents("try", "LWPOLYLINE"):
         pts = _pts(e, fl)
-        if len(pts) >= 4:
+        if len(pts) >= 4 and not is_try_outline(pts):   # F09-F11: floor/plot outlines on try
             boxes.append((_clean_poly(pts), "try polyline"))
     hatched = []
     for e in D.ents("try", "HATCH"):

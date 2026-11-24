@@ -74,7 +74,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from diwan_common import (OUT_DIR, STOREY_HEIGHT, all_floors, floor_entities,  # noqa: E402
-                          floor_texts, get_floor)
+                          floor_texts, get_floor, is_try_outline)
 
 from shapely.geometry import LineString, Point, Polygon, box  # noqa: E402
 from shapely.ops import unary_union  # noqa: E402
@@ -239,7 +239,7 @@ def extract(fl) -> dict:
     # ---- shafts / ducts (X-crossed boxes) ----
     for e in floor_entities(fl, layers="try", types="LWPOLYLINE"):
         pts = [L(p[0], p[1]) for p in e.get_points("xy")]
-        if len(pts) >= 3:
+        if len(pts) >= 3 and not is_try_outline(pts):   # F09-F11: floor/plot outlines on try
             g["shafts"].append({"pts": pts, "handle": e.dxf.handle})
 
     # ---- windows ----
@@ -351,7 +351,7 @@ def extract(fl) -> dict:
 
 def load_geometry(fl, use_cache=True) -> dict:
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
-    key = f"{fl.label}_{fl.file.stem}_{int(os.path.getmtime(fl.file))}_v7.pkl"
+    key = f"{fl.label}_{fl.file.stem}_{int(os.path.getmtime(fl.file))}_v8.pkl"
     p = CACHE_DIR / key
     if use_cache and p.exists():
         with open(p, "rb") as f:

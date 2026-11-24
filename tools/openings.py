@@ -95,7 +95,7 @@ from shapely.geometry import LineString, Point, Polygon
 from shapely.strtree import STRtree
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from diwan_common import OUT_DIR, all_floors, floor_entities, floor_texts, get_floor  # noqa: E402
+from diwan_common import OUT_DIR, all_floors, floor_entities, floor_texts, get_floor, is_try_outline  # noqa: E402
 
 OUT = OUT_DIR / "openings"
 DOOR_RE = re.compile(r"^D(\d+)W(\d+)$", re.I)
@@ -178,6 +178,8 @@ class FloorGeom:
             if lay in OBSTACLE_POLY_LAYERS:
                 if t == "LWPOLYLINE":
                     pts = [L(p[0], p[1]) for p in e.get_points("xy")]
+                    if lay == "try" and is_try_outline(pts):
+                        continue          # F09-F11: floor / plot outline on try, not a shaft
                     if len(pts) >= 3:
                         pg = Polygon(pts)
                         if not pg.is_valid:

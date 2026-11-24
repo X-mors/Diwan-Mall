@@ -92,7 +92,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from diwan_common import OUT_DIR, STOREY_HEIGHT, all_floors, floor_entities, floor_texts, get_floor  # noqa: E402
+from diwan_common import OUT_DIR, STOREY_HEIGHT, all_floors, floor_entities, floor_texts, get_floor, is_try_outline  # noqa: E402
 
 from ezdxf import path as ezpath  # noqa: E402
 import shapely  # noqa: E402
@@ -102,7 +102,7 @@ from shapely.strtree import STRtree  # noqa: E402
 
 ROOM_OUT = OUT_DIR / "rooms"
 CACHE_DIR = ROOM_OUT / "_cache"
-CACHE_VER = "v5"
+CACHE_VER = "v6"
 DOOR_RE = re.compile(r"^D(\d+)W(\d+)$", re.I)
 BUILDING_WIN = (-4.0, -5.0, 25.0, 45.0)   # local box holding the plan (+ terraces / planters)
 
@@ -215,7 +215,10 @@ def extract(fl) -> dict:
                 rec["layer"] = lay
                 g["cols"].append(rec)
         elif lay == "try":
-            if t == "LWPOLYLINE" and len(rec["pts"]) >= 4 and (e.closed or _dist(rec["pts"][0], rec["pts"][-1]) < 0.01):
+            if t == "LWPOLYLINE" and is_try_outline(rec["pts"]):
+                # F09-F11: floor outline (slab edge round the planters) / plot boundary on try
+                g.setdefault("try_outlines", []).append(rec)
+            elif t == "LWPOLYLINE" and len(rec["pts"]) >= 4 and (e.closed or _dist(rec["pts"][0], rec["pts"][-1]) < 0.01):
                 g["try_polys"].append(rec)
             else:
                 g["try_lines"].append(rec)
@@ -435,6 +438,14 @@ def build_primitives(g, op):
             P.append((ln, "slab_edge", "MASS:" + r["handle"]))
         else:
             P.append((ln, "mass", "MASS:" + r["handle"]))
+    # F09-F11: the floor outline on 'try' = slab edge round the planters (plot boundary skipped)
+    for r in g.get("try_outlines", []):
+        xs = [p[0] for p in r["pts"]]
+        ys = [p[1] for p in r["pts"]]
+        if max(xs) - min(xs) > 30 or max(ys) - min(ys) > 50:
+            continue                                   # site / plot boundary
+        pts = list(r["pts"]) + [r["pts"][0]]
+        P.append((LineString(pts), "slab_edge", "try-outline:" + r["handle"]))
     # doors (block or raw) -> closing quad between the two jambs
     for d in op.get("doors", []):
         ja, jb = d.get("jamb_a"), d.get("jamb_b")
