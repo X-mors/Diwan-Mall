@@ -16,11 +16,17 @@ Method (all in the LOCAL frame of diwan_common, metres):
   TEXTS        TEXT / -A-TEXT room names (SOSA decoded): same text within 5 cm; same text
                within 1.5 m = 'moved'.
   DIMS         architect DIMENSIONs: same extension points (unordered, TOL) + same text.
-  STRUCTURE    structural polygons from tools/structure.py (Etabs-col + 'tr' + COL).
+  STRUCTURE    structural polygons from tools/structure.py (Etabs-col + 'tr' + COL + the
+               F02 round columns drawn as W arcs).
   -> pairwise difference matrix per layer (length of non-matching geometry, both ways),
      groups of identical floors, a REFERENCE floor (medoid), and CHANGE REGIONS:
      the pieces of every floor that differ from the reference, clustered (0.6 m), each
-     region described per floor (which floors share which variant).
+     region described per floor (which floors share which variant), plus
+       orphan_dims   DIMs of a floor that still end on a W wall this floor LACKS (and on
+                     nothing of its own) -> 'likely drafting omission' evidence
+       entities      named long polylines carrying the region's pieces (F02: W 1585 floor
+                     outline, MASS 8B1 / 8B2 slab-edge lines)
+     and w_stats per floor (raw vs union W length = duplicated lines, long polylines).
 
 Outputs (output/floor_compare/, gitignored) + docs/findings/floors_diff.md (generated)
 + the AUTO:CMP_TABLE block of docs/findings/structure_diff.md (per layer: groups of identical floors):
@@ -100,9 +106,19 @@ def extract(fl):
     """All comparable features of one floor in local coordinates."""
     lines = defaultdict(list)
     inserts = []
+    long_polys = []
     for e in floor_entities(fl):
         lay = e.dxf.layer
         t = e.dxftype()
+        if t == "LWPOLYLINE" and lay in ("W", "MASS"):
+            for pts in _local_paths(e, fl):
+                L = LineString(pts).length
+                frame = e.closed and len(e) == 4 and L > 300
+                if (lay == "W" and L > 50 and not frame) or (lay == "MASS" and not e.closed and L > 10):
+                    xs = [p[0] for p in pts]; ys = [p[1] for p in pts]
+                    long_polys.append({"layer": lay, "handle": e.dxf.handle, "len": round(L, 2), "closed": bool(e.closed),
+                                       "vertices": len(e), "bbox": _r([min(xs), min(ys), max(xs), max(ys)], 2),
+                                       "geom": LineString(pts)})
         if t == "INSERT":
             p = e.dxf.insert
             lp = fl.to_local(p.x, p.y)
@@ -135,7 +151,7 @@ def extract(fl):
         except Exception:
             pass
         dims.append({"a": fl.to_local(p2.x, p2.y), "b": fl.to_local(p3.x, p3.y), "text": txt,
-                     "dimline": fl.to_local(e.dxf.defpoint.x, e.dxf.defpoint.y)})
+                     "dimline": fl.to_local(e.dxf.defpoint.x, e.dxf.defpoint.y), "handle": e.dxf.handle})
     # structural polygons (incl. the ETABS 'tr' block) via structure.py
     struct = []
     try:
@@ -146,7 +162,7 @@ def extract(fl):
     except Exception as ex:  # pragma: no cover
         print("  structure polygons unavailable:", ex)
     return {"label": fl.label, "lines": dict(lines), "inserts": inserts, "texts": texts, "dims": dims,
-            "struct": struct}
+            "struct": struct, "long_polylines": long_polys}
 
 
 # ----------------------------------------------------------------------------- geometry diff
@@ -348,7 +364,24 @@ def _build_regions(items, prefix, gap, F, labels, R):
         cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
         inside = -1.0 <= cx <= 20.5 and -2.5 <= cy <= 40.5
         ref_var = next((v for v in variants if R["label"] in v), [R["label"]])
+        # named long polylines (F02 floor outline W 1585, MASS slab-edge lines 8B1 / 8B2)
+        # carrying the differing pieces of this region
+        ent = defaultdict(float)
+        for it in rg["items"]:
+            g = it[1].get("geom")
+            if g is None:
+                continue
+            owner = F[it[1]["floor"]] if it[1]["side"].endswith("here") else R
+            for lp in owner.get("long_polylines", []):
+                if lp["layer"] != it[1]["layer"]:
+                    continue
+                on = g.length - g.difference(lp["geom"].buffer(TOL)).length
+                if on > 0.5 * g.length:
+                    ent[(owner["label"], lp["layer"], lp["handle"], lp["len"], lp["closed"])] += on
+        entities = [f"{f_} {lay} {h} (polyline {ln:.2f} m, {'closed' if cl else 'open'}): {v:.2f} m of this region"
+                    for (f_, lay, h, ln, cl), v in sorted(ent.items(), key=lambda kv: -kv[1])]
         out_regions.append({
+            "entities": entities,
             "id": f"{prefix}{i:02d}", "bbox": _r([x0, y0, x1, y1], 2), "center": _r([cx, cy], 2),
             "in_building": inside, "rooms_near": _nearest_rooms(R, cx, cy) if inside else [],
             "floors_differing_from_ref": rg["floors_differing_from_ref"],
@@ -429,7 +462,7 @@ def compare_floors(ref=None, png=True, features=None):
                 if ps:
                     pf[side][lay] = [{"len": _r(p.length, 3), "coords": _r([list(c) for c in p.coords], 3)} for p in ps]
                     for p in ps:
-                        items.append((p.bounds, {"floor": a, "side": side, "layer": lay, "len": p.length}))
+                        items.append((p.bounds, {"floor": a, "side": side, "layer": lay, "len": p.length, "geom": p}))
         for side, X, Y in (("blocks_only_here", F[a], R), ("blocks_only_ref", R, F[a])):
             for ins in insert_diff(X, Y):
                 pf[side].append({"block": ins["block"], "layer": ins["layer"], "at": _r(list(ins["at"])),
@@ -461,7 +494,30 @@ def compare_floors(ref=None, png=True, features=None):
             if li:
                 regs += _build_regions(li, f"{a}-{lay}-", 1e9, F, labels, R)
         out_regions += regs
+    # dims that still point at walls missing on that floor -> drafting omission evidence
+    for rg in out_regions:
+        if rg["in_building"]:
+            # a region of an atypical floor (F02-...) only tests that floor's own dims (its
+            # MASS / 0 regions span the whole plan and would collect every floor's orphans)
+            own = rg["id"].split("-")[0] if "-" in rg["id"] else None
+            od = orphan_dims(F, [own] if own else labels, ref, per_floor, rg["bbox"])
+            rg["orphan_dims"] = od
+            rg["drafting_omission_evidence"] = {f_: len(v) for f_, v in od.items()}
+    # W bookkeeping: raw length vs union (duplicated lines), long outline polylines
+    w_stats = {}
+    for a in labels:
+        Ls = [g for g in F[a]["lines"].get("W", []) if g.length <= 50]
+        raw = sum(g.length for g in Ls)
+        un = unary_union(Ls).length if Ls else 0.0
+        w_stats[a] = {"raw_len_without_long": _r(raw, 2), "union_len": _r(un, 2), "duplicated_len": _r(raw - un, 2),
+                      "long_polylines": [{k: v for k, v in lp.items() if k != "geom"} for lp in F[a]["long_polylines"]]}
+        UB = unary_union(Ls).buffer(TOL) if Ls else Polygon()
+        for lp, rec in zip(F[a]["long_polylines"], w_stats[a]["long_polylines"]):
+            if lp["layer"] == "W":
+                rec["overlap_with_other_W"] = _r(lp["geom"].intersection(UB).length, 2)
+                rec["unique"] = _r(lp["geom"].difference(UB).length, 2)
     res = {"reference": ref, "floors": labels, "typical_floors": typical, "atypical_floors": atypical,
+           "w_stats": w_stats,
            "w_mean_diff": {a: _r(v, 2) for a, v in wmean.items()}, "tolerance_m": TOL, "min_piece_m": MIN_PIECE,
            "layers_compared": lays, "identical_groups": groups,
            "matrix": matrix, "blocks_matrix": blk_m, "texts_matrix": txt_m, "dims_matrix": dim_m,
@@ -471,6 +527,43 @@ def compare_floors(ref=None, png=True, features=None):
     if png:
         render_all(res, F, fls)
     return res
+
+
+def orphan_dims(F, labels, ref, per_floor, bbox, tol=0.015):
+    """For one change region: DIMs of each floor that end on W geometry this floor LACKS
+    (present on the reference / on other floors) and on nothing of its own (W, WIN,
+    Etabs-col, structural outlines).  A dim still pointing at a missing partition suggests
+    the partition was deleted by mistake (drafting omission) rather than by design.
+    Returns {floor: [{handle, text, end, other_end}]}."""
+    x0, y0, x1, y1 = bbox
+    Rb = box(x0 - 0.1, y0 - 0.1, x1 + 0.1, y1 + 0.1)
+    out = {}
+    for f in labels:
+        if f == ref:
+            pcs = [p for a in labels if a != ref for p in per_floor[a]["only_here"].get("W", [])]
+        else:
+            pcs = per_floor[f]["only_ref"].get("W", [])
+        geo = [LineString(p["coords"]) for p in pcs]
+        geo = [g for g in geo if g.intersects(Rb)]
+        if not geo:
+            continue
+        M = unary_union(geo)
+        own = None
+        hits = []
+        for d in F[f]["dims"]:
+            for p, q in ((d["a"], d["b"]), (d["b"], d["a"])):
+                P = Point(p)
+                if M.distance(P) > tol:
+                    continue
+                if own is None:
+                    own = [_union(F[f], lay)[0] for lay in ("W", "WIN", "Etabs-col")] + \
+                          [s["poly"].boundary for s in F[f]["struct"]]
+                if all(g.is_empty or g.distance(P) > tol for g in own):
+                    hits.append({"handle": d.get("handle"), "text": d["text"], "end": _r(list(p)), "other_end": _r(list(q))})
+                    break
+        if hits:
+            out[f] = hits
+    return out
 
 
 def _ann_equal(F1, F2, Rbox):
@@ -643,12 +736,19 @@ def render_all(res, F, fls):
                 if t["layer"] in ("TEXT", "-A-TEXT") and Z[0] <= t["at"][0] <= Z[2] and Z[1] <= t["at"][1] <= Z[3]:
                     ax.text(t["at"][0], t["at"][1], t["text"], fontsize=7, color="#333")
             ax.add_patch(Rectangle((x0 - 0.1, y0 - 0.1), x1 - x0 + 0.2, y1 - y0 + 0.2, fill=False, ec="#ff00ff", lw=0.6, ls=":"))
+            for d in (rg.get("orphan_dims") or {}).get(a, []):
+                # dim pointing at a wall this floor lacks: magenta X at the orphan end + its dimension line
+                ax.plot([d["end"][0], d["other_end"][0]], [d["end"][1], d["other_end"][1]], color="#ff00ff", lw=0.6, ls="--")
+                ax.plot(*d["end"], marker="x", ms=8, mew=2, color="#ff00ff")
+                ax.text(d["end"][0], d["end"][1], f" DIM {d['text']}", fontsize=6, color="#ff00ff")
             same_as_ref = a == ref or a not in rg.get("floors_unlike_ref", rg["floors_differing_from_ref"])
             ax.set_title(f"{a}" + (" (=المرجع)" if same_as_ref else " ≠ المرجع"), fontsize=10,
                          color="#333" if same_as_ref else "#d62728")
             ax.set_xlim(Z[0], Z[2]); ax.set_ylim(Z[1], Z[3]); ax.set_aspect("equal")
             ax.set_xticks([]); ax.set_yticks([])
-        fig.suptitle(f"{rg['id']}  مركز ({cx:.2f}, {cy:.2f})  {' / '.join(rg['rooms_near'])}   — المرجع {ref}", fontsize=11)
+        ev = rg.get("drafting_omission_evidence") or {}
+        evt = ("   — دليل سهو (أبعاد تشير لحائط غير مرسوم، X بنفسجي): " + ", ".join(f"{k} ×{v}" for k, v in sorted(ev.items()))) if ev else ""
+        fig.suptitle(f"{rg['id']}  مركز ({cx:.2f}, {cy:.2f})  {' / '.join(rg['rooms_near'])}   — المرجع {ref}{evt}", fontsize=11)
         fig.savefig(OUT / f"region_{rg['id']}.png", dpi=110, bbox_inches="tight"); plt.close(fig)
 
 
@@ -700,15 +800,32 @@ def write_doc(res, path=DOC):
     L.append("`variants` = مجموعات الأدوار المتطابقة داخل حدود المنطقة. الصور: `output/floor_compare/region_RNN.png` "
              "(لوحة لكل دور) و`regions_map.png` و`diff_F0x.png`.")
     L.append("")
-    L.append("| المنطقة | المركز (x, y) | المدى bbox | قرب | الأدوار المختلفة عن المرجع | المجموعات المتطابقة | التغييرات (طبقة [دور:+في الدور/−في المرجع]) |")
-    L.append("|---|---|---|---|---|---|---|")
+    L.append("عمود **دليل سهو**: أبعاد DIM في ذلك الدور ما زالت تنتهي على حائط W **غير مرسوم فيه** (موجود في المرجع / "
+             "في الأدوار الأخرى) ولا تلتصق بأي خط آخر في الدور نفسه → الأرجح أن الحائط حُذف سهوًا لا تصميمًا "
+             "(`orphan_dims` في summary.json بالـ handle). عمود **كيانات**: البوليلاينات الطويلة المسماة التي تحمل خطوط المنطقة.")
+    L.append("")
+    L.append("| المنطقة | المركز (x, y) | المدى bbox | قرب | الأدوار المختلفة عن المرجع | المجموعات المتطابقة | "
+             "التغييرات (طبقة [دور:+في الدور/−في المرجع]) | دليل سهو (أبعاد تشير لحائط غير مرسوم) | كيانات |")
+    L.append("|---|---|---|---|---|---|---|---|---|")
     for rg in res["regions"]:
         if not rg["in_building"]:
             continue
         var = " · ".join("=".join(v) for v in rg["variants"])
+        od = rg.get("orphan_dims") or {}
+        otxt = "; ".join(f"**{f_}**: {len(v)} بُعد (" + ", ".join(f"{d['text']} h{d['handle']} عند ({d['end'][0]:.2f}, {d['end'][1]:.2f})"
+                                                              for d in v[:4]) + ")" for f_, v in sorted(od.items())) or "—"
         L.append(f"| {rg['id']} | {rg['center'][0]:.2f}, {rg['center'][1]:.2f} | {rg['bbox']} | {' / '.join(rg['rooms_near'])} | "
-                 f"{', '.join(rg.get('floors_unlike_ref', rg['floors_differing_from_ref']))} | {var} | {'; '.join(rg['changes'])} |")
+                 f"{', '.join(rg.get('floors_unlike_ref', rg['floors_differing_from_ref']))} | {var} | {'; '.join(rg['changes'])} | "
+                 f"{otxt} | {'; '.join(rg.get('entities', [])) or '—'} |")
     L.append("")
+    omis = [rg for rg in res["regions"] if rg.get("orphan_dims")]
+    if omis:
+        L.append("### مناطق فيها دليل سهو (likely drafting omission)")
+        L.append("")
+        for rg in omis:
+            L.append(f"- **{rg['id']}** ({' / '.join(rg['rooms_near'])}، مركز {rg['center'][0]:.2f}, {rg['center'][1]:.2f}): " +
+                     "; ".join(f"{f_} — {len(v)} بُعد ما زال يشير إلى حائط غير مرسوم في {f_}" for f_, v in sorted(rg["orphan_dims"].items())))
+        L.append("")
     outside = [rg for rg in res["regions"] if not rg["in_building"]]
     if outside:
         L.append("## 4) اختلافات خارج المبنى (إطار اللوحة / العنوان / الأبعاد الخارجية)")
@@ -740,6 +857,25 @@ def write_doc(res, path=DOC):
         for r_ in rows:
             L.append(f"  - {r_}")
         L.append("")
+    ws = res.get("w_stats")
+    if ws:
+        L.append("## 6) بوليلاينات طويلة (حدود الدور) وخطوط W المكررة")
+        L.append("")
+        L.append("خطوط W المكررة = مجموع أطوال خطوط W (بما فيها حدود تهشيرات W، بدون البوليلاينات > 50 م) − طول اتحادها "
+                 "(لذلك F02 مرتفع: تهشيرات AR-CONC لأحواض الزرع تقع على الخطوط؛ structure.py يعطي الرقم بدون التهشيرات). "
+                 "البوليلاينات الطويلة: W > 50 م "
+                 "(بدون إطار اللوحة المرسوم على W) وMASS مفتوحة > 10 م. أي قراءة لأطوال W يجب أن تستبعد بوليلاين حدود الدور "
+                 "لأنه يتطابق مع خطوط الواجهة (عدّ مزدوج).")
+        L.append("")
+        L.append("| الدور | W خام م | W اتحاد م | W مكرر م | بوليلاينات طويلة (طبقة handle: الطول، متداخل مع W / فريد) |")
+        L.append("|---|---|---|---|---|")
+        for a in labels:
+            s = ws[a]
+            lp = "; ".join(f"{p['layer']} {p['handle']}: {p['len']:.2f} {'مغلق' if p['closed'] else 'مفتوح'}"
+                           + (f" ({p['overlap_with_other_W']:.2f} / {p['unique']:.2f})" if "unique" in p else "")
+                           for p in s["long_polylines"]) or "—"
+            L.append(f"| {a} | {s['raw_len_without_long']:.2f} | {s['union_len']:.2f} | {s['duplicated_len']:.2f} | {lp} |")
+        L.append("")
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text("\n".join(L) + "\n", encoding="utf-8")
     return path
@@ -767,7 +903,7 @@ def cmp_table(res):
              ("كل البلوكات (أبواب + P/WB + LP + ST-2) (عدد)", res["blocks_matrix"], "n"),
              ("نصوص الغرف TEXT/-A-TEXT (عدد)", res["texts_matrix"], "n"),
              ("أبعاد DIM (عدد)", res["dims_matrix"], "n"),
-             ("العناصر الإنشائية Etabs-col + tr + COL (عدد)", res["struct_matrix"], "n")]
+             ("العناصر الإنشائية Etabs-col + tr + COL + أعمدة W الدائرية (عدد)", res["struct_matrix"], "n")]
     L = ["| الطبقة / العنصر | مجموعات الأدوار المتطابقة (فرق صفر في الاتجاهين) | أكبر فرق بين دورين | الفرق عن المرجع "
          f"{res['reference']} (+في الدور / −في المرجع) |",
          "|---|---|---|---|"]

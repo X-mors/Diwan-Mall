@@ -201,11 +201,40 @@ def extract(fl) -> dict:
         pts = [L(p[0], p[1]) for p in e.get_points("xy")]
         if len(pts) >= 3:
             g["columns"].append({"layer": e.dxf.layer, "pts": pts, "handle": e.dxf.handle})
+    # Etabs-col HATCHes are stored as EDGE paths (LINE edges) in these files, not polyline
+    # paths -> read every boundary loop through ezdxf.path.  Loops that duplicate a column
+    # polyline are skipped; the one that matters is the HATCH-ONLY shear wall 3.90 x 0.40
+    # between office 9 and office 10 (x 3.155-7.055, y 18.654-19.054; structure.py SW06),
+    # which has no LWPOLYLINE and was read as a 0.40 masonry wall before (v7 fix).
+    poly_cols = []
+    for c in g["columns"]:
+        try:
+            pc = Polygon(c["pts"]).buffer(0)
+            if pc.area > 1e-4:
+                poly_cols.append(pc)
+        except Exception:
+            pass
+    from ezdxf.path import from_hatch
     for e in floor_entities(fl, layers="Etabs-col", types="HATCH"):
-        for path in e.paths:
-            if hasattr(path, "vertices") and len(path.vertices) >= 3:
-                g["columns"].append({"layer": "Etabs-col(hatch)",
-                                     "pts": [L(v[0], v[1]) for v in path.vertices], "handle": e.dxf.handle})
+        try:
+            loops = [[L(q.x, q.y) for q in hp.flattening(0.005)] for hp in from_hatch(e)]
+        except Exception:
+            loops = []
+        for pts in loops:
+            if len(pts) >= 2 and math.hypot(pts[0][0] - pts[-1][0], pts[0][1] - pts[-1][1]) < 1e-6:
+                pts = pts[:-1]
+            if len(pts) < 3:
+                continue
+            try:
+                ph = Polygon(pts).buffer(0)
+            except Exception:
+                continue
+            if ph.area < 1e-4:
+                continue
+            if any(ph.symmetric_difference(pc).area < 0.02 * ph.area for pc in poly_cols):
+                continue          # same footprint as a column polyline
+            g["columns"].append({"layer": "Etabs-col(hatch)", "pts": pts, "handle": e.dxf.handle})
+            poly_cols.append(ph)
 
     # ---- shafts / ducts (X-crossed boxes) ----
     for e in floor_entities(fl, layers="try", types="LWPOLYLINE"):
@@ -322,7 +351,7 @@ def extract(fl) -> dict:
 
 def load_geometry(fl, use_cache=True) -> dict:
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
-    key = f"{fl.label}_{fl.file.stem}_{int(os.path.getmtime(fl.file))}_v6.pkl"
+    key = f"{fl.label}_{fl.file.stem}_{int(os.path.getmtime(fl.file))}_v7.pkl"
     p = CACHE_DIR / key
     if use_cache and p.exists():
         with open(p, "rb") as f:

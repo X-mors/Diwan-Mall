@@ -19,16 +19,28 @@ STRUCTURE  (concrete that is NOT masonry and whose faces get plaster)
     no W outline at all -> flagged for the engineer.
   * COL = two 0.40x0.40 squares with an X (open LWPOLYLINE + 2 diagonals) on the face
     of Etabs-col walls.
+  * F02 only: two ROUND columns drawn as W arcs (Ø0.55 at (3.66, 37.905) and Ø0.75 at
+    (1.83, 35.71), the latter on the spot of tr column C02 -> 'overlaps').
+  Every outline is cleaned by a 5 mm morphological opening (_despike: drops drafting
+  slivers such as the 4 mm spike on the hatch of tr column C01 -> 0.45 x 1.99).
   Polygons from all sources are de-duplicated (same footprint = one element, sources
   listed).  kind: column (long/short <= 5), shear_wall (> 5), core (non-rectangular),
-  column_xbox (COL).  Each element: id (stable across floors, sorted by position),
-  bbox, size, area, perimeter, grid_ref (nearest axes), W walls abutting each face
-  (end points of W lines on the outline, paired into wall thicknesses) ->
-  exposed_perimeter = perimeter - abutting wall thicknesses (plaster on column faces,
-  approximate), outline_on_W (fraction of the outline also drawn as W lines -> risk of
-  being counted as masonry), w_inside (W lines running through the element).
+  column_xbox (COL), round_column (W arcs).  Each element: id (stable across floors,
+  sorted by position), bbox, size, area, perimeter, grid_ref (nearest axes), each face
+  sampled every 2 cm 3 cm outside it: covered by an abutting wall (between two W lines
+  running away from the face) / by concrete or a shaft / FREE; free samples classified
+  by FaceEnv into
+      exposed_interior   faces a room -> INTERNAL plaster (summary plaster_perimeter_*)
+      exposed_exterior   10 cm in front is outside the building footprint, or inside an
+                         open-air room of rooms.py (F02 terraces / planters) -> facade
+      exposed_lift_shaft inside the pocket of the C-core (lift shafts; jambs of the lift
+                         door opening excluded -> interior)
+  outline_on_W (fraction of the outline also drawn as W lines -> risk of being counted
+  as masonry), w_inside (W lines running through the element), overlaps.
 SHAFTS     layer 'try' closed boxes (X drawn by DASH diagonals) + DASH-only X boxes;
            hatched try boxes (ANSI31, duplicated) = small posts at the west curtain wall.
+           summary: shafts_confirmed (try box + 2 diagonals) vs shafts_uncertain (one
+           diagonal, or a DASH-only X without try box) - counts and areas separately.
 STAIRS     ST lines clustered -> flights (tread lines, going, width), landing steps,
            stair eye (MASS rectangle), arrow (PR1 'ST-2'), blank level tags (TEXT-D).
 LIFTS      PR rectangles with an X = lift cars; core opening + MASS door lines.
@@ -38,7 +50,8 @@ GRID       X lines (DASHDOT) + bubbles (random-named INSERTs on X, CI circle + T
            DISPLACED copies (constant offset) -> labels assigned by abjad order.
 DASH       every DASH line classified: door_head / window_head / opening_head (lintel
            line over a gap), stair_flight (upper flight above the cut), shaft_cross
-           (diagonals), lift_divider, other.
+           (diagonals), lift_divider, other.  door_head_per_door = how many head lines
+           each door of openings.py has (2 / 1 / 0 - NOT always two).
 DIMS       architect DIMENSIONs (dimstyle WWW): displayed text, actual_measurement
            (ezdxf get_measurement() is WRONG for the aligned ones -> not used), local
            extension points, direction, what each end snaps to (X / W / WIN / Etabs-col),
@@ -46,7 +59,10 @@ DIMS       architect DIMENSIONs (dimstyle WWW): displayed text, actual_measureme
            interior / other.  Histogram of values.
 ANNOTATION TEXT-D (titles + blank '+ 0.00' level tags), level marks (PR), HAT (frame
            lines + 2 hatches in the lift shafts), MASS (stair eye, break lines, lift door
-           lines, PLOT BOUNDARY polygon, title-block lines), -MASS (title block of another
+           lines, PLOT BOUNDARY polygon, title-block lines, F02 outline_polylines = two
+           long open parallel polylines along the facade: slab edge / parapet?),
+           W_lines (long W polylines: the sheet frame and F02's 121.9 m floor-outline
+           polyline 1585 that overlaps the facade lines; duplicated W length), -MASS (title block of another
            project 'ابراج الفرسان'), sidewalk (area schedule of all floors), PR1, FUR
            (WC 'P' / basin 'WB'), layer-0 notes, LOGO-L1.
 
@@ -61,7 +77,10 @@ CLI (default = all floors):
 API:
     from structure import analyze_floor, read_grid, grid_ref, run, render
     res = analyze_floor(3)                  # dict (JSON-able)
-    res["elements"]   # [{id, kind, sources, bbox, size, area, perimeter, exposed_perimeter, grid_ref, ...}]
+    res["elements"]   # [{id, kind, sources, bbox, size, area, perimeter, exposed_perimeter,
+                      #   exposed_interior, exposed_exterior, exposed_lift_shaft, faces[{.., runs}], grid_ref, ...}]
+    res["summary"]["plaster_perimeter_all"]   # INTERNAL plaster run (m) of concrete faces, tr included
+    res["face_env"]   # footprint / open-air / lift-pocket outlines used for the classification
     res["grid"]       # {"x_axes": [{label, coord, source}], "y_axes": [{label, coord, source}], ...}
     grid_ref(res["grid"], 12.0, 20.5)       # -> 'د+2.25 / 8+1.58' (nearest axis + offset, m)
 """
@@ -77,8 +96,9 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 import numpy as np
+import shapely
 from ezdxf import path as ezpath
-from shapely.geometry import LineString, Point, Polygon, box
+from shapely.geometry import LineString, MultiLineString, Point, Polygon, box
 from shapely.ops import unary_union
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -163,6 +183,45 @@ def _clean_poly(pts):
 def _is_rect(P, tol=0.03):
     mrr = P.minimum_rotated_rectangle
     return abs(mrr.area - P.area) <= tol * max(P.area, 1e-6) + 0.002
+
+
+def _despike(P, d=0.005):
+    """Morphological opening (mitre joins) by d: removes slivers / spikes narrower than 2d
+    (e.g. the 0.004 x 0.049 m sliver on the hatch of tr column C01) and keeps the corners
+    of rectangles and of the C-core exact."""
+    try:
+        Q = P.buffer(-d, join_style=2).buffer(d, join_style=2)
+    except Exception:
+        return P
+    if Q.is_empty:
+        return P
+    if Q.geom_type == "MultiPolygon":
+        Q = max(Q.geoms, key=lambda g: g.area)
+    return Q.simplify(0.002) if Q.area > 0.8 * P.area else P
+
+
+def round_columns(fl, D, rmin=0.15, rmax=0.60, min_sweep=250.0):
+    """Round columns drawn as ARC / CIRCLE on layer W (F02 only): arcs grouped by centre
+    (2 cm) and radius (1 cm); a group whose arcs sweep >= min_sweep degrees in total is a
+    column (the missing part is where walls/glazing join it)."""
+    groups = []
+    for e in D.ents("W", "ARC CIRCLE"):
+        r = float(e.dxf.radius)
+        if not rmin <= r <= rmax:
+            continue
+        c = e.ocs().to_wcs(e.dxf.center)
+        lc = fl.to_local(c.x, c.y)
+        if e.dxftype() == "CIRCLE":
+            sw = 360.0
+        else:
+            sw = (e.dxf.end_angle - e.dxf.start_angle) % 360.0 or 360.0
+        g = next((g for g in groups if math.dist(g["c"], lc) < 0.02 and abs(g["r"] - r) < 0.01), None)
+        if g is None:
+            g = {"c": lc, "r": r, "sweep": 0.0, "handles": []}
+            groups.append(g)
+        g["sweep"] += sw
+        g["handles"].append(e.dxf.handle)
+    return [g for g in groups if g["sweep"] >= min_sweep]
 
 
 def sheet_inserts(fl, layers):
@@ -444,6 +503,12 @@ def _collect_struct_polys(fl, D):
         pts = _pts(e, fl)
         if len(pts) >= 4 and math.dist(pts[0], pts[-1]) < 0.01:
             raw.append((_clean_poly(pts), "COL polyline (X-box)"))
+    # drop drafting slivers (< 1 cm wide) from every outline before comparing footprints
+    raw = [(_despike(P), src) for P, src in raw]
+    # round columns drawn as W arcs (F02)
+    for g in round_columns(fl, D):
+        raw.append((Point(*g["c"]).buffer(g["r"], quad_segs=32),
+                    f"W arc round column (r={g['r']:.3f}, sweep {g['sweep']:.0f} deg, handles {'+'.join(g['handles'])})"))
     # de-duplicate
     elems = []
     for P, src in raw:
@@ -474,17 +539,128 @@ def _ray_hits(Q, u, A):
     return t[np.arange(len(Q)), idx], idx
 
 
-def _exposed_faces(P, W, others, step=0.02, off=0.03, tmax=0.66):
+FACE_CLASSES = ("interior", "exterior", "lift_shaft")
+
+
+class FaceEnv:
+    """What lies in front of a free (not wall-covered, not concrete/shaft-covered) strip of
+    a structural face:
+      * 'lift_shaft' - inside the pocket of a C-core (convex hull - core), minus the strip
+                       of the core opening (the jambs of the lift doors face the lobby);
+      * 'exterior'   - inside an open-air room of rooms.py (F02 terraces / planters), or
+                       the point 10 cm in front of the face is OUTSIDE the building
+                       footprint (= the facade: external plaster / cladding);
+      * 'interior'   - everything else (internal plaster).
+    Footprint = outer ring of the union of W / WIN / DASH lines (entities > 50 m skipped:
+    the sheet frame drawn on W and the F02 floor-outline polyline W 1585), structural
+    outlines and door quads, buffered 4 cm (closes drafting gaps <= 8 cm) and shrunk back."""
+
+    BUF = 0.04
+    TEST = 0.10        # m in front of the face for the footprint test
+
+    def __init__(self, fl, D, polys, cores=(), rooms_res=None, openings_res=None):
+        self.notes = []
+        win = box(-3.0, -4.0, 23.0, 43.0)
+        geoms = []
+        self.skipped_long = []
+        for lay in ("W", "WIN", "DASH"):
+            for e in D.ents(lay):
+                if e.dxftype() in ("INSERT", "TEXT", "MTEXT", "HATCH", "DIMENSION"):
+                    continue
+                segs = _segments_of(e, fl)
+                L = sum(math.dist(a, b) for a, b in segs)
+                if L > 50.0:
+                    self.skipped_long.append({"layer": lay, "handle": e.dxf.handle, "len": _r(L, 2)})
+                    continue
+                geoms += [LineString(s) for s in segs if math.dist(*s) > 1e-6
+                          and win.contains(Point(s[0])) and win.contains(Point(s[1]))]
+        geoms += [P.exterior for P in polys]
+        for d in (openings_res or {}).get("doors", []):
+            if d.get("jamb_a") and d.get("jamb_b"):
+                q = Polygon(d["jamb_a"] + d["jamb_b"][::-1]).convex_hull
+                if q.geom_type == "Polygon":
+                    geoms.append(q.exterior)
+        U = MultiLineString([list(g.coords) for g in geoms]).buffer(self.BUF, cap_style=2, join_style=2)
+        big = max(U.geoms, key=lambda g: g.area) if U.geom_type == "MultiPolygon" else U
+        FP = Polygon(big.exterior).buffer(-self.BUF, join_style=2)
+        if FP.geom_type == "MultiPolygon":
+            FP = max(FP.geoms, key=lambda g: g.area)
+        self.fp = FP if 450.0 <= FP.area <= 800.0 else None
+        if self.fp is None:
+            self.notes.append(f"own footprint rejected (area {FP.area:.1f} m2)")
+        # rooms.py open-air rooms (terraces / planters)
+        self.rooms_fp = None
+        oa = []
+        if rooms_res:
+            oa = [r["_poly"] for r in rooms_res.get("rooms", []) if r.get("open_air") and r.get("_poly") is not None]
+            self.rooms_fp = rooms_res.get("_footprint")
+            if self.fp is None and self.rooms_fp is not None:
+                self.fp = self.rooms_fp
+                self.notes.append("footprint taken from rooms.py")
+        self.open_air = unary_union(oa) if oa else None
+        self.n_open_air = len(oa)
+        # lift shafts = pockets of the C-cores
+        lifts, jambs = [], []
+        for C in cores:
+            hull = C.convex_hull
+            pocket = hull.difference(C.buffer(0.001))
+            if pocket.is_empty:
+                continue
+            if pocket.geom_type == "MultiPolygon":
+                pocket = max(pocket.geoms, key=lambda g: g.area)
+            t = min(0.3, _core_thickness(C))
+            opening = hull.exterior.difference(C.buffer(0.005))
+            jamb = opening.buffer(t + 0.01, cap_style=2).intersection(pocket) if not opening.is_empty else Polygon()
+            lifts.append(pocket.difference(jamb))
+            jambs.append(jamb)
+        self.lift = unary_union(lifts) if lifts else None
+        self.jamb = unary_union(jambs) if jambs else None
+        for g in (self.fp, self.open_air, self.lift):
+            if g is not None:
+                shapely.prepare(g)
+
+    def classify(self, Q3, Q10):
+        lab = np.full(len(Q3), "interior", dtype=object)
+        if not len(Q3):
+            return lab
+        if self.lift is not None:
+            lab[shapely.contains_xy(self.lift, Q3[:, 0], Q3[:, 1])] = "lift_shaft"
+        if self.open_air is not None:
+            m = shapely.contains_xy(self.open_air, Q3[:, 0], Q3[:, 1]) & (lab == "interior")
+            lab[m] = "exterior"
+        if self.fp is not None:
+            m = ~shapely.contains_xy(self.fp, Q10[:, 0], Q10[:, 1]) & (lab == "interior")
+            lab[m] = "exterior"
+        return lab
+
+    def info(self):
+        def ring(g):
+            gs = [g] if g.geom_type == "Polygon" else list(getattr(g, "geoms", []))
+            return [_r([list(p) for p in x.simplify(0.003).exterior.coords]) for x in gs if x.geom_type == "Polygon"]
+        return {"footprint_area": _r(self.fp.area, 2) if self.fp is not None else None,
+                "footprint_bounds": _r(list(self.fp.bounds)) if self.fp is not None else None,
+                "footprint_outline": ring(self.fp)[0] if self.fp is not None else None,
+                "open_air_outlines": ring(self.open_air) if self.open_air is not None else [],
+                "lift_shaft_outlines": ring(self.lift) if self.lift is not None else [],
+                "rooms_footprint_area": _r(self.rooms_fp.area, 2) if self.rooms_fp is not None else None,
+                "open_air_rooms": self.n_open_air,
+                "lift_shaft_area": _r(self.lift.area, 3) if self.lift is not None else None,
+                "skipped_long_entities": self.skipped_long, "notes": self.notes}
+
+
+def _exposed_faces(P, W, others, env=None, step=0.02, off=0.03, tmax=0.66):
     """Sample every face of polygon P every `step` m, 3 cm outside it, and decide if
     that strip of face is free (gets plaster) or covered:
       * 'wall'     - the sample lies between two W face lines that run AWAY from the
                      face (both crossed within tmax along the face direction, both
                      starting at the face) = a wall abutting / continuing the element;
       * 'concrete' - inside another structural element / shaft box.
-    Returns per-face dicts + totals."""
+    Free samples are then classified by `env` (FaceEnv) into interior / exterior /
+    lift_shaft.  Returns per-face dicts (with contiguous runs [s0, s1, class] along a->b)
+    + totals {free, wall, concrete, interior, exterior, lift_shaft}."""
     coords = list(P.exterior.coords)
     faces = []
-    tot_free = tot_wall = tot_conc = 0.0
+    tot = defaultdict(float)
     Wd = None
     if len(W):
         dv = W[:, 2:4] - W[:, 0:2]
@@ -522,21 +698,37 @@ def _exposed_faces(P, W, others, step=0.02, off=0.03, tmax=0.66):
                 t2, _ = _ray_hits(Q, -u, cand)
                 wall = (t1 + t2 <= tmax) & (state == "free")
                 state[wall] = "wall"
+        free_m = state == "free"
+        if env is not None and free_m.any():
+            Q10 = a[None, :] + ss[:, None] * u[None, :] + n[None, :] * env.TEST
+            state[free_m] = env.classify(Q[free_m], Q10[free_m])
+        else:
+            state[free_m] = "interior"
         seg = L / k
-        free = float((state == "free").sum() * seg)
-        wl = float((state == "wall").sum() * seg)
-        cc = float((state == "concrete").sum() * seg)
-        # contiguous wall runs -> abutting wall thicknesses
+        cnt = Counter(state)
+        wl = cnt.get("wall", 0) * seg
+        cc = cnt.get("concrete", 0) * seg
+        cls_len = {c: cnt.get(c, 0) * seg for c in FACE_CLASSES}
+        free = sum(cls_len.values())
+        # contiguous wall runs -> abutting wall thicknesses; contiguous runs of every state
         runs, cur = [], 0
         for st in list(state) + ["end"]:
             if st == "wall":
                 cur += 1
             elif cur:
                 runs.append(_r(cur * seg, 2)); cur = 0
-        tot_free += free; tot_wall += wl; tot_conc += cc
+        segruns, j0 = [], 0
+        for j in range(1, k + 1):
+            if j == k or state[j] != state[j0]:
+                segruns.append([_r(j0 * seg, 3), _r(j * seg, 3), str(state[j0])])
+                j0 = j
+        tot["free"] += free; tot["wall"] += wl; tot["concrete"] += cc
+        for c, v in cls_len.items():
+            tot[c] += v
         faces.append({"a": _r(list(a)), "b": _r(list(b)), "len": _r(L), "free": _r(free, 2),
-                      "wall_runs": runs, "concrete_or_shaft": _r(cc, 2)})
-    return faces, tot_free, tot_wall, tot_conc
+                      **{f"free_{c}": _r(v, 2) for c, v in cls_len.items()},
+                      "wall_runs": runs, "concrete_or_shaft": _r(cc, 2), "runs": segruns})
+    return faces, dict(tot)
 
 
 def _flush_on_W(P, W, tol=TOL):
@@ -572,27 +764,49 @@ def _flush_on_W(P, W, tol=TOL):
     return tot
 
 
-def analyze_structure(fl, D, grid, shaft_polys=()):
+def _kind_of(el):
+    P, srcs = el["poly"], el["sources"]
+    x0, y0, x1, y1 = P.bounds
+    w, h = x1 - x0, y1 - y0
+    if any(s.startswith("W arc") for s in srcs):
+        return "round_column"
+    if any(s.startswith("COL") for s in srcs):
+        return "column_xbox"
+    if not _is_rect(P):
+        return "core"
+    sh, lo = min(w, h), max(w, h)
+    return "shear_wall" if lo / max(sh, 1e-6) > WALL_RATIO else "column"
+
+
+def analyze_structure(fl, D, grid, shaft_polys=(), rooms_res=None, openings_res=None):
+    """Structural elements of the floor + exposed (plaster) perimeter split into
+    interior / exterior / lift_shaft (FaceEnv).  Returns (elements, tr_info, env_info)."""
     elems, tr_info = _collect_struct_polys(fl, D)
+    for el in elems:
+        el["kind"] = _kind_of(el)
+    env = FaceEnv(fl, D, [el["poly"] for el in elems],
+                  cores=[el["poly"] for el in elems if el["kind"] == "core"],
+                  rooms_res=rooms_res, openings_res=openings_res)
     W = D.seg_array(["W"])
     out = []
     for el in elems:
         P = el["poly"]
         x0, y0, x1, y1 = P.bounds
-        rect = _is_rect(P)
+        kind = el["kind"]
+        rect = kind not in ("core", "round_column")
         w, h = x1 - x0, y1 - y0
         srcs = el["sources"]
-        if any(s.startswith("COL") for s in srcs):
-            kind = "column_xbox"
-        elif not rect:
-            kind = "core"
-        else:
-            sh, lo = min(w, h), max(w, h)
-            kind = "shear_wall" if lo / max(sh, 1e-6) > WALL_RATIO else "column"
         others = [o["poly"] for o in elems if o is not el] + list(shaft_polys)
-        faces, free, t_wall, t_conc = _exposed_faces(P, W, others)
+        faces, T = _exposed_faces(P, W, others, env)
+        free, t_wall, t_conc = T.get("free", 0.0), T.get("wall", 0.0), T.get("concrete", 0.0)
         flush = _flush_on_W(P, W)
         per = P.length
+        if kind == "round_column":
+            r_ = (x1 - x0) / 2
+            per = 2 * math.pi * r_
+            k_ = per / P.length          # polygon chord length -> true circumference
+            free, t_wall, t_conc = free * k_, t_wall * k_, t_conc * k_
+            T = {c: v * k_ for c, v in T.items()}
         inner = P.buffer(-0.02)
         w_inside = 0.0
         if not inner.is_empty:
@@ -602,17 +816,23 @@ def analyze_structure(fl, D, grid, shaft_polys=()):
                     w_inside += ls.intersection(inner).length
         c = P.centroid
         xs_, ys_ = grid_between(grid, x0, x1, y0, y1)
+        size_txt = (f"{w:.2f} x {h:.2f}" if rect else
+                    (f"Ø{w:.2f}" if kind == "round_column" else f"C-core {w:.2f} x {h:.2f}"))
         rec = {
             "kind": kind, "sources": sorted(set(srcs)),
-            "in_model_space": any(s.startswith("Etabs-col") or s.startswith("COL") for s in srcs),
+            "in_model_space": any(s.startswith(("Etabs-col", "COL", "W arc")) for s in srcs),
             "only_in_tr_block": all(s.startswith("block") for s in srcs),
             "hatch_only": all(s == "Etabs-col hatch" for s in srcs),
             "bbox": _r([x0, y0, x1, y1]), "centroid": _r([c.x, c.y]),
             "size": _r([w, h]) if rect else None,
-            "size_txt": (f"{w:.2f} x {h:.2f}" if rect else f"C-core {w:.2f} x {h:.2f}"),
-            "area": _r(P.area), "perimeter": _r(per),
+            "size_txt": size_txt,
+            "area": _r(math.pi * (w / 2) ** 2 if kind == "round_column" else P.area), "perimeter": _r(per),
             "covered_by_walls": _r(t_wall, 2), "covered_by_concrete_or_shaft": _r(t_conc, 2),
+            # exposed = free of walls/concrete; split by what it faces (FaceEnv)
             "exposed_perimeter": _r(free, 2),
+            "exposed_interior": _r(T.get("interior", 0.0), 2),
+            "exposed_exterior": _r(T.get("exterior", 0.0), 2),
+            "exposed_lift_shaft": _r(T.get("lift_shaft", 0.0), 2),
             "outline_on_W": _r(flush / per if per else 0, 2),
             "w_inside_len": _r(w_inside),
             "grid_ref": grid_ref(grid, c.x, c.y),
@@ -632,17 +852,39 @@ def analyze_structure(fl, D, grid, shaft_polys=()):
                 notes.append("no W outline around it -> free-standing in the room on the architectural plan?")
         if rec["hatch_only"]:
             notes.append("drawn only as an Etabs-col HATCH (no polyline); outline drawn on W")
-        if rec["outline_on_W"] >= 0.5 and kind != "column_xbox":
+        if kind == "round_column":
+            notes.append("round column drawn only as W arcs (no Etabs-col / tr outline)")
+        if rec["outline_on_W"] >= 0.5 and kind not in ("column_xbox", "round_column"):
             notes.append(f"{rec['outline_on_W']:.0%} of its outline is ALSO drawn on W -> do not count as masonry")
+        if rec["exposed_exterior"] > 0.05:
+            notes.append(f"{rec['exposed_exterior']:.2f} m of its free faces are on the facade / open air (external plaster)")
+        if rec["exposed_lift_shaft"] > 0.05:
+            notes.append(f"{rec['exposed_lift_shaft']:.2f} m of its free faces bound the lift shafts (inside the core)")
         rec["notes"] = notes
+        rec["_poly"] = P
         out.append(rec)
     out.sort(key=lambda r: (round(-r["centroid"][1], 1), round(r["centroid"][0], 1)))
-    pre = {"column": "C", "shear_wall": "SW", "core": "CORE", "column_xbox": "CX"}
+    pre = {"column": "C", "shear_wall": "SW", "core": "CORE", "column_xbox": "CX", "round_column": "RC"}
     cnt = Counter()
     for r in out:
         cnt[r["kind"]] += 1
         r["id"] = f"{pre[r['kind']]}{cnt[r['kind']]:02d}"
-    return out, tr_info
+    # overlaps between elements (e.g. the F02 round column on the spot of tr column C02)
+    for r in out:
+        ov = []
+        for q in out:
+            if q is r:
+                continue
+            a_ = r["_poly"].intersection(q["_poly"]).area
+            if a_ > 0.05 * min(r["_poly"].area, q["_poly"].area):
+                ov.append({"id": q["id"], "size": q["size_txt"], "overlap_m2": _r(a_)})
+        if ov:
+            r["overlaps"] = ov
+            r["notes"].append("overlaps " + ", ".join(f"{o['id']} ({o['size']}, {o['overlap_m2']:.3f} m2)" for o in ov)
+                              + " -> conflicting outlines, the engineer must say which one is real")
+    for r in out:
+        r.pop("_poly", None)
+    return out, tr_info, env.info()
 
 
 def _core_thickness(P):
@@ -1166,12 +1408,14 @@ def read_annotations(fl, D, grid):
         if m:
             areas[re.sub(r"\s+", " ", m.group(1)).strip()] = float(m.group(2))
     # MASS
-    mass = {"stair_eye_rects": 0, "break_lines": 0, "lift_door_lines": 0, "plot_boundary": None, "title_lines": 0}
+    mass = {"stair_eye_rects": 0, "break_lines": 0, "lift_door_lines": 0, "plot_boundary": None, "title_lines": 0,
+            "outline_polylines": []}
     for e in D.ents("MASS", "LWPOLYLINE"):
         pts = _pts(e, fl)
         if not pts:
             continue
         P = Polygon(pts) if len(pts) >= 3 else None
+        L = sum(math.dist(pts[i], pts[i + 1]) for i in range(len(pts) - 1))
         if e.closed and P is not None and P.area > 100:
             x = [p[0] for p in pts]; y = [p[1] for p in pts]
             mass["plot_boundary"] = {"vertices": _r([list(p) for p in pts[:-1] if True]),
@@ -1179,8 +1423,61 @@ def read_annotations(fl, D, grid):
                                      "side_lengths": _r([math.dist(pts[i], pts[i + 1]) for i in range(len(pts) - 1)], 2)}
         elif e.closed:
             mass["stair_eye_rects"] += 1
+        elif L > 10.0:
+            # long open polylines following the facade (F02: two parallel lines ~0.15 m apart
+            # around the west facade and the curved NW / SW corners) = floor / terrace slab
+            # edge or parapet, NOT break lines
+            xs = [p[0] for p in pts]; ys = [p[1] for p in pts]
+            mass["outline_polylines"].append({
+                "handle": e.dxf.handle, "len": _r(L, 2), "vertices": len(e), "closed": bool(e.closed),
+                "bulges": any(abs(b) > 1e-9 for *_, b in e.get_points("xyb")),
+                "bbox": _r([min(xs), min(ys), max(xs), max(ys)], 2),
+                "meaning": "floor / terrace slab edge or parapet along the facade (?)"})
         else:
             mass["break_lines"] += 1
+    if len(mass["outline_polylines"]) >= 2:
+        # spacing between the parallel outline polylines
+        A, B = (LineString(_pts(next(e for e in D.ents("MASS", "LWPOLYLINE") if e.dxf.handle == o["handle"]), fl))
+                for o in mass["outline_polylines"][:2])
+        dd = [A.distance(Point(p)) for p in list(B.coords)[::3]]
+        mass["outline_polylines_spacing_median"] = _r(float(np.median(dd)), 3)
+    # W: long polylines (sheet frame on W, F02 floor outline) + duplicated W length
+    w_long, w_other = [], []
+    for e in D.ents("W"):
+        if e.dxftype() in ("INSERT", "TEXT", "MTEXT", "HATCH", "DIMENSION"):
+            continue
+        segs = _segments_of(e, fl)
+        if not segs:
+            continue
+        L = sum(math.dist(a, b) for a, b in segs)
+        ls = LineString([segs[0][0]] + [s[1] for s in segs]) if e.dxftype() != "LINE" else LineString(segs[0])
+        if L > 50.0:
+            w_long.append((e, ls, L))
+        else:
+            w_other.append(ls)
+    U = unary_union(w_other) if w_other else LineString()
+    UB = U.buffer(0.02) if not U.is_empty else Polygon()
+    # W hatch boundaries (F02: AR-CONC planter fills) -> second overlap figure
+    hb = [LineString(p) for e in D.ents("W", "HATCH") for p in _hatch_polys(e, fl) if len(p) >= 2]
+    UBH = unary_union([UB] + [h.buffer(0.02) for h in hb]) if hb else UB
+    w_outlines = []
+    for e, ls, L in w_long:
+        frame = e.dxftype() == "LWPOLYLINE" and e.closed and len(e) == 4 and L > 300
+        rec = {"handle": e.dxf.handle, "type": e.dxftype(), "len": _r(L, 2), "closed": bool(getattr(e, "closed", False)),
+               "vertices": len(e) if e.dxftype() == "LWPOLYLINE" else 2,
+               "meaning": "sheet frame drawn on W (not a wall)" if frame else
+               "floor outline polyline (traces the facade, terraces and planters) -> overlaps the facade W lines"}
+        if not frame:
+            rec["bbox"] = _r(list(ls.bounds), 2)
+            rec["overlap_with_other_W"] = _r(ls.intersection(UB).length, 2)
+            rec["unique"] = _r(ls.difference(UB).length, 2)
+            rec["overlap_incl_W_hatch_boundaries"] = _r(ls.intersection(UBH).length, 2)
+            rec["unique_vs_lines_and_hatches"] = _r(ls.difference(UBH).length, 2)
+        w_outlines.append(rec)
+    raw = sum(g.length for g in w_other)
+    w_stats = {"raw_len_without_long": _r(raw, 2), "union_len_without_long": _r(U.length, 2),
+               "duplicated_len": _r(raw - U.length, 2),
+               "long_polylines": w_outlines}
     for a, b in D.segs.get("MASS", []):
         L = math.dist(a, b)
         if a[0] > 30 or a[1] < -5:
@@ -1194,31 +1491,83 @@ def read_annotations(fl, D, grid):
     pr1 = [{"block": e.dxf.name, "at": _r(list(fl.to_local(e.dxf.insert.x, e.dxf.insert.y)), 2)} for e in D.ents("PR1", "INSERT")]
     return {"titles_TEXT_D": titles, "blank_level_tags_TEXT_D": blanks, "level_marks_PR": levels,
             "notes_layer0": notes0, "logo": logo, "area_schedule_sidewalk": areas,
-            "title_block_minus_MASS": title_block, "MASS": mass, "HAT": hat,
+            "title_block_minus_MASS": title_block, "MASS": mass, "W_lines": w_stats, "HAT": hat,
             "FUR": {"counts": dict(fur), "items": fur_pos}, "LP_level_symbols": lp, "PR1_stair_arrows": pr1}
 
 
 # ----------------------------------------------------------------------------- main analysis
-def analyze_floor(floor, openings_res="auto"):
+def shaft_summary(shafts):
+    """confirmed shafts (try box + >= 2 DASH diagonals) vs uncertain ones (1 diagonal, or a
+    DASH-only X without a try box); enclosure boxes, hatched posts and boxes without X excluded."""
+    conf = [s for s in shafts if s["kind"] == "shaft (X)"]
+    unc = [s for s in shafts if s["kind"].startswith("shaft") and s["kind"] != "shaft (X)"
+           and not s["kind"].startswith("shaft enclosure")]
+    return {"shafts": len(conf) + len(unc), "shaft_area": _r(sum(s["area"] for s in conf + unc), 3),
+            "shafts_confirmed": len(conf), "shaft_area_confirmed": _r(sum(s["area"] for s in conf), 3),
+            "shafts_uncertain": len(unc), "shaft_area_uncertain": _r(sum(s["area"] for s in unc), 3),
+            "shafts_uncertain_ids": [f"{s['id']} {s['size_txt']} ({s['kind']})" for s in unc],
+            "boxes_without_x": [s["id"] for s in shafts if s["kind"] == "box (no X)"]}
+
+
+def door_head_stats(dash, openings_res):
+    """How many DASH door_head lines each door of openings.py has (2 = both wall faces)."""
+    if not openings_res:
+        return None
+    cnt = Counter(l["ref"] for l in dash["lines"] if l["class"] == "door_head")
+    doors = openings_res.get("doors", [])
+    dist = Counter(min(cnt.get(d["id"], 0), 3) for d in doors)
+    return {"doors": len(doors), "with_2": dist.get(2, 0), "with_1": dist.get(1, 0), "with_0": dist.get(0, 0),
+            "with_3plus": dist.get(3, 0),
+            "doors_with_1": [f"{d['id']} ({d['center'][0]:.2f}, {d['center'][1]:.2f})" for d in doors if cnt.get(d["id"], 0) == 1],
+            "doors_with_0": [f"{d['id']} ({d['center'][0]:.2f}, {d['center'][1]:.2f})" for d in doors if cnt.get(d["id"], 0) == 0]}
+
+
+def _load_openings(fl):
+    """openings of the floor: cached output/openings/<F>.json when fresh (rooms.load_openings),
+    else openings.analyze_floor()."""
+    try:
+        from rooms import load_openings
+        return load_openings(fl)[0]
+    except Exception:
+        pass
+    try:
+        from openings import analyze_floor as op_analyze
+        return op_analyze(fl.floor_no)
+    except Exception as ex:  # pragma: no cover
+        print("  (openings.py unavailable:", ex, ")")
+        return None
+
+
+def analyze_floor(floor, openings_res="auto", rooms_res="auto"):
     fl = floor if hasattr(floor, "label") else get_floor(int(floor))
     D = FloorData(fl)
     grid = read_grid(fl, D)
     if openings_res == "auto":
+        openings_res = _load_openings(fl)
+    if rooms_res == "auto":
+        # rooms.py room polygons -> open-air rooms (F02 terraces / planters) for FaceEnv
         try:
-            from openings import analyze_floor as op_analyze
-            openings_res = op_analyze(fl.floor_no)
+            from rooms import analyze_floor as rooms_analyze
+            rooms_res = rooms_analyze(fl.floor_no)
         except Exception as ex:  # pragma: no cover
-            print("  (openings.py unavailable:", ex, ")")
-            openings_res = None
+            print("  (rooms.py unavailable:", ex, ") -> faces facing terraces count as interior")
+            rooms_res = None
     shafts = analyze_shafts(fl, D, grid)
-    elements, tr_info = analyze_structure(fl, D, grid, [box(*sh["bbox"]) for sh in shafts
-                                                         if sh["kind"].startswith("shaft")])
+    elements, tr_info, env_info = analyze_structure(
+        fl, D, grid, [box(*sh["bbox"]) for sh in shafts if sh["kind"].startswith("shaft")],
+        rooms_res=rooms_res, openings_res=openings_res)
     stairs = analyze_stairs(fl, D, grid)
     lifts = analyze_lifts(fl, D, grid, elements)
     dash = classify_dash(fl, D, openings_res, stairs, lifts, shafts, elements)
     dims = read_dims(fl, D, grid, openings_res)
     ann = read_annotations(fl, D, grid)
     ann["MASS"]["lift_door_lines"] = len(lifts["door_lines_MASS"])
+    # lift cars must lie in the lift-shaft pockets of the core
+    if env_info.get("lift_shaft_area"):
+        cores = [Polygon(el["outline"]) for el in elements if el["kind"] == "core"]
+        if cores:
+            hull = unary_union([c.convex_hull for c in cores])
+            env_info["lift_cars_inside_core_pocket"] = all(hull.contains(box(*c["bbox"])) for c in lifts["cars"])
     # openings that coincide with a structural element (e.g. the 0.80 'opening' = tr column)
     op_vs_struct = []
     if openings_res:
@@ -1232,13 +1581,20 @@ def analyze_floor(floor, openings_res="auto"):
                     op_vs_struct.append({"opening": o["id"], "width": o["width"], "element": el["id"],
                                          "element_size": el["size_txt"], "sources": el["sources"]})
     kinds = Counter(el["kind"] for el in elements)
-    tot = defaultdict(lambda: {"n": 0, "area": 0.0, "perimeter": 0.0, "exposed_perimeter": 0.0})
+    tot = defaultdict(lambda: {"n": 0, "area": 0.0, "perimeter": 0.0, "exposed_perimeter": 0.0,
+                               "exposed_interior": 0.0, "exposed_exterior": 0.0, "exposed_lift_shaft": 0.0})
     for el in elements:
         grp = el["kind"] + (" (tr block only)" if el["only_in_tr_block"] else "")
         t = tot[grp]
-        t["n"] += 1; t["area"] += el["area"]; t["perimeter"] += el["perimeter"]; t["exposed_perimeter"] += el["exposed_perimeter"]
+        t["n"] += 1
+        for k_ in ("area", "perimeter", "exposed_perimeter", "exposed_interior", "exposed_exterior", "exposed_lift_shaft"):
+            t[k_] += el[k_]
     tot = {k: {kk: _r(vv, 3) for kk, vv in v.items()} for k, v in sorted(tot.items())}
-    sh = [s for s in shafts if s["kind"].startswith("shaft") and not s["kind"].startswith("shaft enclosure")]
+    dh = door_head_stats(dash, openings_res)
+
+    def S(key, model_only=False):
+        return _r(sum(el[key] for el in elements if el["kind"] != "column_xbox"
+                      and not (model_only and el["only_in_tr_block"])), 2)
     res = {
         "floor": fl.label, "floor_no": fl.floor_no, "name_ar": fl.name_ar, "level": fl.level,
         "storey_height": STOREY_HEIGHT, "file": fl.file.name, "sheet_index": fl.sheet_index,
@@ -1246,16 +1602,27 @@ def analyze_floor(floor, openings_res="auto"):
         "grid": grid,
         "elements": elements,
         "tr_block": tr_info,
+        "face_env": env_info,
         "shafts": [{k: v for k, v in s.items() if k != "_P"} for s in shafts],
         "stairs": stairs, "lifts": lifts, "dash": dash, "dims": dims, "annotations": ann,
         "openings_on_structure": op_vs_struct,
+        "door_head_per_door": dh,
         "summary": {
             "elements_by_kind": dict(kinds),
             "totals_by_kind": tot,
-            "plaster_perimeter_all": _r(sum(el["exposed_perimeter"] for el in elements if el["kind"] != "column_xbox"), 2),
-            "plaster_perimeter_model_space_only": _r(sum(el["exposed_perimeter"] for el in elements
-                                                         if el["kind"] != "column_xbox" and not el["only_in_tr_block"]), 2),
-            "shafts": len(sh), "shaft_area": _r(sum(s["area"] for s in sh), 3),
+            # INTERNAL plaster on concrete faces (m run; x clear height outside this module):
+            # free faces that face a room (not the facade / open air, not a lift shaft).
+            # _all includes the ETABS 'tr' elements and F02's round columns, COL X-boxes excluded.
+            "plaster_perimeter_all": S("exposed_interior"),
+            "plaster_perimeter_model_space_only": S("exposed_interior", True),
+            "exterior_perimeter_all": S("exposed_exterior"),
+            "exterior_perimeter_model_space_only": S("exposed_exterior", True),
+            "lift_shaft_perimeter": S("exposed_lift_shaft"),
+            "exposed_perimeter_gross_all": S("exposed_perimeter"),
+            "exposed_perimeter_gross_model_space_only": S("exposed_perimeter", True),
+            **shaft_summary(shafts),
+            "door_heads": ({k: dh[k] for k in ("doors", "with_2", "with_1", "with_0", "with_3plus")} if dh else None),
+            "W_duplicated_len": ann["W_lines"]["duplicated_len"],
             "stairs": len(stairs), "lift_cars": lifts["count"],
             "x_axes": " ".join(a["label"] for a in grid["x_axes"]),
             "y_axes": " ".join(a["label"] for a in grid["y_axes"]),
@@ -1267,7 +1634,9 @@ def analyze_floor(floor, openings_res="auto"):
 
 
 # ----------------------------------------------------------------------------- rendering
-KIND_COL = {"column": "#2ca02c", "shear_wall": "#1f77b4", "core": "#9467bd", "column_xbox": "#8c564b"}
+KIND_COL = {"column": "#2ca02c", "shear_wall": "#1f77b4", "core": "#9467bd", "column_xbox": "#8c564b",
+            "round_column": "#17becf"}
+FACE_COL = {"interior": "#2ca02c", "exterior": "#d62728", "lift_shaft": "#9467bd"}
 DASH_COL = {"door_head": "#2ca02c", "window_head": "#17becf", "opening_head": "#ff7f0e",
             "stair_flight_above_cut": "#8c564b", "shaft_cross": "#ff7f0e", "shaft_outline": "#ff7f0e", "lift_core_divider": "#9467bd", "on_structure_face": "#e377c2",
             "other": "#d62728", "diagonal_other": "#d62728"}
@@ -1304,6 +1673,14 @@ def render(res, out_png, mode="structure", zoom=None, dpi=110):
             ax.add_patch(Circle((xx, a["coord"]), 0.3, fc="white", ec="#d62728", lw=0.8, zorder=5))
             ax.text(xx, a["coord"], a["label"], ha="center", va="center", fontsize=7, color="#d62728", zorder=6)
     if mode == "structure":
+        env = res.get("face_env") or {}
+        if env.get("footprint_outline"):
+            xs_, ys_ = zip(*env["footprint_outline"])
+            ax.plot(xs_, ys_, color="#555555", lw=0.8, ls=(0, (6, 3)), zorder=2)
+        for o in env.get("open_air_outlines", []):
+            ax.add_patch(MPoly(o, closed=True, fc="#ffd27f", alpha=0.35, ec="#e6a000", lw=0.6, zorder=1))
+        for o in env.get("lift_shaft_outlines", []):
+            ax.add_patch(MPoly(o, closed=True, fc="#c5b0d5", alpha=0.35, ec="#9467bd", lw=0.4, zorder=1))
         for el in res["elements"]:
             col = KIND_COL[el["kind"]]
             ls = "--" if el["only_in_tr_block"] else "-"
@@ -1311,8 +1688,28 @@ def render(res, out_png, mode="structure", zoom=None, dpi=110):
                                ec=col, lw=1.4, ls=ls, zorder=3))
             if el["hatch_only"] or el["only_in_tr_block"]:
                 ax.add_patch(MPoly(el["outline"], closed=True, fill=False, ec="magenta", lw=2.2, ls=ls, zorder=4))
+            # free face runs, drawn 6 cm outside the face: interior green, exterior red, lift shaft purple
+            Pel = Polygon(el["outline"])
+            for f in el["faces"]:
+                a_, b_ = np.array(f["a"]), np.array(f["b"])
+                L_ = float(np.hypot(*(b_ - a_)))
+                if L_ < 1e-6:
+                    continue
+                u_ = (b_ - a_) / L_
+                n_ = np.array([-u_[1], u_[0]])
+                if Pel.contains(Point(*((a_ + b_) / 2 + n_ * 0.01))):
+                    n_ = -n_
+                for s0, s1, cl in f.get("runs", []):
+                    if cl not in FACE_COL:
+                        continue
+                    p0 = a_ + u_ * s0 * (L_ / f["len"]) + n_ * 0.06
+                    p1 = a_ + u_ * s1 * (L_ / f["len"]) + n_ * 0.06
+                    ax.plot([p0[0], p1[0]], [p0[1], p1[1]], color=FACE_COL[cl], lw=2.2 if cl != "interior" else 1.2,
+                            solid_capstyle="butt", zorder=6)
             cx, cy = el["centroid"]
-            ax.text(cx, cy, f"{el['id']}\n{el['size_txt']}\nP={el['exposed_perimeter']:.2f}",
+            extra = (f"\next {el['exposed_exterior']:.2f}" if el.get("exposed_exterior", 0) > 0.005 else "") + \
+                    (f"\nlift {el['exposed_lift_shaft']:.2f}" if el.get("exposed_lift_shaft", 0) > 0.005 else "")
+            ax.text(cx, cy, f"{el['id']}\n{el['size_txt']}\nPi={el.get('exposed_interior', el['exposed_perimeter']):.2f}{extra}",
                     fontsize=5.5, ha="center", va="center", zorder=7, color="black",
                     bbox=dict(boxstyle="round,pad=0.15", fc="white", ec=col, lw=0.6, alpha=0.85))
         for s in res["shafts"]:
@@ -1342,10 +1739,14 @@ def render(res, out_png, mode="structure", zoom=None, dpi=110):
         handles = [Line2D([], [], color=c, lw=6, alpha=0.5, label=k) for k, c in KIND_COL.items()]
         handles += [Line2D([], [], color="magenta", lw=2, ls="--", label="only in ETABS block 'tr' / hatch-only")]
         handles += [Line2D([], [], color="#ff7f0e", lw=6, alpha=0.4, label="shaft (try / DASH X)")]
+        handles += [Line2D([], [], color=c, lw=2.2, label=f"free face: {k}") for k, c in FACE_COL.items()]
+        handles += [Line2D([], [], color="#555555", lw=0.8, ls=(0, (6, 3)), label="building footprint (FaceEnv)"),
+                    Line2D([], [], color="#e6a000", lw=6, alpha=0.4, label="open-air room (rooms.py)"),
+                    Line2D([], [], color="#9467bd", lw=6, alpha=0.3, label="lift-shaft pocket")]
         handles += [Line2D([], [], color=c, lw=1.2, ls="--", label=f"DASH {k}") for k, c in DASH_COL.items() if k != "diagonal_other"]
         ax.legend(handles=handles, loc="upper left", bbox_to_anchor=(1.005, 1.0), fontsize=8, framealpha=0.9)
         ax.set_title(f"{res['floor']} {res['name_ar']} {res['level']:+.2f} — العناصر الإنشائية والشفتات والسلالم والمحاور "
-                     f"(P = المحيط المعرض للمحارة، م)", fontsize=11)
+                     f"(Pi = المحيط المعرض للمحارة الداخلية، ext = على الواجهة، lift = داخل بئر المصعد؛ م)", fontsize=11)
     else:  # dims
         for el in res["elements"]:
             ax.add_patch(MPoly(el["outline"], closed=True, fc="#2ca02c", alpha=0.2, ec="#2ca02c", lw=0.6, zorder=2))
@@ -1494,6 +1895,8 @@ def update_doc(blocks, path=DOC):
 def _src_label(el):
     if el["kind"] == "column_xbox":
         return "COL (مربع X)"
+    if el["kind"] == "round_column":
+        return "**أقواس W فقط**"
     if el["only_in_tr_block"]:
         return "**بلوك tr فقط**"
     if el["hatch_only"]:
@@ -1507,34 +1910,79 @@ def doc_tables(allres, canon_shafts=None):
     labels = [r["floor"] for r in allres]
     ref = next((r for r in allres if r["floor"] == "F06"), allres[0])
     # elements (identical on every floor -> one row each; exposed perimeter min-max over floors)
-    exp = defaultdict(list)
+    exp = defaultdict(lambda: defaultdict(list))
+    first = {}
     for r in allres:
         for el in r["elements"]:
-            exp[el["id"]].append(el["exposed_perimeter"])
+            for k_ in ("exposed_interior", "exposed_exterior", "exposed_lift_shaft"):
+                exp[el["id"]][k_].append(el[k_])
+            exp[el["id"]]["floors"].append(r["floor"])
+            first.setdefault(el["id"], el)
     L = ["| id | النوع | المقاس (م) | x من–إلى | y من–إلى | المحاور (أقرب محور ± الإزاحة) | المساحة م² | المحيط م | "
-         "ملاصق لحوائط م | ملاصق لخرسانة/شفت م | **المعرض للمحارة م** | على W | المصدر |",
-         "|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
-    kind_ar = {"column": "عمود", "shear_wall": "حائط قص", "core": "كور مصاعد", "column_xbox": "مربع COL"}
-    for el in sorted(ref["elements"], key=lambda e: (-e["centroid"][1], e["centroid"][0])):
+         "ملاصق لحوائط م | ملاصق لخرسانة/شفت م | **حر داخلي = محارة داخلية م** | حر على الواجهة/خارجي م | حر داخل بئر المصعد م | "
+         "على W | المصدر |",
+         "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
+    kind_ar = {"column": "عمود", "shear_wall": "حائط قص", "core": "كور مصاعد", "column_xbox": "مربع COL",
+               "round_column": "عمود دائري (W)"}
+
+    def rng(v):
+        if not v or max(v) < 0.005:
+            return "0"
+        return f"{min(v):.2f}" if max(v) - min(v) < 0.005 else f"{min(v):.2f}–{max(v):.2f}"
+    ids = {e["id"] for e in ref["elements"]}
+    rows = list(ref["elements"]) + [e for i_, e in first.items() if i_ not in ids]
+    for el in sorted(rows, key=lambda e: (-e["centroid"][1], e["centroid"][0])):
         x0, y0, x1, y1 = el["bbox"]
-        e_ = exp[el["id"]]
-        ev = f"{min(e_):.2f}" if max(e_) - min(e_) < 0.005 else f"{min(e_):.2f}–{max(e_):.2f}"
+        E = exp[el["id"]]
+        src = _src_label(el)
+        if len(E["floors"]) < len(labels):
+            src += " (" + ", ".join(E["floors"]) + " فقط)"
         L.append(f"| {el['id']} | {kind_ar[el['kind']]} | {el['size_txt']} | {x0:.3f}–{x1:.3f} | {y0:.3f}–{y1:.3f} | "
                  f"{el['grid_ref']} | {el['area']:.3f} | {el['perimeter']:.2f} | {el['covered_by_walls']:.2f} | "
-                 f"{el['covered_by_concrete_or_shaft']:.2f} | {ev} | {el['outline_on_W']:.0%} | {_src_label(el)} |")
+                 f"{el['covered_by_concrete_or_shaft']:.2f} | **{rng(E['exposed_interior'])}** | {rng(E['exposed_exterior'])} | "
+                 f"{rng(E['exposed_lift_shaft'])} | {el['outline_on_W']:.0%} | {src} |")
     B["ELEMENTS_TABLE"] = "\n".join(L)
     # per floor totals
-    L = ["| الدور | أعمدة | حوائط قص | كور | مربعات COL | مساحة الخرسانة م² (بدون COL) | المحيط الكلي م | "
-         "المعرض للمحارة م (الكل) | المعرض (model space فقط، بدون tr) | شفتات (عدد / م²) | سلالم | كبائن مصاعد | أبعاد DIM |",
-         "|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
+    L = ["| الدور | أعمدة | حوائط قص | كور | أعمدة دائرية | مربعات COL | مساحة الخرسانة م² (بدون COL) | المحيط الكلي م | "
+         "**محارة داخلية م (الكل)** | محارة داخلية (model space فقط، بدون tr) | على الواجهة/خارجي م (الكل / model space) | "
+         "داخل بئر المصعد م | إجمالي الأوجه الحرة م | شفتات مؤكدة (عدد / م²) | شفتات غير مؤكدة (عدد / م²) | سلالم | كبائن مصاعد | أبعاد DIM |",
+         "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for r in allres:
         s = r["summary"]; k = s["elements_by_kind"]
         els = [e for e in r["elements"] if e["kind"] != "column_xbox"]
         L.append(f"| {r['floor']} | {k.get('column', 0)} | {k.get('shear_wall', 0)} | {k.get('core', 0)} | "
-                 f"{k.get('column_xbox', 0)} | {sum(e['area'] for e in els):.3f} | {sum(e['perimeter'] for e in els):.2f} | "
-                 f"**{s['plaster_perimeter_all']:.2f}** | {s['plaster_perimeter_model_space_only']:.2f} | "
-                 f"{s['shafts']} / {s['shaft_area']:.3f} | {s['stairs']} | {s['lift_cars']} | {s['dims']} |")
+                 f"{k.get('round_column', 0)} | {k.get('column_xbox', 0)} | {sum(e['area'] for e in els):.3f} | "
+                 f"{sum(e['perimeter'] for e in els):.2f} | **{s['plaster_perimeter_all']:.2f}** | "
+                 f"{s['plaster_perimeter_model_space_only']:.2f} | {s['exterior_perimeter_all']:.2f} / "
+                 f"{s['exterior_perimeter_model_space_only']:.2f} | {s['lift_shaft_perimeter']:.2f} | "
+                 f"{s['exposed_perimeter_gross_all']:.2f} | {s['shafts_confirmed']} / {s['shaft_area_confirmed']:.3f} | "
+                 f"{s['shafts_uncertain']} / {s['shaft_area_uncertain']:.3f} | {s['stairs']} | {s['lift_cars']} | {s['dims']} |")
     B["FLOOR_TABLE"] = "\n".join(L)
+    # outlines: footprint used for 'exterior', long W / MASS polylines, duplicated W
+    L = ["| الدور | مساحة البصمة FaceEnv م² | بصمة rooms.py م² | غرف مكشوفة (rooms) | بوليلاينات W طويلة (handle: الطول، المتداخل مع W / الفريد) | "
+         "بوليلاينات MASS طويلة مفتوحة (handle: الطول) | خطوط W مكررة (بدون الطويلة) م |",
+         "|---|---|---|---|---|---|---|"]
+    for r in allres:
+        fe = r.get("face_env", {}); wl = r["annotations"]["W_lines"]; ms = r["annotations"]["MASS"]
+        wtxt = "; ".join(f"{p['handle']}: {p['len']:.2f}" + (
+            f" (مع خطوط W: {p['overlap_with_other_W']:.2f} / {p['unique']:.2f}؛ مع خطوط وحدود تهشير W: "
+            f"{p['overlap_incl_W_hatch_boundaries']:.2f} / {p['unique_vs_lines_and_hatches']:.2f})"
+            if "unique" in p else " (إطار اللوحة)") for p in wl["long_polylines"]) or "—"
+        mtxt = "; ".join(f"{p['handle']}: {p['len']:.2f}" for p in ms["outline_polylines"]) or "—"
+        if ms.get("outline_polylines_spacing_median") is not None:
+            mtxt += f" (متوازيان، المسافة {ms['outline_polylines_spacing_median']:.2f})"
+        L.append(f"| {r['floor']} | {fe.get('footprint_area') or '—'} | {fe.get('rooms_footprint_area') or '—'} | "
+                 f"{fe.get('open_air_rooms', 0)} | {wtxt} | {mtxt} | {wl['duplicated_len']:.2f} |")
+    B["OUTLINE_TABLE"] = "\n".join(L)
+    # door heads per door
+    L = ["| الدور | الأبواب (openings.py) | بخطّي عتب DASH | بخط واحد | بدون خط | أمثلة بدون خط |", "|---|---|---|---|---|---|"]
+    for r in allres:
+        dh = r.get("door_head_per_door")
+        if not dh:
+            continue
+        L.append(f"| {r['floor']} | {dh['doors']} | {dh['with_2']} | {dh['with_1']} | {dh['with_0']} | "
+                 f"{', '.join(dh['doors_with_0'][:6]) or '—'} |")
+    B["DOORHEAD_TABLE"] = "\n".join(L)
     # shafts (canonical, with floors)
     if canon_shafts is None:
         canon_shafts = harmonize_shaft_ids(allres)
@@ -1543,8 +1991,12 @@ def doc_tables(allres, canon_shafts=None):
     for c in canon_shafts:
         x0, y0, x1, y1 = c["bbox"]
         fl_ = "كل الأدوار" if len(c["floors"]) == len(labels) else ", ".join(c["floors"])
-        L.append(f"| {c['id']} | {c['kind']} | {c['size_txt']} | {x0:.3f}–{x1:.3f} | {y0:.3f}–{y1:.3f} | {c['grid_ref']} | "
+        status = ("**مؤكد**" if c["kind"] == "shaft (X)" else
+                  ("غير مؤكد" if c["kind"].startswith("shaft") and not c["kind"].startswith("shaft enclosure") else "لا يُحسب"))
+        L.append(f"| {c['id']} | {c['kind']} | {status} | {c['size_txt']} | {x0:.3f}–{x1:.3f} | {y0:.3f}–{y1:.3f} | {c['grid_ref']} | "
                  f"{c['area']:.3f} | {c['perimeter']:.2f} | {c['dash_diagonals']} | {fl_} |")
+    L[0] = "| id | النوع | الحالة | المقاس (م) | x من–إلى | y من–إلى | المحاور | المساحة م² | المحيط م | أقطار DASH | الأدوار |"
+    L[1] = "|---|---|---|---|---|---|---|---|---|---|---|"
     B["SHAFT_TABLE"] = "\n".join(L)
     # DASH classes per floor
     classes = sorted({k for r in allres for k in r["dash"]["summary"]})
@@ -1589,11 +2041,15 @@ def run(floors=None, png=True, doc=True):
         t0 = time.time()
         res = analyze_floor(fl)
         s = res["summary"]
-        print(f"{fl.label}: elements {s['elements_by_kind']}  plaster perim {s['plaster_perimeter_all']} m "
-              f"(model-space only {s['plaster_perimeter_model_space_only']})  shafts {s['shafts']}  stairs {s['stairs']}  "
-              f"lifts {s['lift_cars']}  dims {s['dims']} {s['dims_by_class']}  ({time.time() - t0:.0f}s)", flush=True)
+        print(f"{fl.label}: elements {s['elements_by_kind']}  interior plaster perim {s['plaster_perimeter_all']} m "
+              f"(model-space only {s['plaster_perimeter_model_space_only']})  exterior {s['exterior_perimeter_all']}  "
+              f"lift shaft {s['lift_shaft_perimeter']}  gross {s['exposed_perimeter_gross_all']}  "
+              f"shafts {s['shafts_confirmed']}+{s['shafts_uncertain']}?  stairs {s['stairs']}  "
+              f"lifts {s['lift_cars']}  dims {s['dims']}  door heads {s['door_heads']}  ({time.time() - t0:.0f}s)", flush=True)
         allres.append(res)
     canon = harmonize_shaft_ids(allres) if len(allres) > 1 else None
+    for res in allres:
+        res["summary"].update(shaft_summary(res["shafts"]))
     for res in allres:
         (OUT / f"{res['floor']}.json").write_text(json.dumps(_jsonable(res), ensure_ascii=False, indent=1), encoding="utf-8")
         if png:
