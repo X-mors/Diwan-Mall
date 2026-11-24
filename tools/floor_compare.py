@@ -22,8 +22,10 @@ Method (all in the LOCAL frame of diwan_common, metres):
      the pieces of every floor that differ from the reference, clustered (0.6 m), each
      region described per floor (which floors share which variant).
 
-Outputs (output/floor_compare/, gitignored) + docs/findings/floors_diff.md (generated):
-  summary.json            matrices, groups, regions, block/text/dim differences
+Outputs (output/floor_compare/, gitignored) + docs/findings/floors_diff.md (generated)
++ the AUTO:CMP_TABLE block of docs/findings/structure_diff.md (per layer: groups of identical floors):
+  summary.json            matrices (per line layer, all blocks, door blocks only, texts, dims,
+                          structure), groups, regions, block/text/dim differences
   overlay_W.png           W of all floors overlaid (common = grey, floor-specific = colour)
   diff_F0x.png            each floor vs the reference (red = only on this floor, blue = only
                           on the reference), numbered change regions
@@ -32,8 +34,9 @@ Outputs (output/floor_compare/, gitignored) + docs/findings/floors_diff.md (gene
 
 CLI:  python tools/floor_compare.py            # all floors
       python tools/floor_compare.py --ref 5    # force the reference floor
-API:  from floor_compare import compare_floors ; res = compare_floors()
-      res["identical_groups"], res["regions"], res["matrix"]["W"]
+API:  from floor_compare import compare_floors, equal_groups, cmp_table ; res = compare_floors()
+      res["identical_groups"], res["regions"], res["matrix"]["W"], res["door_blocks_matrix"]
+      equal_groups(res["matrix"]["WIN"], res["floors"])  -> [['F02'], ['F03','F04'], ...]
 """
 from __future__ import annotations
 
@@ -344,10 +347,14 @@ def _build_regions(items, prefix, gap, F, labels, R):
             desc.append(f"{lay} [" + ", ".join(parts) + "]")
         cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
         inside = -1.0 <= cx <= 20.5 and -2.5 <= cy <= 40.5
+        ref_var = next((v for v in variants if R["label"] in v), [R["label"]])
         out_regions.append({
             "id": f"{prefix}{i:02d}", "bbox": _r([x0, y0, x1, y1], 2), "center": _r([cx, cy], 2),
             "in_building": inside, "rooms_near": _nearest_rooms(R, cx, cy) if inside else [],
             "floors_differing_from_ref": rg["floors_differing_from_ref"],
+            # every floor whose geometry/annotation inside the region box differs from the
+            # reference (from the variants; includes F02 where it differs inside a typical region)
+            "floors_unlike_ref": [a for a in labels if a not in ref_var],
             "variants": variants, "geometry_len": _r(rg["geo_len"], 2),
             "changes": desc,
         })
@@ -380,6 +387,11 @@ def compare_floors(ref=None, png=True, features=None):
     txt_m = {a: {b: len(text_diff(F[a], F[b])) for b in labels} for a in labels}
     dim_m = {a: {b: len(dim_diff(F[a], F[b])) for b in labels} for a in labels}
     st_m = {a: {b: len(struct_diff(F[a], F[b])) for b in labels} for a in labels}
+    # door blocks only (D<width>W<thickness>)
+    def _doors(X):
+        return dict(X, inserts=[i for i in X["inserts"] if re.match(r"^D\d+W\d+$", i["block"])])
+    Fd = {a: _doors(F[a]) for a in labels}
+    door_m = {a: {b: len(insert_diff(Fd[a], Fd[b])) for b in labels} for a in labels}
 
     def total(a, b):
         return (sum(matrix[l][a][b] + matrix[l][b][a] for l in lays) + blk_m[a][b] + blk_m[b][a]
@@ -453,7 +465,7 @@ def compare_floors(ref=None, png=True, features=None):
            "w_mean_diff": {a: _r(v, 2) for a, v in wmean.items()}, "tolerance_m": TOL, "min_piece_m": MIN_PIECE,
            "layers_compared": lays, "identical_groups": groups,
            "matrix": matrix, "blocks_matrix": blk_m, "texts_matrix": txt_m, "dims_matrix": dim_m,
-           "struct_matrix": st_m, "total_matrix": tot,
+           "struct_matrix": st_m, "door_blocks_matrix": door_m, "total_matrix": tot,
            "per_floor_vs_ref": per_floor, "regions": out_regions,
            "elapsed_s": round(time.time() - t0)}
     if png:
@@ -631,7 +643,7 @@ def render_all(res, F, fls):
                 if t["layer"] in ("TEXT", "-A-TEXT") and Z[0] <= t["at"][0] <= Z[2] and Z[1] <= t["at"][1] <= Z[3]:
                     ax.text(t["at"][0], t["at"][1], t["text"], fontsize=7, color="#333")
             ax.add_patch(Rectangle((x0 - 0.1, y0 - 0.1), x1 - x0 + 0.2, y1 - y0 + 0.2, fill=False, ec="#ff00ff", lw=0.6, ls=":"))
-            same_as_ref = a == ref or a not in rg["floors_differing_from_ref"]
+            same_as_ref = a == ref or a not in rg.get("floors_unlike_ref", rg["floors_differing_from_ref"])
             ax.set_title(f"{a}" + (" (=المرجع)" if same_as_ref else " ≠ المرجع"), fontsize=10,
                          color="#333" if same_as_ref else "#d62728")
             ax.set_xlim(Z[0], Z[2]); ax.set_ylim(Z[1], Z[3]); ax.set_aspect("equal")
@@ -695,7 +707,7 @@ def write_doc(res, path=DOC):
             continue
         var = " · ".join("=".join(v) for v in rg["variants"])
         L.append(f"| {rg['id']} | {rg['center'][0]:.2f}, {rg['center'][1]:.2f} | {rg['bbox']} | {' / '.join(rg['rooms_near'])} | "
-                 f"{', '.join(rg['floors_differing_from_ref'])} | {var} | {'; '.join(rg['changes'])} |")
+                 f"{', '.join(rg.get('floors_unlike_ref', rg['floors_differing_from_ref']))} | {var} | {'; '.join(rg['changes'])} |")
     L.append("")
     outside = [rg for rg in res["regions"] if not rg["in_building"]]
     if outside:
@@ -733,6 +745,50 @@ def write_doc(res, path=DOC):
     return path
 
 
+def equal_groups(m, labels):
+    """groups of floors with zero difference both ways in matrix m[a][b]."""
+    groups, seen = [], set()
+    for a in labels:
+        if a in seen:
+            continue
+        g = [a] + [b for b in labels if b != a and b not in seen and m[a][b] == 0 and m[b][a] == 0]
+        seen.update(g)
+        groups.append(g)
+    return groups
+
+
+def cmp_table(res):
+    """Markdown table for the AUTO:CMP_TABLE block of docs/findings/structure_diff.md:
+    per layer / feature, which floors are identical (zero difference) and the largest
+    pairwise difference."""
+    labels = res["floors"]
+    rows = [(f"`{lay}` (م خطوط)", res["matrix"][lay], "m") for lay in res["layers_compared"]]
+    rows += [("بلوكات الأبواب D..W.. (عدد)", res["door_blocks_matrix"], "n"),
+             ("كل البلوكات (أبواب + P/WB + LP + ST-2) (عدد)", res["blocks_matrix"], "n"),
+             ("نصوص الغرف TEXT/-A-TEXT (عدد)", res["texts_matrix"], "n"),
+             ("أبعاد DIM (عدد)", res["dims_matrix"], "n"),
+             ("العناصر الإنشائية Etabs-col + tr + COL (عدد)", res["struct_matrix"], "n")]
+    L = ["| الطبقة / العنصر | مجموعات الأدوار المتطابقة (فرق صفر في الاتجاهين) | أكبر فرق بين دورين | الفرق عن المرجع "
+         f"{res['reference']} (+في الدور / −في المرجع) |",
+         "|---|---|---|---|"]
+    ref = res["reference"]
+    for name, m, unit in rows:
+        g = equal_groups(m, labels)
+        gtxt = "**كل الأدوار متطابقة**" if len(g) == 1 else " · ".join("=".join(x) for x in g)
+        mx = max((m[a][b], a, b) for a in labels for b in labels if a != b)
+        mtxt = "0" if mx[0] == 0 else (f"{mx[0]:.2f} ({mx[1]} ليس في {mx[2]})" if unit == "m" else f"{mx[0]} ({mx[1]} ليس في {mx[2]})")
+        cells = []
+        for a in labels:
+            if a == ref:
+                continue
+            x, y = m[a][ref], m[ref][a]
+            if x == 0 and y == 0:
+                continue
+            cells.append(f"{a} +{x:.2f}/−{y:.2f}" if unit == "m" else f"{a} +{x}/−{y}")
+        L.append(f"| {name} | {gtxt} | {mtxt} | {'; '.join(cells) or '—'} |")
+    return chr(10).join(L)
+
+
 def _jsonable(o):
     if isinstance(o, dict):
         return {str(k): _jsonable(v) for k, v in o.items()}
@@ -757,6 +813,11 @@ def main():
     (OUT / "summary.json").write_text(json.dumps(_jsonable(res), ensure_ascii=False, indent=1), encoding="utf-8")
     if not a.no_doc:
         print("doc:", write_doc(res))
+        try:
+            from structure import update_doc
+            print("structure_diff.md CMP_TABLE:", update_doc({"CMP_TABLE": cmp_table(res)}))
+        except Exception as ex:  # pragma: no cover
+            print("  could not refresh structure_diff.md:", ex)
     print("identical groups:", res["identical_groups"], " reference:", res["reference"])
     for rg in res["regions"]:
         print(f"  {rg['id']} {rg['center']} {rg['rooms_near']} differ={rg['floors_differing_from_ref']} variants={rg['variants']} :: {'; '.join(rg['changes'])[:200]}")

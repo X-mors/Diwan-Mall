@@ -60,12 +60,23 @@ CLI (default = all floors):
 API:
     from rooms import analyze_floor
     res = analyze_floor(3)
-    res["rooms"]   -> [{id:'F03-R07', name, category, open_air, indoor, area, perimeter,
-                        perimeter_outer, boundary{wall,column,glazing,door,...}, doors[], windows[],
-                        openings[], labels[], flags[], centroid, bbox, inscribed_r, n_cars?, dim_checks[]}]
-    res["totals"]  -> {by_category{cat:{n, area, perimeter}}, net_indoor_area, open_air_area,
-                        gross_floor_area, ceiling_area, ...}
-    res["_faces"]  -> shapely polygons (not in the JSON) keyed by room id
+    res["rooms"]   -> [{id:'F03-R07', name, category, category_ar, open_air, indoor, area, perimeter,
+                        perimeter_outer, n_holes, boundary{wall,column,glazing,door,opening,shaft,
+                        solid_try,slab_edge,mass,extension,virtual,unresolved}, doors[], openings[],
+                        windows[], windows_partial_m{id: facing m}?, labels[], flags[], centroid, bbox,
+                        inscribed_r, n_cars?, wc_pans?, free_lines_inside?,
+                        dim_checks[{dim, value, room_width, diff, status ok|jog|mismatch, lateral, ...}],
+                        _poly (shapely, not in the JSON)}]
+    res["totals"]  -> {by_category{cat:{name_ar, n, area, perimeter}}, n_rooms, net_indoor_area,
+                        net_usable_area, ceiling_area, open_air_area, gross_floor_area,
+                        gross_outline_perimeter, walls_columns_area, boundary_by_kind_indoor{},
+                        boundary_by_kind_open_air{}, footprint_bbox}
+    res["checks"]  -> labels_unplaced, office_numbers, offices_missing, duplicate_names, rooms_flagged,
+                        extensions, corridor_lobby_splits, doors_not_two_sided, windows_unassigned,
+                        dims_ok / dims_jog / dims_mismatch, ...
+    res["_footprint"], res["_P"] (tagged boundary primitives), res["_wall_bodies"]  (not in the JSON)
+  Units: m / m2 in the LOCAL frame.  Perimeter = inner wall-face length (holes included), the base
+  of the internal plaster; multiply by the storey height / clear height outside this module.
 """
 from __future__ import annotations
 
@@ -659,7 +670,7 @@ CATEGORY_RULES = [                         # (regex on the decoded label, catego
 ]
 NOTE_RE = re.compile(r"المصاعد\s+الادارية|فقط")      # sign next to the lifts, not a room name
 OPEN_AIR = {"terrace", "planter"}
-CATEGORY_AR = {"office": "مكاتب", "wc": "حمامات", "corridor": "ممرات وبهو", "lobby": "بهو المصعد",
+CATEGORY_AR = {"office": "مكاتب", "wc": "حمامات", "corridor": "ممرات", "lobby": "بهو المصعد",
                "stair": "سلالم", "lift": "بئر المصاعد", "shaft": "شفتات/دكتات", "terrace": "تراسات سماوية",
                "planter": "أحواض زرع", "service": "غرف خدمات", "void": "فراغ بلا اسم"}
 CAT_ORDER = ["office", "wc", "corridor", "lobby", "service", "stair", "lift", "shaft", "terrace", "planter",
@@ -819,18 +830,24 @@ def boundary_breakdown(poly, P, tree):
 
 
 def windows_on(poly, windows, tol=0.32):
-    out = []
+    """Windows facing this room -> (ids, {id: facing length m} for windows the room only
+    partly faces, e.g. the 13 m west curtain wall shared by offices 8..11)."""
+    out, partial = [], {}
     for w in windows:
         ends = w.get("ends") or []
         if len(ends) < 2:
             continue
         seg = LineString([tuple(p) for p in ends])
         if poly.distance(seg) <= tol:
-            # at least half of the window must face this room (not a window round the corner)
+            # the room must face half the window or >= 0.60 m of it (a window round the
+            # corner reaches at most `tol` into the zone)
             near = poly.buffer(tol)
-            if seg.intersection(near).length >= 0.5 * seg.length - 1e-6:
+            L = seg.intersection(near).length
+            if L >= min(0.5 * seg.length, 0.60) - 1e-6:
                 out.append(w["id"])
-    return out
+                if L < 0.95 * seg.length:
+                    partial[w["id"]] = round(L, 3)
+    return out, partial
 
 
 def _first_exit(poly, start, u, reach):
@@ -876,20 +893,31 @@ def dim_checks(poly, dims, tol=0.02, min_span=0.5):
         if bd.distance(mid) < 0.03 or not poly.contains(mid):
             continue                         # measures along one face (window / pier widths)
         s = 1.0 if proj > 0 else -1.0
+        nrm = (-u[1], u[0])
+        # lateral offset of the two DIM points across the DIM direction: > 5 cm means the DIM
+        # runs between two faces that do not face each other (a wall face to a column face
+        # beside it) - the ray then hits whatever lies in between ('jog', not an error)
+        lateral = abs((p3[0] - p2[0]) * nrm[0] + (p3[1] - p2[1]) * nrm[1])
         widths = []
         for start, sg in ((p2, s), (p3, -s)):
             v = (u[0] * sg, u[1] * sg)
-            inner = (start[0] + v[0] * 0.03, start[1] + v[1] * 0.03)
-            if not poly.contains(Point(inner)):
-                continue
-            w = _first_exit(poly, inner, v, span + 1.0)
-            if w is not None:
-                widths.append(w + 0.03)
+            # a DIM point at a corner / on a face parallel to the DIM: the straight ray runs
+            # along that face -> also try it 3 cm to either side
+            for off in (0.0, 0.03, -0.03):
+                st = (start[0] + nrm[0] * off, start[1] + nrm[1] * off)
+                inner = (st[0] + v[0] * 0.03, st[1] + v[1] * 0.03)
+                if not poly.contains(Point(inner)):
+                    continue
+                w = _first_exit(poly, inner, v, span + 1.0)
+                if w is not None:
+                    widths.append(w + 0.03)
         if not widths:
             continue
         w = min(widths, key=lambda q: abs(q - span))
+        status = "ok" if abs(w - span) <= 0.02 else ("jog" if lateral > 0.05 else "mismatch")
         rec = {"dim": d["handle"], "value": round(span, 3), "room_width": round(w, 3),
-               "diff": round(w - span, 3), "dir_deg": round(math.degrees(math.atan2(u[1], u[0])) % 180.0, 1),
+               "diff": round(w - span, 3), "status": status, "lateral": round(lateral, 3),
+               "dir_deg": round(math.degrees(math.atan2(u[1], u[0])) % 180.0, 1),
                "p2": [round(v, 3) for v in p2], "p3": [round(v, 3) for v in p3]}
         if abs(d["value"] - span) > 0.005:
             rec["stored_measurement"] = round(d["value"], 3)
@@ -1124,11 +1152,14 @@ def analyze_floor(floor, use_cache=True, refresh_openings=False):
             "perimeter_outer": round(f.exterior.length, 3), "n_holes": len(f.interiors),
             "boundary": bd,
             "doors": refs.get("door", []), "openings": refs.get("opening", []),
-            "windows": windows_on(f, windows),
+            "windows": [],
             "labels": [{k2: v for k2, v in l.items() if k2 != "note" or v} for l in r["rec"]["labels"]],
             "flags": r["flags"], "centroid": _r([c.x, c.y]),
             "bbox": _r(list(f.bounds)), "inscribed_r": round(r["rec"]["r_in"], 3),
         }
+        item["windows"], wpart = windows_on(f, windows)
+        if wpart:
+            item["windows_partial_m"] = wpart
         if r["n_cars"]:
             item["n_cars"] = r["n_cars"]
         if r["rec"]["wc_pans"] and cat == "wc":
@@ -1145,9 +1176,10 @@ def analyze_floor(floor, use_cache=True, refresh_openings=False):
             item["flags"].append(f"free_lines_inside: {free_len:.2f} m of single W/WIN lines stand inside this "
                                  f"space (not part of its perimeter) - partial wall / screen?")
         item["dim_checks"] = dim_checks(f, g["dims"])
-        bad = [d for d in item["dim_checks"] if abs(d["diff"]) > 0.02]
+        bad = [d for d in item["dim_checks"] if d["status"] == "mismatch"]
         if bad:
-            item["flags"].append(f"dim_mismatch: {len(bad)} architect DIM(s) differ > 2 cm from the polygon")
+            item["flags"].append(f"dim_mismatch: {len(bad)} architect DIM(s) between facing faces differ > 2 cm "
+                                 f"from the polygon")
         if bd.get("extension", 0) > 0:
             item["flags"].append(f"closed_by_extension: {bd['extension']:.2f} m of the boundary is a "
                                  f"virtual extension of a wall face (drawing gap)")
@@ -1218,7 +1250,15 @@ def analyze_floor(floor, use_cache=True, refresh_openings=False):
                         "area": round(sum(w["area"] for w in wall_bodies) + sum(x.area for x in slivers), 3)},
         "outside_pieces": len(outside),
         "dims_checked": sum(len(r["dim_checks"]) for r in out_rooms),
-        "dims_mismatch": [dict(room=r["id"], **d) for r in out_rooms for d in r["dim_checks"] if abs(d["diff"]) > 0.02],
+        # every door should border exactly two spaces; every window at least one room
+        "doors_not_two_sided": [{"door": d["id"], "rooms": [r["id"] for r in out_rooms if d["id"] in r["doors"]]}
+                                for d in op.get("doors", [])
+                                if sum(1 for r in out_rooms if d["id"] in r["doors"]) != 2],
+        "windows_unassigned": [w["id"] for w in windows if not any(w["id"] in r["windows"] for r in out_rooms)],
+        "dims_ok": sum(1 for r in out_rooms for d in r["dim_checks"] if d["status"] == "ok"),
+        "dims_jog": [dict(room=r["id"], **d) for r in out_rooms for d in r["dim_checks"] if d["status"] == "jog"],
+        "dims_mismatch": [dict(room=r["id"], **d) for r in out_rooms for d in r["dim_checks"]
+                          if d["status"] == "mismatch"],
     }
     res = {
         "floor": fl.label, "floor_no": fl.floor_no, "name_ar": fl.name_ar, "level": fl.level,
@@ -1386,14 +1426,29 @@ def run(floors=None, png=True, zoom=None, use_cache=True, refresh_openings=False
                              "offices_missing": res["checks"]["offices_missing"],
                              "extensions": len(res["checks"]["extensions"]),
                              "dims_checked": res["checks"]["dims_checked"],
+                             "doors_not_two_sided": len(res["checks"]["doors_not_two_sided"]),
+                             "windows_unassigned": res["checks"]["windows_unassigned"],
+                             "dims_ok": res["checks"]["dims_ok"],
+                             "dims_jog": len(res["checks"]["dims_jog"]),
                              "dims_mismatch": len(res["checks"]["dims_mismatch"])}
         print(f"{fl.label} {fl.level:+.2f}: rooms={t['n_rooms']} net_indoor={t['net_indoor_area']:.2f} "
               f"gross={t['gross_floor_area']:.2f} open_air={t['open_air_area']:.2f} "
               f"flagged={len(res['checks']['rooms_flagged'])} unplaced={len(res['checks']['labels_unplaced'])} "
               f"ext={len(res['checks']['extensions'])} dims={res['checks']['dims_checked']}"
-              f"/{len(res['checks']['dims_mismatch'])} ({res['elapsed_s']} s)")
-    if not floors or len(fls) > 1:
-        (ROOM_OUT / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=1), encoding="utf-8")
+              f" ok={res['checks']['dims_ok']} jog={len(res['checks']['dims_jog'])}"
+              f" doors!=2:{len(res['checks']['doors_not_two_sided'])} win_unassigned:{len(res['checks']['windows_unassigned'])}"
+              f" mismatch={len(res['checks']['dims_mismatch'])} ({res['elapsed_s']} s)")
+    # summary.json: floors of this run replace their own entries, other floors are kept
+    sp = ROOM_OUT / "summary.json"
+    merged = {}
+    if sp.exists():
+        try:
+            merged = json.loads(sp.read_text(encoding="utf-8"))
+        except Exception:
+            merged = {}
+    merged.update(summary)
+    merged = {k: merged[k] for k in sorted(merged)}
+    sp.write_text(json.dumps(merged, ensure_ascii=False, indent=1), encoding="utf-8")
     return summary
 
 

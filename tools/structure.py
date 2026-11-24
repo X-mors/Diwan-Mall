@@ -52,13 +52,18 @@ ANNOTATION TEXT-D (titles + blank '+ 0.00' level tags), level marks (PR), HAT (f
 
 CLI (default = all floors):
     python tools/structure.py              # -> output/structure/F0x.json + F0x_structure.png + F0x_dims.png
-    python tools/structure.py 3 5 --no-png
+                                           #    + dims_histogram.png + summary.json (incl. canonical_shafts)
+                                           #    + refreshes the <!-- AUTO:... --> tables of docs/findings/structure_diff.md
+    python tools/structure.py 3 5 --no-png --no-doc
+    python tools/structure.py 3 --zoom 9 17 15 30     # extra zoomed PNG
+    Running several floors gives every shaft box the same SHnn id on all floors
+    (harmonize_shaft_ids); structural element ids (Cnn/SWnn/CORE01/CXnn) are stable anyway.
 API:
-    from structure import analyze_floor, read_grid, grid_ref
+    from structure import analyze_floor, read_grid, grid_ref, run, render
     res = analyze_floor(3)                  # dict (JSON-able)
-    res["elements"]   # [{id, kind, source, bbox, size, area, perimeter, exposed_perimeter, grid_ref, ...}]
-    res["grid"]       # {"x_axes": [{label, x}], "y_axes": [{label, y}], ...}
-    grid_ref(res["grid"], 12.0, 20.5)       # -> 'د-ج / 8-9' style reference
+    res["elements"]   # [{id, kind, sources, bbox, size, area, perimeter, exposed_perimeter, grid_ref, ...}]
+    res["grid"]       # {"x_axes": [{label, coord, source}], "y_axes": [{label, coord, source}], ...}
+    grid_ref(res["grid"], 12.0, 20.5)       # -> 'د+2.25 / 8+1.58' (nearest axis + offset, m)
 """
 from __future__ import annotations
 
@@ -1213,6 +1218,7 @@ def analyze_floor(floor, openings_res="auto"):
     dash = classify_dash(fl, D, openings_res, stairs, lifts, shafts, elements)
     dims = read_dims(fl, D, grid, openings_res)
     ann = read_annotations(fl, D, grid)
+    ann["MASS"]["lift_door_lines"] = len(lifts["door_lines_MASS"])
     # openings that coincide with a structural element (e.g. the 0.80 'opening' = tr column)
     op_vs_struct = []
     if openings_res:
@@ -1337,7 +1343,7 @@ def render(res, out_png, mode="structure", zoom=None, dpi=110):
         handles += [Line2D([], [], color="magenta", lw=2, ls="--", label="only in ETABS block 'tr' / hatch-only")]
         handles += [Line2D([], [], color="#ff7f0e", lw=6, alpha=0.4, label="shaft (try / DASH X)")]
         handles += [Line2D([], [], color=c, lw=1.2, ls="--", label=f"DASH {k}") for k, c in DASH_COL.items() if k != "diagonal_other"]
-        ax.legend(handles=handles, loc="upper right", fontsize=7, framealpha=0.9)
+        ax.legend(handles=handles, loc="upper left", bbox_to_anchor=(1.005, 1.0), fontsize=8, framealpha=0.9)
         ax.set_title(f"{res['floor']} {res['name_ar']} {res['level']:+.2f} — العناصر الإنشائية والشفتات والسلالم والمحاور "
                      f"(P = المحيط المعرض للمحارة، م)", fontsize=11)
     else:  # dims
@@ -1366,6 +1372,12 @@ def render(res, out_png, mode="structure", zoom=None, dpi=110):
     ax.set_aspect("equal")
     if zoom:
         ax.set_xlim(zoom[0], zoom[2]); ax.set_ylim(zoom[1], zoom[3])
+        # texts are not clipped -> drop those outside the window (else bbox_inches='tight'
+        # blows the figure up to the whole plan)
+        for t_ in list(ax.texts):
+            x_, y_ = t_.get_position()
+            if not (zoom[0] <= x_ <= zoom[2] and zoom[1] <= y_ <= zoom[3]):
+                t_.remove()
     else:
         ax.set_xlim(xlo, xhi); ax.set_ylim(ylo, yhi)
     ax.grid(True, lw=0.2)
@@ -1396,7 +1408,7 @@ def render_dims_hist(all_res, out_png):
     ax.set_xticks(range(len(vals)))
     ax.set_xticklabels([f"{v:.2f}" for v in vals], rotation=90, fontsize=6)
     ax.set_ylabel("عدد الأبعاد (كل الأدوار)")
-    ax.set_title("هيستوجرام قيم أبعاد المعماري ≤ 7 م (كل الأدوار F02–F08) ملون حسب التصنيف")
+    ax.set_title("هيستوجرام قيم أبعاد المعماري حتى 7 م (كل الأدوار F02–F08) ملون حسب التصنيف")
     ax.legend(fontsize=8)
     fig.savefig(out_png, dpi=110, bbox_inches="tight")
     plt.close(fig)
@@ -1415,26 +1427,188 @@ def _jsonable(o):
     return o
 
 
-def run(floors=None, png=True):
+def harmonize_shaft_ids(allres):
+    """Give the same SHnn id to the same shaft box on every floor (per-floor numbering
+    shifts when a floor has one box more/less, e.g. the F05-F08 enclosure 0.64x0.84).
+    Canonical list = union of all floors' boxes (bbox IoU > 0.8), sorted like
+    analyze_shafts (north -> south, then west -> east).  Adds shaft['floors'] (floors
+    on which that box exists).  Returns the canonical list."""
+    def iou(a, b):
+        ix = max(0.0, min(a[2], b[2]) - max(a[0], b[0])); iy = max(0.0, min(a[3], b[3]) - max(a[1], b[1]))
+        inter = ix * iy
+        ua = (a[2] - a[0]) * (a[3] - a[1]) + (b[2] - b[0]) * (b[3] - b[1]) - inter
+        return inter / ua if ua > 0 else 0.0
+    canon = []
+    for r in allres:
+        for s in r["shafts"]:
+            c = next((c for c in canon if iou(c["bbox"], s["bbox"]) > 0.8), None)
+            if c is None:
+                c = {"bbox": s["bbox"], "kind": s["kind"], "size_txt": s["size_txt"], "area": s["area"],
+                     "perimeter": s["perimeter"], "dash_diagonals": s["dash_diagonals"],
+                     "grid_ref": s["grid_ref"], "floors": [], "kinds": Counter()}
+                canon.append(c)
+            c["floors"].append(r["floor"])
+            c["kinds"][s["kind"]] += 1
+            s["_canon"] = c
+    canon.sort(key=lambda c: (round(-c["bbox"][1], 1), c["bbox"][0]))
+    for i, c in enumerate(canon, 1):
+        c["id"] = f"SH{i:02d}"
+        c["kind"] = c["kinds"].most_common(1)[0][0]
+        c["kinds"] = dict(c["kinds"])
+    for r in allres:
+        for s in r["shafts"]:
+            c = s.pop("_canon")
+            s["id"] = c["id"]
+            s["floors"] = c["floors"]
+        r["shafts"].sort(key=lambda s: s["id"])
+    return canon
+
+
+# ----------------------------------------------------------------------------- findings doc tables
+DOC = Path(__file__).resolve().parent.parent / "docs" / "findings" / "structure_diff.md"
+
+
+def replace_doc_block(text, name, body):
+    """Replace '{{NAME}}' (first fill) or the '<!-- AUTO:NAME -->...<!-- /AUTO:NAME -->'
+    block (refresh) with `body`."""
+    start, end = f"<!-- AUTO:{name} -->", f"<!-- /AUTO:{name} -->"
+    block = f"{start}\n{body}\n{end}"
+    if start in text and end in text:
+        i = text.index(start)
+        j = text.index(end) + len(end)
+        return text[:i] + block + text[j:]
+    return text.replace("{{" + name + "}}", block)
+
+
+def update_doc(blocks, path=DOC):
+    path = Path(path)
+    if not path.exists():
+        return None
+    t = path.read_text(encoding="utf-8")
+    for k, v in blocks.items():
+        t = replace_doc_block(t, k, v)
+    path.write_text(t, encoding="utf-8")
+    return path
+
+
+def _src_label(el):
+    if el["kind"] == "column_xbox":
+        return "COL (مربع X)"
+    if el["only_in_tr_block"]:
+        return "**بلوك tr فقط**"
+    if el["hatch_only"]:
+        return "**HATCH فقط**"
+    return "Etabs-col"
+
+
+def doc_tables(allres, canon_shafts=None):
+    """Markdown tables for docs/findings/structure_diff.md from the per-floor results."""
+    B = {}
+    labels = [r["floor"] for r in allres]
+    ref = next((r for r in allres if r["floor"] == "F06"), allres[0])
+    # elements (identical on every floor -> one row each; exposed perimeter min-max over floors)
+    exp = defaultdict(list)
+    for r in allres:
+        for el in r["elements"]:
+            exp[el["id"]].append(el["exposed_perimeter"])
+    L = ["| id | النوع | المقاس (م) | x من–إلى | y من–إلى | المحاور (أقرب محور ± الإزاحة) | المساحة م² | المحيط م | "
+         "ملاصق لحوائط م | ملاصق لخرسانة/شفت م | **المعرض للمحارة م** | على W | المصدر |",
+         "|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
+    kind_ar = {"column": "عمود", "shear_wall": "حائط قص", "core": "كور مصاعد", "column_xbox": "مربع COL"}
+    for el in sorted(ref["elements"], key=lambda e: (-e["centroid"][1], e["centroid"][0])):
+        x0, y0, x1, y1 = el["bbox"]
+        e_ = exp[el["id"]]
+        ev = f"{min(e_):.2f}" if max(e_) - min(e_) < 0.005 else f"{min(e_):.2f}–{max(e_):.2f}"
+        L.append(f"| {el['id']} | {kind_ar[el['kind']]} | {el['size_txt']} | {x0:.3f}–{x1:.3f} | {y0:.3f}–{y1:.3f} | "
+                 f"{el['grid_ref']} | {el['area']:.3f} | {el['perimeter']:.2f} | {el['covered_by_walls']:.2f} | "
+                 f"{el['covered_by_concrete_or_shaft']:.2f} | {ev} | {el['outline_on_W']:.0%} | {_src_label(el)} |")
+    B["ELEMENTS_TABLE"] = "\n".join(L)
+    # per floor totals
+    L = ["| الدور | أعمدة | حوائط قص | كور | مربعات COL | مساحة الخرسانة م² (بدون COL) | المحيط الكلي م | "
+         "المعرض للمحارة م (الكل) | المعرض (model space فقط، بدون tr) | شفتات (عدد / م²) | سلالم | كبائن مصاعد | أبعاد DIM |",
+         "|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
+    for r in allres:
+        s = r["summary"]; k = s["elements_by_kind"]
+        els = [e for e in r["elements"] if e["kind"] != "column_xbox"]
+        L.append(f"| {r['floor']} | {k.get('column', 0)} | {k.get('shear_wall', 0)} | {k.get('core', 0)} | "
+                 f"{k.get('column_xbox', 0)} | {sum(e['area'] for e in els):.3f} | {sum(e['perimeter'] for e in els):.2f} | "
+                 f"**{s['plaster_perimeter_all']:.2f}** | {s['plaster_perimeter_model_space_only']:.2f} | "
+                 f"{s['shafts']} / {s['shaft_area']:.3f} | {s['stairs']} | {s['lift_cars']} | {s['dims']} |")
+    B["FLOOR_TABLE"] = "\n".join(L)
+    # shafts (canonical, with floors)
+    if canon_shafts is None:
+        canon_shafts = harmonize_shaft_ids(allres)
+    L = ["| id | النوع | المقاس (م) | x من–إلى | y من–إلى | المحاور | المساحة م² | المحيط م | أقطار DASH | الأدوار |",
+         "|---|---|---|---|---|---|---|---|---|---|"]
+    for c in canon_shafts:
+        x0, y0, x1, y1 = c["bbox"]
+        fl_ = "كل الأدوار" if len(c["floors"]) == len(labels) else ", ".join(c["floors"])
+        L.append(f"| {c['id']} | {c['kind']} | {c['size_txt']} | {x0:.3f}–{x1:.3f} | {y0:.3f}–{y1:.3f} | {c['grid_ref']} | "
+                 f"{c['area']:.3f} | {c['perimeter']:.2f} | {c['dash_diagonals']} | {fl_} |")
+    B["SHAFT_TABLE"] = "\n".join(L)
+    # DASH classes per floor
+    classes = sorted({k for r in allres for k in r["dash"]["summary"]})
+    L = ["| تصنيف DASH | " + " | ".join(labels) + " |", "|---|" + "---|" * len(labels)]
+    for c in classes:
+        cells = []
+        for r in allres:
+            v = r["dash"]["summary"].get(c)
+            cells.append(f"{v['n']} / {v['len']:.2f}" if v else "—")
+        L.append(f"| `{c}` | " + " | ".join(cells) + " |")
+    L.append("| **المجموع** | " + " | ".join(
+        f"{sum(v['n'] for v in r['dash']['summary'].values())} / {sum(v['len'] for v in r['dash']['summary'].values()):.2f}"
+        for r in allres) + " |")
+    B["DASH_TABLE"] = "(كل خلية = عدد الخطوط / الطول م)\n\n" + "\n".join(L)
+    # DIMS
+    classes = sorted({k for r in allres for k in r["dims"]["by_class"]})
+    L = ["| تصنيف البُعد | " + " | ".join(labels) + " |", "|---|" + "---|" * len(labels)]
+    for c in classes:
+        L.append(f"| `{c}` | " + " | ".join(str(r["dims"]["by_class"].get(c, 0)) for r in allres) + " |")
+    L.append("| **المجموع** | " + " | ".join(str(r["dims"]["n"]) for r in allres) + " |")
+    L.append("| قيم `wall_thickness` | " + " | ".join(
+        (", ".join(f"{k}×{v}" for k, v in r["dims"]["wall_thickness_values"].items()) or "—") for r in allres) + " |")
+    L.append("| أبعاد بلا تطابق نص/قياس | " + " | ".join(str(len(r["dims"]["text_vs_actual_mismatch"])) for r in allres) + " |")
+    # histogram of the most frequent values (all floors) with their dominant class
+    vc = defaultdict(Counter)
+    for r in allres:
+        for d in r["dims"]["dims"]:
+            vc[d["text"]][d["class"]] += 1
+    top = sorted(vc.items(), key=lambda kv: -sum(kv[1].values()))[:25]
+    H = ["| القيمة (م) | العدد في الأدوار السبعة | التصنيف |", "|---|---|---|"]
+    for v, c in top:
+        H.append(f"| {v} | {sum(c.values())} | " + ", ".join(f"{k} {n}" for k, n in c.most_common()) + " |")
+    B["DIMS_TABLE"] = "\n".join(L) + "\n\nأكثر 25 قيمة تكرارًا (كل الأدوار):\n\n" + "\n".join(H)
+    return B
+
+
+def run(floors=None, png=True, doc=True):
     OUT.mkdir(parents=True, exist_ok=True)
     fls = [f for f in all_floors() if not floors or f.floor_no in floors]
     allres = []
     for fl in fls:
         t0 = time.time()
         res = analyze_floor(fl)
-        (OUT / f"{fl.label}.json").write_text(json.dumps(_jsonable(res), ensure_ascii=False, indent=1), encoding="utf-8")
-        if png:
-            render(res, OUT / f"{fl.label}_structure.png")
-            render(res, OUT / f"{fl.label}_dims.png", mode="dims")
         s = res["summary"]
         print(f"{fl.label}: elements {s['elements_by_kind']}  plaster perim {s['plaster_perimeter_all']} m "
               f"(model-space only {s['plaster_perimeter_model_space_only']})  shafts {s['shafts']}  stairs {s['stairs']}  "
-              f"lifts {s['lift_cars']}  dims {s['dims']} {s['dims_by_class']}  ({time.time() - t0:.0f}s)")
+              f"lifts {s['lift_cars']}  dims {s['dims']} {s['dims_by_class']}  ({time.time() - t0:.0f}s)", flush=True)
         allres.append(res)
+    canon = harmonize_shaft_ids(allres) if len(allres) > 1 else None
+    for res in allres:
+        (OUT / f"{res['floor']}.json").write_text(json.dumps(_jsonable(res), ensure_ascii=False, indent=1), encoding="utf-8")
+        if png:
+            render(res, OUT / f"{res['floor']}_structure.png")
+            render(res, OUT / f"{res['floor']}_dims.png", mode="dims")
     if png and allres:
         render_dims_hist(allres, OUT / "dims_histogram.png")
     summ = {r["floor"]: r["summary"] for r in allres}
+    if canon:
+        summ["canonical_shafts"] = [{k: v for k, v in c.items()} for c in canon]
     (OUT / "summary.json").write_text(json.dumps(_jsonable(summ), ensure_ascii=False, indent=1), encoding="utf-8")
+    if doc and len(allres) == 7:
+        p = update_doc(doc_tables(allres, canon))
+        if p:
+            print("doc tables refreshed:", p)
     return allres
 
 
@@ -1442,9 +1616,10 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[1])
     ap.add_argument("floors", nargs="*", type=int, help="floor numbers (default: all 2..8)")
     ap.add_argument("--no-png", action="store_true")
+    ap.add_argument("--no-doc", action="store_true", help="do not refresh the AUTO tables in docs/findings/structure_diff.md")
     ap.add_argument("--zoom", nargs=4, type=float, help="extra zoomed PNG (local x0 y0 x1 y1) for the first floor")
     a = ap.parse_args()
-    allres = run(a.floors or None, png=not a.no_png)
+    allres = run(a.floors or None, png=not a.no_png, doc=not a.no_doc)
     if a.zoom and allres:
         r = allres[0]
         p = render(r, OUT / f"{r['floor']}_zoom_{'_'.join(str(int(v)) for v in a.zoom)}.png", zoom=a.zoom)
