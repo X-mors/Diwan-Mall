@@ -1,0 +1,106 @@
+F02: walls=234 gross=334.79 net=253.03 needs_check=24  -> D:\حصر المباني\Diwan-Mall\output\walls\F02.json
+   0.10|ALL               n=  1 gross=    1.64 net=    1.64
+   0.12|ALL               n=169 gross=  216.33 net=  183.76
+   0.15|ALL               n=  1 gross=    0.12 net=    0.12
+   0.25|ALL               n= 33 gross=   92.40 net=   46.86
+   0.30|ALL               n=  3 gross=    4.66 net=    2.24
+   0.40|ALL               n=  7 gross=    7.61 net=    6.39
+   0.50|ALL               n=  2 gross=    2.19 net=    2.19
+   0.60|ALL               n=  3 gross=    1.29 net=    1.29
+   ALL|ALL                n=234 gross=  334.79 net=  253.03
+   ALL|exterior           n= 61 gross=   96.56 net=   50.70
+   ALL|interior           n=106 gross=  180.36 net=  146.36
+   ALL|shaft              n= 58 gross=   38.05 net=   38.05
+   ALL|stair_lift         n=  9 gross=   19.81 net=   17.92
+   other|ALL              n= 15 gross=    8.54 net=    8.54
+F03: walls=235 gross=340.45 net=257.24 needs_check=23  -> D:\حصر المباني\Diwan-Mall\output\walls\F03.json
+   0.10|ALL               n=  1 gross=    1.64 net=    1.64
+   0.12|ALL               n=167 gross=  227.35 net=  192.98
+   0.25|ALL               n= 40 gross=   93.78 net=   48.57
+   0.30|ALL               n=  5 gross=    3.51 net=    1.09
+   0.40|ALL               n=  6 gross=    7.40 net=    6.18
+   0.50|ALL               n=  1 gross=    0.70 net=    0.70
+   0.60|ALL               n=  2 gross=    0.82 net=    0.82
+   ALL|ALL                n=235 gross=  340.45 net=  257.24
+   ALL|exterior           n= 58 gross=   90.14 net=   44.61
+   ALL|interior           n=102 gross=  188.94 net=  153.16
+   ALL|shaft              n= 64 gross=   41.17 net=   41.17
+   ALL|stair_lift         n= 11 gross=   20.20 net=   18.30
+   other|ALL              n= 13 gross=    5.26 net=    5.26
+F04: walls=240 gross=339.83 net=256.88 needs_check=28  -> D:\حصر المباني\Diwan-Mall\output\walls\F04.json
+   0.10|ALL               n=  1 gross=    1.64 net=    1.64
+   0.12|ALL               n=168 gross=  224.18 net=  190.08
+   0.25|ALL               n= 40 gross=   93.78 net=   48.57
+   0.30|ALL               n=  5 gross=    3.51 net=    1.09
+   0.40|ALL               n=  7 gross=    7.49 net=    6.27
+   0.50|ALL               n=  2 gross=    2.19 net=    2.19
+   0.60|ALL               n=  3 gross=    0.88 net=    0.88
+   ALL|ALL                n=240 gross=  339.83 net=  256.88
+   ALL|exterior           n= 59 gross=   90.20 net=   44.67
+   ALL|interior           n=108 gross=  188.58 net=  153.06
+   ALL|shaft              n= 63 gross=   41.23 net=   41.23
+   ALL|stair_lift         n= 10 gross=   19.82 net=   17.92
+   other|ALL              n= 14 gross=    6.17 net=    6.17
+F05: walls=240 gross=337.59 net=256.12 needs_check=26  -> D:\حصر المباني\Diwan-Mall\output\walls\F05.json
+   0.10|ALL               n=  1 gross=    1.64 net=    1.64
+   0.12|ALL               n=169 gross=  223.05 net=  190.55
+   0.25|ALL               n= 40 gross=   93.78 net=   48.45
+   0.30|ALL               n=  5 gross=    3.51 net=    1.09
+   0.40|ALL               n=  7 gross=    7.42 net=    6.20
+   0.50|ALL               n=  1 gross=    0.70 net=    0.70
+   0.60|ALL               n=  3 gross=    1.16 net=    1.16
+   ALL|ALL                n=240 gross=  337.59 net=  256.12
+   ALL|exterior           n= 61 gross=   92.60 net=   46.95
+   ALL|interior           n=106 gross=  183.89 net=  149.96
+   ALL|shaft              n= 63 gross=   41.29 net=   41.29
+   ALL|stair_lift         n= 10 gross=   19.82 net=   17.92
+   other|ALL              n= 14 gross=    6.32 net=    6.32
+F06: walls=239 gross=343.28 net=261.81 needs_check=26  -> D:\حصر المباني\Diwan-Mall\output\walls\F06.json
+   0.10|ALL               n=  1 gross=    1.64 net=    1.64
+   0.12|ALL               n=167 gross=  228.26 net=  195.76
+   0.25|ALL               n= 40 gross=   93.66 net=   48.33
+   0.30|ALL               n=  5 gross=    3.51 net=    1.09
+   0.40|ALL               n=  7 gross=    7.49 net=    6.27
+   0.50|ALL               n=  1 gross=    1.05 net=    1.05
+   0.60|ALL               n=  3 gross=    1.16 net=    1.16
+   ALL|ALL                n=239 gross=  343.28 net=  261.81
+   ALL|exterior           n= 61 gross=   93.02 net=   47.36
+   ALL|interior           n=105 gross=  189.15 net=  155.23
+   ALL|shaft              n= 63 gross=   41.30 net=   41.30
+   ALL|stair_lift         n= 10 gross=   19.82 net=   17.92
+   other|ALL              n= 15 gross=    6.51 net=    6.51
+F07: walls=237 gross=340.84 net=257.76 needs_check=22  -> D:\حصر المباني\Diwan-Mall\output\walls\F07.json
+   0.10|ALL               n=  1 gross=    1.64 net=    1.64
+   0.12|ALL               n=169 gross=  228.27 net=  194.17
+   0.25|ALL               n= 40 gross=   93.66 net=   48.33
+   0.30|ALL               n=  5 gross=    3.51 net=    1.09
+   0.40|ALL               n=  7 gross=    7.49 net=    6.27
+   0.50|ALL               n=  1 gross=    0.70 net=    0.70
+   0.60|ALL               n=  2 gross=    0.82 net=    0.82
+   ALL|ALL                n=237 gross=  340.84 net=  257.76
+   ALL|exterior           n= 57 gross=   88.87 net=   43.22
+   ALL|interior           n=107 gross=  190.86 net=  155.33
+   ALL|shaft              n= 63 gross=   41.30 net=   41.30
+   ALL|stair_lift         n= 10 gross=   19.82 net=   17.92
+   other|ALL              n= 12 gross=    4.75 net=    4.75
+F08: walls=234 gross=334.47 net=254.34 needs_check=25  -> D:\حصر المباني\Diwan-Mall\output\walls\F08.json
+   0.10|ALL               n=  1 gross=    1.64 net=    1.64
+   0.12|ALL               n=163 gross=  222.12 net=  189.62
+   0.25|ALL               n= 40 gross=   93.57 net=   48.35
+   0.30|ALL               n=  5 gross=    3.51 net=    1.09
+   0.40|ALL               n=  7 gross=    5.45 net=    5.45
+   0.50|ALL               n=  1 gross=    0.70 net=    0.70
+   0.60|ALL               n=  3 gross=    1.16 net=    1.16
+   ALL|ALL                n=234 gross=  334.47 net=  254.34
+   ALL|exterior           n= 61 gross=   90.42 net=   46.10
+   ALL|interior           n=102 gross=  184.52 net=  150.59
+   ALL|shaft              n= 61 gross=   39.72 net=   39.72
+   ALL|stair_lift         n= 10 gross=   19.82 net=   17.92
+   other|ALL              n= 14 gross=    6.32 net=    6.32
+diff F02 vs F03: only here 16.54 m, only on ref 22.0 m
+diff F04 vs F03: only here 8.54 m, only on ref 8.64 m
+diff F05 vs F03: only here 8.89 m, only on ref 11.59 m
+diff F06 vs F03: only here 9.55 m, only on ref 6.69 m
+diff F07 vs F03: only here 7.02 m, only on ref 6.43 m
+diff F08 vs F03: only here 5.87 m, only on ref 11.52 m
+EXIT=0

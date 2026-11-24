@@ -1,0 +1,641 @@
+{
+ "build:openings": {
+  "tool_files": [
+   "D:\\حصر المباني\\Diwan-Mall\\tools\\openings.py"
+  ],
+  "findings_doc": "D:\\حصر المباني\\Diwan-Mall\\docs\\findings\\openings.md",
+  "per_floor_summary": "floor | doors n=width (D10W12/D80W12/D90W12/D90W25/raw) | windows in masonry n=width | curved corner glazing | curtain wall W | door-less openings | MASONRY deductions by type|wall t (n=width m)\nF02 +8.90 | 40=37.46 (21/11/3/1/4 raw glazed terrace doors) | 22=41.29 (+1.25 fixed glass in assembly) | 2=4.30 (cut by corner doors) | 13.00 | 2x1.25 lift | door|0.12 35=32.50, door|0.25 1=0.90, assembly|0.25 2=3.70 (2.35+1.35), window|0.25 21=40.08, window|0.40 1=1.22, opening|0.30 2=2.50\nF03 +12.10 | 37=34.40 (22/11/3/1) | 24=44.99 | 2=6.31 | 13.00 | 0.80 + 2x1.25 | door|0.12 36=33.50, door|0.25 1=0.90, window|0.25 23=43.77, window|0.40 1=1.22, opening|0.12 1=0.80, opening|0.30 2=2.50\nF04 +15.30 | 37=34.20 (21/12/3/1) | 24=44.99 | 2=6.31 | 13.00 | 0.80 + 2x1.25 | door|0.12 36=33.30, door|0.25 1=0.90, window|0.25 23=43.77, window|0.40 1=1.22, opening|0.12 1=0.80, opening|0.30 2=2.50\nF05 +18.50 | 36=33.40 (21/11/3/1) | 24=44.99 | 2=6.44 | 13.00 | 2x1.25 | door|0.12 35=32.50, door|0.25 1=0.90, window|0.25 23=43.77, window|0.40 1=1.22, opening|0.30 2=2.50\nF06 +21.70 | 36=33.40 (21/11/3/1) | 24=44.99 | 2=6.44 | 13.00 | 2x1.25 | same as F05\nF07 +24.90 | 38=35.00 (21/13/3/1) | 24=44.99 | 2=6.44 | 13.00 | 2x1.25 | door|0.12 37=34.10, door|0.25 1=0.90, window|0.25 23=43.77, window|0.40 1=1.22, opening|0.30 2=2.50\nF08 +28.10 | 36=33.40 (21/11/3/1) | 23=43.78 (1.217 window not drawn) | 2=6.44 | 13.00 | 2x1.25 | door|0.12 35=32.50, door|0.25 1=0.90, window|0.25 23=43.77, opening|0.30 2=2.50\nLegacy F03 check: user 37 doors / 34.23 m vs tool 37 doors; block widths 34.40, clear W gap 34.19, smaller face-line gap 34.21 (the user snapped to W line ends).",
+  "conventions_learned": [
+   "Door = INSERT of block D<w>W<t>. D10W12 = 1.00 m door (the 10 is in decimetres) in a 0.12 wall. D80W12 = 0.80, D90W12 = 0.90, D90W25 = 0.90 in a 0.25 wall (stair door). The width from the name always equals the distance between the two jamb lines in the block geometry.",
+   "Use: D10W12 = office doors onto the corridor and the accessible WC. D80W12 = WCs and the FTR room. D90W12 = IT, electric and DAS/GSM rooms. D90W25 = stair.",
+   "Door blocks are inserted on layer W OR layer PR, often mirrored (xscale=-1) and rotated 0/90/180/270. Never use the insert layer or the insert angle to read them. Push the block's jamb lines and leaf arc through ins.matrix44() instead.",
+   "In D10W12 the opening runs along the block's y axis, but in D80/D90 it runs along x.",
+   "Mirrored block ARC/LWPOLYLINE entities have extrusion (0,0,-1), so they are in OCS coordinates. Read them with ezdxf.path.make_path, not the raw center/get_points. render_floor._segments gets this wrong for mirrored door arcs; I left it unedited as instructed.",
+   "There are no double doors and no sliding doors on any floor. All doors are single swing.",
+   "Not doors or windows: LP on W (7 per floor) = level-mark symbol; WB/P on FUR = basin/WC; ST-2 on PR1 = stair arrow; raw PR lines = stair handrails and lift cars.",
+   "The 18 random-name INSERTs on W per floor ('rt5hrt6', '56y', ...) are axis tags: a CI circle plus a TEXT-DIM letter (ز ا ب ج د / 1 2 3 4 after SOSA decode). Their insert points lie far away, so floor_entities skips them. This explains '37 INSERT on W' = 6+3+3 door blocks + 7 LP + 18 tags.",
+   "Random-name blocks on layer X = axis bubbles.",
+   "F02 only: 4 door leaves drawn without a block on WIN (arc r≈1.0 + leaf line). Two are east terrace doors inside glazed assemblies. Two are corner doors cutting the curved glazing; those sit in glazing, not masonry. F02 also has two W circles (r 0.375 / 0.275) that are round elements, not doors.",
+   "WIN layer: only CONTINUOUS lines are glazing. DASHED WIN lines (x=0.27 west, y=39.35 north, y=-1.42 south) are projection or cladding lines outside the facade.",
+   "A window = 2 parallel WIN lines 0.12-0.15 apart inside a 0.25 wall. Width = the span common to both lines; one frame line is sometimes drawn ~7 cm longer.",
+   "West facade: 13.00 m curtain wall with no masonry. NW/SW corners: curved glazing, concentric arcs r 1.95/2.07, length 3.16 m (3.28 m at NW on F05-F08).",
+   "Every continuous WIN line and arc on every floor is explained (window, frame piece or door leaf). No orphans.",
+   "F02 east facade: the masonry openings 2.35 and 1.35 (the same as the windows on the other floors) are filled with assemblies. 2.35 = 0.10 frame + door 1.00 + fixed glass 1.25. 1.35 = 0.15 + door 1.00 + 0.20. The masonry deduction is the whole opening, not the sum of the products.",
+   "Architect DIMs (layer DIM, style WWW) never measure an interior door: no DIM defpoint touches any door jamb. Interior DIMs are room and corridor widths. Facade DIM chains measure windows, and 20/24 masonry windows plus the curtain wall have a matching DIM with no mismatch.",
+   "On the slanted east facade the DIMs are linear dims rotated to the building axis. They read 0.786 = the projection of a 0.80 window; the defpoint distance is 0.800.",
+   "The user's legacy F03 measurement was made on the SAME geometry: all 685 W lines of his raw template exist in F03. He deleted 12 duplicate W lines, including the 0.30x0.50 pier between the lift openings.",
+   "His 34.23 m door total matches the total of the smaller face-line gaps (34.21; he snapped to W line ends). The nominal block total is 34.40.",
+   "Lift landing: 2 x 1.25 openings with no door block, between the arms of the C-shaped Etabs-col core (x≈10.49).",
+   "Plans hold NO window sill/head data and no door heights: no text, tags or schedule."
+  ],
+  "open_questions": [
+   "Door height: 2.20 or 2.30 m? (The user previously used 2.30 for doors and windows.) Is the D90W25 stair door (fire door?) different? What height applies to the F02 glazed terrace assemblies?",
+   "Window sill and head per size (1.80 / 2.35 / 2.50 / 2.10 / 1.92 / 1.217 / 1.35 / 0.80 service windows). Is every facade sill at 1.00 m, as in the earlier 5th-floor takeoff (19 sills)? Are the 0.80 service windows high-level?",
+   "Lift openings 2 x 1.25: structural opening height? Is there masonry above them, or is it the concrete core? Is the 0.30 pier between them masonry? (The user deleted it from his template.)",
+   "West curtain wall (13 m) and the curved corner glazing: full-height glass with no masonry, or is there a parapet or spandrel below?",
+   "The 0.80 door-less opening between office 3 and office 2 on F03/F04: is a door missing from the drawing, or is it a real opening?",
+   "Bathroom on the slanted east wing: the window is drawn in its SOUTH wall, but the facade DIM chain shows a 0.80 (0.786) opening in the SLANTED wall at local y 17.64-18.43, where the wall is solid. Which wall is right? This is the same on all 7 floors.",
+   "Deduction width: use the nominal block width (F03 34.40) or the gap as drawn on W (34.21, which matches the user's 34.23)? For plaster, deduct the jamb-to-jamb width or jamb plus architrave?",
+   "Dashed WIN lines outside the facades: cladding or louvres, or the slab edge? (This affects external plaster.)",
+   "F02: the partition between office 7 and office 8 is not drawn, and it carries a 'Waiting For The Update' revision cloud. Is F02 final?"
+  ],
+  "known_limitations": [
+   "Heights are not in the plans. deduction_table() takes them as inputs: DEFAULT door 2.30 (the user's convention), window and opening None.",
+   "The detector for doors without a block knows only the F02 style (arc 0.6-1.4 m + leaf line, or hinge on a glazing end). A sliding door drawn with lines would not be detected; none exist in these drawings.",
+   "A door-less opening is detected only when it is capped at both ends or both faces are interrupted. A wall end that is open on one face only is deliberately not counted as an opening (the corner partitions at y≈35.6 and y≈2.3 look like remnants of the round element deleted after F02).",
+   "Room names on each side are approximate (nearest visible label). They are null rather than guessed.",
+   "face_gaps can pick up the cap of a perpendicular partition on the same face line (e.g. 1.155 at one south window). It is a comparison value only.",
+   "Window wall_t comes from perpendicular probes beside the jambs: 0.25 normally, 0.40 at the NE window 1.217, None at the curtain wall and the arcs.",
+   "Assemblies were found only on F02. The detector groups collinear touching door/WIN pieces.",
+   "Full run takes about 3 minutes for 7 floors with PNGs (the DXF load is about 60 s)."
+  ],
+  "api": "from openings import analyze_floor, deduction_table, render_review, run\n\nres = analyze_floor(3)   # floor number or diwan_common.Floor; returns a dict\n\nres['doors']: list of door records.\n- Fields: id 'F03-D07', source 'block'|'raw drawing...', block 'D10W12'|None, layer, handle, insert [x,y] local, rotation_local, mirrored, scale, nominal_width, nominal_wall_t, width (jamb-to-jamb), wall_t_block, center, axis_deg, jamb_a, jamb_b, hinge, leaf_r, swing_side, hinge_at, leaf_geom, kind 'single swing'..., opens_into, other_side, dim_check.\n- host = {gap, gap_minus/plus, bound_*, wall_t_minus/plus, face_gaps[2]}.\n- host_line = {orientation 'N-S'|'E-W'|'slanted', offset_x|offset_y, from_*, to_*} (to match walls.py records).\n- Optional: host_type 'curved glazing (no masonry)', in_assembly 'F02-A01'.\n\nres['windows']: list of window records.\n- Fields: id 'F03-W12', kind ('window in masonry opening' | 'glazed facade / curtain wall' | 'curved glazing (corner)' | 'fixed glazing beside a door (same opening)'), shape 'straight'|'arc', width, span_all_lines, frame_depth, ends, host, host_line, rooms, adjoins_door.\n- dim_check = {value, along, note?}.\n- Arc windows also have radius_mid, sweep_deg, chord.\n\nres['openings']: list of door-less openings.\n- Fields: id 'F03-O01', kind (lift landing / opening), width, wall_t, ends, host_line, found_by, dash_across, side_a, side_b, confidence.\n\nOther keys:\n- res['opening_candidates']: id F03-C01, review only, not totalled.\n- res['window_frame_pieces']: id F02-F01.\n- res['assemblies']: id F02-A01, members, span, masonry_gap, width.\n- res['summary']: doors.by_type, windows.by_kind, openings, assemblies, masonry_deduction_widths {'door|0.12': {count, width}, 'window|0.25': ..., 'assembly|0.25': ..., 'opening|0.30': ...}.\n- res['checks']: door_gap_vs_block, door_wall_t_vs_block, door_width_totals {block, clear_gap_W, min_face_line_gap}, windows_with_dim, windows_dim_mismatch, windows_dim_projection, dims_along_solid_wall, doors_with_dim, other_inserts, wall_gaps_explained, legacy_f03_user_dims (F03 only).\n- res['_G'] = FloorGeom, private; not written to JSON.\n\ndeduction_table(res, door_h=2.30, window_h=None, opening_h=None, include_curtain_wall=False)\n- Returns rows [{id, type door|window|assembly|opening, kind, width, height, area|None, wall_t}].\n- Excludes the curtain wall, curved glazing and glazed corner doors.\n- Replaces assembly members with one row at the masonry gap.\n\nrender_review(res, out_png, zoom=(x0,y0,x1,y1) local)\n\nrun(floors=None, png=True, tiles=True)\n\nCLI:\n- python tools/openings.py [floor numbers] [--no-png] [--no-tiles]\n- Default = all floors F02..F08.\n- Writes output/openings/F0x.json, F0x.png, F0x_{south,middle,north}.png and summary.json (per-floor summaries + _not_on_all_floors).",
+  "output_files": [
+   "D:\\حصر المباني\\Diwan-Mall\\output\\openings\\F02.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\openings\\F03.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\openings\\F04.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\openings\\F05.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\openings\\F06.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\openings\\F07.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\openings\\F08.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\openings\\summary.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\openings\\F02.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\openings\\F02_south.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\openings\\F02_middle.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\openings\\F02_north.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\openings\\F03.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\openings\\F03_south.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\openings\\F03_middle.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\openings\\F03_north.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\openings\\F04.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\openings\\F05.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\openings\\F06.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\openings\\F07.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\openings\\F08.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\openings\\F08_north.png",
+   "D:\\حصر المباني\\Diwan-Mall\\docs\\findings\\openings.md"
+  ]
+ },
+ "build:walls": {
+  "tool_files": [
+   "D:\\حصر المباني\\Diwan-Mall\\tools\\walls.py"
+  ],
+  "findings_doc": "D:\\حصر المباني\\Diwan-Mall\\docs\\findings\\walls.md",
+  "output_files": [
+   "D:\\حصر المباني\\Diwan-Mall\\output\\walls\\F02.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\walls\\F03.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\walls\\F04.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\walls\\F05.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\walls\\F06.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\walls\\F07.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\walls\\F08.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\walls\\F0x_walls.png (+ _south.png / _north.png for each of F02..F08)",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\walls\\summary.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\walls\\floor_diff.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\walls\\run_log.txt"
+  ],
+  "per_floor_summary": "Centre-line metres. gross = continuous through doors/windows/door-less openings; net = solid only; gross-net = openings width. Walls are cut at Etabs-col/COL concrete. The 13 m west curtain wall and the curved corner glazing are not masonry and are excluded.\nfloor | n | gross | net | openings | exterior g/n | interior g/n | shaft | stair_lift g/n | 0.12 net | 0.25 g/n | needs_check\nF02 +8.90  | 234 | 334.79 | 253.03 | 81.76 | 96.56/50.70 | 180.36/146.36 | 38.05 | 19.81/17.92 | 183.76 | 92.40/46.86 | 24\nF03 +12.10 | 235 | 340.45 | 257.24 | 83.22 | 90.14/44.61 | 188.94/153.16 | 41.17 | 20.20/18.30 | 192.98 | 93.78/48.57 | 23\nF04 +15.30 | 240 | 339.83 | 256.88 | 82.95 | 90.20/44.67 | 188.58/153.06 | 41.23 | 19.82/17.92 | 190.08 | 93.78/48.57 | 28\nF05 +18.50 | 240 | 337.59 | 256.12 | 81.47 | 92.60/46.95 | 183.89/149.96 | 41.29 | 19.82/17.92 | 190.55 | 93.78/48.45 | 26\nF06 +21.70 | 239 | 343.28 | 261.81 | 81.47 | 93.02/47.36 | 189.15/155.23 | 41.30 | 19.82/17.92 | 195.76 | 93.66/48.33 | 26\nF07 +24.90 | 237 | 340.84 | 257.76 | 83.07 | 88.87/43.22 | 190.86/155.33 | 41.30 | 19.82/17.92 | 194.17 | 93.66/48.33 | 22\nF08 +28.10 | 234 | 334.47 | 254.34 | 80.14 | 90.42/46.10 | 184.52/150.59 | 39.72 | 19.82/17.92 | 189.62 | 93.57/48.35 | 25\nOther thickness families, net per floor: 0.10 = 1.64 (one shaft wall); 0.30 = 1.09 net / 3.51 gross (lift-front wall carrying the two lift openings); 0.40 = 5.45-6.39 (3.80 m wall between office 9 and 10, NE facade); 0.50/0.60 = 1.5-3.5 (corner masses at the curved glazing); non-standard = 4.75-8.54 (all flagged). No 0.20 walls on any floor.\nOpenings bridged inside walls: doors 36-38 per floor (100% of D..W.. blocks; F03 = 37, same as the owner's 37). Windows 24 in F03-F07 (45.53-45.65 m masonry gap), 23 in F08 and F02. Two lift openings (1.25 + 1.17) on every floor, plus a 0.80 door-less opening on F03/F04 only.\nF03 vs the owner's legacy 291.42 m: non-exterior gross = 250.31 m (177 records). Adding the solid facade piers (44.61 m) gives 294.92 m (+1.2%). The comparison is loose only.\nFloor diff vs F03 (m only-here / only-on-F03): F02 16.5/22.0, F04 8.5/8.6, F05 8.9/11.6, F06 9.6/6.7, F07 7.0/6.4, F08 5.9/11.5.",
+  "conventions_learned": [
+   "A wall is two parallel lines on layer W, mostly LINEs with a few LWPOLYLINEs. Wall ends are closed by a short cap or jamb line the width of the wall (109-113 per floor). A door is a gap in both lines that holds a D<w>W<t> block. A single W line is never an intended wall; where one appears it is a drafting defect.",
+   "Thickness families come from the data: 0.12 is about 75% of net length (partitions plus shaft walls, matching the D..W12 door blocks). 0.25 is the whole facade (window jambs) plus the stair-hall walls (D90W25 stair door). 0.30 is the lift-front masonry wall between the two arms of the concrete core. 0.40 is the 3.80 m wall between office 9 and office 10 at y=18.65-19.05, and the NE facade around the 1.217 window. 0.10 is one shaft wall. There is no 0.20. Raw 0.11 and 0.13 values are ±1 cm drafting noise.",
+   "Every architect DIMENSION that measures a single wall thickness (0.25 / 0.30; 3 on F02, 5 on the other floors) matches the reader's thickness exactly. Interior DIMs measure room and corridor widths, and their points fall on the faces the reader found. Facade chain points fall on wall ends and opening jambs the reader identified (F03: 137 points on faces, 67 on wall ends, 70 on jambs out of 462). About 92 'none' points are axis chains in the sheet margin.",
+   "Duplicate and overlapping W lines amount to 15.7-17.7 m per floor (48.7 m on F02). They are merged by direction (±1°) and offset (±1.2 cm). Real body overlap left after reading is only 0.07-0.14 m² per floor.",
+   "W lines lying exactly on WIN glazing lines are window frames redrawn on W, not wall faces. This happens on the east facade at y 29.6-32.1 on every floor, and on F02 also at y 32.7-35.2. They must be cut out, otherwise F02 shows a fake 0.15 wall where there are two 2.50 m windows.",
+   "Not walls on W: the sheet-size frame polyline, a 23-vertex closed door-frame profile (F03-F07), degenerate polylines, LP level-symbol INSERTs, and door blocks inserted on W. On F02 only: 5 AR-CONC hatches are concrete planter boxes on the terraces (treated as outside), 3 ARCs are round terrace elements, and 2 bulge arcs (r 3.42) are the terrace outline. There are no curved masonry walls on any floor; every curve is glazing (WIN r 1.95/2.07) or terrace outline.",
+   "Columns and cores (Etabs-col / COL polygons) sit inside wall lines. Cutting walls at concrete removes 37-43 m of wall band per floor. The architectural W outline of the lift core is offset about 8 cm from the Etabs-col outline (lines at y=18.40 and 22.30).",
+   "Shafts: unhatched `try` boxes are voids (12 per floor). X-crossed boxes on DASH/try/PR are the lift well (2) and shafts (3). `try` boxes hatched ANSI31 (3, each drawn twice) are masonry fins where partitions meet the west curtain wall and are treated as solid. On F05-F08 both the inner and outer shaft outlines are drawn on `try`; the outer one is ignored.",
+   "Facade: 0.25 piers between windows on WIN, and gross bridges the windows. A window or a lift door whose far jamb is a column or core face is bridged up to the concrete face. A door-less gap is bridged only if both ends are capped, or if both faces stop cleanly at both ends and the gap is ≤1.6 m (the 0.80 opening has no caps). There are 14 outside nibs of 0.30 x 0.12 on the facades per floor (18 on F02). These probably match the owner's '16 pieces of 0.30'.",
+   "The local frame is orthogonal (0/90) but includes an inclined east facade (79.3/169.3 deg) and an inclined service-rooms facade (70.5 deg). Directions are clustered from the data, not assumed.",
+   "Layout really changes between floors, verified on the raw lines. The partition between office 2 and 3 (y=35.59) is absent on F05 and F08. The south corridor wall x=9.0 is absent on F04 and F07. Bathroom blocks move between floors. F07 lacks the inner face of the north facade near the NW corner, and F08 draws the NE facade as a single line. F02 is a different, provisional plan (terraces, 'Waiting For The Update' cloud, missing partition at y=25.59)."
+  ],
+  "open_questions": [
+   "Masonry height: the storey is 3.20 m floor to floor. What are the slab thickness and the beam depths over the walls? Should we measure to the slab soffit (about 2.98) or keep the legacy 3.00? The JSON gives area_*_at_h at 3.00 and the --height option changes it.",
+   "Is the 0.40 x 3.80 m wall between office 9 and office 10 (y≈18.85, every floor) really 40 cm masonry, or a 0.12 partition plus a duct or cupboard?",
+   "Is the NE facade, 0.40 thick around the 1.217 window, double masonry or masonry plus cladding?",
+   "Are the corner masses at both ends of the curved glazing (0.5-0.6 m, unhatched, not on Etabs-col) and the 0.45 part of the west stair wall masonry or concrete?",
+   "Are the 0.30 x 0.12 outside nibs on the facades (14 per floor) counted as masonry? The owner's earlier F03 takeoff had 16 pieces of 0.30.",
+   "Is the 0.80 door-less opening between office 3 and office 2 (F03/F04 only) a real opening or a missing door? Is it intentional that this partition is absent on F05 and F08, and that the south corridor wall x=9.0 is absent on F04 and F07?",
+   "Lift-front 0.30 wall: is there masonry or a beam above the two lift doors? What is the structural opening size (drawn 1.25, and 1.17 measured to the core face)?",
+   "F07 (NW facade inner face missing) and F08 (NE facade drawn as one line) look like drafting errors. Should we use F06 for those spots?",
+   "Is the ~8 cm offset between the architectural (W) and structural (Etabs-col) lift-core outlines a masonry lining or finish, or just a drafting difference?",
+   "Are the shaft enclosures (about 35 m per floor at 0.12, plus one at 0.10/0.084) full-height masonry, and are they counted with the partitions?",
+   "Owner's legacy F03 figure of 291.42 m: was it gross through the doors with the doors deducted at 2.30 afterwards? Did it include the solid facade piers? The reader gives 250.3 m for partitions plus 44.6 m for facade piers = 294.9 m.",
+   "When will the final F02 plan for the 'Waiting For The Update' area arrive?"
+  ],
+  "known_limitations": [
+   "Lengths are centre-line lengths. L-corners extend to the crossing of the two centre-lines; at a T the through-wall keeps the junction square and the branch stops at its face. Records are cut at every T-junction. A face-by-face surveyor will differ by about half a thickness per junction.",
+   "The plans carry no heights. area_gross_at_h / area_net_at_h use 3.00 m and are indicative only. Opening heights and deductions belong to openings.py; this tool gives each opening's type, width and position.",
+   "A wall drawn with only one line cannot be read (F07 NW facade, F08 NE facade, F02 terrace outline). These lines show up in face_coverage.largest_unexplained, not as walls.",
+   "Unhatched masses that are not on Etabs-col (corner blocks at the curved glazing) are read as masonry pieces with odd thicknesses and flagged. If they are concrete they must be removed.",
+   "Classification is rule-based: ray-cast to the outside, room labels, the ST stair hull and the shaft boxes. It looked right everywhere I checked, but a wall with a void on ≥50% of one side becomes 'shaft'.",
+   "A door-less gap is bridged only when both ends are capped, or when both faces stop cleanly and the gap is ≤1.6 m. A gap with only one face interrupted stays as two walls.",
+   "F02 is provisional (revision cloud), so its numbers are temporary. Composite piers produce small fragments under 10 cm (5-8 per floor, negligible length, flagged).",
+   "A full all-floor run takes about 7 minutes including PNGs, about 1 minute per floor. Geometry is cached in output/walls/_cache (v6). Use --no-cache after the DXF changes; the cache key also includes the file mtime."
+  ],
+  "api": "from walls import read_walls, compare_floors, load_geometry, detect, render  (tools/ on sys.path)\nread_walls(floor:int|Floor, height=3.0, use_cache=True, with_ctx=False) -> dict (or (dict, ctx) when with_ctx=True):\n  {floor:'F03', floor_no, name_ar, level, source{file,sheet_index}, height_assumed, storey_height,\n   walls:[{id:'W27', x1,y1,x2,y2 (local centre-line, m), angle (deg, local), thickness, family ('0.12'|'0.25'|...|'other'),\n           length_gross, length_net, openings_width, kind ('exterior'|'interior'|'shaft'|'stair_lift'),\n           needs_check, reason, notes,\n           openings:[{type:'door'|'window'|'opening', width, at:[x,y], block?, door_width?, to_concrete?}],\n           junctions, corner_ext, end_reason, n_pieces,\n           sides:[{share{room/out/void/concrete}, labels[room names], stair, lift, wet} x2],\n           _band:[d0,d1], _t:[t0,t1]}],\n   totals:{'<family>|<kind>', '<family>|ALL', 'ALL|<kind>', 'ALL|ALL': {n, length_gross, length_net, openings_width, area_gross_at_h, area_net_at_h}},\n   thickness_histogram_net:{'0.12': m,...}, openings_summary, curves, dim_crosscheck{stats, thickness_dims, points_on_unused_W_faces},\n   overlap_check, face_coverage, diagnostics}\ncompare_floors(list_of_results, ref='F03') -> {F: {only_on_this_floor_len, only_on_ref_len, only_on_this_floor[], only_on_ref[]}}\nCLI: python tools/walls.py [floors...] [--height H] [--zoom X0 Y0 X1 Y1] [--no-png] [--no-cache] [--dpi N]; the default is all floors F02..F08 and also writes summary.json + floor_diff.json.\nChanges this session (no shared lib touched): classify_gap's opening logic was factored out into _gap_opening; new rules for uncapped clean-ended doorways (≤1.6 m) via _faces_end_at, plus bridge_to_concrete for openings jambed on a column or core; clean_wsegs now cuts W lines lying on WIN glazing; new needs_check for walls sandwiched between other walls; dim_crosscheck now also matches wall_end and opening_jamb stations; diagnostics now report the cleaned geometry (w_segments_raw/used, w_ignored)."
+ },
+ "build:structure_diff": {
+  "tool_files": [
+   "D:\\حصر المباني\\Diwan-Mall\\tools\\structure.py",
+   "D:\\حصر المباني\\Diwan-Mall\\tools\\floor_compare.py"
+  ],
+  "findings_doc": "D:\\حصر المباني\\Diwan-Mall\\docs\\findings\\structure_diff.md (Arabic, hand-written prose + 6 auto-refreshed tables between <!-- AUTO:NAME --> markers: ELEMENTS/FLOOR/SHAFT/DASH/DIMS refreshed by structure.py on a 7-floor run, CMP_TABLE refreshed by floor_compare.py). Companion generated doc: D:\\حصر المباني\\Diwan-Mall\\docs\\findings\\floors_diff.md (fully regenerated by floor_compare.py: W matrix, per-layer diff vs reference F06, 35 typical-floor change regions + 73 F02 regions, block/text detail).",
+  "per_floor_summary": "Structure is the same on every floor: 24 elements = 10 columns + 11 shear walls + 1 C-shaped lift core (2.56x4.20, 0.30 m wall) + 2 COL X-boxes (0.40x0.40). 7 of the columns/walls exist only in the ETABS block 'tr'. Concrete plan area is 23.502 m2 and the total perimeter is 138.03 m, both without the COL boxes. There are 2 stairs (ST1 2x11 treads, ST2 2x10, going 0.30, width 1.10) and 2 lift cars (1.66x1.45). Grid: x axes ا ب ج د ه و ز ح ط run east to west, y axes 1..15 south to north.\nFloor | exposed plaster perimeter all / model-space only (m) | shafts n / m2 | DIMs | W face-lines vs F06 (+here/-ref, m) | door blocks vs F06\nF02 | 125.06 / 98.26 | 14 / 7.413 | 241 | +195.69 / -39.78 | +1/-1\nF03 | 124.27 / 97.94 | 15 / 8.031 | 231 | +12.11 / -22.77 | +3/-2\nF04 | 124.46 / 97.66 | 15 / 8.031 | 232 | +8.13 / -17.31 | +1/-0\nF05 | 124.41 / 97.66 | 15 / 8.031 | 239 | +7.96 / -17.42 | +1/-1\nF06 | 123.71 / 97.66 | 15 / 8.031 | 237 | reference | -\nF07 | 123.99 / 97.66 | 15 / 8.031 | 238 | +12.00 / -14.35 | +2/-0\nF08 | 124.40 / 97.66 | 15 / 8.031 | 239 | +12.79 / -25.66 | +2/-2\nLayers that are identical on all 7 floors (0.00 m difference): Etabs-col, COL, tr, ST, PR, X, HAT.\nWIN groups: F02 | F03=F04 | F05=F06=F07 | F08 (F08 lacks the east window 1.217).\ntry groups: F02=F03=F04 | F05=F07 | F06=F08.\nNo two floors are identical in W, door blocks, room texts or DIMs. The closest pair is F04 and F07 (18.0 m of W face-lines, both directions). F02 differs from every other floor by 235-258 m.",
+  "conventions_learned": [
+   "Structural concrete comes from 3 sources, de-duplicated by footprint. (a) Etabs-col closed LWPOLYLINE: 13 rectangles plus the C-core. (b) Etabs-col HATCH: the same 14 plus SW06 (3.90x0.40), which is drawn ONLY as a hatch. (c) Block 'tr' on layer Etabs-Slab, inserted twice at the same place with its insertion point off-sheet, holding 7 more elements: C01 0.45x2.04, SW01 0.45x2.30, C02 0.90x0.50, C03 0.80x0.55, SW03 0.25x3.35, C09 1.20x0.60, C10 0.50x1.00. floor_entities() misses off-sheet-insert blocks; use structure.sheet_inserts(fl, layers).",
+   "The 'opening 0.80 without a door' between office 3 and office 2 in F03/F04 (openings.py F03-O01/F04-O01) is exactly the tr column C03. It is reported in res['openings_on_structure'].",
+   "45-96% of each model-space column/wall outline is also drawn as W lines. Concrete must always be subtracted from walls.",
+   "COL layer = two 0.40x0.40 open squares with an X, attached to the faces of SW02 and C05 (CX01, CX02). Possibly columns that start or stop at this floor.",
+   "Shafts = closed boxes on layer 'try' with the X drawn as 2 DASH diagonals. There are also DASH-only X boxes (1.00x0.40 under C05, 0.92x1.52 near the disabled WC, and a 1.03x0.60 box with one diagonal north of ST1). Hatched try boxes (each duplicated) are small posts at the west curtain wall, not shafts. F05-F08 add a 0.64x0.84 enclosure box around SH01.",
+   "Axis bubbles are random-named INSERTs on X: an inner mirrored block CX (circle with extrusion -Z, so convert OCS to WCS) plus a TEXT on TEXT-DIM in SOSA. Attached bubbles are ه و ح ط and 5-15. The labels ا ب ج د ز and 1-4 exist only as W-layer tags displaced (+2.22, -0.40) m, and د by +3.72 m. The axis dimension chains follow the displaced set. Grid labels are assigned by abjad and numeric order; grid_ref(grid, x, y) gives e.g. 'د+2.25 / 8+1.58'.",
+   "DASH has no beams, slab edges or drop ceilings. It holds only: door_head (2 lines per door, on both wall faces), window_head (west, north and south facades only), stair_flight_above_cut, shaft diagonals, the lift divider and a line on the face of C01.",
+   "Architect DIMs (style WWW): 210-213 rotated linear + 21-29 aligned per floor, and no text overrides. ezdxf Dimension.get_measurement() is WRONG for aligned dims, so use actual_measurement (code 42) or the text of the dim geometry block. No interior wall thickness is ever dimensioned, except two 0.12 dims on F02. 0.25 (38 per floor) and 0.30 (20 per floor) are facade steps and piers, not walls.",
+   "Other layers. TEXT-D = titles plus 6 blank '+ 0.00' landing-level templates. PR texts = the floor level. MASS = stair eyes, lift door frames and the plot boundary (2028.08 m2). -MASS = a stale title block of another project. sidewalk = the area schedule (F03-F08 = 614.80 m2 each, F02 = 655.6). FUR P/WB = WCs and basins.",
+   "floor_compare method: union of a layer's local polylines, minus a 2 cm buffer around the other floor's lines; pieces under 5 cm are ignored, so the result does not depend on how lines are split. Inserts match by name, point, rotation and mirror. Texts match within 5 cm. Region variants = groups of floors identical inside the region box."
+  ],
+  "open_questions": [
+   "Is block 'tr' (ETABS) the real column layout? If yes: C03 turns the F03/F04 0.80 'opening' into a column; C01 (office 4) and C10 (office 14) are free-standing columns with no walls around them; and SW01 0.45x2.30 sits exactly where the east window 1.217 is drawn.",
+   "What are the COL 0.40x0.40 X-boxes (CX01, CX02) and the DASH X-box 1.00x0.40 under C05: columns that start or stop here, or small shafts? Do they get plaster?",
+   "Axis د: is it at the X line (x=9.755) or 1.50 m east as the dimension chain says (ج–د 3.15 / د–ه 3.00 against 4.65 / 1.50 on the lines)? Why is the whole tag-and-chain set offset (+2.22, -0.40) from the X lines?",
+   "Are the bathroom and partition differences between the repeated floors intended (per-tenant layouts) or drafting slips? Bathroom R22 is missing only on F06 (and F02); R25 is missing on F04-F06; R14 is missing on F02/F03/F08; R16 on F03; R20 on F08; office 5's bathroom on F05. Partition office 2/3 is missing on F05/F08; partition office 14/15 is missing on F04/F07.",
+   "Net plaster height (3.20 m storey minus slab or beams) and the stair landing levels: the '+ 0.00' tags are blank, and the architectural sheets have no beams.",
+   "F02: the continuous W lines at the facade windows (west x=0.52, south y=-1.17, north y=39.10/38.70, east x=14.97/16.66), next to the planter boxes and terraces. Are they a parapet or masonry, or planter edges?",
+   "Hatched posts at the west curtain wall (0.60x0.25 and 0.55x0.30): concrete or steel? Do they get plaster?",
+   "The title block carries another project's name ('ابراج الفرسان - عمارة B 2'). Is there a newer approved drawing set?"
+  ],
+  "known_limitations": [
+   "exposed_perimeter is approximate. A face is counted as covered when it lies between two W lines no more than 0.66 m apart running away from it, or inside another element or a shaft. It does not separate facade (external) faces from internal ones, and it does not deduct door frames that sit on a column face.",
+   "Plaster quantities are only in linear metres; the net height is not in the architectural plans.",
+   "Column vs shear-wall naming uses a long/short ratio of 5 and is for naming only.",
+   "SHnn shaft ids are harmonized across floors only when several floors are run together (run() / harmonize_shaft_ids). analyze_floor(n) on its own numbers shafts per floor. Element ids C/SW/CORE/CX are stable.",
+   "DIM classification depends on snapping within 1.2 cm and on where the dimension line sits relative to the footprint. Dims classed 'other (end not on any line)' (3-14 per floor) need manual review by handle.",
+   "Stair detection clusters ST lines (0.6 m gap). Risers and landing levels are not in the plans.",
+   "floor_compare: parallel lines closer than 2 cm count as the same; differences closer than 0.35 m merge into one region; the reference floor (F06) is chosen automatically. F02 changes are clustered into their own region set (F02-Rnn).",
+   "structure.py calls openings.analyze_floor for each floor to classify DASH lines and dim ends. If that import fails, those classes degrade to 'other'.",
+   "diwan_common.py was not modified. Off-sheet inserts (tr, axis bubbles, area schedule, title block) are found with structure.sheet_inserts()."
+  ],
+  "api": "structure.py (importable; CLI `python tools/structure.py [floors] [--no-png] [--no-doc] [--zoom x0 y0 x1 y1]`; default = all floors):\n  analyze_floor(n|Floor) -> dict, the same content as output/structure/F0x.json. Keys:\n    floor, level, grid, elements, tr_block, shafts, stairs, lifts, dash, dims, annotations, openings_on_structure, summary.\n    elements[]: {id 'C01'/'SW06'/'CORE01'/'CX01', kind column|shear_wall|core|column_xbox, sources, only_in_tr_block, hatch_only, bbox, centroid, size, size_txt, area, perimeter, covered_by_walls, covered_by_concrete_or_shaft, exposed_perimeter, outline_on_W, w_inside_len, grid_ref, spans_axes{x,y}, faces[], outline, notes, wall_thickness (core)}\n    grid: {x_axes[{label, coord, source, tag_offsets}], y_axes[...], x_spacings_east_to_west, y_spacings_south_to_north, bubbles, displaced_tags, other_lines, notes}\n    shafts[]: {id SHnn, kind, bbox, size_txt, area, perimeter, dash_diagonals, hatched, grid_ref, floors}\n    stairs[]: {id ST1/ST2, bbox, flights_ST, flights_DASH_above_cut, eye, blank_level_tags}\n    lifts: {cars, door_lines_MASS, core_size, core_wall_thickness, HAT_hatches_in_shafts}\n    dash: {lines[{a, b, len, class, ref}], summary}\n    dims: {dims[{id, handle, text, value, actual, p2, p3, dimline, direction, snap_p2, snap_p3, class, grid_ref}], by_class, histogram, wall_thickness_values, axis_chain_check, old_grid_offset}\n    annotations: {titles, blank level tags, level marks, area_schedule_sidewalk, MASS (plot_boundary), FUR, LP, PR1}\n  read_grid(fl), grid_ref(grid, x, y) -> 'د+2.25 / 8+1.58', grid_between(grid, x0, x1, y0, y1)\n  sheet_inserts(fl, layers), FloorData(fl)\n  run(floors=None, png=True, doc=True) -> list of results. Writes the JSON and PNGs, harmonizes SH ids, and refreshes the AUTO tables in the findings doc.\n  harmonize_shaft_ids(allres), doc_tables(allres), update_doc(blocks), render(res, png, mode='structure'|'dims', zoom=(x0, y0, x1, y1))\nfloor_compare.py (CLI `python tools/floor_compare.py [--ref F05] [--no-png] [--no-doc]`):\n  compare_floors(ref=None) -> {reference, floors, matrix[layer][A][B] (m of A not in B), blocks_matrix, door_blocks_matrix, texts_matrix, dims_matrix, struct_matrix, total_matrix, identical_groups, per_floor_vs_ref, regions[{id, bbox, center, rooms_near, floors_differing_from_ref, floors_unlike_ref, variants, changes}]}\n  equal_groups(matrix, labels), cmp_table(res), write_doc(res), extract(fl)",
+  "output_files": [
+   "D:\\حصر المباني\\Diwan-Mall\\output\\structure\\F02.json … F08.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\structure\\F0x_structure.png (7) and F0x_dims.png (7)",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\structure\\dims_histogram.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\structure\\summary.json (per floor + canonical_shafts)",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\floor_compare\\summary.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\floor_compare\\overlay_W.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\floor_compare\\diff_F02.png, diff_F03.png, diff_F04.png, diff_F05.png, diff_F07.png, diff_F08.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\floor_compare\\regions_map.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\floor_compare\\region_R01..R35.png and region_F02-*.png",
+   "D:\\حصر المباني\\Diwan-Mall\\docs\\findings\\structure_diff.md",
+   "D:\\حصر المباني\\Diwan-Mall\\docs\\findings\\floors_diff.md"
+  ]
+ },
+ "build:rooms": {
+  "tool_files": [
+   "D:\\حصر المباني\\Diwan-Mall\\tools\\rooms.py"
+  ],
+  "findings_doc": "D:\\حصر المباني\\Diwan-Mall\\docs\\findings\\rooms.md",
+  "per_floor_summary": "Areas in m2 (local frame). n = number of spaces. offices given as count/area. ceiling = office+wc+corridor+lobby+service+stair. solid faces = indoor wall+column+try+extension perimeter, in m.\nF | lvl | n | offices | wc | corridor | lobby | service | stair | lift(2 cars) | shafts | terrace | planter | NET indoor | ceiling | open-air | GROSS | solid faces m | glazing m | doors m(x2 sides)\nF02 | +8.90 | 59 | 17/371.01 | 11/37.29 | 57.88 | 26.97 | 4/20.10 | 2/31.53 | 6.90 | 13/6.94 | 4/25.13 | 5/33.02 | 558.61 | 544.78 | 58.15 | 638.17 | 488.07 | 59.79 | 70.52\nF03 | +12.10 | 53 | 19/370.59 | 11/36.69 | 57.88 | 26.97 | 4/20.10 | 2/31.53 | 6.90 | 14/7.55 | - | - | 558.21 | 543.75 | 0 | 633.95 | 498.74 | 63.24 | 68.39\nF04 | +15.30 | 53 | 18/367.47 | 12/39.43 | 57.88 | 26.97 | 4/20.10 | 2/31.53 | 6.90 | 14/7.55 | - | - | 557.82 | 543.37 | 0 | 633.95 | 496.73 | 63.36 | 67.99\nF05 | +18.50 | 52 | 18/371.36 | 11/36.73 | 57.88 | 26.97 | 4/20.10 | 2/31.53 | 6.90 | 14/7.55 | - | - | 559.02 | 544.57 | 0 | 634.06 | 494.15 | 63.49 | 66.39\nF06 | +21.70 | 53 | 19/370.56 | 11/36.96 | 57.88 | 26.97 | 4/20.10 | 2/31.53 | 6.90 | 14/7.55 | - | - | 558.45 | 543.99 | 0 | 634.06 | 504.69 | 63.49 | 66.42\nF07 | +24.90 | 54 | 18/365.09 | 13/41.96 | 57.88 | 26.97 | 4/20.10 | 2/31.53 | 6.90 | 14/7.55 | - | - | 557.98 | 543.52 | 0 | 633.95 | 502.41 | 63.61 | 69.59\nF08 | +28.10 | 52 | 18/372.29 | 11/36.67 | 57.88 | 26.97 | 4/20.10 | 2/31.53 | 6.90 | 14/7.55 | - | - | 559.88 | 545.43 | 0 | 634.06 | 495.20 | 62.14 | 66.48\nMerged offices (no partition drawn): F02 6+7+8 = 54.32; F04 14+15 = 54.26; F07 14+15 = 54.32; F05 2+3 = 44.86; F08 2+3 = 45.60.\nValidation on every floor: 0 unplaced labels, offices 1..19 all present, every door borders exactly 2 spaces, 0 unassigned windows. DIM checks: 365 checked, 355 ok (max diff 1.1 cm), 10 'jog' (DIM between laterally offset faces), 0 real mismatches.",
+  "conventions_learned": [
+   "All walls are drawn as two face lines on W with no centre-lines, and columns/cores (Etabs-col/COL) cut the walls. Rooms are read straight from the faces: buffer every primitive by 1.5 cm, take the free faces of the union, then grow them back 1.5 cm with mitre joins so the polygon sits exactly on the drawn faces.",
+   "Door gaps are left open in the wall drawing (the D<w>W<t> block holds only the leaf and arc). To close a room you add a quad between the two jambs from openings.py. Door-less openings (lift landings 2x1.25, the 0.80 opening between offices 3 and 2 on F03/F04) are closed with a rectangle across the wall.",
+   "WIN glazing is two lines (frame 12-15 cm deep). The room stops at the inner glazing line, and the band between the two lines counts as wall body. DASHED WIN lines are projection/cladding lines, not boundaries.",
+   "Hatched (ANSI31) 'try' boxes are solid masonry fins at the 13 m west curtain wall. Un-hatched 'try' boxes with an X are shafts (14 per floor, 0.24-1.37 m2), often sitting inside WC walls.",
+   "MASS lines inside a stair are the stair well (ignored). A MASS LWPOLYLINE with 20 or more vertices is the slab edge (F02 terraces/planters). Other MASS lines are the lift-front wall and terrace parapets.",
+   "Arabic SHX labels (style ARA) run LEFTWARDS from their insertion point and Latin labels (-A-TEXT) run rightwards. Labels sitting in a wall body snap to the nearest face within 1.2 m.",
+   "'حمام' + 'ذوي الهمم' in one space = one accessible WC. 'المصاعد الادارية فقط' is a sign, not a room name. The SE WC (2.63 m2) has no label on any floor and is named from the WC pan block P (FUR). F02 has no 'ممر' label.",
+   "The corridor and the lift lobby are one open space with no wall between them. It is split by a virtual 7.12 m chord that continues the corridor wall face (identical on all floors). The chord must never be plastered or counted as masonry.",
+   "The lift core = 1 space of 6.90 m2 holding 2 cars (two X marks on PR).",
+   "Open-air spaces (terraces 'تراس سماوي', planters 'زرع') exist on F02 only, 58.15 m2 in total. They have no ceiling, and the wall faces towards them take external plaster. An unlabelled F02 planter is recognised from the AR-CONC hatch on W.",
+   "Partitions drawn short of the facade/glazing: a dangling W end is extended up to 1.5 m to the first obstacle. 6-11 extensions per floor, all logged and drawn in magenta.",
+   "Rooms whose drawing does not change between floors have exactly identical areas from floor to floor, which shows the reading is stable. Per-floor differences come from the small en-suite WCs being added or removed (e.g. F05 office 5 = 19.18 because the WC at (6.1, 34.4) is missing).",
+   "A door's width appears in the perimeter of both rooms it joins (each side of the wall gets its own deduction)."
+  ],
+  "open_questions": [
+   "F02 offices 6/7/8, F04/F07 offices 14/15 and F05/F08 offices 2/3 are drawn with no partition between them. Are they truly open-plan, or did the walls drop out of the drawing? The answer changes the masonry and plaster quantities (about 3.8-4.8 m of wall per case, plus 2 walls of about 6 m each on F02).",
+   "F08 office 7 has a leftover 'حمام' label but no WC walls. Was the WC really removed?",
+   "Corridor and lift lobby: is there a wall or architectural opening between them that is not drawn? The tool splits them with a virtual 7.12 m line.",
+   "F02 terraces and planters: does the F03 slab overhang any part of them? Is the wall face towards them entirely external plaster? What is the parapet height at the slab edge?",
+   "Do the lift shaft and the shafts get internal plaster? Are the 0.24 m2 shafts inside the WC walls masonry boxes or exposed pipes?",
+   "The free single W line inside office 4 at x of about 5.75 (1-2 m long): is it a partial partition, a beam edge or a cladding line?",
+   "The unlabelled SE space (2.63 m2, has a WC pan) on every floor: is it really a WC?",
+   "What is the clear ceiling height of offices, WCs and corridor (suspended ceiling?)? It is needed to turn the perimeter lengths into plaster areas."
+  ],
+  "known_limitations": [
+   "Areas are net between the drawn faces (no finish thickness). Accuracy is about +/-1 cm, as the DIM checks show.",
+   "The virtual extensions (up to 1.5 m) and the corridor/lobby chord are reading assumptions. They are flagged, listed in checks and drawn for review.",
+   "Stairs are measured by their plan area only. The flight soffits and the stair-well walls at their real height are not computed.",
+   "Lift and shafts are left out of ceiling_area and out of the indoor plaster face lengths (they are reported separately).",
+   "No heights are read (ceiling, sills, door heads). Turning lengths into areas belongs to the plaster/masonry tools.",
+   "Merged spaces (missing partitions) stay as one space, as drawn. They are flagged multi_label and are not split automatically.",
+   "The gross outline follows the outer W faces. On F02 an extra W line joins the north pilasters, which adds about 2.4 m2 compared with F03..F08 (638.17 vs about 634).",
+   "DIM 'jog' cases (a DIM between laterally offset faces, e.g. office 12 = 3.515) cannot be confirmed by the ray test, although both DIM points lie on the polygon.",
+   "Opening data is read from output/openings/<F>.json when it is newer than both the DXF and openings.py; otherwise openings.analyze_floor() runs in memory (slower)."
+  ],
+  "api": "import sys; sys.path.insert(0, 'tools'); from rooms import analyze_floor, run, to_json, render\nres = analyze_floor(n)   # n = 2..8 or a Floor object; options use_cache=True, refresh_openings=False\n\nres['rooms'] is a list of dicts. Each has:\n  id ('F03-R07'), name (decoded Arabic/English), category (office|wc|corridor|lobby|service|stair|lift|shaft|terrace|planter|void), category_ar, open_air, indoor\n  area (m2 net), perimeter (all rings, inner face), perimeter_outer, n_holes\n  boundary {wall, column, glazing, door, opening, shaft, solid_try, slab_edge, mass, extension, virtual, unresolved}: lengths in m by what bounds the room\n  doors[] / openings[] / windows[]: ids from openings.py; windows_partial_m {id: facing m} when the room faces only part of a window\n  labels[], flags[], centroid, bbox, inscribed_r, n_cars (lift), wc_pans\n  dim_checks[{dim, value, room_width, diff, status ok|jog|mismatch, lateral, p2, p3}]\n  _poly: shapely Polygon in local coordinates (not in the JSON)\n\nres['totals'] holds: by_category{cat:{name_ar,n,area,perimeter}}, n_rooms, net_indoor_area, net_usable_area, ceiling_area, open_air_area, gross_floor_area, gross_outline_perimeter, walls_columns_area, boundary_by_kind_indoor, boundary_by_kind_open_air, footprint_bbox.\n\nres['checks'] holds: labels_unplaced, office_numbers, offices_missing, duplicate_names, rooms_flagged, extensions, corridor_lobby_splits, closed_pockets_as_solid, doors_not_two_sided, windows_unassigned, dims_ok, dims_jog, dims_mismatch.\n\nPrivate keys (not in the JSON): res['_P'] = tagged boundary primitives [(geom, kind, ref)], res['_footprint'] = gross outline Polygon, res['_wall_bodies'].\n\nto_json(res) strips the '_' keys. render(res, png, zoom=(x0,y0,x1,y1)) draws the review image.\n\nCLI: python tools/rooms.py [floors...] [--no-png] [--zoom X0 Y0 X1 Y1] [--no-cache] [--refresh-openings]. It writes output/rooms/F0x.json, F0x.png, F0x_south.png, F0x_north.png and summary.json; running a subset of floors updates only their entries in summary.json.",
+  "output_files": [
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F02.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F03.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F04.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F05.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F06.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F07.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F08.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\summary.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F02.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F02_north.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F02_south.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F03.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F03_north.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F03_south.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F04.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F04_north.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F04_south.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F05.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F05_north.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F05_south.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F06.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F06_north.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F06_south.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F07.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F07_north.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F07_south.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F08.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F08_north.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\rooms\\F08_south.png",
+   "D:\\حصر المباني\\Diwan-Mall\\docs\\findings\\rooms.md"
+  ]
+ },
+ "verify:walls#1": {
+  "verdict": "pass",
+  "defects": [
+   {
+    "severity": "minor",
+    "floor": "F02, F04",
+    "description": "An open floor recess is read as a 0.58 m thick wall and counted in the totals. The recess lies between the 0.50 corridor-side mass and a shaft box, and its north end is open to office 18. The record is flagged needs_check but it still feeds totals['other|ALL'].",
+    "evidence": "F04 W165 and F02 W156: band x 9.455-10.037, y 12.05-12.96, thickness 0.582, length 0.91. Raw F04: line x=9.455 (31B equivalent, y 12.05-13.484), line y=12.05 (x 9.455-10.04), shaft-box line x=10.04 (12.05-12.96). There is no W line across y≈12.96 for x 9.455-10.04, so the north side is open. The tool's own reason text says 'no room on either side'. F03 and F05-F08 do not have this pocket.",
+    "suggested_fix": "Drop any cell that has no closing line (cap, jamb, wall or concrete) at one of its two t-ends when its thickness is outside the standard families or ≥0.45. Alternatively, report such records separately as 'not_counted' instead of including them in totals."
+   },
+   {
+    "severity": "minor",
+    "floor": "all F02-F08",
+    "description": "The partition between office 5 and office 4 has an interruption that is neither bridged nor flagged, so its gross length is silently short. The wall is drawn 0.77-1.506 (face 35.52) / 0.77-1.17 (face 35.64), then restarts at 2.152 / 2.398 (F06: face 35.64 restarts at 1.498). The gap has no jamb caps. On F02 a round element r=0.375 on W sits in the gap at (1.83, 35.71), per openings.md. The record starts at the later face (2.398), so a further 0.25 m on one face is also dropped.",
+    "evidence": "F03 handles 6FB (1.17-1.506 @35.52), 6FC (2.152-4.03 @35.52), 1B3 (0.77-1.17 @35.64), 6FE (2.398-4.005 @35.64). W18 starts at x=2.398, end_reason 'break', needs_check False. Same pattern on F04 W18, F05 W19, F07 W17, F08 W19, and F02 W21 (which starts at 2.197). F06 '70E' leaves 0.60 m of one-face line unexplained.",
+    "suggested_fix": "Flag any collinear stop/restart of the same band with a gap ≤1.6 m and no caps, even when the faces are staggered. Report its width, so the engineer can decide whether it is an opening, a round column or a drafting break. Note it in walls.md §6/§9."
+   },
+   {
+    "severity": "minor",
+    "floor": "all",
+    "description": "Some walls around the lift and stair are classified 'interior' instead of 'stair_lift'. This affects any consumer that keys on kind (for example plaster).",
+    "evidence": "Lift-front 0.30 wall: F03 W118, F04 W122, F05 W122, F06 W121, F07 W121, F08 W117 have kind=interior, gross 3.00. Its sides only show 'المصاعد الادارية فقط' and 'بهو المصعد' labels because the lift wells (PR X-boxes, x≥10.79) do not touch the wall (x 10.34-10.64). F03 W174 (y 9.475, x 0.77-1.69) is the wall between office 12 and the escape-stair landing and has kind=interior: the ST hull plus 1.4 m buffer does not reach the landing at x<3.1.",
+    "suggested_fix": "Mark as stair_lift any wall whose band lies within 0.3 m of an Etabs-col core that contains a lift void, or that carries the lift-door MASS outlines (x=10.34/10.64). For stair halls, build the stair zone from the enclosing room polygon rather than an ST-line hull plus a fixed buffer."
+   },
+   {
+    "severity": "minor",
+    "floor": "all",
+    "description": "Flagging does not match the findings doc. walls.md §2 says the 0.50 / 0.60 / non-standard corner masses are 'all needs_check', but several 0.30 / 0.40 / 0.50 / 0.60 corner-mass records are not flagged, and the same piece is flagged on some floors and not on others.",
+    "evidence": "F03: W14 (0.60, exterior, 0.378), W16 (0.50, 0.70), W226 (0.60, 0.44), W219 (0.40, exterior, 0.538 at x 13.2-13.6, y 2.4-2.94, beyond Etabs-col 1111 which ends at y=2.40), W206 (0.30, interior, 0.12): all needs_check=False. The W206 piece is flagged on F04 (W211), F05 (W209) and F08 (W205), but not on F03 or F07.",
+    "suggested_fix": "Flag every record whose family is not 0.12 or 0.25, or align the doc text with the actual rule. Make the flag rule floor-independent."
+   },
+   {
+    "severity": "minor",
+    "floor": "F03 (vs F08)",
+    "description": "A small closing jamb at the NW curved-glazing end is drawn on layer 0 on F03 (the tool reads W only), but on W on F08. As a result, the same 0.12 × 0.88 piece is read on one floor and not on the other.",
+    "evidence": "F03 layer-0 LWPOLYLINE 149F: (3.47,38.10)-(3.59,38.10)-(3.59,38.98). F03 '639' (x=3.47, 38.1-39.45) is 1.35 m unexplained. On F08 the same piece is read as W1 (x≈3.53, y 38.1-38.98).",
+    "suggested_fix": "Also read W-coincident linework on layer 0 (or report it in diagnostics), or at least list 'layer 0 lines touching wall faces' as needs_check."
+   },
+   {
+    "severity": "minor",
+    "floor": "F03, F05, F06",
+    "description": "A thin element at x 5.62-5.74, y 35.47-37.73 inside office 4 is read inconsistently and never flagged. It is drawn partly on W and partly on another layer (the x=5.62/5.74 lines from 36.83 to 37.73 are not on W). It could be a partition, a niche or a glass screen.",
+    "evidence": "F03: '6E7' (x=5.74, 35.47-36.83) single face, 1.18 m unexplained, no record. F05: W21 (0.235, kind shaft) + W22 (0.286, interior) only. F06: '6F1' 0.75 m unexplained.",
+    "suggested_fix": "Put unexplained W runs ≥0.5 m that sit inside rooms into the per-floor JSON as needs_check candidates (not only face_coverage.largest_unexplained). Add the element to the engineer questions."
+   },
+   {
+    "severity": "minor",
+    "floor": "F07, F08",
+    "description": "Drafting defects drawn with a single line are documented in walls.md, but the per-floor JSON does not mark the resulting shortfall, so F07/F08 totals are silently low.",
+    "evidence": "F07 '28D6' (y=39.10, x 4.10-5.74, 1.63 m) has no inner face, so no 0.12 north-facade record (F03 has W2 = 1.52). F08 '4619' (x=16.76, 35.2-38.7) is one line, so W14 is 0.83 m instead of 2.86 m and the 1.217 window is missing.",
+    "suggested_fix": "Emit a 'missing_candidates' list in each floor JSON (single W lines ≥1 m on the building envelope or between rooms, with handles and the matching record on the reference floor). Optionally offer a --borrow-from-floor option."
+   },
+   {
+    "severity": "minor",
+    "floor": "all",
+    "description": "The DIM thickness cross-check overstates what it proves. The 3-5 'thickness dims' that match exactly are facade nib and fin widths (0.30 fins, 0.25 jamb returns, the 0.25 hatched fin), not the thickness of real wall runs. Most of the ~78 small DIMs per floor are facade chain dimensions along the facade.",
+    "evidence": "F03 thickness_dims match W12 (0.30 × 0.185 nib at 16.36,38.63), W233 (0.30 × 0.13 nib), W85 (hatched fin), W227 (0.25 × 0.12 nib, kind interior) and W160. DIMs such as 998/E0F/E43 (0.30) measure fin widths along the facade.",
+    "suggested_fix": "In walls.md, reword the claim as 'nib/pier widths agree'. Add a real thickness check: for each facade/partition record ≥1 m, find chain DIMs whose two points fall on its two faces."
+   },
+   {
+    "severity": "minor",
+    "floor": "all",
+    "description": "The room labels in 'sides' are sometimes wrong because the label-visibility ray passes through door gaps. They are informational only, but a plaster consumer might use them.",
+    "evidence": "F03 W93: both sides 'IT room' (one side is the corridor). F03 W18: both sides 'مكتب 5' (north side is office 4). F03 W118: the same two labels on both sides.",
+    "suggested_fix": "Sample labels from points offset perpendicular to solid (net) parts only, and block rays at door/opening rectangles."
+   }
+  ],
+  "checks_passed": [
+   "CLI re-run of the default (all floors F02-F08, with PNGs) took about 7 minutes and exited 0. Numbers are identical to the reported table (F03 235 walls, gross 340.45, net 257.24, needs_check 23, etc.). Output is in output/_verify_walls/rerun_log.txt.",
+   "Internal consistency on all 7 floors (independent script v_check.py): for every record, |centre-line length - length_gross| ≤ 1 cm, _t span = gross, gross - net = sum of opening widths, rebuilt net = length_net, _band width = thickness. Zero inconsistencies.",
+   "Door blocks: every D<w>W<t> INSERT on every floor (F02 36, F03 37, F04 37, F05 36, F06 36, F07 38, F08 36) is matched to a door opening of the same block name within 1.5 m. F02 also has one extra glazed terrace door (arc on WIN).",
+   "Openings: every bridged 'window' has WIN glazing over ≥50% of its width (F02, F03, F06, F08 checked: 23/24/24/23 windows). Every 'door' opening has a door block nearby or is the arc door.",
+   "No WIN glazing lies inside any NET solid wall piece on any floor. Every WIN glazing line ≥0.3 m outside the wall gross runs is either the 13 m west curtain wall (x=0/0.12, y 12.53-25.53) or the DASHED outer projection lines (x=0.27, y=-1.42, y=39.35), which openings.md documents.",
+   "Concrete: no NET or GROSS wall rectangle overlaps Etabs-col/COL polygons by more than 0.003-0.005 m² on any floor, so no run bridges a column.",
+   "Shafts: only the documented cases sit mostly inside `try` boxes: the hatched ANSI31 fin (F03 W85 and equivalents) and the F05-F08 shaft walls between the inner and outer try outlines.",
+   "Miss hunt (v_miss.py): an independent search for consecutive parallel W-line pairs 0.06-0.62 m apart with ≥0.15 m overlap, not covered by walls, concrete or try. It found only 3.6 m on F03 and F05, all at the stair-north shaft and the core offset lines, so no wall pair is missed.",
+   "Independent W-line coverage (v_cover.py): unexplained F03 38.3 m (tool says 37.7), F07 39.9, F08 37.2, F06 35.0. The largest items match the tool's list: core offset lines FD0/FEA, NW/SW corner masses, F07 NW and F08 NE single lines. F02 is higher (81.9) because of the terrace slab-outline polyline 1585.",
+   "Inventory: no block content lands on layer W (all INSERTs on W are LP or door blocks). No wall pairs on other layers inside the building (MASS = lift-door and stair outlines, PR = lift cars).",
+   "Sampled against raw handles, coordinates and lengths, ≥12 items on 4 floors. F03: W2, W13, W17, W18, W25, W26, W27, W77, W82-W84, W87, W93, W95, W101, W104, W114, W118, W121, W122, W124, W133, W134, W139, W182, W219, W220, W225. F04: W153, W163, W165, W175. F05: W21, W22. F07: W38, W60, W186. F02: W147, W154, W156, W202. Thickness, centre-line, T-junction cuts at through-wall centre, branch stops at the through-wall face, L-corner extension, column cuts and window/door widths all agree with the raw lines.",
+   "Slanted east facade (79.33°): piers, windows (t 22.41-23.21, 29.07-29.87, 30.87-31.67) and the cut at Etabs-col 1105 agree with the raw outer/inner lines CB/CE/CF/D0/D1-D8.",
+   "Floor-diff claims verified on raw lines: the y=35.59 partition is absent on F05/F08 (only a 0.20 stub on F05); the x=9.0 south-corridor wall is absent on F04/F07; the F03 bathroom block at (5.16-6.94, 29.3-30.94) is absent (only shaft lines); the F02 y=25.59 partition is absent (only the corridor jambs).",
+   "The legacy comparison arithmetic reproduces exactly: F03 non-exterior gross 250.31 m (177 records) + exterior net 44.61 = 294.92 vs 291.42. 0.12-exterior = 14 fins × 0.30 + W2 1.52 = 5.72.",
+   "Review PNGs inspected (F03 full/north/south, F02 full, F08 north, F04 and F03 zooms against raw render_floor zooms). Colours, numbers, openings and needs_check frames correspond to the raw drawing. Dense spots (core, stairs, curved-glass corners) are legible in the half and zoom images."
+  ]
+ },
+ "verify:openings#1": {
+  "verdict": "pass",
+  "defects": [
+   {
+    "severity": "minor",
+    "floor": "F02-F08",
+    "description": "The lower lift landing opening is reported as 1.25 m, but the concrete core arm extends 7.7 cm into it, so the clear opening is 1.173 m. This also makes openings.py disagree with walls.py, which reports 1.173 + 1.25 for the same wall.",
+    "evidence": "F05 raw: W caps 2214 at y=19.000, 2215 at 20.250, 2218 at 20.750 and 2217 at 22.000 (x 10.34-10.64). The Etabs-col core 22E4 has its lower arm edge at y=19.077 (x 10.353-10.653) and its upper arm starting at 22.077. A ray from (10.49,19.625) hits the concrete at 19.077 before it reaches the W cap at 19.000, so the clear opening is 19.077 to 20.250 = 1.173. F05-O02 has width 1.25 with ends [10.49,19.0]-[10.49,20.25]. output/walls/F05.json has opening 1.173 at (10.49,19.664), to_concrete=True. The masonry deduction is opening|0.30 = 2.50, against 2.423 from walls (gross 3.00, net 0.577). openings.md states both 'C core from y=19.08 to 22.08' and '2 x 1.25', which contradict each other.",
+    "suggested_fix": "Also clip opening ends against the Etabs-col/COL polygons (not only W caps), the same way window and door hosts are clipped. Report 1.173 + 1.25, or report both values and add a note."
+   },
+   {
+    "severity": "minor",
+    "floor": "F05-F08",
+    "description": "The NW curved corner glazing width is taken from the inner (smaller-radius) arc sweep of 93.5 deg, giving 3.281 m. The outer arc sweeps only 90 deg, and the extra 0.12 m of the inner arc is the end cap of the pier stub. Straight windows use the common span of both lines (e.g. 2.10, not 2.22), so curved glazing should too. As a result the doc and summary.json report a false floor-to-floor change (3.15 on F03/F04 vs 3.28 on F05-F08).",
+    "evidence": "F05 WIN ARC 21D7 (r 1.95) runs from (3.590,38.096) to (1.52,36.15) = 93.5 deg. WIN ARC 21D8 (r 2.07) runs from (3.470,38.220) to (1.40,36.15) = 90.0 deg. W 19D9 at x=3.470 and W 19DA at x=3.590 (38.096-38.98) form a 0.12 pier, and the inner arc runs along its bottom from x 3.47 to 3.59. F05-W05 has sweep_deg 93.5, width 3.281 and ends [3.59,38.096]. The common sweep of 90 deg x r_mid 2.01 = 3.157, which equals SW F05-W24 and F03-W05 (3.154). The code (openings.py ~l.850) takes the sweep from the arcs of the smaller radius.",
+    "suggested_fix": "Use the angular overlap of the inner and outer arcs (the common sweep), consistent with the straight-window rule. The doc should then say the NW glazing is 3.16 on F03-F08. Keep span_all_lines / max sweep as a secondary field."
+   },
+   {
+    "severity": "minor",
+    "floor": "F08",
+    "description": "F08 has a stale bathroom: the TEXT 'حمام' sits in office 7 but there are no bathroom walls and no door. On F02-F07 the same spot is a bathroom with a D80W12 door. The tool counts F08 as 11 D80 and 36 doors without flagging it. If the bathroom is real, F08 is missing one 0.80 door plus its walls. The label also makes F08-D10 report opens_into='حمام' instead of office 7.",
+    "evidence": "floor_texts F08: TEXT 'حمام' at local (6.36, 27.82), identical to F05. On F08 the only W near it is corridor face 3967 (x 6.935) and the bathroom block around y 28.5-29.2. There are no bathroom walls in x 5.1-6.94, y 26.9-28.6 and no D80 near it (nearest door is 3.18 m away). F05-D10, F06/F07-D11 and F03-D10 (D80W12) are at (5.74,26.91). F08-D10 (D10W12, 6.995,26.27) has opens_into='حمام'. openings.md section 5 does not mention this label-without-room.",
+    "suggested_fix": "Cross-check room labels against doors: every 'حمام' label should have a D80 door within about 1.6 m, except the accessible WC which uses D10. Report orphan labels in checks (e.g. checks.labels_without_door) and add an open question for the engineer about the F08 office-7 bathroom (deleted, or are its walls and door missing?)."
+   },
+   {
+    "severity": "minor",
+    "floor": "all",
+    "description": "Room attribution is wrong or incomplete for curved glazing, the curtain wall and a window shared by two offices. This matters for per-room internal plaster deductions. The fields are described as approximate, but here a wrong value is given instead of null.",
+    "evidence": "SW curved glazing (arc y -0.29..1.78, south of the office 13/14 partition at y 2.23-2.35, so it is office 14): F03..F08 W24/W23 have rooms ['مكتب 13']. NW curved glazing (arc y 36.15..38.22, north of the partition at y 35.52/35.64, so it is office 4): F02/F03/F04-W05 have rooms ['مكتب 5']. F05-W14 curtain wall (y 12.53-25.53, offices 8-11) has rooms ['مكتب 9'] only. F05-W26 (WIN 1B0D/1B0F, x 7.80-9.90) is split by partition 15EC/15FA (x 8.955/9.075), which ends on the glazing line y=-0.92 with cap 1B23: 1.155 m is in office 14 and 0.825 m in office 15, but rooms = ['مكتب 14'] only. The arc 'center' field is the arc centre (3.47,1.78), not a point on the glazing, which is likely why the room lookup fails.",
+    "suggested_fix": "Look up rooms from points sampled along the glazing on the inner side (mid-arc, or every ~1 m for long and straight units). List every room the unit touches with its length share, and split a window where a partition ends on it."
+   },
+   {
+    "severity": "minor",
+    "floor": "n/a (CLI)",
+    "description": "Running a subset of floors (e.g. `python tools/openings.py 3 5 --no-png`, as advertised in the docstring) overwrites output/openings/summary.json with only those floors. The all-floor totals and the _not_on_all_floors list are lost.",
+    "evidence": "run() builds allsum only from the requested floors, then writes OUT/'summary.json' unconditionally (openings.py ~l.1610).",
+    "suggested_fix": "Merge into the existing summary.json, or write summary.json only when all floors are analysed (otherwise write summary_<floors>.json)."
+   },
+   {
+    "severity": "minor",
+    "floor": "F02",
+    "description": "deduction_table() groups rows by the raw measured wall_t, so a 0.249 m wall becomes its own group next to 0.25. summary.masonry_deduction_widths rounds the thickness and shows them together.",
+    "evidence": "deduction_table(F02) returns a ('window', ..., 0.249) group with 1 row (0.8 m) separate from 0.25 (20 rows, 39.275 m). The summary shows window|0.25 21 = 40.075.",
+    "suggested_fix": "Snap wall_t to the nominal family (0.12/0.25/0.30/0.40) in deduction_table rows, the same way the summary does."
+   }
+  ],
+  "checks_passed": [
+   "Ran the CLI `python tools/openings.py` on all 7 floors: exit 0 in about 2m50s. It wrote F02..F08 .json, 4 PNGs per floor and summary.json.",
+   "Counted door-block INSERTs per DXF file independently over the whole modelspace (not floor_entities). Counts match the tool: F02 36 (+4 raw), F03 37, F04 37, F05-F08 file 146 = 36+36+38+36 (D10W12 84, D80W12 46, D90W12 12, D90W25 4). No door block is nested inside another block and no door insert lies off-sheet.",
+   "Read the block definitions: the jamb-line spacing is 1.00/0.80/0.90/0.90 and the jamb lengths are 0.12/0.12/0.12/0.25 (D10W12/D80W12/D90W12/D90W25). Each block has a single leaf arc (r 0.95/0.75/0.85/0.85). No double or sliding doors exist.",
+   "Computed jamb positions independently with ins.matrix44 for all 256 block doors on 7 floors. Block name, width (±5 mm) and center (±2 cm) match the tool for 256/256. Leaf-arc midpoints (with OCS extrusion handled via make_path) also match for 256/256.",
+   "Checked that no W/column/shaft line runs through any door opening band (±0.20 m). The only hit is the documented office-7 bathroom D80 W stub (0.077 m) on F03-F07.",
+   "Accounted for every continuous WIN line on F05 by handle: curtain wall 2, 6 west, 6 north, 6 south, 10 east-lower, 2 bathroom, 6 east-upper, 6 slanted = 50, plus 4 arcs. DASHED WIN lines (x=0.27, y=39.35, y=-1.42) are projection lines, as claimed.",
+   "Ray-cast masonry gaps independently (W + Etabs-col + COL) for every straight masonry window on all 7 floors. They equal the tool width in every case; the only exception is F02-W16, which is the 2.35 assembly, as expected.",
+   "Spot-checked windows against raw handles: F05-W16 1.35 is correct (cap 155E/173A; walls.py's 1.77 is wrong), F05-W01 1.80 is correct (walls.py's 1.92 bridges the partition), F05-W25 2.10 (inner-face glitch 4.78 vs cap 4.90), F05-W19/W21 2.35 (caps 9.53/11.88 and 6.15/8.50 next to column 22E2), W04 1.217 in a 0.40 wall (caps 162E/1631 are 0.40 long). F08 W04 is genuinely not drawn: only the outer polyline 4619 exists and there is no inner face between 35.65 and 37.62.",
+   "Slanted east facade: every outer/inner W segment and the 3 x 0.80 WIN pairs are accounted for. DIM 1D96 (0.786) does lie on solid wall at y 17.64-18.43, as the tool flags.",
+   "Ran an independent door-less gap hunt (both faces interrupted, wall 0.08-0.32 and 0.32-0.65 thick) on F02/F03/F05/F08. It found no unexplained empty gaps; the only extra hits are corridor crossings and partitions interrupted by shafts or columns. The F03/F04 0.80 opening (lines 1EA/1EB and 1EF/1F0 stop at 12.9/13.7 with no caps; F06 continuous) and the lift openings were confirmed.",
+   "Listed model-space ARC/CIRCLE on all layers: the only door-sized raw arcs are the 4 F02 WIN door leaves. F02 assemblies were checked from raw handles: A02 = 0.10 + 1.00 + 1.25 = 2.35 (WIN 402/404, 213, 401/403), A01 = 0.15 + 1.00 + 0.20 = 1.35 (WIN 409/40B, 406, 408/40A). F02 curved glazing sweeps match (58.7+2.3 = 61.0 deg).",
+   "Architect DIMs on F03/F05: no defpoint is within 6 cm of any door jamb. Defpoint distance of the 0.786 projection dims = 0.800. Small DIMs are piers and vestibule widths.",
+   "Confirmed the 18 random-name W inserts per floor are axis tags (CI + TEXT-DIM decoding to ز ا ب ج د / 1 2 3 4) in the sheet margins.",
+   "Totals are consistent. Masonry deduction sums were re-added by hand for F02 (window|0.25 21 = 40.075, door|0.12 35 = 32.50) and F05. F03 door count 37 equals the legacy 37. F05 24 masonry windows minus 4 x 0.80 service windows minus the stair window = 19, matching the legacy 19 sills. Door/bathroom variations across floors match walls.md bathroom-block variations.",
+   "Reviewed the PNGs (F05 full/north/middle/south, F03 north, F02 full/north/south, F07 full, F08 north). Doors, windows, openings and assemblies are drawn where the raw geometry is, and mirrored door arcs render correctly.",
+   "deduction_table() API runs: F02 gives 62 rows, with assemblies replacing their members and the curtain wall excluded by default."
+  ]
+ },
+ "verify:structure_diff#1": {
+  "verdict": "fix",
+  "defects": [
+   {
+    "severity": "major",
+    "floor": "all (F02-F08)",
+    "description": "The headline 'exposed plaster perimeter' (summary.plaster_perimeter_all / _model_space_only, ELEMENTS/FLOOR tables, per_floor_summary 123.71 / 97.66 m etc.) is not interior plaster. It adds up three different kinds of face. (a) Faces on the building EXTERIOR (facade), which take external plaster or cladding. (b) The inner faces of the C-core, which bound the two lift shafts. Lift-shaft interiors are normally not plastered, and the doc never mentions this. (c) Genuine interior faces. The doc mentions (a) only as a one-line limitation (structure_diff.md line 368) and does not quantify or separate it. It mentions (b) nowhere.",
+    "evidence": "F03/F06, own check: every face sampled every 2 cm, 10 cm outward, tested against a building footprint polygonized from W+WIN+Etabs-col (648.43 m2, bounds -0.17..19.87 x -1.56..39.49). Faces outside the footprint: SW11 east face x=13.605 (y 0-2.4) = 2.40 m (zoom z_F06_se.png shows the SE facade stepping to x=13.6 south of y=2.8; the tool marks this face 'free 2.4'); SW02 north face east of the NE facade = 1.70; C06 east face x=15.103 = 1.00 (on the east facade, x~14.85-15.1); SW08 west end x=0.0 = 0.32; C05 = 0.22. That makes 5.64 m in model space, plus tr-only SW01 2.30 and C09 0.92 (C09's south face y=1.801 is 2 cm from the outer W line y=1.78). Total 8.86 m per floor. CORE01: the exposed 17.70 m includes 7.94 m of inner-C faces (x 10.653-12.613, y 18.777-22.377) that bound the lift cars (PR boxes 10.79-12.45). Net effect: about 13.6 of the 97.66 m model-space figure (about 14%) and about 16.8 of the 123.71 m 'all' figure are not interior plaster. That is about 43-54 m2 per floor at 3.2 m.",
+    "suggested_fix": "In _exposed_faces, classify each 'free' sample into three groups. 'exterior': outside a footprint polygon (union of W/WIN/Etabs-col buffered lines, outer ring). 'lift_shaft': inside the core's inner C pocket or inside the PR lift-car rectangles' hull. 'interior': everything else. Report exposed_interior / exposed_exterior / exposed_lift_shaft per element and per floor, and use the interior figure for the plaster column of the FLOOR table. Add the lift-shaft convention to the open questions."
+   },
+   {
+    "severity": "minor",
+    "floor": "all",
+    "description": "C01 (tr block) size, bbox and perimeter come from a hatch boundary that has a 4 mm sliver attached. The column body is 0.45 x 1.99, not 0.45 x 2.04.",
+    "evidence": "F03 tr insert 104B: Etabs-col LWPOLYLINE (5.744,37.73)-(5.744,35.739)-(5.294,35.739)-(5.294,37.73), closed by a LINE at y=37.730, gives 0.45 x 1.99. The Etabs-Slab hatch path 1 contains the extra points (5.744,37.779),(5.74,37.779),(5.74,37.73), a 0.004 x 0.049 sliver. The tool reports bbox [5.294,35.739,5.744,37.779], size '0.45 x 2.04', perimeter 4.977 (true 4.88). The area 0.896 is correct. Other tiny fragments in the same hatch and polylines (5.51-5.62, 37.86-38.04) are drafting debris.",
+    "suggested_fix": "Take the size from minimum_rotated_rectangle after buffer(-0.005).buffer(0.005), or prefer the polyline over the hatch when both exist; drop sub-1-cm spikes."
+   },
+   {
+    "severity": "minor",
+    "floor": "F02",
+    "description": "F02's round columns, drawn as ARCs on layer W, are not modelled as elements in F02.json. They are described only in prose in structure_diff.md, so the F02 element list and plaster perimeter miss them. One of them also sits on the same spot as tr column C02.",
+    "evidence": "F02 W ARC 1073 bbox 3.39-3.93 x 37.63-38.18 (diameter ~0.55 at (3.66,37.90)). W ARCs 1074 + 1084 bbox 1.51-2.20 x 35.34-36.09 (diameter ~0.7 at about (1.85,35.7)), overlapping C02 (1.498-2.398 x 35.52-36.02). F02.json elements = the same 24 as every other floor.",
+    "suggested_fix": "Detect closed or near-closed ARC/CIRCLE groups on W with radius 0.2-0.5 m. Add them as kind 'round_column (W, F02 only)' with perimeter = 2*pi*r, flag the C02 conflict, and include them in the F02 totals."
+   },
+   {
+    "severity": "minor",
+    "floor": "F02",
+    "description": "F02 MASS and W outline geometry is misread or unexplained. Two long parallel open MASS polylines are counted as 'break_lines'. A 121.9 m W polyline tracing the whole floor outline is never identified. floors_diff.md just shows 'F02-MASS-01 +155.62 m' and 'W +195.69' with no explanation. These lines are likely the terrace parapet or slab edge, a real masonry and external-plaster item on F02. The W outline also double-counts facade lines for any W-length reading.",
+    "evidence": "F02 MASS 8B1: open, 74.24 m, bbox -0.96..16.76 x -2.09..40.02. MASS 8B2: open, 61.95 m, -0.81..13.46 x -1.94..39.87. They run about 0.15 m apart around the west facade and the curved NW/SW corners (output/_verify_structure_diff/f02_outlines.png). The tool gives annotations.MASS.break_lines = 4 on F02 against 2 on F06. W LWPOLYLINE 1585: 96 vertices with bulges, 121.93 m, -0.40..19.83 x -2.09..40.02. 71.77 m of it lies within 2 cm of other W lines and 50.16 m is unique. F02 W raw length 1310.55 against a union of 1198.44 m, so 112 m of duplicated W (F04/F07/F08 about 14 m).",
+    "suggested_fix": "In read_annotations, classify MASS polylines longer than about 10 m that follow the facade as 'floor/terrace outline' rather than break lines. In floor_compare and the doc, name these entities (MASS 8B1/8B2, W 1585) with lengths, warn that W 1585 overlaps the facade (double count), and list 'parapet or slab edge?' as an F02 question."
+   },
+   {
+    "severity": "minor",
+    "floor": "F05, F07, F08",
+    "description": "Dimensions that still point at walls missing on that floor are not used as evidence. Some W 'differences' that the tool presents as design changes are probably drafting omissions, which matters for the typical-floor decision. The tool only labels these dims 'other (end not on any line)'.",
+    "evidence": "R05 says the office-2/3 partition at y=35.53/35.65 (x 11.52-16.305) is missing on F05/F08, yet F08 DIM230 (3.21, end at (16.305,35.53)), DIM231 (1.89, end at (11.38,35.53)) and DIM234 (2.80, end at (15.74,35.65)), and F05 DIM231/DIM234, still dimension to it. On F04/F06/F07 the same dims snap to W. R33 says the office-14/bath partition at x=8.955/9.075 is missing on F04 and F07. On F07, DIM224 (4.25) and DIM226 (4.06) still end at x=8.955 with no W there. F04 has no such dims, which suggests a deliberate change on F04 but an omission on F07.",
+    "suggested_fix": "For each change region, list DIMs on the differing floor whose endpoints coincide with geometry that exists only on the reference floor. Tag the region 'likely drafting omission (N dims still reference it)' and add it to the open questions."
+   },
+   {
+    "severity": "minor",
+    "floor": "all",
+    "description": "The shaft headline count and area (15 / 8.031 m2 on F03-F08) include unconfirmed items. These are flagged in the text but summed as if confirmed. Separately, the doc claim that door_head is 'two DASH lines across every door' is over-general.",
+    "evidence": "The shaft sum includes SH05 'shaft? (1 DASH diagonal, no try box)' 0.618 m2, plus the DASH-only boxes SH08 0.406 and SH12 1.403, which have no try rectangle. That is 2.43 m2 of the 8.031 m2. On F03, of the 37 doors in openings.py, 23 have 2 door_head lines, 11 have 1 and 3 have none (for example F03-D01 (4.48,35.58), F03-D13 (15.225,25.844), F03-D35 (9.015,5.03)).",
+    "suggested_fix": "Report confirmed shafts (try box + 2 diagonals) and uncertain ones separately in summary/FLOOR_TABLE. Reword the door_head statement with the actual per-floor counts."
+   }
+  ],
+  "checks_passed": [
+   "structure.py CLI on all 7 floors: exit 0 in 3m40s. It wrote F02..F08 JSON + PNGs + summary and refreshed the doc tables. floor_compare.py: exit 0 in 112 s.",
+   "Model-space structure checked on F03 and F06 from the raw handles: 14 closed Etabs-col LWPOLYLINEs (e.g. F03 1104-1111, F06 110B-1118) + 15 ANSI31 hatches. The hatch-only SW06 (3.155-7.055 x 18.654-19.054, F03 HATCH 10FB, no polyline) is correct. COL = 2 x (5-pt open polyline + 2 diagonals) 0.40x0.40 at (18.364,24.704) and (14.655,28.196): matches.",
+   "tr block: 2 duplicate inserts per sheet (F03 104B/1112, F06 1052/1119; the 8 tr inserts in the F05-F08 file are assigned correctly per sheet). The block holds 11 Etabs-col polylines + 7 Etabs-Slab hatches + 1 LINE, giving 7 elements: C10 0.50x1.00, C09 1.20x0.60, SW03 0.25x3.35, SW01 0.45x2.30, C03 0.80x0.55, C02 0.90x0.50, C01. All coordinates match the JSON.",
+   "C03 lies exactly in the 0.80 W gap between office 3 and office 2 (F03 zoom). openings_on_structure correctly lists F03-O01 and F04-O01 for C03. C10 has no W around it (F03 south zoom). SW01 overlaps the east window: confirmed.",
+   "Grid read independently on F04: 9 vertical X lines (x = -0.895, 1.005, 3.405, 6.855, 8.255, 9.755, 14.405, 16.555, 17.405) and 15 horizontal + a duplicate at y=18.921. Attached bubbles are ط ح و ه + 5..15. The W tags ز ا ب ج are offset +2.22 and د +3.72, and 1-4 are offset -0.395. Labels and coordinates are identical on F02/F04/F07/F08 and match the tool. The axis_chain_check mismatch (ج–د 3.15 / د–ه 3.00 against 4.65 / 1.50) is reproduced.",
+   "try shafts on F03: 12 closed try boxes + 3 hatched posts (each duplicated, matched by IoU > 0.85) + DASH-only X boxes. All bboxes match the JSON (SH01..SH19).",
+   "Stairs on F05: ST1 has 11+11 vertical tread lines at 0.30 spacing, width 1.10, plus 3 landing lines. ST2 has 10+10+2. Both match flights_ST.",
+   "Lift core outline (12 vertices) and wall thickness 0.30 confirmed. The 2 PR cars are 1.66x1.45. MASS door lines are at x=10.34/10.64.",
+   "DIMs: raw DIMENSION count per floor equals the tool count (241/231/232/239/237/238/239), all on layer DIM with style WWW. Displayed text equals actual_measurement for every dim. The ezdxf get_measurement() bug for aligned dims is confirmed (F06 1025: text 60.54, get_measurement 1.5236). The 0.25/0.30 dims are along-facade pier/step chains with the dim line far outside, not wall thicknesses. The F02 DIM240/241 0.12 values are true 12 cm wall thicknesses.",
+   "Independent cross-floor diff by sampling every 1 cm against an STRtree at 2 cm. W: F03..F08 rows agree with the tool within about 1 m. The only large gap is the F02 row (mine about 253-269 m against the tool's 196-212 m), and it is explained by 112 m of duplicated W lines on F02, which the union-based method correctly ignores. F04<->F07 = 5.39/12.27 (tool 5.58/12.42).",
+   "WIN, ST, PR, X, HAT, try, Etabs-col and COL matrices reproduced exactly (WIN F08 -2.43; try F05=F07 +2.96, F06=F08 +2.51; all others 0). struct_matrix is all 0.",
+   "Door-block matrix reproduced exactly with an independent scan, including off-sheet inserts (there are none). F07 alone has D80W12 at (5.34,13.625); F06 alone has D80W12 at (5.34,24.23) against F04. No insert scale differences are hidden by the matching. No geometry layer other than the stray x1 line is left out of floor_compare.",
+   "Review PNGs inspected: F03_structure.png, regions_map.png, diff_F05.png, region_R05.png, region_R26.png, region_R33.png. Raw zooms rendered for the F03 east / north / south and the F06 SE corner and lift core. Regions R05 (F05/F08 partition missing, F08 east window missing), R26 and R33 (F04/F07 partition missing) match the raw geometry.",
+   "Area schedule (sidewalk): F03-F08 = 614.8 m2, F02 = 655.6 m2. Plot boundary 2028.08 m2. Level marks per floor are correct."
+  ]
+ },
+ "fix:structure_diff#1": {
+  "tool_files": [
+   "D:\\حصر المباني\\Diwan-Mall\\tools\\structure.py",
+   "D:\\حصر المباني\\Diwan-Mall\\tools\\floor_compare.py"
+  ],
+  "findings_doc": "D:\\حصر المباني\\Diwan-Mall\\docs\\findings\\structure_diff.md is the Arabic doc. It is hand-written prose plus auto-refreshed tables between <!-- AUTO:NAME --> markers: ELEMENTS, FLOOR, SHAFT, DASH, DIMS and two new tables, DOORHEAD and OUTLINE, all refreshed by structure.py; CMP_TABLE is refreshed by floor_compare.py. The prose was rewritten for the new plaster split, C01 at 0.45x1.99, the F02 round columns, the F02 MASS 8B1/8B2 lines and W 1585, the confirmed/uncertain shaft split, the door_head counts, the drafting-omission column in the section 8 region table, new open questions 10-12 and the updated limitations and API sections. D:\\حصر المباني\\Diwan-Mall\\docs\\findings\\floors_diff.md is fully regenerated by floor_compare.py. Its region table has two new columns: drafting-omission evidence ('دليل سهو' = orphan dims) and named entities. There is a new section listing likely drafting omissions, and a new section 6 on long polylines and duplicated W length per floor. Review PNGs: output/structure/F0x_structure.png now shows free faces colour-coded (green interior, red exterior, purple lift shaft) plus the footprint, open-air rooms and lift pocket. Zoomed checks are in output/structure/_z_F06_{ne,se,sw,core}.png and _z_F02_{nw,sw}.png. In output/floor_compare/region_RNN.png, orphan dims are marked with a magenta X.",
+  "per_floor_summary": "Free concrete faces split into interior / exterior / lift_shaft (metres of run). COL X-boxes are excluded. \"All\" includes the tr-block elements and the F02 round columns.\n\nFloor | interior all = INTERNAL plaster (model-space only) | exterior all / model-space | lift shaft | gross free | shafts confirmed n/m2 | shafts uncertain n/m2 | door_head per door (2/1/0 of n) | W duplicated m\nF02 | 109.81 (87.39) | 9.68 / 6.34 | 7.94 | 127.43 | 12 / 5.604 | 2 / 1.809 | 23/11/6 of 40 | 1.14 (+ W 1585: 121.93 m, 71.77 m of it overlapping other W or W hatch boundaries, 50.16 unique)\nF03 | 106.97 (84.00) | 9.26 / 6.00 | 7.94 | 124.17 | 12 / 5.604 | 3 / 2.427 | 23/11/3 of 37 | 5.02\nF04 | 107.16 (83.72) | 9.26 / 6.00 | 7.94 | 124.36 | 12 / 5.604 | 3 / 2.427 | 24/11/2 of 37 | 14.43\nF05 | 107.10 (83.72) | 9.26 / 6.00 | 7.94 | 124.31 | 12 / 5.604 | 3 / 2.427 | 25/8/3 of 36 | 5.73\nF06 | 106.41 (83.72) | 9.26 / 6.00 | 7.94 | 123.61 | 12 / 5.604 | 3 / 2.427 | 23/11/2 of 36 | 4.93\nF07 | 106.69 (83.72) | 9.26 / 6.00 | 7.94 | 123.89 | 12 / 5.604 | 3 / 2.427 | 25/11/2 of 38 | 14.53\nF08 | 107.10 (83.72) | 9.26 / 6.00 | 7.94 | 124.30 | 12 / 5.604 | 3 / 2.427 | 23/11/2 of 36 | 13.43\n\nExterior faces on F03-F08, by element: SW11 east 2.40, SW01 2.30 (tr), SW02 NE stub 1.76, C06 east 1.02, C09 south 0.96 (tr), SW08 west end 0.42, C05 east end 0.40.\nLift-shaft faces: CORE01 inner faces, 7.94 m (back 3.52 + arms 1.94/1.96 + lips 0.30/0.22).\n\nElements:\n- F03-F08: 10 columns + 11 shear walls + 1 C-core + 2 COL X-boxes. Concrete area 23.502 m2, perimeter 137.93 m. C01 is now 0.45x1.99, perimeter 4.88.\n- F02: the same elements plus 2 round columns drawn as W arcs. RC01 is Ø0.55 at (3.660, 37.905). RC02 is Ø0.75 at (1.829, 35.711) and overlaps tr column C02 by 0.328 m2. F02 area 24.182 m2 (the overlap is counted twice), perimeter 142.01 m.\n\nBuilding footprint used for the exterior test: 643.37 m2 (F02 646.54), against 634-638 m2 in rooms.py.\n\nDrafting-omission evidence (dims still ending on a W partition that the floor lacks):\n- R33: F07, 2 dims (4.06 h362B and 4.25 h3838, ending at x=8.955).\n- R05: F05 (2.80 h2522) and F08 (2.80 h4863).\n- R14: F08 (2.81 h46A9, 1.38 h46B6).\n- R20: F08 (1.72 h4704, 4.33 h4711).\n- F04 (R33), F06 (R22) and F04-F06 (R25) carry no such dims, so those changes may be deliberate.\n\nUnchanged from the previous run: grid, stairs, lifts, DIM classes, the typical-floor groups and the per-layer CMP table, except that the structural row now shows F02 +2 for the round columns.",
+  "conventions_learned": [
+   "Free (uncovered) faces of structural concrete are NOT all internal plaster. Each 2 cm sample is classified by FaceEnv. lift_shaft = inside the C-core pocket (convex hull minus core), excluding the strip of the core opening, whose jambs face the lobby. exterior = the point 10 cm in front of the face is outside the building footprint, or the point lies in an open-air room of rooms.py (F02 terraces and planters). interior = everything else. summary.plaster_perimeter_all / _model_space_only now mean INTERNAL plaster only. The old gross figure is exposed_perimeter_gross_all.",
+   "Building footprint = outer ring of the union of W, WIN and DASH lines, structural outlines and door quads, buffered 4 cm and shrunk back. Entities longer than 50 m must be skipped: the sheet frame drawn on W (closed, 4 vertices, 390.56 m on every floor) and F02's W 1585 floor-outline polyline.",
+   "Lift-shaft faces of CORE01 total 7.94 m per floor. The PR lift cars lie inside the core pocket (checked by lift_cars_inside_core_pocket).",
+   "Hatch boundaries carry drafting slivers. tr column C01 had a 0.004x0.049 m spike that turned 0.45x1.99 into 0.45x2.04. Every structural outline now gets a 5 mm mitre morphological opening (_despike) before de-duplication.",
+   "F02 has two round columns drawn ONLY as W arcs. They are grouped by centre and radius, and a group whose sweep is at least 250 degrees counts as a column. RC02 sits on top of tr column C02: a conflict, left unresolved and flagged in 'overlaps'.",
+   "F02 MASS 8B1 (74.24 m) and 8B2 (61.95 m) are long open parallel polylines 0.15 m apart, running around the west facade, the curved NW/SW corners and the N/S edges. They are a slab edge or parapet, not break lines; they are now in annotations.MASS.outline_polylines. break_lines = 2 on every floor.",
+   "F02 W 1585 (121.93 m, open, with bulges) traces the whole floor outline: 71.77 m of it lies within 2 cm of other W lines or W hatch boundaries, and 50.16 m is unique. Summing W lengths on F02 counts the facade twice unless this polyline is excluded.",
+   "Typical floors carry 5-14.5 m of duplicated W lines (raw minus union). The north face at y=29.00 (x 13.51-16.51) is drawn three times, and y=32.20 and x=16.76 twice each. W lines must be unioned before measuring.",
+   "DASH door_head lines are not always two per door. On F03-F08, of 36-38 doors, 23-25 have 2 lines, 8-11 have 1, and 2-3 have none (always the lobby/service doors at (15.22, 25.84) and (10.98, 23.69)). F02 has 6 doors with none.",
+   "Shafts: confirmed = try box + 2 DASH diagonals (12 per floor, 5.604 m2). Uncertain = SH05 (one diagonal, no try box) and SH08 / SH12 (DASH-only X), 2.427 m2. The two must not be summed as if all were confirmed.",
+   "Drafting-omission test (floor_compare.orphan_dims): a DIM of floor F that ends within 1.5 cm of W geometry F lacks (present on the reference, or for the reference itself on other floors) and touches nothing of F's own W, WIN, Etabs-col or structural outlines. Regions of an atypical floor (F02-...) test only that floor's dims.",
+   "Cached openings JSON is read through rooms.load_openings (fresh check by mtime), so structure.py is no longer slowed by recomputing openings. rooms.analyze_floor supplies the open-air polygons."
+  ],
+  "open_questions": [
+   "Lift-shaft faces inside CORE01 (7.94 m per floor): are they plastered? The tool keeps them separate (lift_shaft_perimeter) and does not add them to internal plaster.",
+   "Concrete faces on the facade (9.26 m per floor, 9.68 on F02: SW11 east face, SW01, the SW02 NE stub, C06, C09, SW08, C05): external plaster or cladding? Are SW11 and SW01 really on the facade line?",
+   "F02 round columns: RC01 Ø0.55 and RC02 Ø0.75 exist only as W arcs, and RC02 overlaps tr column C02 (0.90x0.50). Which outline is real on F02? Is RC01 structural or decorative?",
+   "F02 MASS 8B1/8B2 (0.15 m apart around the west facade and the curved corners): slab edge plus parapet (a masonry and external-plaster item; what height?) or just the slab outline? Do the W 1585 outline lines over the facade windows mean a parapet?",
+   "Drafting omissions: R33 on F07, R05 on F05/F08, R14 and R20 on F08 still have dims pointing at undrawn partitions or bathroom walls. Are these walls missing by mistake? By contrast, the changes on F04 (R33), F06 (R22) and F04-F06 (R25) have no such dims: are those deliberate?",
+   "Carried over: are the tr block elements real columns (C03 turns the 0.80 'opening' into a column; C01 and C10 stand free in offices)? What are the COL X-boxes? Is axis د at the X line or 1.50 m east? What is the clear height for plaster, and where are the beams (not in these plans)? Are the hatched posts at the west curtain wall concrete or steel? The title block names another project."
+  ],
+  "known_limitations": [
+   "Exterior test: a face within 10 cm of the facade line counts as exterior (intended, e.g. C09's south face 2 cm from the outer W line). A gap wider than about 8 cm in the facade lines would put the room behind it outside the footprint. The footprint is drawn in every PNG and its area is checked against rooms.py (643-647 vs 634-638 m2; the difference is the thin external fins rooms.py excludes). If rooms.py cannot be imported, faces on F02 terraces count as interior; a message is printed.",
+   "Per-element exterior lengths differ slightly from the verifier's independent 10 cm check (total 9.26 vs about 8.86 m per floor: C05 0.40 vs 0.22, SW08 0.42 vs 0.32, C06 1.02 vs 1.00, C09 0.96 vs 0.92, SW02 1.76 vs 1.70). The remaining differences come from my footprint following the slanted east facade at C05 and the 27 cm protrusion of SW08 west of the glazing line (both checked visually in _z_F06_ne.png and _z_F06_sw.png). The lift-shaft figure, 7.94 m, matches the verifier exactly.",
+   "The lift jamb faces in the core opening (0.30 m each) are classified as interior, since they face the lobby; the lift door frame may cover them.",
+   "orphan_dims is conservative. A dim whose end also touches another W line or a structural outline is not counted. Examples: F08's 1.89 dim at (11.38, 35.53) touches the bathroom wall, and its 3.21 dim at (16.305, 35.53) ends on SW01. So R05 shows 1 dim per floor where the verifier counted 2-3.",
+   "F02 concrete area (24.182 m2) counts the RC02/C02 overlap twice, by design (the conflict is not resolved). The round-column perimeter is 2*pi*r, and the free/covered parts are scaled from the polygon approximation.",
+   "floor_compare's 'W duplicated' includes W hatch boundaries (F02: 57.75 m, because the AR-CONC planter hatches lie on the lines). structure.py reports the figure without hatches (F02: 1.14). Both figures are stated in the docs.",
+   "Runtime: structure.py now calls rooms.analyze_floor per floor (about 4 min for all floors including PNGs); floor_compare.py takes about 2-3 min.",
+   "I did not touch diwan_common.py, sosa_decode.py or render_floor.py. Extra review PNGs output/structure/_z_*.png were left in the gitignored output folder."
+  ],
+  "api": "structure.py:\n- analyze_floor(n, openings_res='auto', rooms_res='auto') returns a dict, the same as output/structure/F0x.json.\n- res['elements'] entries: {id: Cnn|SWnn|CORE01|CXnn|RCnn, kind: column|shear_wall|core|column_xbox|round_column, size_txt, bbox, centroid, outline, area, perimeter, exposed_perimeter (all free), exposed_interior (internal plaster), exposed_exterior, exposed_lift_shaft, covered_by_walls, covered_by_concrete_or_shaft, outline_on_W, w_inside_len, grid_ref, spans_axes, sources, in_model_space, only_in_tr_block, hatch_only, overlaps?, notes, faces: [{a, b, len, free, free_interior, free_exterior, free_lift_shaft, wall_runs, concrete_or_shaft, runs: [[s0, s1, class]]}]}.\n- res['summary'] keys: plaster_perimeter_all / plaster_perimeter_model_space_only (INTERNAL only), exterior_perimeter_all / _model_space_only, lift_shaft_perimeter, exposed_perimeter_gross_all / _model_space_only, shafts / shaft_area (confirmed + uncertain), shafts_confirmed, shaft_area_confirmed, shafts_uncertain, shaft_area_uncertain, shafts_uncertain_ids, boxes_without_x, door_heads {doors, with_2, with_1, with_0}, W_duplicated_len, elements_by_kind, totals_by_kind, stairs, lift_cars, dims, ...\n- res['face_env']: footprint_area, footprint_outline, rooms_footprint_area, open_air_rooms, open_air_outlines, lift_shaft_outlines, skipped_long_entities, lift_cars_inside_core_pocket.\n- res['door_head_per_door']: {doors, with_2, with_1, with_0, doors_with_1, doors_with_0}.\n- res['annotations']['MASS']['outline_polylines'] and ['W_lines'] {raw_len_without_long, union_len_without_long, duplicated_len, long_polylines: [{handle, len, meaning, overlap_with_other_W, unique, overlap_incl_W_hatch_boundaries, unique_vs_lines_and_hatches}]}.\n- Other keys are unchanged: grid, shafts, stairs, lifts, dash, dims, openings_on_structure.\n- Helpers: FaceEnv(fl, D, polys, cores, rooms_res, openings_res).classify(Q3, Q10); round_columns(fl, D); shaft_summary(shafts); door_head_stats(dash, openings_res); grid_ref(grid, x, y); run(floors=None, png=True, doc=True), which writes output/structure/* and refreshes the AUTO tables; render(res, png, mode='structure'|'dims', zoom=(x0, y0, x1, y1)).\n- CLI: python tools/structure.py [floors] [--no-png] [--no-doc] [--zoom x0 y0 x1 y1].\n\nfloor_compare.py:\n- compare_floors(ref=None, png=True) returns res with matrix, door_blocks_matrix, struct_matrix (now includes the F02 round columns) and w_stats {floor: raw_len_without_long, union_len, duplicated_len, long_polylines}.\n- Each regions[] entry also has orphan_dims {floor: [{handle, text, end, other_end}]}, drafting_omission_evidence {floor: n} and entities ['F02 W 1585 (polyline ...)'].\n- orphan_dims(F, labels, ref, per_floor, bbox) can be called on its own.\n- CLI: python tools/floor_compare.py [--ref F06] [--no-png] [--no-doc]. It writes output/floor_compare/*, regenerates docs/findings/floors_diff.md and refreshes CMP_TABLE in structure_diff.md.",
+  "output_files": [
+   "D:\\حصر المباني\\Diwan-Mall\\output\\structure\\F02.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\structure\\F03.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\structure\\F04.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\structure\\F05.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\structure\\F06.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\structure\\F07.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\structure\\F08.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\structure\\summary.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\structure\\F06_structure.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\structure\\F02_structure.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\structure\\_z_F06_core.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\structure\\_z_F06_se.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\structure\\_z_F02_nw.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\floor_compare\\summary.json",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\floor_compare\\region_R33.png",
+   "D:\\حصر المباني\\Diwan-Mall\\output\\floor_compare\\region_R05.png",
+   "D:\\حصر المباني\\Diwan-Mall\\docs\\findings\\structure_diff.md",
+   "D:\\حصر المباني\\Diwan-Mall\\docs\\findings\\floors_diff.md"
+  ]
+ },
+ "verify:rooms#1": {
+  "verdict": "pass",
+  "defects": [
+   {
+    "severity": "minor",
+    "description": "windows_partial_m over-counts the facing length of shared windows. windows_on() measures seg ∩ poly.buffer(0.32), and that buffer reaches 0.32 m past each end of the room along the window. The per-room partial lengths of one window therefore add up to more than the window itself. Findings doc §7 presents these numbers as the per-office split of the curtain wall and of W26. A plaster or opening tool that deducts windows per room from this field would deduct about 1.2 m × height too much per floor at the west curtain wall.",
+    "evidence": "On F02, F03, F05 and F07, W14 (ends (0.06,12.53)-(0.06,25.53), width 13.0) gets partials for offices 8/9/10/11 of 3.644 + 3.655 + 3.552 + 3.364 = 14.215 m, which is 1.215 m (+9%) more than the window. The rooms' own 'glazing' boundary along it is 3.33 + 3.026 + 2.924 + 2.90 = 12.18 m. W26 (F02: W25), from (7.80,-0.995) to (9.90,-0.995) with width 2.10, gets office 14 = 1.466 and office 15 = 1.136, total 2.602. The raw partition sits at x 8.955–9.075 (F03 W 20C/21A), so the true split is about 1.155 (office 14) / 0.825 (office 15). The doc's '1.47 / 1.14' is wrong.",
+    "floor": "all (F02, F03, F05, F06, F08; F04/F07 for W14)",
+    "suggested_fix": "Compute the facing length from the room's own boundary: project the polygon's 'glazing'-kind boundary pieces that lie within frame depth of the window onto the window axis. Alternatively, clip the window segment to the room's extent measured perpendicular to the window, not with an isotropic 0.32 m buffer. Add a self-check that the partials of each window sum to its width or less, then correct doc §7."
+   },
+   {
+    "severity": "minor",
+    "description": "A riser or shaft marked with a dashed X is missed inside the electric room on every floor. Every other DASH-X mark in the plan becomes a 'shaft' (13–14 per floor; this is the tool's own rule: 'spanned by an X of DASH lines'). The one closed DASH rectangle with an X inside the electric room is the only exception. It is outlined in DASH, not W, so it never becomes its own face, and it stays silently inside 'electric room' with no flag. It sits at the same local coordinates on all floors (vertically aligned), which points to a cable riser or slab opening. The two X-crossed boxes on COL (IT room and DAS/GSM) are treated as solid columns; they may be risers too.",
+    "evidence": "DASH LWPOLYLINE rectangle plus two diagonals at local (17.609–18.614, 23.896–24.300), area 0.406 m². Handles: F02 1146/1147/1148, F03 112D/112E/112F, F05 230E/230F/2310, F07 348F/3490, F08 4610/4611/4612. On all floors it lies inside 'electric room' (2.838 m², bounds 16.09–18.69 × 23.16–24.30, flags []). My DASH-X scan maps all other X centres to shaft rooms, e.g. (15.39,18.16) → shaft 1.37 and (12.58,23.12) → shaft 0.381. COL X boxes on F03: 1130/1133/1134 at (18.36–18.77, 24.70–25.11) in the IT room and 1135/1136/1137 at (14.66–15.06, 28.20–28.60) in DAS/GSM.",
+    "floor": "F02–F08",
+    "suggested_fix": "Treat a closed DASH rectangle that has an X as a shaft primitive, like an un-hatched try box. If that is not wanted, add a flag such as 'dash_x_inside: possible riser 0.41 m2' to the room, and list it under the doc's open questions together with the COL X boxes. Area effect: electric room about 2.43 instead of 2.84 m², ceiling −0.41 m² per floor."
+   },
+   {
+    "severity": "minor",
+    "description": "The F02 drawing has a revision cloud with the note 'Waiting For The Update' on layer 0 over the offices 6/7/8 and WC zone. The tool correctly does not use the cloud as a boundary, but it does not report the cloud or its note anywhere (JSON flags/notes or findings doc). This is the strongest piece of evidence for open question 1, the F02 'office 6+7+8' merged space of 54.32 m², which the doc otherwise poses as 'open-plan or missing walls?'.",
+    "evidence": "F02 layer 0: closed LWPOLYLINE 15A7 (25 vertices, bbox 5.25–7.86 × 23.90–27.04), leader 15A9 ((4.07,25.15)-(5.40,25.38)), MTEXT 15AA 'Waiting For The Update' at (4.10,25.51). grep 'Waiting' finds 0 hits in output/rooms/F02.json, docs/findings/rooms.md and tools/rooms.py. Only extract() logs it, as g['ignored'] 'layer 0 ... (cloud?)'.",
+    "floor": "F02",
+    "suggested_fix": "Surface layer-0 TEXT/MTEXT inside the plan, and closed revision clouds, as floor-level notes. Flag every room they overlap (e.g. 'revision_cloud: Waiting For The Update'). Add this to doc §8/§10 next to the F02 6/7/8 merge."
+   },
+   {
+    "severity": "minor",
+    "description": "In findings doc §3, the stated definition of 'solid faces' (أوجه مصمتة = wall + column + hatched try + extension) leaves out the 'shaft' boundary kind, but the table values do include it. Office faces that abut shaft boxes need plaster, so including them is right; only the definition text is wrong, and that misleads a reader who tries to reproduce the numbers.",
+    "evidence": "F05: 429.60 + 55.81 + 2.49 + 3.55 = 491.45, while the table says 494.15 = 491.45 + shaft 2.71 (office 4: 1.05, office 5: 1.66). F07: 499.83 + shaft 2.58 = 502.41, as in the table. F03 has no shaft kind and 498.74 matches without it.",
+    "floor": "F05, F07 (F02/F04/F06/F08: 0.40–0.44 m)",
+    "suggested_fix": "Add 'shaft-box faces (الأوجه الملاصقة لصناديق الشفت)' to the definition in §3, or report that column separately."
+   }
+  ],
+  "checks_passed": [
+   "Re-ran `python tools/rooms.py` on all 7 floors: exit 0, about 3 min, same totals as reported (F02 558.61/638.17/58.15 ... F08 559.88/634.06). Also re-ran F05 with --no-cache --refresh-openings: identical areas (Σ|Δarea| = 0).",
+   "Independent face extraction (my own script output/_verify_rooms/v1/indep.py): W lines/polylines/arcs + continuous WIN + Etabs-col/COL + try + MASS + door-gap rectangles taken from the block definitions (D10W12 x∈[-0.12,0], y∈[0,1]; D80W12/D90W12/D90W25 x∈[0,w], y∈[0,t]). On every floor, every tool room except those closed by tool-specific closures matches one of my faces within 0.05 m² (F03 40/53 exact; F05, F07 similar). The rest differ only by documented closures (extensions, the 0.80 opening, lift landings, the corridor/lobby chord, glazed terrace doors) or by thin wall-body strips (inscribed radius ≤ 0.13 m).",
+   "Missed-space hunt: no uncovered face in my extraction has an inscribed radius above 0.37 m. All of them are piers, the round elements at the NW/SW corners, or wall bodies (e.g. stair-enclosure wall body 3.01 m², r_in 0.22). No real room was swallowed as wall_body; no 'void' rooms.",
+   "Doors: per floor 36–38 D..W.. blocks (F03: 22 D10W12, 11 D80W12, 3 D90W12, 1 D90W25 = 37, matching legacy 37). Each block's gap rectangle touches exactly 2 tool rooms on all 7 floors. F02 has 40 doors = 36 blocks + 4 glazed terrace doors without blocks. Only the planters have no door.",
+   "Labels: every TEXT/-A-TEXT label inside the plan is used on all 7 floors, and each insertion point lies inside its assigned room. The only unused labels are 17 title-block texts at x≈49–59. Offices 1..19 are present on every floor.",
+   "Merged offices confirmed in raw: F04/F07 have no W line at x 8.955/9.075 for y −0.92..2.81 (F03 has W 20C/21A). F05/F08 have no y 35.53/35.65 partition (F06 has W 1EF/1F0/1F4). F08 'حمام' at (6.36,27.82) has no WC walls. F05 office 5 = 19.18 because the WC at (6.1,34.4) is not drawn (only try 21F4/21F5).",
+   "Shafts: F03 has 12 un-hatched try boxes → 12 shafts, plus 2 DASH-X/W boxes ((14.02,29.3) W 1123 + DASH 1126; (15.39,18.16) W 1127/1128 + DASH 112A/112B) = 14. F02 has no box at (14.02,29.3), hence 13. The 6 hatched try polylines (3 fins duplicated) at x≈0.17–0.30 are solid fins.",
+   "Lift core: Etabs-col 22E4 C-shape, 2 PR X cars, DASH 2229 at y=20.5 between the cars, W pier 2221/2222 between the two 1.25 m landings → one 6.90 m² space with 2 cars. Reasonable and documented.",
+   "DIMs: the shown dimension text equals the stored measurement used by the tool and matches room widths (F05 255A '3.20', 2576 '5.01', 25A3 '5.78', 265E '3.87', 2686 '2.75'). The 10 'jog' cases are legitimate offset dimensions (office 12: 3.515 runs to the face beside the shaft box).",
+   "Gross area: my independent outer outline on F03/F05/F08 = 634.36 m² vs tool 633.95/634.06. Net + walls = gross is consistent. Category sums = net indoor.",
+   "F02 open-air: terraces (4, 25.13 m²) and planters (5, 33.02 m²) bounded by the MASS 8B1/8B2 slab edge and W 1585. The layer-0 revision cloud 15A7 is correctly excluded as a boundary. Labels are placed correctly (e.g. 'تراس سماوي' at (2.55,38.43) is outside the glazed door's arc).",
+   "Perimeters equal my polygon lengths except for dangling spikes or free lines, which the tool correctly excludes. The boundary breakdown sums to the perimeter.",
+   "Doc tables cross-checked against the JSON: all 133 office cells match. summary.json is consistent with the per-floor JSON. Cross-floor differences trace to real drawing changes (e.g. F04 office 18 −0.545 m² from the W 295/35B thickening at x 9.075–9.455, y 12.05–13.48).",
+   "Visual review of the full/north/south/zoom PNGs for F02, F03, F05 and F07 (lift core, NW/SW curved corners, east wedge, terraces): fills and labels match the raw renders."
+  ]
+ },
+ "verify:structure_diff#2": {
+  "verdict": "pass",
+  "defects": [
+   {
+    "severity": "minor",
+    "description": "The doc says the whole F02-MASS-01 region (155.62 m) is the two long parallel polylines 8B1/8B2. Those two only add up to 136.19 m. The other 19.43 m are 12 more MASS entities that the doc never explains. Six of them form 0.12 m-spaced line pairs on the F02 east terrace: a 0.12 parapet/edge running round the terrace, plus a dividing pair across it. The other six are 0.42 m end stubs at the planters. These 0.12 pairs are possible masonry items (parapets) that the takeoff would miss.",
+    "evidence": "F02 MASS not in F06, short entities: 1066 4.96 m diagonal (16.68,12.28)-(17.60,17.15); 1067 4.83 m parallel to it; 106A/106B y=12.28/12.40, x 15.10-16.68 (1.58/1.48 m); 106C/106D y=15.40/15.28, x 15.10-17.15 (2.04/2.02 m); 1151-1156 six 0.42 m stubs at (3.47/3.62, -1.94..-1.52), (-0.25..0.17, y 1.78/1.93/36.0/36.15). 74.24+61.95=136.19, 155.62-136.19=19.43. structure_diff.md line ~389 says '8B1/8B2 ... = كل منطقة F02-MASS-01 البالغة 155.62 م'. Zoom: output/_verify_structure_diff/r2/z2_eastterrace.png.",
+    "floor": "F02",
+    "suggested_fix": "Report MASS entities that are not 8B1/8B2 separately in annotations.MASS. Flag the 0.12-spaced pairs 106A/B, 106C/D and 1066/1067 as a possible east-terrace parapet (masonry 0.12) and add them to open question 8. Correct the prose claim."
+   },
+   {
+    "severity": "minor",
+    "description": "The test for a wall abutting a face ('two W lines running away from the face, spacing <= 0.66 m') sometimes treats non-wall line pairs as a wall. On F06, a small W jamb notch next to the SW curved glazing gets paired with the real 0.12 partition east of C09. Most of C09's east face is then counted as 'wall' (0.40 m) when the real abutting wall is 0.12 m, so 0.28 m of interior plaster is lost. That is why C09 shows 1.40 on F06 and 1.68 on the other floors. On F03 the south face of C01 is also labelled 'wall', but it actually faces the shaft enclosure void (x 5.10-5.744, a 0.644 spacing that passes the threshold). The net quantity there is right by accident; the label is wrong.",
+    "evidence": "F06 C09 east face runs [[0,0.06,int],[0.06,0.46,wall],[0.46,0.6,int]]. W 349 (y=1.94, x 1.52-1.83) + FCF (x=1.52, y 1.78-1.94) are a glazing-jamb notch. The only partition is the y 2.23-2.35 pair. F03, without the notch, correctly gives wall 0.06-0.18. F03 C01 south face = 'wall' 0.45: bounded by W FDE x=5.10 and 6E7 x=5.744 around shaft box FDC (5.22-5.62, 35.04-35.64). Zooms: output/_verify_structure_diff/r2/z6_c09.png, z3_c09.png, z3_c01.png.",
+    "floor": "F06 (C09), F03 (C01)",
+    "suggested_fix": "Require each wall line pair to be parallel and continuous for at least ~0.3 m away from the face, or require the strip between them to be a polygonized wall band (as walls.py does). Do not pair a line shorter than about 0.35 m with a long line. Label a slot that bounds a try box as 'shaft' rather than 'wall'."
+   },
+   {
+    "severity": "minor",
+    "description": "The F02 row of the W difference matrix (195-212 m), and the doc's 'F02 ≈ 200 m extra lines', mix three kinds of geometry and do not say so. About 98-125 m are HATCH boundary paths of 5 AR-CONC planter hatches on layer W (concrete planters, not lines and not masonry). About 80 m are the 1585 floor-outline polyline. Only 17.9 m are actual extra W lines. A reader could take 200 m as extra masonry. Region F02-R46 also lumps 106.64 m of W into one bbox covering about 14 x 38 m (x -0.81..13.46, y -2.09..36.0), so it gives no location.",
+    "evidence": "Independent diff with no hatch and no entity over 50 m: F02→F06 = 17.91 m. Adding 1585: 97.49 m. Tool: 195.69 m. F02 W HATCH handles 22A, 303, 3B7, 7D5, 838 (AR-CONC) total 175.32 m of boundary, of which 155.8 m is not drawn as W lines. My F03-F08 matrix matches the tool's within 0.9 m in every cell.",
+    "floor": "F02",
+    "suggested_fix": "In floors_diff.md, split W into lines / hatch boundaries / long outline polylines. Cap region bbox size, or split clusters per entity, so that F02-R46 breaks into planter, terrace and outline sub-regions."
+   },
+   {
+    "severity": "minor",
+    "description": "0.18 m of the lift-shaft inner faces are labelled 'wall' because W lines touch the shaft corners. As a result lift_shaft = 7.94 instead of the geometric 8.12 (back 3.60 + arms 2 x 1.96 + jamb lips 2 x 0.30). The doc states this, but anyone who uses lift_shaft_perimeter will understate it.",
+    "evidence": "F06 CORE01 runs: back face [0,3.52 lift_shaft],[3.52,3.6 wall]; south arm [0,1.94 lift],[1.94,1.96 wall]; north lip [0,0.08 wall],[0.08,0.3 lift].",
+    "floor": "all",
+    "suggested_fix": "Inside the core pocket, ignore W lines (no partition can abut there), or report 8.12 with the 0.18 as a note."
+   }
+  ],
+  "checks_passed": [
+   "Both tools re-run cleanly on all 7 floors: structure.py 4m29s, floor_compare.py 3m09s, exit 0. Regenerated structure_diff.md and floors_diff.md are byte-identical to the committed ones, so the runs are deterministic.",
+   "Etabs-col raw entities checked on F03: 14 closed LWPOLYLINEs (13 rectangles + 12-vertex C-core) and 15 ANSI31 hatches. The hatch-only shear wall SW06 at x 3.155-7.055, y 18.654-19.054 (hatch 10FB) is confirmed. Every bbox, area and perimeter matches the tool's elements (e.g. SW02 4.10x0.40 = 1.64 m², 9.00 m; CORE01 2.796 m², 19.24 m).",
+   "Block 'tr' checked on F03 and F06: inserted twice (104B/1112 at -219.94,-205.71; 1052/1119 on F06). Its 7 elements match the tool: C02 0.90x0.50, SW03 0.25x3.35, C09 1.20x0.60, C10 0.50x1.00, C03 0.80x0.55, SW01 0.45x2.30, C01. The C01 hatch has a sliver to 37.779 plus a 0.005 m² piece while the polyline stops at 37.73, so the despiked 0.45x1.99 is correct.",
+   "F02 round columns confirmed from raw W arcs: 1073 r=0.275 sweep 331° at (3.660, 37.905), and 1074+1084 r=0.375 sweeps 156.4°+118.7° at (1.829, 35.711).",
+   "Face classification checked against raw W/WIN lines on F06 for SW05, SW08 (curtain-wall end), C06 (facade pier, east face 0.9 exterior), SW11 (east face on facade line W 352, 2.40 exterior; north fully covered by the 0.40 corner wall), SW02 (NE 1.76 m exterior north of the building edge), C05 east end at the slanted facade, and the CORE01 pocket. All are correct apart from the minor items reported.",
+   "Per-element interior/exterior/wall cover compared across F02-F08. Values vary only where the drawings differ (C01, C03, SW01, SW09, C09). Totals add up: F06 123.61 = 106.41 + 9.26 + 7.94. The tr difference is 22.4-23.4 m as the doc states.",
+   "Shafts on F03/F06 from raw 'try': 12 closed boxes with 2 DASH diagonals each = 5.604 m² (sum re-done), 3 hatched duplicated posts at x≈0, and the F05-F08-only enclosure FE5 0.64x0.84 (open polyline). SH05, SH08 and SH12 are correctly marked uncertain.",
+   "Axis grid on F06: 25 X lines (y=18.921 duplicated) plus x1 stray line 8AD. Bubble labels decoded independently (ه و ح ط, 5-15, with '7' nested in 67yu/egh). W tags ا ب ج ز sit at +2.222 x and 1-4 at -0.396 y, while د sits at +3.721. The axis dimension chain at x=28.683 is offset -0.396 from the X lines. All match the doc; the د ambiguity is correctly raised as a question.",
+   "Dimensions: F06 has 237 and F02 241, all style WWW. The small values (0.115/0.12/0.13/0.24/0.25/0.30) are facade steps and piers. The only interior 0.12 dims are the two on F02 (13E0, 1468), as the doc says.",
+   "Independent orphan-dimension search (dim end more than 3 cm from any line, while W exists there on other floors) found exactly the tool's list: F05 2522; F07 362B and 3838 at (8.955, 0.56); F08 4863, 46A9, 46B6, 4704, 4711. The one extra hit, F08 461A, ends on tr element SW01, so the tool is right not to flag it.",
+   "Door-head counts checked by hand on F03: D04 (DASH 6EE only), D02 (66B only) and D03 (63B only) each have 1 head line; D01 (4.48, 35.58) has none. Door blocks counted per floor: F02 36, F03 37, F04 37, F05 36, F06 36, F07 38, F08 36.",
+   "Independent W diff matrix for F03-F08 is within 0.9 m of every cell of the tool's matrix (e.g. F04→F07 5.52 vs 5.58; F03→F04 16.13 vs 16.03). No two floors are identical; F04↔F07 is the closest pair (18.0 m).",
+   "Every independent diff piece of 5 cm or more (W, WIN, DASH, try; F02-F08 vs F06) falls inside one of the tool's regions with the right floor listed: zero misses.",
+   "Etabs-col, COL, ST, PR, X and HAT show zero difference across all 7 floors in my diff. F02's extra MASS = 136.19 (8B1/8B2) + 19.43 = 155.62, matching the tool's figure.",
+   "Review PNGs inspected: F06_structure.png, diff_F02.png, plus my own zooms of the SE corner, the east slanted facade, the C06 facade pier, the SW08 curtain-wall end, C09 by the curved glazing, C01 by the shaft, the F02 east terrace, and doors on F03."
+  ]
+ }
+}

@@ -31,6 +31,7 @@
 | `tools/render_floor.py` | رسم دور خام بالطبقات (للمراجعة البصرية مقابل الأصل) | `output/render_F0x.png` | docstring |
 | `tools/dwg_dxf_convert.py` | تحويل DWG ↔ DXF بمحوّل ODA | — | docstring |
 | `tools/legacy_wall_takeoff/` | أدوات وملاحظات الحصر اليدوي السابق للدور الثالث (سبتمبر 2026) — مرجع للمقارنة فقط | — | `NOTES_wall_takeoff.md` |
+| `dev/` | أرشيف أدوات البناء والتحقق: سكربت الـ workflow الذي بنى الأدوات بفريق وكلاء، وتقارير الوكلاء وأحكام المحققين، وسكربتات التحقق المستقل والاستكشاف | — | [`dev/README.md`](dev/README.md) |
 
 ## البدء السريع
 
