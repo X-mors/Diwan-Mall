@@ -24,6 +24,7 @@
   "opening_h": null,
   "plaster_h": null,
   "facade_h": null,
+  "heights": "structural",
   "masonry_height": 3.0,
   "window_height_used": 2.0,
   "opening_height_used": 2.3,
@@ -350,7 +351,17 @@
     "openings_width": 0,
     "needs_check": true,
     "reason": "thickness 0.470 m is not a standard family (composite pier / nib / drafting?)",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.51,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W2",
@@ -367,7 +378,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.52,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W3",
@@ -384,7 +405,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.3,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W4",
@@ -401,7 +432,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.3,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W5",
@@ -435,6 +476,16 @@
        38.975
       ]
      }
+    ],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      7.01,
+      0.35,
+      2.85,
+      "slab"
+     ]
     ]
    },
    {
@@ -452,7 +503,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.3,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W7",
@@ -469,7 +530,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.3,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W8",
@@ -486,7 +557,17 @@
     "openings_width": 0,
     "needs_check": true,
     "reason": "one side is partly outside/void - classification mixed",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.4,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W9",
@@ -503,7 +584,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.3,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W10",
@@ -529,6 +620,16 @@
        38.575
       ]
      }
+    ],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      3.575,
+      0.35,
+      2.85,
+      "slab"
+     ]
     ]
    },
    {
@@ -546,7 +647,17 @@
     "openings_width": 0,
     "needs_check": true,
     "reason": "thickness 0.370 m is not a standard family (composite pier / nib / drafting?)",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.15,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W12",
@@ -563,7 +674,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.185,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W13",
@@ -589,6 +710,16 @@
        36.889
       ]
      }
+    ],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      2.863,
+      0.35,
+      2.85,
+      "slab"
+     ]
     ]
    },
    {
@@ -606,7 +737,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.378,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W15",
@@ -623,7 +764,17 @@
     "openings_width": 0,
     "needs_check": true,
     "reason": "thickness 0.370 m is not a standard family (composite pier / nib / drafting?)",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.3,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W16",
@@ -640,7 +791,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.7,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W17",
@@ -657,7 +818,17 @@
     "openings_width": 0,
     "needs_check": true,
     "reason": "thick wall (>=0.35) like the shear walls - concrete or masonry?",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.12,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W18",
@@ -684,6 +855,16 @@
       ],
       "block": "D10W12"
      }
+    ],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      2.702,
+      0.35,
+      2.85,
+      "slab"
+     ]
     ]
    },
    {
@@ -701,7 +882,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.605,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W20",
@@ -718,7 +909,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.116,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W21",
@@ -735,7 +936,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.134,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W22",
@@ -752,7 +963,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.235,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W23",
@@ -769,7 +990,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.255,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W24",
@@ -786,7 +1017,24 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.874,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.752,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ],
+     [
+      0.752,
+      4.71,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W25",
@@ -803,7 +1051,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.52,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W26",
@@ -820,7 +1078,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.12,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W27",
@@ -846,6 +1114,16 @@
        35.587
       ]
      }
+    ],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      5.115,
+      0.35,
+      2.85,
+      "slab"
+     ]
     ]
    },
    {
@@ -863,7 +1141,24 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.989,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.302,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ],
+     [
+      1.302,
+      1.402,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W29",
@@ -880,7 +1175,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.46,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W30",
@@ -897,7 +1202,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.423,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W31",
@@ -914,7 +1229,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.5,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ]
+    ]
    },
    {
     "id": "W32",
@@ -931,7 +1256,24 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.942,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.815,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ],
+     [
+      0.815,
+      1.325,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W33",
@@ -958,6 +1300,16 @@
       ],
       "block": "D10W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.259,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ]
     ]
    },
    {
@@ -985,6 +1337,16 @@
       ],
       "block": "D10W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.426,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ]
     ]
    },
    {
@@ -1002,7 +1364,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.5,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ]
+    ]
    },
    {
     "id": "W36",
@@ -1019,7 +1391,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.787,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ]
+    ]
    },
    {
     "id": "W37",
@@ -1036,7 +1418,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.72,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W38",
@@ -1053,7 +1445,31 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.983,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.204,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ],
+     [
+      0.204,
+      0.256,
+      0.35,
+      2.85,
+      "slab"
+     ],
+     [
+      0.256,
+      0.46,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ]
+    ]
    },
    {
     "id": "W39",
@@ -1070,7 +1486,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.66,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W40",
@@ -1087,7 +1513,24 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.949,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.281,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ],
+     [
+      1.281,
+      1.947,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W41",
@@ -1113,6 +1556,23 @@
        33.95
       ]
      }
+    ],
+    "masonry_height": 2.97,
+    "masonry_height_runs": [
+     [
+      0.0,
+      2.616,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ],
+     [
+      2.616,
+      3.27,
+      0.35,
+      2.85,
+      "slab"
+     ]
     ]
    },
    {
@@ -1139,6 +1599,23 @@
        33.805
       ]
      }
+    ],
+    "masonry_height": 2.982,
+    "masonry_height_runs": [
+     [
+      0.0,
+      2.609,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ],
+     [
+      2.609,
+      2.96,
+      0.35,
+      2.85,
+      "slab"
+     ]
     ]
    },
    {
@@ -1156,7 +1633,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      6.165,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ]
+    ]
    },
    {
     "id": "W44",
@@ -1183,6 +1670,16 @@
       ],
       "block": "D80W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.775,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ]
     ]
    },
    {
@@ -1210,6 +1707,16 @@
       ],
       "block": "D10W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.32,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ]
     ]
    },
    {
@@ -1227,7 +1734,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.785,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ]
+    ]
    },
    {
     "id": "W47",
@@ -1254,6 +1771,16 @@
       ],
       "block": "D10W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.26,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ]
     ]
    },
    {
@@ -1271,7 +1798,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.2,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ]
+    ]
    },
    {
     "id": "W49",
@@ -1288,7 +1825,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.52,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ]
+    ]
    },
    {
     "id": "W50",
@@ -1315,6 +1862,16 @@
       ],
       "block": "D80W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.58,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ]
     ]
    },
    {
@@ -1332,7 +1889,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      5.985,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ]
+    ]
    },
    {
     "id": "W52",
@@ -1349,7 +1916,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.3,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ]
+    ]
    },
    {
     "id": "W53",
@@ -1366,7 +1943,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.66,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ]
+    ]
    },
    {
     "id": "W54",
@@ -1383,7 +1970,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.52,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ]
+    ]
    },
    {
     "id": "W55",
@@ -1400,7 +1997,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.66,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ]
+    ]
    },
    {
     "id": "W56",
@@ -1426,6 +2033,23 @@
        30.655
       ]
      }
+    ],
+    "masonry_height": 2.923,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.71,
+      0.35,
+      2.85,
+      "slab"
+     ],
+     [
+      1.71,
+      3.32,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ]
     ]
    },
    {
@@ -1443,7 +2067,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.52,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W58",
@@ -1470,6 +2104,23 @@
       ],
       "block": "D10W12"
      }
+    ],
+    "masonry_height": 2.923,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.71,
+      0.35,
+      2.85,
+      "slab"
+     ],
+     [
+      1.71,
+      3.32,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ]
     ]
    },
    {
@@ -1497,6 +2148,23 @@
       ],
       "block": "D10W12"
      }
+    ],
+    "masonry_height": 2.926,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.605,
+      0.35,
+      2.85,
+      "slab"
+     ],
+     [
+      1.605,
+      3.26,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ]
     ]
    },
    {
@@ -1514,7 +2182,24 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.811,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.052,
+      0.9,
+      2.3,
+      "beam ك2 25x90"
+     ],
+     [
+      0.052,
+      0.725,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W61",
@@ -1531,7 +2216,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.28,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W62",
@@ -1548,7 +2243,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.725,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W63",
@@ -1574,6 +2279,23 @@
        30.85
       ]
      }
+    ],
+    "masonry_height": 2.926,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.605,
+      0.35,
+      2.85,
+      "slab"
+     ],
+     [
+      1.605,
+      3.26,
+      0.2,
+      3.0,
+      "slab (assumed)"
+     ]
     ]
    },
    {
@@ -1591,7 +2313,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.3,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W65",
@@ -1608,7 +2340,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.92,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W66",
@@ -1625,7 +2367,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.41,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W67",
@@ -1642,7 +2394,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.36,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W68",
@@ -1659,7 +2421,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.359,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W69",
@@ -1676,7 +2448,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.46,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W70",
@@ -1693,7 +2475,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.36,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W71",
@@ -1710,7 +2502,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.359,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W72",
@@ -1727,7 +2529,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.195,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W73",
@@ -1744,7 +2556,24 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.899,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.66,
+      0.2,
+      3.0,
+      "slab"
+     ],
+     [
+      0.66,
+      2.03,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W74",
@@ -1761,7 +2590,17 @@
     "openings_width": 0,
     "needs_check": true,
     "reason": "thickness 0.450 m is not a standard family (composite pier / nib / drafting?)",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.075,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W75",
@@ -1778,7 +2617,24 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.307,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.05,
+      0.35,
+      2.85,
+      "slab"
+     ],
+     [
+      0.05,
+      4.2,
+      0.9,
+      2.3,
+      "beam ك2 25x90"
+     ]
+    ]
    },
    {
     "id": "W76",
@@ -1795,7 +2651,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.3,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.025,
+      0.9,
+      2.3,
+      "beam ك2 25x90"
+     ]
+    ]
    },
    {
     "id": "W77",
@@ -1812,7 +2678,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.174,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W78",
@@ -1838,6 +2714,23 @@
        27.505
       ]
      }
+    ],
+    "masonry_height": 2.926,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.455,
+      0.2,
+      3.0,
+      "slab"
+     ],
+     [
+      1.455,
+      2.86,
+      0.35,
+      2.85,
+      "slab"
+     ]
     ]
    },
    {
@@ -1855,7 +2748,24 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.914,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.708,
+      0.2,
+      3.0,
+      "slab"
+     ],
+     [
+      0.708,
+      1.67,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W80",
@@ -1882,6 +2792,16 @@
       ],
       "block": "D80W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.775,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -1909,6 +2829,16 @@
       ],
       "block": "D10W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.32,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -1926,7 +2856,24 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.98,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.65,
+      0.2,
+      3.0,
+      "slab"
+     ],
+     [
+      1.65,
+      1.9,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W83",
@@ -1943,7 +2890,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      2.696,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W84",
@@ -1977,6 +2934,30 @@
        28.139
       ]
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      2.682,
+      0.2,
+      3.0,
+      "slab"
+     ],
+     [
+      2.682,
+      2.732,
+      0.2,
+      3.0,
+      "outside slab outline (general thickness)"
+     ],
+     [
+      2.732,
+      3.086,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -1994,7 +2975,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.715,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W86",
@@ -2011,7 +3002,17 @@
     "openings_width": 0,
     "needs_check": true,
     "reason": "thickness 0.370 m is not a standard family (composite pier / nib / drafting?)",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.423,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W87",
@@ -2028,7 +3029,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      6.165,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W88",
@@ -2055,6 +3066,16 @@
       ],
       "block": "D10W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.419,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -2072,7 +3093,17 @@
     "openings_width": 0,
     "needs_check": true,
     "reason": "thickness 0.370 m is not a standard family (composite pier / nib / drafting?)",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.126,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W90",
@@ -2089,7 +3120,17 @@
     "openings_width": 0,
     "needs_check": true,
     "reason": "thickness 0.370 m is not a standard family (composite pier / nib / drafting?)",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.124,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W91",
@@ -2116,6 +3157,16 @@
       ],
       "block": "D90W25"
      }
+    ],
+    "masonry_height": 2.3,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.35,
+      0.9,
+      2.3,
+      "beam ك6 25x90"
+     ]
     ]
    },
    {
@@ -2143,6 +3194,16 @@
       ],
       "block": "D90W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.378,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -2170,6 +3231,16 @@
       ],
       "block": "D90W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.424,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -2187,7 +3258,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      2.937,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W95",
@@ -2204,7 +3285,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.152,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W96",
@@ -2221,7 +3312,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.561,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W97",
@@ -2248,6 +3349,16 @@
       ],
       "block": "D80W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.775,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -2265,7 +3376,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.561,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W99",
@@ -2292,6 +3413,16 @@
       ],
       "block": "D80W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.92,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -2309,7 +3440,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.52,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W101",
@@ -2336,6 +3477,16 @@
       ],
       "block": "D90W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.26,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -2353,7 +3504,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.212,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W103",
@@ -2370,7 +3531,17 @@
     "openings_width": 0,
     "needs_check": true,
     "reason": "tiny fragment (<0.10 m); thick wall (>=0.35) like the shear walls - concrete or masonry?",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.023,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W104",
@@ -2387,7 +3558,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.3,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.201,
+      0.9,
+      2.3,
+      "beam ك3 30x90"
+     ]
+    ]
    },
    {
     "id": "W105",
@@ -2404,7 +3585,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.189,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W106",
@@ -2421,7 +3612,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.406,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W107",
@@ -2438,7 +3639,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.715,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W108",
@@ -2455,7 +3666,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.715,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W109",
@@ -2472,7 +3693,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.72,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W110",
@@ -2489,7 +3720,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.013,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W111",
@@ -2506,7 +3747,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.953,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W112",
@@ -2523,7 +3774,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.013,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W113",
@@ -2550,6 +3811,16 @@
       ],
       "block": "D80W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.64,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -2567,7 +3838,24 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.97,
+    "masonry_height_runs": [
+     [
+      0.0,
+      2.26,
+      0.2,
+      3.0,
+      "slab"
+     ],
+     [
+      2.26,
+      2.36,
+      0.9,
+      2.3,
+      "beam ك3 30x90"
+     ]
+    ]
    },
    {
     "id": "W115",
@@ -2584,7 +3872,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.609,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W116",
@@ -2601,7 +3899,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.695,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W117",
@@ -2635,6 +3943,16 @@
        19.664
       ]
      }
+    ],
+    "masonry_height": 2.3,
+    "masonry_height_runs": [
+     [
+      0.0,
+      3.0,
+      0.9,
+      2.3,
+      "beam ك4 25x90"
+     ]
     ]
    },
    {
@@ -2662,6 +3980,16 @@
       ],
       "block": "D10W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.961,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -2689,6 +4017,16 @@
       ],
       "block": "D80W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.099,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -2706,7 +4044,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      2.29,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W121",
@@ -2732,6 +4080,16 @@
        19.826
       ]
      }
+    ],
+    "masonry_height": 2.3,
+    "masonry_height_runs": [
+     [
+      0.0,
+      4.06,
+      0.9,
+      2.3,
+      "beam ك3 30x90"
+     ]
     ]
    },
    {
@@ -2749,7 +4107,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      3.02,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W123",
@@ -2776,6 +4144,16 @@
       ],
       "block": "D80W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.775,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -2803,6 +4181,16 @@
       ],
       "block": "D10W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.141,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -2820,7 +4208,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.516,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W126",
@@ -2837,7 +4235,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      2.359,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W127",
@@ -2854,7 +4262,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.962,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W128",
@@ -2871,7 +4289,17 @@
     "openings_width": 0,
     "needs_check": true,
     "reason": "tiny fragment (<0.10 m)",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.08,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W129",
@@ -2898,6 +4326,23 @@
       ],
       "block": "D80W12"
      }
+    ],
+    "masonry_height": 2.979,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.617,
+      0.2,
+      3.0,
+      "slab"
+     ],
+     [
+      1.617,
+      1.668,
+      0.9,
+      2.3,
+      "beam ك3 30x90"
+     ]
     ]
    },
    {
@@ -2925,6 +4370,16 @@
       ],
       "block": "D10W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      2.654,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -2942,7 +4397,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.325,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W132",
@@ -2959,7 +4424,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.961,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W133",
@@ -2976,7 +4451,17 @@
     "openings_width": 0,
     "needs_check": true,
     "reason": "thickness 0.084 m is not a standard family (composite pier / nib / drafting?)",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.997,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W134",
@@ -2993,7 +4478,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.795,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W135",
@@ -3010,7 +4505,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.641,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W136",
@@ -3036,6 +4541,16 @@
        17.275
       ]
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.492,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -3053,7 +4568,24 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.66,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.907,
+      0.2,
+      3.0,
+      "slab"
+     ],
+     [
+      0.907,
+      1.763,
+      0.9,
+      2.3,
+      "beam ك3 30x90"
+     ]
+    ]
    },
    {
     "id": "W138",
@@ -3070,7 +4602,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.36,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W139",
@@ -3087,7 +4629,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.775,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W140",
@@ -3114,6 +4666,16 @@
       ],
       "block": "D10W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      2.988,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -3131,7 +4693,17 @@
     "openings_width": 0,
     "needs_check": true,
     "reason": "thickness 0.365 m is not a standard family (composite pier / nib / drafting?)",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.151,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W142",
@@ -3148,7 +4720,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      4.98,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W143",
@@ -3165,7 +4747,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.595,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W144",
@@ -3182,7 +4774,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.36,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W145",
@@ -3199,7 +4801,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.715,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W146",
@@ -3216,7 +4828,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.595,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W147",
@@ -3233,7 +4855,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.72,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W148",
@@ -3250,7 +4882,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      2.628,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W149",
@@ -3267,7 +4909,17 @@
     "openings_width": 0,
     "needs_check": true,
     "reason": "thickness 0.420 m is not a standard family (composite pier / nib / drafting?); tiny fragment (<0.10 m)",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.05,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W150",
@@ -3301,6 +4953,58 @@
        16.15
       ]
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.551,
+      0.2,
+      3.0,
+      "slab"
+     ],
+     [
+      0.551,
+      0.601,
+      0.2,
+      3.0,
+      "outside slab outline (general thickness)"
+     ],
+     [
+      0.601,
+      1.954,
+      0.2,
+      3.0,
+      "slab"
+     ],
+     [
+      1.954,
+      2.705,
+      0.2,
+      3.0,
+      "outside slab outline (general thickness)"
+     ],
+     [
+      2.705,
+      3.757,
+      0.2,
+      3.0,
+      "slab"
+     ],
+     [
+      3.757,
+      4.058,
+      0.2,
+      3.0,
+      "outside slab outline (general thickness)"
+     ],
+     [
+      4.058,
+      5.16,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -3328,6 +5032,16 @@
       ],
       "block": "D80W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.775,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -3355,6 +5069,16 @@
       ],
       "block": "D10W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.345,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -3382,6 +5106,16 @@
       ],
       "block": "D10W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      3.485,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -3399,7 +5133,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.52,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W155",
@@ -3416,7 +5160,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.13,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W156",
@@ -3433,7 +5187,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.3,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W157",
@@ -3450,7 +5214,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.12,
+      0.2,
+      3.0,
+      "outside slab outline (general thickness)"
+     ]
+    ]
    },
    {
     "id": "W158",
@@ -3467,7 +5241,24 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.575,
+    "masonry_height_runs": [
+     [
+      0.0,
+      2.58,
+      0.7,
+      2.5,
+      "beam ك5 25x70"
+     ],
+     [
+      2.58,
+      3.035,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W159",
@@ -3484,7 +5275,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.962,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W160",
@@ -3501,7 +5302,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.36,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W161",
@@ -3518,7 +5329,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.91,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W162",
@@ -3535,7 +5356,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.52,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W163",
@@ -3552,7 +5383,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.36,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W164",
@@ -3569,7 +5410,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.91,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W165",
@@ -3586,7 +5437,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      4.176,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W166",
@@ -3612,6 +5473,16 @@
        10.52
       ]
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      2.805,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -3639,6 +5510,30 @@
       ],
       "block": "D10W12"
      }
+    ],
+    "masonry_height": 2.509,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.05,
+      0.7,
+      2.5,
+      "beam ك1 12x70"
+     ],
+     [
+      0.05,
+      2.815,
+      0.7,
+      2.5,
+      "beam ك1 25x70"
+     ],
+     [
+      2.815,
+      2.865,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -3666,6 +5561,16 @@
       ],
       "block": "D10W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      2.965,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -3692,6 +5597,93 @@
        10.705
       ]
      }
+    ],
+    "masonry_height": 2.985,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.151,
+      0.35,
+      2.85,
+      "slab"
+     ],
+     [
+      0.151,
+      0.201,
+      0.2,
+      3.0,
+      "outside slab outline (general thickness)"
+     ],
+     [
+      0.201,
+      0.301,
+      0.35,
+      2.85,
+      "slab"
+     ],
+     [
+      0.301,
+      0.402,
+      0.2,
+      3.0,
+      "slab"
+     ],
+     [
+      0.402,
+      0.653,
+      0.2,
+      3.0,
+      "outside slab outline (general thickness)"
+     ],
+     [
+      0.653,
+      1.004,
+      0.2,
+      3.0,
+      "slab"
+     ],
+     [
+      1.004,
+      1.356,
+      0.2,
+      3.0,
+      "outside slab outline (general thickness)"
+     ],
+     [
+      1.356,
+      1.858,
+      0.2,
+      3.0,
+      "slab"
+     ],
+     [
+      1.858,
+      2.008,
+      0.2,
+      3.0,
+      "outside slab outline (general thickness)"
+     ],
+     [
+      2.008,
+      2.159,
+      0.2,
+      3.0,
+      "slab"
+     ],
+     [
+      2.159,
+      2.209,
+      0.2,
+      3.0,
+      "outside slab outline (general thickness)"
+     ],
+     [
+      2.209,
+      2.46,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -3709,7 +5701,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.3,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W171",
@@ -3726,7 +5728,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.5,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.92,
+      0.7,
+      2.5,
+      "beam ك1 30x70"
+     ]
+    ]
    },
    {
     "id": "W172",
@@ -3743,7 +5755,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.383,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W173",
@@ -3760,7 +5782,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.63,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W174",
@@ -3777,7 +5809,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.5,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.545,
+      0.7,
+      2.5,
+      "beam ك1 12x70"
+     ]
+    ]
    },
    {
     "id": "W175",
@@ -3794,7 +5836,24 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.928,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.617,
+      0.2,
+      3.0,
+      "slab"
+     ],
+     [
+      0.617,
+      0.72,
+      0.7,
+      2.5,
+      "beam ك1 12x70"
+     ]
+    ]
    },
    {
     "id": "W176",
@@ -3811,7 +5870,24 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.992,
+    "masonry_height_runs": [
+     [
+      0.0,
+      5.327,
+      0.2,
+      3.0,
+      "slab"
+     ],
+     [
+      5.327,
+      5.628,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W177",
@@ -3828,7 +5904,17 @@
     "openings_width": 0,
     "needs_check": true,
     "reason": "tiny fragment (<0.10 m)",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.062,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W178",
@@ -3854,6 +5940,16 @@
        7.585
       ]
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      3.638,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -3881,6 +5977,16 @@
       ],
       "block": "D10W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      3.196,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -3908,6 +6014,16 @@
       ],
       "block": "D10W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.971,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -3934,6 +6050,65 @@
        7.325
       ]
      }
+    ],
+    "masonry_height": 2.987,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.451,
+      0.2,
+      3.0,
+      "slab"
+     ],
+     [
+      0.451,
+      0.551,
+      0.2,
+      3.0,
+      "outside slab outline (general thickness)"
+     ],
+     [
+      0.551,
+      0.752,
+      0.2,
+      3.0,
+      "slab"
+     ],
+     [
+      0.752,
+      1.002,
+      0.2,
+      3.0,
+      "outside slab outline (general thickness)"
+     ],
+     [
+      1.002,
+      1.353,
+      0.2,
+      3.0,
+      "slab"
+     ],
+     [
+      1.353,
+      1.403,
+      0.2,
+      3.0,
+      "outside slab outline (general thickness)"
+     ],
+     [
+      1.403,
+      2.605,
+      0.2,
+      3.0,
+      "slab"
+     ],
+     [
+      2.605,
+      2.856,
+      0.35,
+      2.85,
+      "slab"
+     ]
     ]
    },
    {
@@ -3951,7 +6126,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.3,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W183",
@@ -3968,7 +6153,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.735,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W184",
@@ -3985,7 +6180,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.63,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W185",
@@ -4002,7 +6207,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.582,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W186",
@@ -4019,7 +6234,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.362,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W187",
@@ -4036,7 +6261,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.488,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W188",
@@ -4053,7 +6288,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.52,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W189",
@@ -4070,7 +6315,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.52,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W190",
@@ -4087,7 +6342,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.362,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W191",
@@ -4104,7 +6369,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.488,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W192",
@@ -4121,7 +6396,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      2.628,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W193",
@@ -4138,7 +6423,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.648,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W194",
@@ -4164,6 +6459,23 @@
        4.435
       ]
      }
+    ],
+    "masonry_height": 2.982,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.403,
+      0.35,
+      2.85,
+      "slab"
+     ],
+     [
+      0.403,
+      3.427,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -4181,7 +6493,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.3,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W196",
@@ -4208,6 +6530,16 @@
       ],
       "block": "D10W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.299,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -4225,7 +6557,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.66,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W198",
@@ -4252,6 +6594,16 @@
       ],
       "block": "D10W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.3,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -4269,7 +6621,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.61,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W200",
@@ -4296,6 +6658,16 @@
       ],
       "block": "D10W12"
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.45,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -4322,6 +6694,30 @@
        4.25
       ]
      }
+    ],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.454,
+      0.2,
+      3.0,
+      "slab"
+     ],
+     [
+      0.454,
+      2.169,
+      0.2,
+      3.0,
+      "outside slab outline (general thickness)"
+     ],
+     [
+      2.169,
+      2.774,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -4339,7 +6735,24 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.97,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.06,
+      0.35,
+      2.85,
+      "slab"
+     ],
+     [
+      0.06,
+      0.3,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W203",
@@ -4356,7 +6769,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.12,
+      0.2,
+      3.0,
+      "outside slab outline (general thickness)"
+     ]
+    ]
    },
    {
     "id": "W204",
@@ -4373,7 +6796,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      3.2,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W205",
@@ -4390,7 +6823,24 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.896,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.456,
+      0.35,
+      2.85,
+      "slab"
+     ],
+     [
+      0.456,
+      0.658,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W206",
@@ -4407,7 +6857,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.46,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W207",
@@ -4424,7 +6884,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.52,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W208",
@@ -4441,7 +6911,24 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.873,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.558,
+      0.35,
+      2.85,
+      "slab"
+     ],
+     [
+      0.558,
+      0.66,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W209",
@@ -4458,7 +6945,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.33,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W210",
@@ -4475,7 +6972,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.192,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W211",
@@ -4502,6 +7009,23 @@
       ],
       "block": "D80W12"
      }
+    ],
+    "masonry_height": 2.941,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.82,
+      0.35,
+      2.85,
+      "slab"
+     ],
+     [
+      0.82,
+      2.1,
+      0.2,
+      3.0,
+      "slab"
+     ]
     ]
    },
    {
@@ -4519,7 +7043,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.72,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W213",
@@ -4536,7 +7070,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.461,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W214",
@@ -4553,7 +7097,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.461,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W215",
@@ -4570,7 +7124,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.72,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W216",
@@ -4587,7 +7151,24 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.88,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.43,
+      0.35,
+      2.85,
+      "slab"
+     ],
+     [
+      0.43,
+      0.538,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W217",
@@ -4604,7 +7185,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.573,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W218",
@@ -4621,7 +7212,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.25,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W219",
@@ -4638,7 +7239,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      2.29,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W220",
@@ -4655,7 +7266,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      3.79,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W221",
@@ -4672,7 +7293,17 @@
     "openings_width": 0,
     "needs_check": true,
     "reason": "thickness 0.380 m is not a standard family (composite pier / nib / drafting?)",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      1.05,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W222",
@@ -4689,7 +7320,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.845,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W223",
@@ -4706,7 +7347,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.44,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W224",
@@ -4723,7 +7374,17 @@
     "openings_width": 0,
     "needs_check": true,
     "reason": "both faces touch other walls (no room on either side): a narrow space between two walls, or one composite block?",
-    "openings": []
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.12,
+      0.2,
+      3.0,
+      "outside slab outline (general thickness)"
+     ]
+    ]
    },
    {
     "id": "W225",
@@ -4740,7 +7401,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.3,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W226",
@@ -4757,7 +7428,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.3,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W227",
@@ -4799,6 +7480,16 @@
        -1.045
       ]
      }
+    ],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      8.955,
+      0.35,
+      2.85,
+      "slab"
+     ]
     ]
    },
    {
@@ -4816,7 +7507,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.3,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W229",
@@ -4833,7 +7534,17 @@
     "openings_width": 0,
     "needs_check": true,
     "reason": "thickness 0.378 m is not a standard family (composite pier / nib / drafting?)",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.25,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W230",
@@ -4850,7 +7561,17 @@
     "openings_width": 0,
     "needs_check": false,
     "reason": "",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.13,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W231",
@@ -4867,7 +7588,17 @@
     "openings_width": 0,
     "needs_check": true,
     "reason": "thickness 0.453 m is not a standard family (composite pier / nib / drafting?); tiny fragment (<0.10 m)",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.05,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    },
    {
     "id": "W232",
@@ -4884,7 +7615,17 @@
     "openings_width": 0,
     "needs_check": true,
     "reason": "tiny fragment (<0.10 m)",
-    "openings": []
+    "openings": [],
+    "masonry_height": 2.85,
+    "masonry_height_runs": [
+     [
+      0.0,
+      0.075,
+      0.35,
+      2.85,
+      "slab"
+     ]
+    ]
    }
   ]
  },
@@ -11173,271 +13914,271 @@
     "n": 165,
     "length_gross": 227.19,
     "length_net": 192.86,
-    "area_gross": 681.56,
+    "area_gross": 670.37,
     "ded_door": 77.1,
     "ded_window": 0.0,
     "ded_opening": 1.84,
-    "area_net": 602.62
+    "area_net": 591.43
    },
    "0.12|exterior": {
     "n": 15,
     "length_gross": 5.72,
     "length_net": 5.72,
-    "area_gross": 17.16,
+    "area_gross": 16.52,
     "ded_door": 0.0,
     "ded_window": 0.0,
     "ded_opening": 0.0,
-    "area_net": 17.16
+    "area_net": 16.52
    },
    "0.12|interior": {
     "n": 91,
     "length_gross": 178.71,
     "length_net": 145.38,
-    "area_gross": 536.12,
+    "area_gross": 530.27,
     "ded_door": 74.8,
     "ded_window": 0.0,
     "ded_opening": 1.84,
-    "area_net": 459.48
+    "area_net": 453.63
    },
    "0.12|shaft": {
     "n": 55,
     "length_gross": 34.93,
     "length_net": 34.93,
-    "area_gross": 104.79,
+    "area_gross": 103.57,
     "ded_door": 0.0,
     "ded_window": 0.0,
     "ded_opening": 0.0,
-    "area_net": 104.79
+    "area_net": 103.57
    },
    "0.12|stair_lift": {
     "n": 4,
     "length_gross": 7.83,
     "length_net": 6.83,
-    "area_gross": 23.48,
+    "area_gross": 20.01,
     "ded_door": 2.3,
     "ded_window": 0.0,
     "ded_opening": 0.0,
-    "area_net": 21.18
+    "area_net": 17.71
    },
    "0.25|ALL": {
     "n": 40,
     "length_gross": 93.78,
     "length_net": 48.57,
-    "area_gross": 281.35,
+    "area_gross": 267.9,
     "ded_door": 2.07,
-    "ded_window": 88.63,
+    "ded_window": 86.3,
     "ded_opening": 0.0,
-    "area_net": 190.65
+    "area_net": 179.54
    },
    "0.25|exterior": {
     "n": 27,
     "length_gross": 76.32,
     "length_net": 32.0,
-    "area_gross": 228.95,
+    "area_gross": 220.62,
     "ded_door": 0.0,
-    "ded_window": 88.63,
+    "ded_window": 86.3,
     "ded_opening": 0.0,
-    "area_net": 140.32
+    "area_net": 134.32
    },
    "0.25|interior": {
     "n": 4,
     "length_gross": 2.6,
     "length_net": 2.6,
-    "area_gross": 7.81,
+    "area_gross": 7.75,
     "ded_door": 0.0,
     "ded_window": 0.0,
     "ded_opening": 0.0,
-    "area_net": 7.81
+    "area_net": 7.75
    },
    "0.25|shaft": {
     "n": 4,
     "length_gross": 3.69,
     "length_net": 3.69,
-    "area_gross": 11.07,
+    "area_gross": 10.64,
     "ded_door": 0.0,
     "ded_window": 0.0,
     "ded_opening": 0.0,
-    "area_net": 11.07
+    "area_net": 10.64
    },
    "0.25|stair_lift": {
     "n": 5,
     "length_gross": 11.17,
     "length_net": 10.27,
-    "area_gross": 33.51,
+    "area_gross": 28.9,
     "ded_door": 2.07,
     "ded_window": 0.0,
     "ded_opening": 0.0,
-    "area_net": 31.44
+    "area_net": 26.83
    },
    "0.30|ALL": {
     "n": 5,
     "length_gross": 3.51,
     "length_net": 1.09,
-    "area_gross": 10.53,
+    "area_gross": 8.37,
     "ded_door": 0.0,
     "ded_window": 0.0,
     "ded_opening": 5.57,
-    "area_net": 4.96
+    "area_net": 2.8
    },
    "0.30|exterior": {
     "n": 3,
     "length_gross": 0.39,
     "length_net": 0.39,
-    "area_gross": 1.17,
+    "area_gross": 1.11,
     "ded_door": 0.0,
     "ded_window": 0.0,
     "ded_opening": 0.0,
-    "area_net": 1.17
+    "area_net": 1.11
    },
    "0.30|interior": {
     "n": 2,
     "length_gross": 3.12,
     "length_net": 0.7,
-    "area_gross": 9.36,
+    "area_gross": 7.26,
     "ded_door": 0.0,
     "ded_window": 0.0,
     "ded_opening": 5.57,
-    "area_net": 3.79
+    "area_net": 1.69
    },
    "0.40|ALL": {
     "n": 5,
     "length_gross": 3.6,
     "length_net": 2.39,
-    "area_gross": 10.82,
+    "area_gross": 10.29,
     "ded_door": 0.0,
-    "ded_window": 2.43,
+    "ded_window": 2.25,
     "ded_opening": 0.0,
-    "area_net": 8.38
+    "area_net": 8.04
    },
    "0.40|exterior": {
     "n": 3,
     "length_gross": 3.46,
     "length_net": 2.25,
-    "area_gross": 10.39,
+    "area_gross": 9.89,
     "ded_door": 0.0,
-    "ded_window": 2.43,
+    "ded_window": 2.25,
     "ded_opening": 0.0,
-    "area_net": 7.96
+    "area_net": 7.63
    },
    "0.40|interior": {
     "n": 2,
     "length_gross": 0.14,
     "length_net": 0.14,
-    "area_gross": 0.43,
+    "area_gross": 0.41,
     "ded_door": 0.0,
     "ded_window": 0.0,
     "ded_opening": 0.0,
-    "area_net": 0.43
+    "area_net": 0.41
    },
    "0.50|ALL": {
     "n": 1,
     "length_gross": 0.7,
     "length_net": 0.7,
-    "area_gross": 2.1,
+    "area_gross": 1.99,
     "ded_door": 0.0,
     "ded_window": 0.0,
     "ded_opening": 0.0,
-    "area_net": 2.1
+    "area_net": 1.99
    },
    "0.50|exterior": {
     "n": 1,
     "length_gross": 0.7,
     "length_net": 0.7,
-    "area_gross": 2.1,
+    "area_gross": 1.99,
     "ded_door": 0.0,
     "ded_window": 0.0,
     "ded_opening": 0.0,
-    "area_net": 2.1
+    "area_net": 1.99
    },
    "0.60|ALL": {
     "n": 2,
     "length_gross": 0.82,
     "length_net": 0.82,
-    "area_gross": 2.45,
+    "area_gross": 2.33,
     "ded_door": 0.0,
     "ded_window": 0.0,
     "ded_opening": 0.0,
-    "area_net": 2.45
+    "area_net": 2.33
    },
    "0.60|exterior": {
     "n": 2,
     "length_gross": 0.82,
     "length_net": 0.82,
-    "area_gross": 2.45,
+    "area_gross": 2.33,
     "ded_door": 0.0,
     "ded_window": 0.0,
     "ded_opening": 0.0,
-    "area_net": 2.45
+    "area_net": 2.33
    },
    "ALL|ALL": {
     "n": 232,
     "length_gross": 336.5,
     "length_net": 253.32,
-    "area_gross": 1009.49,
+    "area_gross": 981.45,
     "ded_door": 79.17,
-    "ded_window": 91.06,
+    "ded_window": 88.55,
     "ded_opening": 7.41,
-    "area_net": 831.84
+    "area_net": 806.31
    },
    "ALL|exterior": {
     "n": 58,
     "length_gross": 90.14,
     "length_net": 44.61,
-    "area_gross": 270.43,
+    "area_gross": 260.31,
     "ded_door": 0.0,
-    "ded_window": 91.06,
+    "ded_window": 88.55,
     "ded_opening": 0.0,
-    "area_net": 179.36
+    "area_net": 171.76
    },
    "ALL|interior": {
     "n": 101,
     "length_gross": 184.75,
     "length_net": 149.0,
-    "area_gross": 554.24,
+    "area_gross": 546.21,
     "ded_door": 74.8,
     "ded_window": 0.0,
     "ded_opening": 7.41,
-    "area_net": 472.03
+    "area_net": 464.0
    },
    "ALL|shaft": {
     "n": 62,
     "length_gross": 41.41,
     "length_net": 41.41,
-    "area_gross": 124.23,
+    "area_gross": 122.57,
     "ded_door": 0.0,
     "ded_window": 0.0,
     "ded_opening": 0.0,
-    "area_net": 124.23
+    "area_net": 122.57
    },
    "ALL|stair_lift": {
     "n": 11,
     "length_gross": 20.2,
     "length_net": 18.3,
-    "area_gross": 60.59,
+    "area_gross": 52.35,
     "ded_door": 4.37,
     "ded_window": 0.0,
     "ded_opening": 0.0,
-    "area_net": 56.22
+    "area_net": 47.98
    },
    "other|ALL": {
     "n": 13,
     "length_gross": 5.26,
     "length_net": 5.26,
-    "area_gross": 15.77,
+    "area_gross": 15.26,
     "ded_door": 0.0,
     "ded_window": 0.0,
     "ded_opening": 0.0,
-    "area_net": 15.77
+    "area_net": 15.26
    },
    "other|exterior": {
     "n": 7,
     "length_gross": 2.73,
     "length_net": 2.73,
-    "area_gross": 8.2,
+    "area_gross": 7.85,
     "ded_door": 0.0,
     "ded_window": 0.0,
     "ded_opening": 0.0,
-    "area_net": 8.2
+    "area_net": 7.85
    },
    "other|interior": {
     "n": 2,
@@ -11463,12 +14204,49 @@
     "n": 2,
     "length_gross": 1.2,
     "length_net": 1.2,
-    "area_gross": 3.6,
+    "area_gross": 3.44,
     "ded_door": 0.0,
     "ded_window": 0.0,
     "ded_opening": 0.0,
-    "area_net": 3.6
+    "area_net": 3.44
    }
+  },
+  "masonry_heights": {
+   "floor_no": 3,
+   "plan": "سقف 6  و 5  و 3  و 2",
+   "ceiling_of": [
+    2,
+    3,
+    5,
+    6
+   ],
+   "shift": [
+    0.0,
+    0.0
+   ],
+   "shift_votes": 20,
+   "storey": 3.2,
+   "general_thickness": 0.2,
+   "length_by_height": {
+    "3.00": 226.18,
+    "2.85": 86.51,
+    "2.50": 7.96,
+    "2.30": 15.85
+   },
+   "length_by_source": {
+    "slab": 265.69,
+    "slab (assumed)": 42.51,
+    "beam ك3 30x90": 6.27,
+    "beam ك2 25x90": 5.23,
+    "outside slab outline (general thickness)": 4.48,
+    "beam ك4 25x90": 3.0,
+    "beam ك1 25x70": 2.77,
+    "beam ك5 25x70": 2.58,
+    "beam ك1 12x70": 1.7,
+    "beam ك6 25x90": 1.35,
+    "beam ك1 30x70": 0.92
+   },
+   "rule": "H = 3.20 - concrete depth above the wall (slab 0.20/0.35 zone or beam depth); structural sheet = ceiling of this floor"
   },
   "masonry_excluded_on_concrete": [],
   "masonry_if_tr_is_real": {
@@ -11483,11 +14261,11 @@
     "n": 227,
     "length_gross": 330.41,
     "length_net": 248.45,
-    "area_gross": 991.23,
+    "area_gross": 963.81,
     "ded_door": 79.17,
-    "ded_window": 88.63,
+    "ded_window": 86.3,
     "ded_opening": 7.41,
-    "area_net": 816.01
+    "area_net": 790.93
    }
   },
   "plaster": {
@@ -11543,9 +14321,9 @@
   }
  },
  "timing_s": {
-  "openings": 1.3,
-  "rooms": 1.7,
+  "openings": 1.2,
+  "rooms": 1.8,
   "walls": 0.8,
-  "structure": 0.9
+  "structure": 1.0
  }
 }

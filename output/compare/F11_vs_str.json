@@ -1,0 +1,379 @@
+{
+ "floor": "F11",
+ "structural_sheet": "سقف العاشر",
+ "sheet_ceiling_of": [
+  11
+ ],
+ "shift_applied": [
+  0.0,
+  0.0
+ ],
+ "masonry_heights": {
+  "length_by_height": {
+   "3.00": 183.74,
+   "2.85": 19.94,
+   "2.50": 7.04,
+   "2.30": 15.82
+  },
+  "length_by_source": {
+   "slab": 170.25,
+   "slab (assumed)": 29.31,
+   "beam ك3 30x90": 6.27,
+   "beam ك2 25x90": 5.2,
+   "outside slab outline (general thickness)": 4.12,
+   "beam ك4 25x90": 3.0,
+   "beam ك1 25x70": 2.75,
+   "beam ك5 25x70": 2.57,
+   "beam ك1 12x70": 1.71,
+   "beam ك6 25x90": 1.35
+  }
+ },
+ "columns": {
+  "matched": 16,
+  "arch_without_structural": [
+   {
+    "arch": "CX01",
+    "kind": "column_xbox",
+    "size_arch": "0.40 x 0.40",
+    "str_bbox": null,
+    "offset": null,
+    "overlap": 0.13,
+    "note": "no structural column under it"
+   },
+   {
+    "arch": "CX02",
+    "kind": "column_xbox",
+    "size_arch": "0.40 x 0.40",
+    "str_bbox": null,
+    "offset": null,
+    "overlap": 0.0,
+    "note": "no structural column under it"
+   }
+  ],
+  "structural_without_arch": [
+   {
+    "str_bbox": [
+     16.31,
+     35.32,
+     16.76,
+     37.62
+    ],
+    "area": 1.036
+   },
+   {
+    "str_bbox": [
+     1.5,
+     35.52,
+     2.4,
+     36.02
+    ],
+    "area": 0.45
+   },
+   {
+    "str_bbox": [
+     8.96,
+     25.65,
+     9.26,
+     29.0
+    ],
+    "area": 1.005
+   },
+   {
+    "str_bbox": [
+     4.97,
+     -0.0,
+     5.47,
+     1.0
+    ],
+    "area": 0.5
+   },
+   {
+    "str_bbox": [
+     12.9,
+     35.33,
+     14.1,
+     35.93
+    ],
+    "area": 0.72
+   },
+   {
+    "str_bbox": [
+     5.29,
+     35.54,
+     5.74,
+     37.94
+    ],
+    "area": 1.081
+   },
+   {
+    "str_bbox": [
+     17.34,
+     17.31,
+     17.82,
+     18.35
+    ],
+    "area": 0.3
+   },
+   {
+    "str_bbox": [
+     6.44,
+     12.28,
+     7.04,
+     12.58
+    ],
+    "area": 0.18
+   },
+   {
+    "str_bbox": [
+     1.47,
+     2.1,
+     2.07,
+     2.4
+    ],
+    "area": 0.18
+   }
+  ],
+  "max_offset": 2.503,
+  "size_differs": [
+   {
+    "arch": "SW02",
+    "kind": "shear_wall",
+    "size_arch": "4.10 x 0.40",
+    "str_bbox": [
+     10.56,
+     25.6,
+     18.51,
+     29.0
+    ],
+    "overlap": 0.77,
+    "offset": 2.438,
+    "area_arch": 1.64,
+    "area_str": 3.314,
+    "same_size": false
+   },
+   {
+    "arch": "SW04",
+    "kind": "shear_wall",
+    "size_arch": "4.10 x 0.40",
+    "str_bbox": [
+     10.56,
+     25.6,
+     18.51,
+     29.0
+    ],
+    "overlap": 0.75,
+    "offset": 2.503,
+    "area_arch": 1.64,
+    "area_str": 3.314,
+    "same_size": false
+   },
+   {
+    "arch": "SW05",
+    "kind": "shear_wall",
+    "size_arch": "3.90 x 0.40",
+    "str_bbox": [
+     1.32,
+     21.8,
+     5.22,
+     22.1
+    ],
+    "overlap": 1.0,
+    "offset": 0.051,
+    "area_arch": 1.56,
+    "area_str": 1.17,
+    "same_size": false
+   },
+   {
+    "arch": "CORE01",
+    "kind": "core",
+    "size_arch": "C-core 2.56 x 4.20",
+    "str_bbox": [
+     10.35,
+     18.48,
+     12.91,
+     22.68
+    ],
+    "overlap": 1.0,
+    "offset": 0.103,
+    "area_arch": 2.796,
+    "area_str": 2.616,
+    "same_size": false
+   },
+   {
+    "arch": "SW06",
+    "kind": "shear_wall",
+    "size_arch": "3.90 x 0.40",
+    "str_bbox": [
+     3.16,
+     18.75,
+     7.06,
+     19.05
+    ],
+    "overlap": 1.0,
+    "offset": 0.05,
+    "area_arch": 1.56,
+    "area_str": 1.17,
+    "same_size": false
+   },
+   {
+    "arch": "SW07",
+    "kind": "shear_wall",
+    "size_arch": "3.10 x 0.40",
+    "str_bbox": [
+     11.7,
+     15.32,
+     14.8,
+     15.62
+    ],
+    "overlap": 1.0,
+    "offset": 0.001,
+    "area_arch": 1.24,
+    "area_str": 0.93,
+    "same_size": false
+   },
+   {
+    "arch": "SW08",
+    "kind": "shear_wall",
+    "size_arch": "3.90 x 0.40",
+    "str_bbox": [
+     0.0,
+     12.28,
+     3.9,
+     12.58
+    ],
+    "overlap": 1.0,
+    "offset": 0.05,
+    "area_arch": 1.56,
+    "area_str": 1.17,
+    "same_size": false
+   },
+   {
+    "arch": "SW09",
+    "kind": "shear_wall",
+    "size_arch": "3.70 x 0.40",
+    "str_bbox": [
+     1.69,
+     9.24,
+     5.39,
+     9.54
+    ],
+    "overlap": 1.0,
+    "offset": 0.05,
+    "area_arch": 1.48,
+    "area_str": 1.11,
+    "same_size": false
+   },
+   {
+    "arch": "SW10",
+    "kind": "shear_wall",
+    "size_arch": "2.80 x 0.40",
+    "str_bbox": [
+     2.51,
+     5.6,
+     5.31,
+     5.9
+    ],
+    "overlap": 1.0,
+    "offset": 0.05,
+    "area_arch": 1.12,
+    "area_str": 0.84,
+    "same_size": false
+   }
+  ]
+ },
+ "walls_under_beams": [
+  {
+   "wall": "W24",
+   "family": "0.25",
+   "len_under_beam": 5.18,
+   "beam": "ك2",
+   "beam_size": "25x90",
+   "assumed": false
+  },
+  {
+   "wall": "W35",
+   "family": "0.25",
+   "len_under_beam": 1.33,
+   "beam": "ك6",
+   "beam_size": "25x90",
+   "assumed": false
+  },
+  {
+   "wall": "W24",
+   "family": "0.25",
+   "len_under_beam": 5.18,
+   "beam": "ك2",
+   "beam_size": "25x90",
+   "assumed": false
+  },
+  {
+   "wall": "W61",
+   "family": "0.30",
+   "len_under_beam": 3.0,
+   "beam": "ك4",
+   "beam_size": "25x90",
+   "assumed": false
+  },
+  {
+   "wall": "W101",
+   "family": "0.40",
+   "len_under_beam": 0.52,
+   "beam": "ك5",
+   "beam_size": "25x70",
+   "assumed": false
+  },
+  {
+   "wall": "W102",
+   "family": "0.12",
+   "len_under_beam": 2.05,
+   "beam": "ك5",
+   "beam_size": "25x70",
+   "assumed": false
+  },
+  {
+   "wall": "W105",
+   "family": "0.12",
+   "len_under_beam": 2.77,
+   "beam": "ك1",
+   "beam_size": "25x70",
+   "assumed": false
+  },
+  {
+   "wall": "W110",
+   "family": "0.12",
+   "len_under_beam": 1.61,
+   "beam": "ك1",
+   "beam_size": "12x70",
+   "assumed": false
+  },
+  {
+   "wall": "W48",
+   "family": "0.25",
+   "len_under_beam": 1.2,
+   "beam": "ك3",
+   "beam_size": "30x90",
+   "assumed": false
+  },
+  {
+   "wall": "W65",
+   "family": "0.25",
+   "len_under_beam": 4.06,
+   "beam": "ك3",
+   "beam_size": "30x90",
+   "assumed": false
+  },
+  {
+   "wall": "W82",
+   "family": "0.25",
+   "len_under_beam": 0.83,
+   "beam": "ك3",
+   "beam_size": "30x90",
+   "assumed": false
+  }
+ ],
+ "areas": {
+  "structural_outline": 589.86,
+  "arch_footprint": 559.512
+ },
+ "png": "output/compare/F11_vs_str.png"
+}

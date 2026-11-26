@@ -1,0 +1,2393 @@
+{
+ "file": "Dewan_STR_REV01.dxf",
+ "storey_m": 3.3,
+ "note": "upper sheets renamed by the owner: السابع المتكرر=8, الثامن=9, التاسع=10, العاشر=11",
+ "calibration": {
+  "offset": [
+   12.9138,
+   18.4774
+  ],
+  "matched": 63,
+  "residual_max": 0.0032
+ },
+ "plans": [
+  {
+   "title": "سقف الارضي",
+   "ceiling_of": [
+    0
+   ],
+   "anchor": [
+    188.79,
+    690.172
+   ],
+   "level_top": 4.5,
+   "levels_top_by_floor": {
+    "0": 4.5
+   },
+   "level_source": "plan level mark",
+   "outline_area": 668.16,
+   "general_thickness": 0.2,
+   "zones": [
+    {
+     "thickness": 0.2,
+     "assumed": false,
+     "area": 399.2,
+     "labels": [
+      20
+     ],
+     "split_from": "سقف 6  و 5  و 3  و 2",
+     "bbox_local": [
+      -0.13,
+      2.76,
+      19.8,
+      29.0
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 82.86,
+     "labels": [
+      35
+     ],
+     "split_from": "سقف 6  و 5  و 3  و 2",
+     "bbox_local": [
+      -0.81,
+      -1.94,
+      19.72,
+      29.0
+     ]
+    },
+    {
+     "thickness": 0.2,
+     "assumed": true,
+     "area": 71.8,
+     "labels": [],
+     "split_from": null,
+     "bbox_local": [
+      -0.25,
+      30.58,
+      16.76,
+      34.94
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 69.94,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      -0.25,
+      34.86,
+      16.76,
+      39.75
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 41.89,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      -0.25,
+      27.58,
+      16.81,
+      30.64
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 0.95,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      14.38,
+      8.31,
+      15.1,
+      9.86
+     ]
+    }
+   ],
+   "area_by_thickness": {
+    "0.20": 399.2,
+    "0.20 (assumed)": 71.8,
+    "0.35": 195.64
+   },
+   "beams": [
+    {
+     "name": "ك2",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 5.15,
+     "bbox_local": [
+      9.26,
+      28.75,
+      14.41,
+      29.0
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.74,
+     "bbox_local": [
+      0.12,
+      9.54,
+      0.37,
+      12.28
+     ]
+    },
+    {
+     "name": "ك5",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.54,
+     "bbox_local": [
+      3.9,
+      12.28,
+      6.44,
+      12.53
+     ]
+    },
+    {
+     "name": "ك1",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.74,
+     "bbox_local": [
+      6.79,
+      9.53,
+      7.04,
+      12.28
+     ]
+    },
+    {
+     "name": "ك1",
+     "b": 0.12,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 1.65,
+     "bbox_local": [
+      5.39,
+      9.41,
+      7.04,
+      9.53
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.3,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 6.05,
+     "bbox_local": [
+      17.52,
+      18.3,
+      18.92,
+      24.3
+     ]
+    },
+    {
+     "name": "ك1",
+     "b": 0.3,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 1.56,
+     "bbox_local": [
+      0.13,
+      9.24,
+      1.69,
+      9.54
+     ]
+    },
+    {
+     "name": "ك4",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 3.6,
+     "bbox_local": [
+      10.35,
+      18.78,
+      10.6,
+      22.38
+     ]
+    },
+    {
+     "name": "ك6",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 1.3,
+     "bbox_local": [
+      9.26,
+      25.65,
+      10.56,
+      25.9
+     ]
+    },
+    {
+     "name": "ك2",
+     "b": 0.12,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 5.13,
+     "bbox_local": [
+      5.22,
+      21.8,
+      10.35,
+      21.92
+     ]
+    }
+   ],
+   "beam_labels": [
+    "ك3 30x90",
+    "ك2 25x90",
+    "ك3 25x70",
+    "ك5 25x70",
+    "ك3 25x70",
+    "ك1 30x70",
+    "ك6 25x90",
+    "ك4 25x90",
+    "ك1 25x70",
+    "ك1 12x70",
+    "ك2 12x70"
+   ],
+   "columns": 25
+  },
+  {
+   "title": "سقف الاول",
+   "ceiling_of": [
+    1
+   ],
+   "anchor": [
+    235.994,
+    690.8
+   ],
+   "level_top": 7.8,
+   "levels_top_by_floor": {
+    "1": 7.8
+   },
+   "level_source": "plan level mark",
+   "outline_area": 707.44,
+   "general_thickness": 0.2,
+   "zones": [
+    {
+     "thickness": 0.2,
+     "assumed": false,
+     "area": 414.35,
+     "labels": [
+      20
+     ],
+     "split_from": "سقف 6  و 5  و 3  و 2",
+     "bbox_local": [
+      -0.13,
+      2.76,
+      19.83,
+      29.0
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 98.47,
+     "labels": [
+      35
+     ],
+     "split_from": "سقف 6  و 5  و 3  و 2",
+     "bbox_local": [
+      -0.96,
+      -2.08,
+      19.83,
+      29.0
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 76.18,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      -0.39,
+      34.88,
+      16.76,
+      40.02
+     ]
+    },
+    {
+     "thickness": 0.2,
+     "assumed": true,
+     "area": 73.33,
+     "labels": [],
+     "split_from": null,
+     "bbox_local": [
+      -0.4,
+      30.57,
+      16.76,
+      34.94
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 42.83,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      -0.4,
+      27.58,
+      16.79,
+      30.64
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 0.95,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      14.38,
+      8.32,
+      15.1,
+      9.86
+     ]
+    }
+   ],
+   "area_by_thickness": {
+    "0.20": 414.35,
+    "0.20 (assumed)": 73.33,
+    "0.35": 218.44
+   },
+   "beams": [
+    {
+     "name": "ك6",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 1.3,
+     "bbox_local": [
+      9.26,
+      25.65,
+      10.56,
+      25.9
+     ]
+    },
+    {
+     "name": "ك6",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 1.3,
+     "bbox_local": [
+      9.26,
+      25.65,
+      10.56,
+      25.9
+     ]
+    },
+    {
+     "name": "ك2",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 5.15,
+     "bbox_local": [
+      9.26,
+      28.75,
+      14.41,
+      29.0
+     ]
+    },
+    {
+     "name": "ك4",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 3.6,
+     "bbox_local": [
+      10.35,
+      18.78,
+      10.6,
+      22.38
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.74,
+     "bbox_local": [
+      0.77,
+      9.54,
+      1.02,
+      12.28
+     ]
+    },
+    {
+     "name": "ك5",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.54,
+     "bbox_local": [
+      3.9,
+      12.28,
+      6.44,
+      12.53
+     ]
+    },
+    {
+     "name": "ك1",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.74,
+     "bbox_local": [
+      6.79,
+      9.53,
+      7.04,
+      12.28
+     ]
+    },
+    {
+     "name": "ك1",
+     "b": 0.12,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 1.65,
+     "bbox_local": [
+      5.39,
+      9.41,
+      7.04,
+      9.53
+     ]
+    },
+    {
+     "name": "ك6",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 1.3,
+     "bbox_local": [
+      9.26,
+      25.65,
+      10.56,
+      25.9
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.3,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 6.05,
+     "bbox_local": [
+      17.52,
+      18.3,
+      18.92,
+      24.3
+     ]
+    }
+   ],
+   "beam_labels": [
+    "ك3 30x90",
+    "ك2 25x90",
+    "ك3 25x70",
+    "ك5 25x70",
+    "ك3 25x70",
+    "ك1 30x70",
+    "ك6 25x90",
+    "ك4 25x90",
+    "ك1 25x70",
+    "ك1 12x70"
+   ],
+   "columns": 24
+  },
+  {
+   "title": "سقف الرابع",
+   "ceiling_of": [
+    4
+   ],
+   "anchor": [
+    340.373,
+    693.727
+   ],
+   "level_top": 17.7,
+   "levels_top_by_floor": {
+    "4": 17.7
+   },
+   "level_source": "plan level mark",
+   "outline_area": 643.67,
+   "general_thickness": 0.2,
+   "zones": [
+    {
+     "thickness": 0.2,
+     "assumed": false,
+     "area": 417.17,
+     "labels": [
+      20
+     ],
+     "split_from": null,
+     "bbox_local": [
+      -0.13,
+      2.77,
+      19.83,
+      29.05
+     ]
+    },
+    {
+     "thickness": 0.2,
+     "assumed": true,
+     "area": 70.42,
+     "labels": [],
+     "split_from": null,
+     "bbox_local": [
+      0.27,
+      30.57,
+      16.76,
+      34.94
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 63.37,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      0.17,
+      34.87,
+      16.76,
+      39.45
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 49.57,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      0.17,
+      -1.52,
+      13.61,
+      2.85
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 40.82,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      0.27,
+      27.57,
+      16.76,
+      30.64
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 0.95,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      14.39,
+      8.32,
+      15.1,
+      9.87
+     ]
+    }
+   ],
+   "area_by_thickness": {
+    "0.20": 417.17,
+    "0.20 (assumed)": 70.42,
+    "0.35": 154.71
+   },
+   "beams": [
+    {
+     "name": "ك6",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 1.3,
+     "bbox_local": [
+      9.26,
+      25.65,
+      10.56,
+      25.9
+     ]
+    },
+    {
+     "name": "ك2",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 5.15,
+     "bbox_local": [
+      9.26,
+      28.75,
+      14.41,
+      29.0
+     ]
+    },
+    {
+     "name": "ك4",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 3.6,
+     "bbox_local": [
+      10.35,
+      18.78,
+      10.6,
+      22.38
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.74,
+     "bbox_local": [
+      0.77,
+      9.54,
+      1.02,
+      12.28
+     ]
+    },
+    {
+     "name": null,
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": true,
+     "length": 2.54,
+     "bbox_local": [
+      3.9,
+      12.28,
+      6.44,
+      12.53
+     ]
+    },
+    {
+     "name": null,
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": true,
+     "length": 2.74,
+     "bbox_local": [
+      6.79,
+      9.54,
+      7.04,
+      12.28
+     ]
+    },
+    {
+     "name": null,
+     "b": 0.12,
+     "depth": 0.9,
+     "assumed": true,
+     "length": 1.65,
+     "bbox_local": [
+      5.39,
+      9.42,
+      7.04,
+      9.54
+     ]
+    },
+    {
+     "name": "ك1",
+     "b": 0.3,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 0.92,
+     "bbox_local": [
+      0.77,
+      9.24,
+      1.69,
+      9.54
+     ]
+    },
+    {
+     "name": null,
+     "b": 0.35,
+     "depth": 0.9,
+     "assumed": true,
+     "length": 6.32,
+     "bbox_local": [
+      16.31,
+      29.0,
+      16.66,
+      35.32
+     ]
+    },
+    {
+     "name": null,
+     "b": 0.35,
+     "depth": 0.9,
+     "assumed": true,
+     "length": 6.32,
+     "bbox_local": [
+      16.31,
+      29.0,
+      16.66,
+      35.32
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.3,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 6.05,
+     "bbox_local": [
+      17.52,
+      18.3,
+      18.92,
+      24.3
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.3,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 6.05,
+     "bbox_local": [
+      17.52,
+      18.3,
+      18.92,
+      24.3
+     ]
+    },
+    {
+     "name": null,
+     "b": 0.35,
+     "depth": 0.9,
+     "assumed": true,
+     "length": 6.32,
+     "bbox_local": [
+      16.31,
+      29.0,
+      16.66,
+      35.32
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.3,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 6.05,
+     "bbox_local": [
+      17.52,
+      18.3,
+      18.92,
+      24.3
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.3,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 6.05,
+     "bbox_local": [
+      17.52,
+      18.3,
+      18.92,
+      24.3
+     ]
+    }
+   ],
+   "beam_labels": [
+    "ك4 25x90",
+    "ك2 25x90",
+    "ك3 25x70",
+    "ك3 25x70",
+    "ك1 30x70",
+    "ك6 25x90",
+    "ك3 30x90"
+   ],
+   "columns": 24
+  },
+  {
+   "title": "سقف 6  و 5  و 3  و 2",
+   "ceiling_of": [
+    2,
+    3,
+    5,
+    6
+   ],
+   "anchor": [
+    388.484,
+    690.814
+   ],
+   "level_top": null,
+   "levels_top_by_floor": {
+    "2": 11.1,
+    "3": 14.4,
+    "5": 21.0,
+    "6": 24.3
+   },
+   "level_source": "no mark on the sheet: nearest marked ceiling +/- 3.3 m per storey",
+   "outline_area": 635.06,
+   "general_thickness": 0.2,
+   "zones": [
+    {
+     "thickness": 0.2,
+     "assumed": false,
+     "area": 414.6,
+     "labels": [
+      20
+     ],
+     "split_from": null,
+     "bbox_local": [
+      -0.13,
+      2.76,
+      19.83,
+      29.0
+     ]
+    },
+    {
+     "thickness": 0.2,
+     "assumed": true,
+     "area": 69.38,
+     "labels": [],
+     "split_from": null,
+     "bbox_local": [
+      0.4,
+      30.56,
+      16.76,
+      34.94
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 61.45,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      0.17,
+      34.87,
+      16.76,
+      39.45
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 47.2,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      0.17,
+      -1.52,
+      13.61,
+      2.85
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 40.06,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      0.4,
+      27.56,
+      16.76,
+      30.64
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 0.95,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      14.39,
+      8.32,
+      15.1,
+      9.87
+     ]
+    }
+   ],
+   "area_by_thickness": {
+    "0.20": 414.6,
+    "0.20 (assumed)": 69.38,
+    "0.35": 149.66
+   },
+   "beams": [
+    {
+     "name": "ك6",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 1.3,
+     "bbox_local": [
+      9.26,
+      25.65,
+      10.56,
+      25.9
+     ]
+    },
+    {
+     "name": "ك2",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 5.15,
+     "bbox_local": [
+      9.26,
+      28.75,
+      14.41,
+      29.0
+     ]
+    },
+    {
+     "name": "ك4",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 3.6,
+     "bbox_local": [
+      10.35,
+      18.78,
+      10.6,
+      22.38
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.74,
+     "bbox_local": [
+      0.77,
+      9.54,
+      1.02,
+      12.28
+     ]
+    },
+    {
+     "name": "ك5",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.54,
+     "bbox_local": [
+      3.9,
+      12.28,
+      6.44,
+      12.53
+     ]
+    },
+    {
+     "name": "ك1",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.74,
+     "bbox_local": [
+      6.78,
+      9.53,
+      7.04,
+      12.28
+     ]
+    },
+    {
+     "name": "ك1",
+     "b": 0.12,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 1.65,
+     "bbox_local": [
+      5.39,
+      9.42,
+      7.04,
+      9.54
+     ]
+    },
+    {
+     "name": "ك1",
+     "b": 0.3,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 0.92,
+     "bbox_local": [
+      0.77,
+      9.24,
+      1.69,
+      9.54
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.3,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 6.05,
+     "bbox_local": [
+      17.52,
+      18.3,
+      18.92,
+      24.3
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.3,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 6.05,
+     "bbox_local": [
+      17.52,
+      18.3,
+      18.92,
+      24.3
+     ]
+    }
+   ],
+   "beam_labels": [
+    "ك3 30x90",
+    "ك2 25x90",
+    "ك3 25x70",
+    "ك5 25x70",
+    "ك3 25x70",
+    "ك1 30x70",
+    "ك6 25x90",
+    "ك4 25x90",
+    "ك1 25x70",
+    "ك1 12x70"
+   ],
+   "columns": 24
+  },
+  {
+   "title": "سقف السابع",
+   "ceiling_of": [
+    7
+   ],
+   "anchor": [
+    499.676,
+    690.608
+   ],
+   "level_top": 27.6,
+   "levels_top_by_floor": {
+    "7": 27.6
+   },
+   "level_source": "plan level mark",
+   "outline_area": 643.67,
+   "general_thickness": 0.2,
+   "zones": [
+    {
+     "thickness": 0.2,
+     "assumed": false,
+     "area": 417.11,
+     "labels": [
+      20
+     ],
+     "split_from": null,
+     "bbox_local": [
+      -0.13,
+      2.77,
+      19.83,
+      29.0
+     ]
+    },
+    {
+     "thickness": 0.2,
+     "assumed": true,
+     "area": 70.42,
+     "labels": [],
+     "split_from": null,
+     "bbox_local": [
+      0.27,
+      30.57,
+      16.76,
+      34.94
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 63.37,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      0.17,
+      34.87,
+      16.76,
+      39.45
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 49.57,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      0.17,
+      -1.52,
+      13.61,
+      2.85
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 40.85,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      0.27,
+      27.57,
+      16.83,
+      30.64
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 0.96,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      14.38,
+      8.32,
+      15.1,
+      9.87
+     ]
+    }
+   ],
+   "area_by_thickness": {
+    "0.20": 417.11,
+    "0.20 (assumed)": 70.42,
+    "0.35": 154.75
+   },
+   "beams": [
+    {
+     "name": "ك6",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 1.3,
+     "bbox_local": [
+      9.26,
+      25.65,
+      10.56,
+      25.9
+     ]
+    },
+    {
+     "name": "ك2",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 5.15,
+     "bbox_local": [
+      9.26,
+      28.75,
+      14.41,
+      29.0
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.74,
+     "bbox_local": [
+      1.17,
+      9.54,
+      1.42,
+      12.28
+     ]
+    },
+    {
+     "name": "ك5",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.53,
+     "bbox_local": [
+      3.9,
+      12.28,
+      6.43,
+      12.53
+     ]
+    },
+    {
+     "name": "ك1",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.74,
+     "bbox_local": [
+      6.79,
+      9.53,
+      7.04,
+      12.28
+     ]
+    },
+    {
+     "name": "ك1",
+     "b": 0.12,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 1.65,
+     "bbox_local": [
+      5.39,
+      9.41,
+      7.04,
+      9.53
+     ]
+    },
+    {
+     "name": "ك1",
+     "b": 0.3,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 0.52,
+     "bbox_local": [
+      1.17,
+      9.24,
+      1.69,
+      9.54
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.3,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 6.05,
+     "bbox_local": [
+      17.52,
+      18.3,
+      18.92,
+      24.3
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.3,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 6.05,
+     "bbox_local": [
+      17.52,
+      18.3,
+      18.92,
+      24.3
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.3,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 6.05,
+     "bbox_local": [
+      17.52,
+      18.3,
+      18.92,
+      24.3
+     ]
+    },
+    {
+     "name": "ك4",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 3.6,
+     "bbox_local": [
+      10.35,
+      18.78,
+      10.6,
+      22.38
+     ]
+    }
+   ],
+   "beam_labels": [
+    "ك2 25x70",
+    "ك3 30x90",
+    "ك2 25x90",
+    "ك3 25x70",
+    "ك5 25x70",
+    "ك3 25x70",
+    "ك1 30x70",
+    "ك6 25x90",
+    "ك4 25x90",
+    "ك1 25x70",
+    "ك1 12x70"
+   ],
+   "columns": 24
+  },
+  {
+   "title": "سقف السابع المتكرر",
+   "ceiling_of": [
+    8
+   ],
+   "anchor": [
+    547.377,
+    690.608
+   ],
+   "level_top": 30.9,
+   "levels_top_by_floor": {
+    "8": 30.9
+   },
+   "level_source": "plan level mark",
+   "outline_area": 643.67,
+   "general_thickness": 0.2,
+   "zones": [
+    {
+     "thickness": 0.2,
+     "assumed": false,
+     "area": 417.11,
+     "labels": [
+      20
+     ],
+     "split_from": null,
+     "bbox_local": [
+      -0.13,
+      2.77,
+      19.83,
+      29.0
+     ]
+    },
+    {
+     "thickness": 0.2,
+     "assumed": true,
+     "area": 70.42,
+     "labels": [],
+     "split_from": null,
+     "bbox_local": [
+      0.27,
+      30.57,
+      16.76,
+      34.94
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 63.37,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      0.17,
+      34.87,
+      16.76,
+      39.45
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 49.57,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      0.17,
+      -1.52,
+      13.61,
+      2.85
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 40.85,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      0.27,
+      27.57,
+      16.83,
+      30.64
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 0.96,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      14.38,
+      8.32,
+      15.1,
+      9.87
+     ]
+    }
+   ],
+   "area_by_thickness": {
+    "0.20": 417.11,
+    "0.20 (assumed)": 70.42,
+    "0.35": 154.75
+   },
+   "beams": [
+    {
+     "name": "ك6",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 1.3,
+     "bbox_local": [
+      9.26,
+      25.65,
+      10.56,
+      25.9
+     ]
+    },
+    {
+     "name": "ك2",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 5.15,
+     "bbox_local": [
+      9.26,
+      28.75,
+      14.41,
+      29.0
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.74,
+     "bbox_local": [
+      1.17,
+      9.54,
+      1.42,
+      12.28
+     ]
+    },
+    {
+     "name": "ك5",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.53,
+     "bbox_local": [
+      3.9,
+      12.28,
+      6.43,
+      12.53
+     ]
+    },
+    {
+     "name": "ك1",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.74,
+     "bbox_local": [
+      6.79,
+      9.53,
+      7.04,
+      12.28
+     ]
+    },
+    {
+     "name": "ك1",
+     "b": 0.12,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 1.65,
+     "bbox_local": [
+      5.39,
+      9.41,
+      7.04,
+      9.53
+     ]
+    },
+    {
+     "name": "ك1",
+     "b": 0.3,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 0.52,
+     "bbox_local": [
+      1.17,
+      9.24,
+      1.69,
+      9.54
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.3,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 6.05,
+     "bbox_local": [
+      17.52,
+      18.3,
+      18.92,
+      24.3
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.3,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 6.05,
+     "bbox_local": [
+      17.52,
+      18.3,
+      18.92,
+      24.3
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.3,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 6.05,
+     "bbox_local": [
+      17.52,
+      18.3,
+      18.92,
+      24.3
+     ]
+    },
+    {
+     "name": "ك4",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 3.6,
+     "bbox_local": [
+      10.35,
+      18.78,
+      10.6,
+      22.38
+     ]
+    }
+   ],
+   "beam_labels": [
+    "ك2 25x70",
+    "ك3 30x90",
+    "ك2 25x90",
+    "ك3 25x70",
+    "ك5 25x70",
+    "ك3 25x70",
+    "ك1 30x70",
+    "ك6 25x90",
+    "ك4 25x90",
+    "ك1 25x70",
+    "ك1 12x70"
+   ],
+   "columns": 24
+  },
+  {
+   "title": "سقف الثامن",
+   "ceiling_of": [
+    9
+   ],
+   "anchor": [
+    642.296,
+    684.019
+   ],
+   "level_top": 34.2,
+   "levels_top_by_floor": {
+    "9": 34.2
+   },
+   "level_source": "plan level mark",
+   "outline_area": 609.07,
+   "general_thickness": 0.2,
+   "zones": [
+    {
+     "thickness": 0.2,
+     "assumed": false,
+     "area": 409.63,
+     "labels": [
+      20
+     ],
+     "split_from": null,
+     "bbox_local": [
+      -0.13,
+      2.75,
+      19.81,
+      29.0
+     ]
+    },
+    {
+     "thickness": 0.2,
+     "assumed": true,
+     "area": 66.9,
+     "labels": [],
+     "split_from": null,
+     "bbox_local": [
+      1.09,
+      30.58,
+      16.76,
+      34.94
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 52.11,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      1.09,
+      34.86,
+      16.76,
+      38.53
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 39.75,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      1.31,
+      -0.6,
+      13.61,
+      2.85
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 38.35,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      1.09,
+      27.58,
+      16.82,
+      30.64
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 0.94,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      14.38,
+      8.32,
+      15.1,
+      9.86
+     ]
+    }
+   ],
+   "area_by_thickness": {
+    "0.20": 409.63,
+    "0.20 (assumed)": 66.9,
+    "0.35": 131.15
+   },
+   "beams": [
+    {
+     "name": "ك6",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 1.3,
+     "bbox_local": [
+      9.26,
+      25.65,
+      10.56,
+      25.9
+     ]
+    },
+    {
+     "name": "ك2",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 5.15,
+     "bbox_local": [
+      9.26,
+      28.75,
+      14.41,
+      29.0
+     ]
+    },
+    {
+     "name": "ك5",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.54,
+     "bbox_local": [
+      3.9,
+      12.28,
+      6.44,
+      12.53
+     ]
+    },
+    {
+     "name": "ك1",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.74,
+     "bbox_local": [
+      6.79,
+      9.53,
+      7.04,
+      12.28
+     ]
+    },
+    {
+     "name": "ك1",
+     "b": 0.12,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 1.65,
+     "bbox_local": [
+      5.39,
+      9.41,
+      7.04,
+      9.53
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.74,
+     "bbox_local": [
+      1.69,
+      9.54,
+      1.94,
+      12.28
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.3,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 6.05,
+     "bbox_local": [
+      17.52,
+      18.3,
+      18.92,
+      24.3
+     ]
+    },
+    {
+     "name": "ك4",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 3.6,
+     "bbox_local": [
+      10.35,
+      18.78,
+      10.6,
+      22.38
+     ]
+    }
+   ],
+   "beam_labels": [
+    "ك3 30x90",
+    "ك2 25x90",
+    "ك5 25x70",
+    "ك3 25x70",
+    "ك6 25x90",
+    "ك4 25x90",
+    "ك1 25x70",
+    "ك1 12x70"
+   ],
+   "columns": 24
+  },
+  {
+   "title": "سقف التاسع",
+   "ceiling_of": [
+    10
+   ],
+   "anchor": [
+    690.111,
+    686.068
+   ],
+   "level_top": 37.5,
+   "levels_top_by_floor": {
+    "10": 37.5
+   },
+   "level_source": "plan level mark",
+   "outline_area": 586.57,
+   "general_thickness": 0.2,
+   "zones": [
+    {
+     "thickness": 0.2,
+     "assumed": false,
+     "area": 406.48,
+     "labels": [
+      20
+     ],
+     "split_from": null,
+     "bbox_local": [
+      -0.13,
+      2.77,
+      19.81,
+      29.0
+     ]
+    },
+    {
+     "thickness": 0.2,
+     "assumed": true,
+     "area": 64.3,
+     "labels": [],
+     "split_from": null,
+     "bbox_local": [
+      1.69,
+      30.58,
+      16.76,
+      34.94
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 44.05,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      1.41,
+      34.88,
+      16.76,
+      38.21
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 36.54,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      1.7,
+      27.58,
+      16.82,
+      30.64
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 32.97,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      1.77,
+      -0.29,
+      13.61,
+      2.85
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 0.95,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      14.39,
+      8.32,
+      15.1,
+      9.86
+     ]
+    }
+   ],
+   "area_by_thickness": {
+    "0.20": 406.48,
+    "0.20 (assumed)": 64.3,
+    "0.35": 114.5
+   },
+   "beams": [
+    {
+     "name": "ك2",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 5.15,
+     "bbox_local": [
+      9.26,
+      28.75,
+      14.41,
+      29.0
+     ]
+    },
+    {
+     "name": "ك6",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 1.3,
+     "bbox_local": [
+      9.26,
+      25.65,
+      10.56,
+      25.9
+     ]
+    },
+    {
+     "name": "ك2",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 5.15,
+     "bbox_local": [
+      9.26,
+      28.75,
+      14.41,
+      29.0
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.74,
+     "bbox_local": [
+      1.69,
+      9.54,
+      1.94,
+      12.28
+     ]
+    },
+    {
+     "name": "ك5",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.54,
+     "bbox_local": [
+      3.9,
+      12.28,
+      6.44,
+      12.53
+     ]
+    },
+    {
+     "name": "ك1",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.74,
+     "bbox_local": [
+      6.79,
+      9.54,
+      7.04,
+      12.28
+     ]
+    },
+    {
+     "name": "ك1",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.74,
+     "bbox_local": [
+      6.79,
+      9.54,
+      7.04,
+      12.28
+     ]
+    },
+    {
+     "name": "ك1",
+     "b": 0.12,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 1.65,
+     "bbox_local": [
+      5.39,
+      9.42,
+      7.04,
+      9.54
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.3,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 6.05,
+     "bbox_local": [
+      17.52,
+      18.3,
+      18.92,
+      24.3
+     ]
+    },
+    {
+     "name": "ك4",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 3.6,
+     "bbox_local": [
+      10.35,
+      18.78,
+      10.6,
+      22.38
+     ]
+    }
+   ],
+   "beam_labels": [
+    "ك3 30x90",
+    "ك2 25x90",
+    "ك5 25x70",
+    "ك3 25x70",
+    "ك6 25x90",
+    "ك4 25x90",
+    "ك1 25x70",
+    "ك1 12x70"
+   ],
+   "columns": 24
+  },
+  {
+   "title": "سقف العاشر",
+   "ceiling_of": [
+    11
+   ],
+   "anchor": [
+    774.199,
+    686.654
+   ],
+   "level_top": 40.8,
+   "levels_top_by_floor": {
+    "11": 40.8
+   },
+   "level_source": "plan level mark",
+   "outline_area": 589.86,
+   "general_thickness": 0.2,
+   "zones": [
+    {
+     "thickness": 0.2,
+     "assumed": false,
+     "area": 408.55,
+     "labels": [
+      20
+     ],
+     "split_from": null,
+     "bbox_local": [
+      -0.13,
+      2.75,
+      19.81,
+      29.0
+     ]
+    },
+    {
+     "thickness": 0.2,
+     "assumed": true,
+     "area": 64.31,
+     "labels": [],
+     "split_from": null,
+     "bbox_local": [
+      1.69,
+      30.58,
+      16.76,
+      34.94
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 44.05,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      1.41,
+      34.88,
+      16.76,
+      38.2
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 36.54,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      1.7,
+      27.58,
+      16.82,
+      30.64
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 34.05,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      1.31,
+      -0.29,
+      13.61,
+      2.85
+     ]
+    },
+    {
+     "thickness": 0.35,
+     "assumed": false,
+     "area": 0.95,
+     "labels": [
+      35
+     ],
+     "split_from": null,
+     "bbox_local": [
+      14.39,
+      8.32,
+      15.1,
+      9.87
+     ]
+    }
+   ],
+   "area_by_thickness": {
+    "0.20": 408.55,
+    "0.20 (assumed)": 64.31,
+    "0.35": 115.59
+   },
+   "beams": [
+    {
+     "name": "ك2",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 5.15,
+     "bbox_local": [
+      9.26,
+      28.75,
+      14.41,
+      29.0
+     ]
+    },
+    {
+     "name": "ك6",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 1.3,
+     "bbox_local": [
+      9.26,
+      25.65,
+      10.56,
+      25.9
+     ]
+    },
+    {
+     "name": "ك2",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 5.15,
+     "bbox_local": [
+      9.26,
+      28.75,
+      14.41,
+      29.0
+     ]
+    },
+    {
+     "name": "ك4",
+     "b": 0.25,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 3.6,
+     "bbox_local": [
+      10.35,
+      18.78,
+      10.6,
+      22.38
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.74,
+     "bbox_local": [
+      1.69,
+      9.54,
+      1.94,
+      12.28
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.74,
+     "bbox_local": [
+      1.69,
+      9.54,
+      1.94,
+      12.28
+     ]
+    },
+    {
+     "name": "ك5",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.54,
+     "bbox_local": [
+      3.9,
+      12.28,
+      6.44,
+      12.53
+     ]
+    },
+    {
+     "name": "ك1",
+     "b": 0.25,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 2.74,
+     "bbox_local": [
+      6.79,
+      9.53,
+      7.04,
+      12.28
+     ]
+    },
+    {
+     "name": "ك1",
+     "b": 0.12,
+     "depth": 0.7,
+     "assumed": false,
+     "length": 1.65,
+     "bbox_local": [
+      5.39,
+      9.41,
+      7.04,
+      9.53
+     ]
+    },
+    {
+     "name": "ك3",
+     "b": 0.3,
+     "depth": 0.9,
+     "assumed": false,
+     "length": 6.05,
+     "bbox_local": [
+      17.52,
+      18.3,
+      18.92,
+      24.3
+     ]
+    }
+   ],
+   "beam_labels": [
+    "ك3 30x90",
+    "ك2 25x90",
+    "ك5 25x70",
+    "ك3 25x70",
+    "ك6 25x90",
+    "ك4 25x90",
+    "ك1 25x70",
+    "ك1 12x70"
+   ],
+   "columns": 24
+  }
+ ]
+}

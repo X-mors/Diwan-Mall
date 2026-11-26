@@ -103,6 +103,8 @@ class Params:
     opening_h: float | None = None    # door-less openings (lift landings, 0.80 gap): None -> door_h
     plaster_h: float | None = None    # internal plaster height: None -> storey - slab (to the soffit)
     facade_h: float | None = None     # external face height per storey: None -> storey
+    heights: str = "structural"       # masonry height per wall: "structural" = 3.20 - concrete depth above it
+                                      # (slab 20/35 zone or beam, tools/masonry_heights.py); "flat" = H_m everywhere
 
     @property
     def H_m(self):                    # masonry height
@@ -292,18 +294,25 @@ def _wall_opening_heights(op_type, P):
     return {"door": P.door_h, "window": P.win_h, "opening": P.open_h}.get(op_type, P.door_h)
 
 
-def masonry_estimate(walls, P, exclude_ids=()):
-    """PRELIMINARY masonry per family x kind: gross x H_m - sum(width x height) of the openings
-    bridged in each wall record (widths = masonry gaps measured by walls.py)."""
-    H = P.H_m
+def masonry_estimate(walls, P, exclude_ids=(), HW=None):
+    """PRELIMINARY masonry per family x kind: gross x H - sum(width x height) of the openings
+    bridged in each wall record (widths = masonry gaps measured by walls.py).
+    HW (masonry_heights.wall_heights) -> H per wall = 3.20 - concrete depth above its centre line
+    (length-weighted), openings capped at / windows up to the height at the opening; else H = P.H_m."""
+    import masonry_heights as mh
     agg = defaultdict(lambda: defaultdict(float))
     for w in walls:
         if w["id"] in exclude_ids:
             continue
         g = w["length_gross"]
+        H = HW[w["id"]]["H_mean"] if HW and w["id"] in HW else P.H_m
         ded = defaultdict(float)
         for o in w["openings"]:
-            h = min(_wall_opening_heights(o["type"], P), H)
+            Ho = (mh.height_at(HW, *o["at"]) if HW and o.get("at") else None) or H
+            if o["type"] == "window" and P.window_h is None:
+                h = max(0.0, Ho - P.window_sill)
+            else:
+                h = min(_wall_opening_heights(o["type"], P), Ho)
             ded[o["type"]] += o["width"] * h
         gross_a = g * H
         net_a = gross_a - sum(ded.values())
@@ -491,8 +500,14 @@ def merge_floor(b, P: Params):
     ov = wall_structure_overlaps(walls, elements)
     on_concrete = sorted({o["wall"] for o in ov if o["model_space"] and o["overlap_frac"] >= 0.5})
     on_tr = sorted({o["wall"] for o in ov if o["tr_only"] and o["overlap_frac"] >= 0.3} - set(on_concrete))
-    mas = masonry_estimate(walls, P, exclude_ids=on_concrete)
-    mas_if_tr = masonry_estimate(walls, P, exclude_ids=set(on_concrete) | set(on_tr))
+    HW = None
+    if P.heights == "structural" and b.get("floor_no"):
+        import masonry_heights as mh
+        HW = mh.wall_heights(b["floor_no"], walls, elements)
+        if HW.get("_plan") is None:
+            HW = None
+    mas = masonry_estimate(walls, P, exclude_ids=on_concrete, HW=HW)
+    mas_if_tr = masonry_estimate(walls, P, exclude_ids=set(on_concrete) | set(on_tr), HW=HW)
     pla = plaster_estimate(R, O, S, W["totals"], P, conc_geom=concrete_faces_on_rooms(b), footprint=b.get("footprint"))
 
     # ---- cross-checks between readers
@@ -617,7 +632,10 @@ def merge_floor(b, P: Params):
         "params": P.as_dict(),
         "walls": {"totals": W["totals"], "thickness_histogram_net": W["thickness_histogram_net"],
                   "openings_summary": W.get("openings_summary"),
-                  "needs_check": len(nc_w), "records": [_compact_wall(w) for w in walls]},
+                  "needs_check": len(nc_w),
+                  "records": [_compact_wall(w) | ({"masonry_height": HW[w["id"]]["H_mean"],
+                                                   "masonry_height_runs": HW[w["id"]]["runs"]} if HW else {})
+                              for w in walls]},
         "openings": {"summary": O["summary"], "doors": [_compact_door(d) for d in doors],
                      "windows": [_compact_window(w) for w in O["windows"]],
                      "openings": [{k: o[k] for k in ("id", "kind", "width", "wall_t", "ends", "side_a", "side_b")
@@ -638,6 +656,11 @@ def merge_floor(b, P: Params):
         "preliminary": {
             "status": "PRELIMINARY / تقديري — heights are assumptions, not read from the plans",
             "masonry": mas,
+            "masonry_heights": ({**{k: v for k, v in HW["_meta"].items()},
+                                 **__import__("masonry_heights").floor_summary(HW, [w for w in walls if w["id"] not in on_concrete]),
+                                 "rule": "H = 3.20 - concrete depth above the wall (slab 0.20/0.35 zone or beam depth); "
+                                         "structural sheet = ceiling of this floor"}
+                                if HW else {"rule": f"flat H_m = {P.H_m}"}),
             "masonry_excluded_on_concrete": on_concrete,
             "masonry_if_tr_is_real": {"excluded_walls": on_tr, "ALL|ALL": mas_if_tr.get("ALL|ALL")},
             "plaster": pla,
@@ -1113,15 +1136,19 @@ def write_workbook(plans, P: Params, out_xlsx):
 
     # ---------------- 7. preliminary masonry
     sh = Sheet(wb, "مباني تقديري", [W_ITEM] + [14] * (nF + 1))
-    sh.title("حصر المباني — تقديري أوّلي (الارتفاعات افتراضات، ليست من اللوحات)", [
-        f"ارتفاع الدور (منسوب لمنسوب، من اللوحات) = {P.storey:.2f} م؛ سمك البلاطة (مجهول — افتراض) = {P.slab:.2f} م؛ "
-        f"سقوط الكمرات فوق الحوائط (مجهول — افتراض) = {P.beam:.2f} م",
-        f"ارتفاع المباني المستخدم = {P.H_m:.2f} م (= ارتفاع الدور − البلاطة − الكمرة)",
-        f"ارتفاع الباب = {P.door_h:.2f} م (عُرف الحصر السابق)؛ جلسة الشباك = {P.window_sill:.2f} م؛ ارتفاع الشباك = {P.win_h:.2f} م؛ "
+    sh.title("حصر المباني — تقديري أوّلي" + (" (ارتفاع كل حائط من اللوحة الإنشائية)" if P.heights == "structural" else " (ارتفاع ثابت مفترض)"), [
+        (f"ارتفاع الدور المنفذ = {P.storey:.2f} م (وش بلاطة لوش بلاطة). ارتفاع المباني لكل حائط = {P.storey:.2f} − عمق الخرسانة فوقه "
+         "من سقف نفس الدور في الإنشائي: بلاطة 0.20 ← 3.00، بلاطة 0.35 ← 2.85، كمرة 25×70 ← 2.50، كمرة 25×90 ← 2.30 "
+         "(حائط يمر تحت أكثر من عمق = متوسط مرجّح بالطول). التفاصيل: masonry_heights في ملفات output/plan/Fnn.json")
+        if P.heights == "structural" else
+        (f"ارتفاع الدور = {P.storey:.2f} م؛ سمك البلاطة (افتراض) = {P.slab:.2f} م؛ سقوط الكمرات (افتراض) = {P.beam:.2f} م؛ "
+         f"ارتفاع المباني المستخدم = {P.H_m:.2f} م"),
+        f"ارتفاع الباب = {P.door_h:.2f} م (عُرف الحصر السابق)؛ جلسة الشباك = {P.window_sill:.2f} م؛ ارتفاع الشباك = "
+        + ("ارتفاع المباني عند الشباك − الجلسة؛ " if P.heights == "structural" and P.window_h is None else f"{P.win_h:.2f} م؛ ") +
         f"ارتفاع الفتحات بلا باب (فتحتا المصعد، فتحة 0.80) = {P.open_h:.2f} م",
         "المساحة = الطول الإجمالي (طول المحور عبر الفتحات) × ارتفاع المباني − Σ(عرض الفتحة × ارتفاعها)؛ عرض الفتحة كما قِيس في الحائط (walls.py).",
         "غير مشمول: الحائط الستائري والزجاج المنحني (لا مباني)، الدروات، الأعتاب/الكمرات فوق الفتحات، عناصر بلوك tr (انظر التعارضات)، الحوائط الواقعة على خرسانة.",
-        "الأرقام للمراجعة والمقارنة فقط — تتغير بتأكيد المهندس للارتفاعات وسمك البلاطة وعمق الكمرات."])
+        "الأرقام للمراجعة والمقارنة فقط — تتغير بتأكيد المهندس للأبواب والجلسات."])
     sh.header(["البند"] + F + sumcol)
     mfams = [f for f in FAMILY_ORDER if any(f"{f}|ALL" in p["preliminary"]["masonry"] for p in plans)]
     for f in mfams:
@@ -1221,12 +1248,17 @@ def write_workbook(plans, P: Params, out_xlsx):
     sh.header(["المعامل", "القيمة", "المصدر / الحالة"])
     for lab, v, src in (
             ("ارتفاع الدور (منسوب لمنسوب)", P.storey, "من علامات المناسيب في اللوحات (+8.90 … +28.10) — مؤكد"),
-            ("سمك البلاطة", P.slab, "مجهول — افتراض (0.20 يعطي ارتفاع مباني 3.00 = عُرف الحصر السابق)"),
-            ("سقوط الكمرات فوق الحوائط", P.beam, "مجهول — لا توجد كمرات في المساقط المعمارية؛ يلزم اللوحات الإنشائية"),
-            ("ارتفاع المباني", P.H_m, "محسوب"),
+            *((("ارتفاع المباني لكل حائط", "3.20 − عمق الخرسانة",
+                 "من اللوحة الإنشائية (سقف نفس الدور): بلاطة 0.20 ← 3.00، بلاطة 0.35 ← 2.85، كمرة 70 ← 2.50، كمرة 90 ← 2.30 "
+                 "(الصافي المنفذ 3.00 تحت بلاطة 20 = المعماري صحيح، مناسيب الإنشائي 3.30 خطأ)"),)
+              if P.heights == "structural" else
+              (("سمك البلاطة", P.slab, "افتراض (--heights flat)"),
+               ("سقوط الكمرات فوق الحوائط", P.beam, "افتراض (--heights flat)"),
+               ("ارتفاع المباني", P.H_m, "محسوب"))),
             ("ارتفاع الباب", P.door_h, "مجهول — عُرف الحصر السابق 2.30"),
             ("جلسة الشباك", P.window_sill, "مجهول — حصر الدور الخامس السابق (19 جلسة × 1.00)"),
-            ("ارتفاع الشباك", P.win_h, "افتراض: حتى أعلى المباني (بلا مباني فوق الشباك)"),
+            ("ارتفاع الشباك", P.win_h if P.heights == "flat" or P.window_h is not None else "ارتفاع المباني عند الشباك − الجلسة",
+             "افتراض: حتى أعلى المباني (بلا مباني فوق الشباك)"),
             ("ارتفاع الفتحات بلا باب", P.open_h, "مجهول (فتحتا المصعد 1.25 / فتحة 0.80)"),
             ("ارتفاع المحارة الداخلية", P.H_p, "افتراض: حتى بطنية البلاطة (لا سقف معلق في اللوحات)"),
             ("ارتفاع الواجهة لكل دور", P.H_f, "افتراض: ارتفاع الدور كاملًا (يشمل حافة البلاطة)")):
@@ -1243,7 +1275,7 @@ def write_workbook(plans, P: Params, out_xlsx):
 
 
 OPEN_QUESTIONS = [
-    ("سمك البلاطة وعمق الكمرات فوق الحوائط", "ارتفاع المباني والمحارة (كل الأدوار)"),
+    ("الشريط بين منطقتي 35 شمالًا (y≈30.6–34.9) بلا رقم سمك في الإنشائي — اعتُبر 20", "ارتفاع المباني 3.00 أم 2.85 هناك"),
     ("ارتفاع الأبواب (2.20 أم 2.30)، وباب السلم D90W25، ومجموعات التراس في F02", "خصم الأبواب وشرائط المحارة"),
     ("جلسات وعتبات الشبابيك لكل مقاس، وشبابيك الخدمات 0.80", "خصم الشبابيك والجلسات"),
     ("الحائط الستائري الغربي 13 م والزجاج المنحني: بلا مباني تمامًا؟ أم بانيل/دروة أسفله؟", "مباني ومحارة الواجهة الغربية"),
@@ -1296,6 +1328,8 @@ def main(argv=None):
     ap.add_argument("--opening-h", type=float, default=None, help="door-less opening height (m); default = door height")
     ap.add_argument("--plaster-h", type=float, default=None, help="internal plaster height (m); default = storey - slab")
     ap.add_argument("--facade-h", type=float, default=None, help="external face height per storey (m); default = storey")
+    ap.add_argument("--heights", choices=["structural", "flat"], default="structural",
+                    help="masonry height per wall: structural (3.20 - slab/beam depth above, default) or flat (storey-slab-beam)")
     ap.add_argument("--no-cache", action="store_true", help="re-run the readers (ignore output/plan/_cache)")
     ap.add_argument("--deep", action="store_true", help="with --no-cache: also drop the walls/rooms DXF geometry caches")
     ap.add_argument("--no-png", action="store_true")
@@ -1303,7 +1337,8 @@ def main(argv=None):
     ap.add_argument("--dpi", type=int, default=130)
     a = ap.parse_args(argv)
     P = Params(storey=a.storey, slab=a.slab, beam=a.beam, door_h=a.door_h, window_sill=a.window_sill,
-               window_h=a.window_h, opening_h=a.opening_h, plaster_h=a.plaster_h, facade_h=a.facade_h)
+               window_h=a.window_h, opening_h=a.opening_h, plaster_h=a.plaster_h, facade_h=a.facade_h,
+               heights=a.heights)
     wanted = (a.floors or []) + (a.floor or [])
     fls = [f for f in all_floors() if f.floor_no and (not wanted or f.floor_no in wanted)]
     PLAN_OUT.mkdir(parents=True, exist_ok=True)

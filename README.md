@@ -17,7 +17,7 @@
 
 ## الأدوات
 
-كل الأدوات تعمل افتراضيًا على **الأدوار العشرة F02..F11** وتكتب في `output/<الموضوع>/` (خارج git). ما تعلمناه عن كل موضوع في `docs/findings/`.
+كل الأدوات تعمل افتراضيًا على **الأدوار العشرة F02..F11** وتكتب في `output/<الموضوع>/` (محفوظة في git ما عدا `_cache`). ما تعلمناه عن كل موضوع في `docs/findings/`.
 
 | الأداة | ماذا تقرأ | المخرجات | التوثيق |
 |---|---|---|---|
@@ -30,6 +30,9 @@
 | `tools/diwan_common.py` | الأساس المشترك: فصل الأدوار من الملفات، اسم الدور ومنسوبه، الإطار المحلي (إزالة دوران 10°)، فك النص العربي | — | docstring |
 | `tools/sosa_decode.py` | فك النص العربي المكتوب بخطوط SOSA/xarb (حروف لاتينية بترتيب لوحة المفاتيح) | — | docstring |
 | `tools/render_floor.py` | رسم دور خام بالطبقات (للمراجعة البصرية مقابل الأصل) | `output/render_F0x.png` | docstring |
+| `tools/str_slabs.py` | **اللوحة الإنشائية** `Dewan STR-UPDATED-REV01.dwg`: لوحات الأسقف وربطها بالأدوار الصحيحة، مناطق سمك البلاطة 20/35، الكمرات وقطاعاتها، الأعمدة، ومعايرتها على الإطار المحلي المعماري | `output/structure_str/slabs.json` | docstring + [`READING_GUIDE.md`](docs/READING_GUIDE.md) §الإنشائي |
+| `tools/masonry_heights.py` | **ارتفاع المباني لكل حائط** = 3.20 − عمق الخرسانة فوقه (بلاطة 20/35 أو كمرة) من سقف نفس الدور — يستخدمه `read_plan.py` افتراضيًا | (داخل `output/plan/F0x.json`) | docstring |
+| `tools/str_arch_compare.py` | **مقارنة/مطابقة**: دور معماري تحت سقفه الإنشائي، أو دورين معماريين فوق بعض، أو سقفين إنشائيين فوق بعض — صورة + تقرير (أعمدة، حوائط تحت كمرات، فروق) | `output/compare/` | docstring |
 | `tools/dwg_dxf_convert.py` | تحويل DWG ↔ DXF بمحوّل ODA | — | docstring |
 | `tools/legacy_wall_takeoff/` | أدوات وملاحظات الحصر اليدوي السابق للدور الثالث (سبتمبر 2026) — مرجع للمقارنة فقط | — | `NOTES_wall_takeoff.md` |
 | `dev/` | أرشيف أدوات البناء والتحقق: سكربت الـ workflow الذي بنى الأدوات بفريق وكلاء، وتقارير الوكلاء وأحكام المحققين، وسكربتات التحقق المستقل والاستكشاف | — | [`dev/README.md`](dev/README.md) |
@@ -45,7 +48,12 @@ export PYTHONIOENCODING=utf-8
 
 python tools/read_plan.py                      # كل الأدوار: قراءة كاملة + صور + summary.xlsx  (≈ 4 دقائق أول مرة)
 python tools/read_plan.py --floor 3            # دور واحد
-python tools/read_plan.py --slab 0.22 --door-h 2.20 --window-sill 0.90   # الحصر التقديري بارتفاعات أخرى (ثوانٍ: نتائج القرّاء في الكاش)
+python tools/read_plan.py --door-h 2.20 --window-sill 0.90   # الحصر بارتفاعات أبواب/جلسات أخرى (ارتفاع المباني من الإنشائي)
+python tools/read_plan.py --heights flat --slab 0.22          # ارتفاع مباني ثابت مفترض بدل الإنشائي
+python tools/masonry_heights.py 6              # ارتفاع كل حائط في الدور 6 من الإنشائي
+python tools/str_arch_compare.py 6             # الدور 6 تحت سقفه الإنشائي -> output/compare/F06_vs_str.png
+python tools/str_arch_compare.py --arch 9 8    # الدور 9 فوق الدور 8 (حوائط غير متطابقة)
+python tools/str_arch_compare.py --str 8 9     # سقف الدور 8 فوق سقف الدور 9
 
 python tools/walls.py 3 --zoom 0 25 10 37      # الحوائط مع صورة مكبّرة لمنطقة (إحداثيات محلية بالمتر)
 python tools/openings.py 3 5 --no-png          # الأبواب والشبابيك لأدوار محددة
