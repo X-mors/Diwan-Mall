@@ -102,6 +102,26 @@ def height_at(HW, x, y, storey=STOREY):
     return _r(storey - d, 3)
 
 
+def concrete_overlap(HW, walls, shrink=0.02):
+    """{wall id: centre-line length (m) inside the STRUCTURAL columns / shear walls / cores of this floor}.
+    The structural is what was built (owner, 2026-11-26): shear walls 0.30 (not the 0.40 drawn), the Z core
+    between SW04 and SW02, and columns missing from the architectural plan.  Masonry is deducted there."""
+    from shapely.geometry import LineString
+    from shapely.ops import unary_union
+    plan = HW.get("_plan")
+    if plan is None:
+        return {}
+    dx, dy = HW["_shift"]
+    U = unary_union([c["_poly"].buffer(-shrink) for c in plan["columns"]])
+    out = {}
+    for w in walls:
+        L = LineString([(w["x1"] + dx, w["y1"] + dy), (w["x2"] + dx, w["y2"] + dy)])
+        ln = L.intersection(U).length
+        if ln > 0.05:
+            out[w["id"]] = _r(ln, 3)
+    return out
+
+
 def floor_summary(HW, walls):
     by_h = defaultdict(float)
     by_src = defaultdict(float)

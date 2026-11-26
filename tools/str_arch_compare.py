@@ -232,37 +232,49 @@ def floor_vs_sheet(n, sheet_of=None, S=None):
     return rep
 
 
+def _not_stacked(wa, wb, tol=0.05, frac_min=0.8):
+    """walls of list wa whose centre line is < frac_min on any wall of wb (same line within tol)."""
+    from shapely.geometry import LineString
+    from shapely.ops import unary_union
+    U = unary_union([LineString([(w["x1"], w["y1"]), (w["x2"], w["y2"])]).buffer(tol) for w in wb])
+    out = []
+    for w in wa:
+        L = LineString([(w["x1"], w["y1"]), (w["x2"], w["y2"])])
+        if L.length < 1e-6:
+            continue
+        f = L.intersection(U).length / L.length
+        if f < frac_min:
+            out.append({"wall": w["id"], "family": w["family"], "length": _r(L.length, 2), "on_other": _r(f, 2),
+                        "_xy": (w["x1"], w["y1"], w["x2"], w["y2"])})
+    return out
+
+
 def arch_over_arch(n1, n2):
+    """Floor n1 over floor n2: grey = same in both, RED = only in F{n1}, BLUE = only in F{n2}."""
     from shapely.geometry import box
     b1, b2 = _bundle(n1), _bundle(n2)
+    w1, w2 = b1["walls"]["walls"], b2["walls"]["walls"]
+    only1, only2 = _not_stacked(w1, w2), _not_stacked(w2, w1)
     ext = _extent(box(*b1["rooms"]["totals"]["footprint_bbox"]), box(*b2["rooms"]["totals"]["footprint_bbox"]))
-    fig, ax = _ax(ext, f"F{n1:02d} (red) over F{n2:02d} (blue) - architectural, local frame")
-    _draw_arch_concrete(ax, b2, color="#2166ac", fill=True)
-    _draw_arch_concrete(ax, b1, color="#b2182b", fill=False)
-    _draw_walls(ax, b2["walls"]["walls"], color="#2166ac", zorder=4)
-    _draw_walls(ax, b1["walls"]["walls"], color="#b2182b", zorder=5)
-    _legend(ax, [("line", "#b2182b", f"F{n1:02d}"), ("line", "#2166ac", f"F{n2:02d}")])
+    fig, ax = _ax(ext, f"F{n1:02d} over F{n2:02d}: grey = same, RED = only in F{n1:02d}, BLUE = only in F{n2:02d}")
+    _draw_arch_concrete(ax, b2, color="#9e9e9e", fill=True)
+    _draw_walls(ax, w2, color="#9e9e9e", zorder=4)
+    for lst, col in ((only1, "#e31a1c"), (only2, "#1f78b4")):
+        for o in lst:
+            x1, y1, x2, y2 = o["_xy"]
+            ax.plot([x1, x2], [y1, y2], color=col, lw=4.5, solid_capstyle="butt", zorder=7)
+            ax.text((x1 + x2) / 2, (y1 + y2) / 2, o["wall"], color=col, fontsize=6, zorder=8)
+    _legend(ax, [("line", "#9e9e9e", "same in both"), ("line", "#e31a1c", f"only F{n1:02d}"), ("line", "#1f78b4", f"only F{n2:02d}")])
     OUT.mkdir(parents=True, exist_ok=True)
     tag = f"F{n1:02d}_over_F{n2:02d}"
     fig.savefig(OUT / f"{tag}.png", dpi=130, bbox_inches="tight")
     import matplotlib.pyplot as plt
     plt.close(fig)
-    # walls of n1 with no wall of n2 under them (same line within 5 cm, overlap >= 80 %)
-    from shapely.geometry import LineString
-    L2 = [LineString([(w["x1"], w["y1"]), (w["x2"], w["y2"])]).buffer(0.05) for w in b2["walls"]["walls"]]
-    from shapely.ops import unary_union
-    U2 = unary_union(L2)
-    not_stacked = []
-    for w in b1["walls"]["walls"]:
-        L = LineString([(w["x1"], w["y1"]), (w["x2"], w["y2"])])
-        if L.length < 1e-6:
-            continue
-        frac = L.intersection(U2).length / L.length
-        if frac < 0.8:
-            not_stacked.append({"wall": w["id"], "family": w["family"], "length": _r(L.length, 2), "on_lower": _r(frac, 2)})
-    rep = {"upper": f"F{n1:02d}", "lower": f"F{n2:02d}", "walls_upper": len(b1["walls"]["walls"]),
-           "walls_not_on_lower": not_stacked,
-           "length_not_on_lower": _r(sum(w["length"] for w in not_stacked), 2), "png": f"output/compare/{tag}.png"}
+    strip = lambda L: [{k: v for k, v in o.items() if k != "_xy"} for o in L]  # noqa: E731
+    rep = {"upper": f"F{n1:02d}", "lower": f"F{n2:02d}", "walls_upper": len(w1),
+           "walls_not_on_lower": strip(only1), "length_not_on_lower": _r(sum(o["length"] for o in only1), 2),
+           "walls_only_on_lower": strip(only2), "length_only_on_lower": _r(sum(o["length"] for o in only2), 2),
+           "png": f"output/compare/{tag}.png"}
     (OUT / f"{tag}.json").write_text(json.dumps(rep, ensure_ascii=False, indent=1), encoding="utf-8")
     return rep
 
@@ -304,8 +316,9 @@ def main(argv=None):
     a = ap.parse_args(argv)
     if a.arch:
         r = arch_over_arch(*a.arch)
-        print(json.dumps({k: v for k, v in r.items() if k != "walls_not_on_lower"}, ensure_ascii=False),
-              f"walls not on lower: {len(r['walls_not_on_lower'])}")
+        print(f"{r['upper']} over {r['lower']}: only in {r['upper']} {r['length_not_on_lower']} m "
+              f"({len(r['walls_not_on_lower'])} walls), only in {r['lower']} {r['length_only_on_lower']} m "
+              f"({len(r['walls_only_on_lower'])} walls) -> {r['png']}")
         return
     if a.str_:
         print(json.dumps(str_over_str(*a.str_), ensure_ascii=False, indent=1))

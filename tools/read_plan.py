@@ -103,6 +103,9 @@ class Params:
     opening_h: float | None = None    # door-less openings (lift landings, 0.80 gap): None -> door_h
     plaster_h: float | None = None    # internal plaster height: None -> storey - slab (to the soffit)
     facade_h: float | None = None     # external face height per storey: None -> storey
+    tr_concrete: bool = True          # ETABS 'tr'-block elements are real concrete (owner, 2026-11-26: all 7 are in the structural)
+    str_concrete: bool = True         # deduct wall lengths running inside STRUCTURAL columns/cores missing or thinner in the
+                                      # architectural plan (owner, 2026-11-26: the structural is what was built)
     heights: str = "structural"       # masonry height per wall: "structural" = 3.20 - concrete depth above it
                                       # (slab 20/35 zone or beam, tools/masonry_heights.py); "flat" = H_m everywhere
 
@@ -294,7 +297,7 @@ def _wall_opening_heights(op_type, P):
     return {"door": P.door_h, "window": P.win_h, "opening": P.open_h}.get(op_type, P.door_h)
 
 
-def masonry_estimate(walls, P, exclude_ids=(), HW=None):
+def masonry_estimate(walls, P, exclude_ids=(), HW=None, conc_len=None):
     """PRELIMINARY masonry per family x kind: gross x H - sum(width x height) of the openings
     bridged in each wall record (widths = masonry gaps measured by walls.py).
     HW (masonry_heights.wall_heights) -> H per wall = 3.20 - concrete depth above its centre line
@@ -314,6 +317,8 @@ def masonry_estimate(walls, P, exclude_ids=(), HW=None):
             else:
                 h = min(_wall_opening_heights(o["type"], P), Ho)
             ded[o["type"]] += o["width"] * h
+        lc = min((conc_len or {}).get(w["id"], 0.0), g)
+        ded["concrete"] = lc * H
         gross_a = g * H
         net_a = gross_a - sum(ded.values())
         for key in (f"{w['family']}|{w['kind']}", f"{w['family']}|ALL", f"ALL|{w['kind']}", "ALL|ALL"):
@@ -325,6 +330,8 @@ def masonry_estimate(walls, P, exclude_ids=(), HW=None):
             a["ded_door"] += ded["door"]
             a["ded_window"] += ded["window"]
             a["ded_opening"] += ded["opening"]
+            a["ded_concrete"] += ded["concrete"]
+            a["length_in_str_concrete"] += lc
             a["area_net"] += net_a
     return {k: {kk: (int(vv) if kk == "n" else _r(vv, 2)) for kk, vv in v.items()} for k, v in sorted(agg.items())}
 
@@ -506,8 +513,14 @@ def merge_floor(b, P: Params):
         HW = mh.wall_heights(b["floor_no"], walls, elements)
         if HW.get("_plan") is None:
             HW = None
-    mas = masonry_estimate(walls, P, exclude_ids=on_concrete, HW=HW)
-    mas_if_tr = masonry_estimate(walls, P, exclude_ids=set(on_concrete) | set(on_tr), HW=HW)
+    conc_len = {}
+    if P.str_concrete and HW:
+        import masonry_heights as mh
+        conc_len = mh.concrete_overlap(HW, walls)
+    excl = set(on_concrete) | (set(on_tr) if P.tr_concrete else set())
+    mas = masonry_estimate(walls, P, exclude_ids=excl, HW=HW, conc_len=conc_len)
+    mas_if_tr = masonry_estimate(walls, P, exclude_ids=set(on_concrete) | set(on_tr), HW=HW, conc_len=conc_len)
+    mas_tr_masonry = masonry_estimate(walls, P, exclude_ids=on_concrete, HW=HW, conc_len=conc_len)
     pla = plaster_estimate(R, O, S, W["totals"], P, conc_geom=concrete_faces_on_rooms(b), footprint=b.get("footprint"))
 
     # ---- cross-checks between readers
@@ -569,10 +582,11 @@ def merge_floor(b, P: Params):
         if o["tr_only"] and o["overlap_frac"] >= 0.3 and o["wall"] not in on_concrete:
             conf.append({"type": "wall_on_tr_element", "item": o["wall"], "element": o["element"],
                          "detail": f"wall {o['wall']} ({o['family']} {o['kind']}, gross {o['length_gross']} m) lies "
-                                   f"{o['overlap_frac']:.0%} on ETABS 'tr' element {o['element']} {o['element_size']}",
+                                   f"{o['overlap_frac']:.0%} on ETABS 'tr' element {o['element']} {o['element_size']} - "
+                                   f"confirmed concrete (owner 2026-11-26, present in the structural) -> excluded from masonry",
                          "detail_ar": f"الحائط {o['wall']} (سمك {o['family']}، {KIND_AR.get(o['kind'], o['kind'])}، "
                                       f"{o['length_gross']} م) يقع بنسبة {o['overlap_frac']:.0%} على عنصر بلوك tr "
-                                      f"{o['element']} {o['element_size']} — مباني أم خرسانة؟"})
+                                      f"{o['element']} {o['element_size']} — خرسانة مؤكدة (موجودة في الإنشائي) — مستبعد من المباني"})
     for x in S.get("openings_on_structure", []):
         conf.append({"type": "opening_is_tr_column", "item": x["opening"], "element": x["element"],
                      "detail": f"door-less opening {x['opening']} ({x['width']} m) = ETABS 'tr' column {x['element']} "
@@ -663,6 +677,9 @@ def merge_floor(b, P: Params):
                                 if HW else {"rule": f"flat H_m = {P.H_m}"}),
             "masonry_excluded_on_concrete": on_concrete,
             "masonry_if_tr_is_real": {"excluded_walls": on_tr, "ALL|ALL": mas_if_tr.get("ALL|ALL")},
+            "masonry_if_tr_were_masonry": {"ALL|ALL": mas_tr_masonry.get("ALL|ALL")},
+            "masonry_excluded_on_tr": on_tr if P.tr_concrete else [],
+            "masonry_length_in_structural_concrete": {k: v for k, v in sorted(conc_len.items())},
             "plaster": pla,
         },
         "timing_s": b.get("timing_s"),
@@ -1147,7 +1164,8 @@ def write_workbook(plans, P: Params, out_xlsx):
         + ("ارتفاع المباني عند الشباك − الجلسة؛ " if P.heights == "structural" and P.window_h is None else f"{P.win_h:.2f} م؛ ") +
         f"ارتفاع الفتحات بلا باب (فتحتا المصعد، فتحة 0.80) = {P.open_h:.2f} م",
         "المساحة = الطول الإجمالي (طول المحور عبر الفتحات) × ارتفاع المباني − Σ(عرض الفتحة × ارتفاعها)؛ عرض الفتحة كما قِيس في الحائط (walls.py).",
-        "غير مشمول: الحائط الستائري والزجاج المنحني (لا مباني)، الدروات، الأعتاب/الكمرات فوق الفتحات، عناصر بلوك tr (انظر التعارضات)، الحوائط الواقعة على خرسانة.",
+        "غير مشمول: الحائط الستائري والزجاج المنحني (لا مباني)، الدروات، الأعتاب/الكمرات فوق الفتحات، الحوائط الواقعة على خرسانة "
+        "(خرسانة المسقط + عناصر بلوك tr المؤكدة)، وأجزاء الحوائط الداخلة في أعمدة/كور الإنشائي (حوائط القص 0.30 المنفذة، كور Z، الأعمدة غير المرسومة معماريًا).",
         "الأرقام للمراجعة والمقارنة فقط — تتغير بتأكيد المهندس للأبواب والجلسات."])
     sh.header(["البند"] + F + sumcol)
     mfams = [f for f in FAMILY_ORDER if any(f"{f}|ALL" in p["preliminary"]["masonry"] for p in plans)]
@@ -1156,14 +1174,18 @@ def write_workbook(plans, P: Params, out_xlsx):
         key = f"{f}|ALL"
         for m, lab in (("length_gross", "الطول الإجمالي م"), ("area_gross", "المساحة الإجمالية م²"),
                        ("ded_door", "خصم الأبواب م²"), ("ded_window", "خصم الشبابيك م²"), ("ded_opening", "خصم الفتحات بلا باب م²"),
+                       ("ded_concrete", "خصم خرسانة الإنشائي داخل الحائط م²"),
                        ("area_net", "صافي المباني م²")):
             sh.line([lab] + row_vals(lambda p, key=key, m=m: _get(p, "preliminary", "masonry", key, m, default=0.0)), total=m == "area_net")
     sh.section("الإجمالي", 1 + nF + len(sumcol))
     for k in ("exterior", "interior", "shaft", "stair_lift"):
         sh.line([f"صافي مباني {KIND_AR[k]} م²"] + row_vals(lambda p, k=k: _get(p, "preliminary", "masonry", f"ALL|{k}", "area_net", default=0.0)))
     sh.line(["صافي المباني — كل السماكات م²"] + row_vals(lambda p: _get(p, "preliminary", "masonry", "ALL|ALL", "area_net", default=0.0)), total=True)
-    sh.line(["للمقارنة: لو عناصر بلوك tr حقيقية (تُستبعد الحوائط الواقعة عليها) م²"]
-            + row_vals(lambda p: _get(p, "preliminary", "masonry_if_tr_is_real", "ALL|ALL", "area_net", default=0.0)), warn=True)
+    sh.line(["للمقارنة: لو اعتُبرت عناصر بلوك tr مباني (قبل تأكيد المالك أنها خرسانة) م²"]
+            + row_vals(lambda p: _get(p, "preliminary", "masonry_if_tr_were_masonry", "ALL|ALL", "area_net", default=0.0)))
+    sh.line(["حوائط مستبعدة لوقوعها على عناصر tr (خرسانة مؤكدة) (عدد)"] + row_vals(lambda p: len(p["preliminary"].get("masonry_excluded_on_tr", []))), fmt="0")
+    sh.line(["طول حوائط داخل أعمدة/كور الإنشائي (مخصوم) م"]
+            + row_vals(lambda p: round(sum(p["preliminary"].get("masonry_length_in_structural_concrete", {}).values()), 2)))
     sh.line(["حوائط مستبعدة لوقوعها على خرسانة المسقط (عدد)"] + row_vals(lambda p: len(p["preliminary"]["masonry_excluded_on_concrete"])), fmt="0")
 
     # ---------------- 8. preliminary plaster
@@ -1275,13 +1297,11 @@ def write_workbook(plans, P: Params, out_xlsx):
 
 
 OPEN_QUESTIONS = [
-    ("الشريط بين منطقتي 35 شمالًا (y≈30.6–34.9) بلا رقم سمك في الإنشائي — اعتُبر 20", "ارتفاع المباني 3.00 أم 2.85 هناك"),
     ("ارتفاع الأبواب (2.20 أم 2.30)، وباب السلم D90W25، ومجموعات التراس في F02", "خصم الأبواب وشرائط المحارة"),
     ("جلسات وعتبات الشبابيك لكل مقاس، وشبابيك الخدمات 0.80", "خصم الشبابيك والجلسات"),
     ("الحائط الستائري الغربي 13 م والزجاج المنحني: بلا مباني تمامًا؟ أم بانيل/دروة أسفله؟", "مباني ومحارة الواجهة الغربية"),
     ("التشطيب الخارجي: محارة أم تكسية (حجر/كلادينج)؟ وخطوط WIN المتقطعة خارج الواجهة؟", "بند المحارة الخارجية كله"),
-    ("بلوك tr (Etabs-Slab): هل عناصره السبعة أعمدة حقيقية؟ (C03 = الفتحة 0.80، SW01 مكان الشباك 1.217، SW03 حائط السلم الغربي، C01/C10 أعمدة حرة)", "مباني + محارة أوجه الخرسانة"),
-    ("الحائط 0.40 × 3.80 بين مكتب 9 ومكتب 10 = حائط قص SW06 (تهشير Etabs-col فقط) — صار يُحسب خرسانة لا مباني؛ تأكيد", "≈ 11 م² مباني لكل دور"),
+    ("محارة أوجه الخرسانة: تُحسب على مقاسات الإنشائي المنفذة (حوائط القص 0.30، كور Z، الأعمدة غير المرسومة) لا المعماري؟ وماذا يملأ فرق الـ 0.10 بين حائط القص المعماري 0.40 والمنفذ 0.30؟", "محارة أوجه الخرسانة + مباني بسيطة"),
     ("الواجهة الشمالية الشرقية 0.40 حول الشباك 1.217 (SW01 من tr في نفس المكان)", "مباني الواجهة"),
     ("قواطيع مفقودة في بعض الأدوار (مكتب 2/3 في F05/F08، مكتب 14/15 في F04/F07، F02 مكاتب 6/7/8) — مقصود أم سهو رسم؟", "مباني ومحارة الأدوار المعنية"),
     ("حمامات تظهر وتختفي بين الأدوار — توزيع مقصود لكل مستأجر؟", "مباني 0.12 ومحارة وأبواب D80"),

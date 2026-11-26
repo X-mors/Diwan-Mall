@@ -93,3 +93,17 @@ if '8' in which:
     ax.text(-0.55, 1.6, 'storey 3.20 slab top to slab top', rotation=90, va='center', ha='right', fontsize=10)
     ax.set_title('Q8: masonry height starts from where? (under a 20 cm slab)', fontsize=12)
     save(fig, 'Q8_masonry_start_level.png')
+
+# ---- batch 2 (remaining questions, 2026-11-26 noon)
+if '9' in which:      # lift front wall 0.30 + shaft plaster
+    z = (9.3, 17.6, 15.5, 24.2)
+    fig, ax = figure(2, z, k=1.4); arch_draw(ax[0], 6, z); str_draw(ax[1], 6, z)
+    save(fig, 'Q9_lift_front_wall.png')
+if '10' in which:     # F02 'Waiting For The Update' area + terraces / MASS
+    z = (-3, -4, 22, 42)
+    fig, ax = figure(1, z, k=0.5); arch_draw(ax[0], 2, z)
+    save(fig, 'Q10_F02_waiting_terraces.png')
+if '11' in which:     # 0.40 drawn vs 0.30 built: what fills the 10 cm
+    z = (0.5, 21.2, 6, 22.8)
+    fig, ax = figure(2, z, k=2.6); arch_draw(ax[0], 6, z); str_draw(ax[1], 6, z)
+    save(fig, 'Q11_shear_wall_gap.png')

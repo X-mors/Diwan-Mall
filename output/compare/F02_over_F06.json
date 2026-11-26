@@ -1,0 +1,264 @@
+{
+ "upper": "F02",
+ "lower": "F06",
+ "walls_upper": 231,
+ "walls_not_on_lower": [
+  {
+   "wall": "W2",
+   "family": "other",
+   "length": 0.63,
+   "on_other": 0.0
+  },
+  {
+   "wall": "W13",
+   "family": "0.12",
+   "length": 0.3,
+   "on_other": 0.33
+  },
+  {
+   "wall": "W15",
+   "family": "other",
+   "length": 1.24,
+   "on_other": 0.0
+  },
+  {
+   "wall": "W17",
+   "family": "0.12",
+   "length": 0.3,
+   "on_other": 0.16
+  },
+  {
+   "wall": "W25",
+   "family": "0.30",
+   "length": 1.5,
+   "on_other": 0.0
+  },
+  {
+   "wall": "W82",
+   "family": "0.12",
+   "length": 0.3,
+   "on_other": 0.0
+  },
+  {
+   "wall": "W133",
+   "family": "0.15",
+   "length": 0.12,
+   "on_other": 0.38
+  },
+  {
+   "wall": "W136",
+   "family": "0.12",
+   "length": 1.59,
+   "on_other": 0.03
+  },
+  {
+   "wall": "W145",
+   "family": "0.12",
+   "length": 1.77,
+   "on_other": 0.0
+  },
+  {
+   "wall": "W151",
+   "family": "0.50",
+   "length": 1.49,
+   "on_other": 0.03
+  },
+  {
+   "wall": "W153",
+   "family": "other",
+   "length": 0.91,
+   "on_other": 0.0
+  },
+  {
+   "wall": "W214",
+   "family": "other",
+   "length": 0.15,
+   "on_other": 0.0
+  },
+  {
+   "wall": "W219",
+   "family": "other",
+   "length": 1.2,
+   "on_other": 0.0
+  },
+  {
+   "wall": "W220",
+   "family": "0.12",
+   "length": 1.05,
+   "on_other": 0.0
+  },
+  {
+   "wall": "W223",
+   "family": "other",
+   "length": 0.15,
+   "on_other": 0.0
+  },
+  {
+   "wall": "W229",
+   "family": "0.12",
+   "length": 0.3,
+   "on_other": 0.33
+  },
+  {
+   "wall": "W230",
+   "family": "other",
+   "length": 0.15,
+   "on_other": 0.0
+  },
+  {
+   "wall": "W231",
+   "family": "0.30",
+   "length": 0.16,
+   "on_other": 0.77
+  }
+ ],
+ "length_not_on_lower": 13.31,
+ "walls_only_on_lower": [
+  {
+   "wall": "W12",
+   "family": "other",
+   "length": 0.15,
+   "on_other": 0.0
+  },
+  {
+   "wall": "W13",
+   "family": "0.30",
+   "length": 0.19,
+   "on_other": 0.54
+  },
+  {
+   "wall": "W16",
+   "family": "other",
+   "length": 0.3,
+   "on_other": 0.0
+  },
+  {
+   "wall": "W18",
+   "family": "0.50",
+   "length": 1.05,
+   "on_other": 0.71
+  },
+  {
+   "wall": "W22",
+   "family": "0.12",
+   "length": 0.29,
+   "on_other": 0.0
+  },
+  {
+   "wall": "W24",
+   "family": "0.12",
+   "length": 4.71,
+   "on_other": 0.45
+  },
+  {
+   "wall": "W58",
+   "family": "0.12",
+   "length": 1.28,
+   "on_other": 0.04
+  },
+  {
+   "wall": "W65",
+   "family": "0.12",
+   "length": 1.45,
+   "on_other": 0.0
+  },
+  {
+   "wall": "W66",
+   "family": "0.25",
+   "length": 0.73,
+   "on_other": 0.0
+  },
+  {
+   "wall": "W67",
+   "family": "0.25",
+   "length": 1.28,
+   "on_other": 0.0
+  },
+  {
+   "wall": "W68",
+   "family": "0.25",
+   "length": 0.73,
+   "on_other": 0.0
+  },
+  {
+   "wall": "W71",
+   "family": "0.12",
+   "length": 0.92,
+   "on_other": 0.0
+  },
+  {
+   "wall": "W72",
+   "family": "0.12",
+   "length": 1.41,
+   "on_other": 0.0
+  },
+  {
+   "wall": "W92",
+   "family": "other",
+   "length": 0.42,
+   "on_other": 0.12
+  },
+  {
+   "wall": "W93",
+   "family": "0.12",
+   "length": 6.16,
+   "on_other": 0.0
+  },
+  {
+   "wall": "W153",
+   "family": "0.12",
+   "length": 3.48,
+   "on_other": 0.59
+  },
+  {
+   "wall": "W157",
+   "family": "0.25",
+   "length": 0.12,
+   "on_other": 0.0
+  },
+  {
+   "wall": "W204",
+   "family": "0.30",
+   "length": 0.12,
+   "on_other": 0.0
+  },
+  {
+   "wall": "W221",
+   "family": "other",
+   "length": 0.19,
+   "on_other": 0.0
+  },
+  {
+   "wall": "W224",
+   "family": "0.12",
+   "length": 3.79,
+   "on_other": 0.71
+  },
+  {
+   "wall": "W225",
+   "family": "other",
+   "length": 1.05,
+   "on_other": 0.05
+  },
+  {
+   "wall": "W228",
+   "family": "0.25",
+   "length": 0.12,
+   "on_other": 0.0
+  },
+  {
+   "wall": "W233",
+   "family": "other",
+   "length": 0.25,
+   "on_other": 0.0
+  },
+  {
+   "wall": "W234",
+   "family": "0.30",
+   "length": 0.13,
+   "on_other": 0.77
+  }
+ ],
+ "length_only_on_lower": 30.32,
+ "png": "output/compare/F02_over_F06.png"
+}

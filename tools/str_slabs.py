@@ -607,6 +607,11 @@ def _borrow_splits(plans):
         for z in new:
             if z["assumed"] and not z["labels"]:
                 z["thickness"] = p["general_thickness"]
+                # owner, 2026-11-26: the unlabelled band between the two north 35 strips is 20 cm
+                # (an unlabelled face = the general thickness of the sheet)
+                if abs(p["general_thickness"] - 0.20) < 1e-6:
+                    z["assumed"] = False
+                    z["source"] = "unlabelled = general 0.20 (owner confirmed 2026-11-26)"
 
 
 def plan_for_ceiling(S, floor_no):
@@ -696,7 +701,7 @@ def summary(S):
                      "level_source": p["level_source"], "outline_area": _r(p["_outline"].area, 2),
                      "general_thickness": p.get("general_thickness"),
                      "zones": [{"thickness": z["thickness"], "assumed": z["assumed"], "area": _r(z["area"], 2),
-                                "labels": z["labels"], "split_from": z.get("split_from"), "bbox_local": [_r(v, 2) for v in z["_poly"].bounds]}
+                                "labels": z["labels"], "split_from": z.get("split_from"), "source": z.get("source"), "bbox_local": [_r(v, 2) for v in z["_poly"].bounds]}
                                for z in sorted(p["zones"], key=lambda z: -z["area"])],
                      "area_by_thickness": {f"{k[0]:.2f}{' (assumed)' if k[1] else ''}": _r(v, 2) for k, v in sorted(th.items())},
                      "beams": [{"name": b.get("name"), "b": b.get("b"), "depth": b.get("depth"), "assumed": b.get("assumed", False),

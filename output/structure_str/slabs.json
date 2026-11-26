@@ -36,6 +36,7 @@
       20
      ],
      "split_from": "سقف 6  و 5  و 3  و 2",
+     "source": null,
      "bbox_local": [
       -0.13,
       2.76,
@@ -51,6 +52,7 @@
       35
      ],
      "split_from": "سقف 6  و 5  و 3  و 2",
+     "source": null,
      "bbox_local": [
       -0.81,
       -1.94,
@@ -60,10 +62,11 @@
     },
     {
      "thickness": 0.2,
-     "assumed": true,
+     "assumed": false,
      "area": 71.8,
      "labels": [],
      "split_from": null,
+     "source": "unlabelled = general 0.20 (owner confirmed 2026-11-26)",
      "bbox_local": [
       -0.25,
       30.58,
@@ -79,6 +82,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       -0.25,
       34.86,
@@ -94,6 +98,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       -0.25,
       27.58,
@@ -109,6 +114,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       14.38,
       8.31,
@@ -118,8 +124,7 @@
     }
    ],
    "area_by_thickness": {
-    "0.20": 399.2,
-    "0.20 (assumed)": 71.8,
+    "0.20": 471.0,
     "0.35": 195.64
    },
    "beams": [
@@ -294,6 +299,7 @@
       20
      ],
      "split_from": "سقف 6  و 5  و 3  و 2",
+     "source": null,
      "bbox_local": [
       -0.13,
       2.76,
@@ -309,6 +315,7 @@
       35
      ],
      "split_from": "سقف 6  و 5  و 3  و 2",
+     "source": null,
      "bbox_local": [
       -0.96,
       -2.08,
@@ -324,6 +331,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       -0.39,
       34.88,
@@ -333,10 +341,11 @@
     },
     {
      "thickness": 0.2,
-     "assumed": true,
+     "assumed": false,
      "area": 73.33,
      "labels": [],
      "split_from": null,
+     "source": "unlabelled = general 0.20 (owner confirmed 2026-11-26)",
      "bbox_local": [
       -0.4,
       30.57,
@@ -352,6 +361,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       -0.4,
       27.58,
@@ -367,6 +377,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       14.38,
       8.32,
@@ -376,8 +387,7 @@
     }
    ],
    "area_by_thickness": {
-    "0.20": 414.35,
-    "0.20 (assumed)": 73.33,
+    "0.20": 487.68,
     "0.35": 218.44
    },
    "beams": [
@@ -551,6 +561,7 @@
       20
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       -0.13,
       2.77,
@@ -560,10 +571,11 @@
     },
     {
      "thickness": 0.2,
-     "assumed": true,
+     "assumed": false,
      "area": 70.42,
      "labels": [],
      "split_from": null,
+     "source": "unlabelled = general 0.20 (owner confirmed 2026-11-26)",
      "bbox_local": [
       0.27,
       30.57,
@@ -579,6 +591,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       0.17,
       34.87,
@@ -594,6 +607,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       0.17,
       -1.52,
@@ -609,6 +623,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       0.27,
       27.57,
@@ -624,6 +639,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       14.39,
       8.32,
@@ -633,8 +649,7 @@
     }
    ],
    "area_by_thickness": {
-    "0.20": 417.17,
-    "0.20 (assumed)": 70.42,
+    "0.20": 487.58,
     "0.35": 154.71
    },
    "beams": [
@@ -876,6 +891,7 @@
       20
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       -0.13,
       2.76,
@@ -885,10 +901,11 @@
     },
     {
      "thickness": 0.2,
-     "assumed": true,
+     "assumed": false,
      "area": 69.38,
      "labels": [],
      "split_from": null,
+     "source": "unlabelled = general 0.20 (owner confirmed 2026-11-26)",
      "bbox_local": [
       0.4,
       30.56,
@@ -904,6 +921,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       0.17,
       34.87,
@@ -919,6 +937,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       0.17,
       -1.52,
@@ -934,6 +953,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       0.4,
       27.56,
@@ -949,6 +969,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       14.39,
       8.32,
@@ -958,8 +979,7 @@
     }
    ],
    "area_by_thickness": {
-    "0.20": 414.6,
-    "0.20 (assumed)": 69.38,
+    "0.20": 483.98,
     "0.35": 149.66
    },
    "beams": [
@@ -1133,6 +1153,7 @@
       20
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       -0.13,
       2.77,
@@ -1142,10 +1163,11 @@
     },
     {
      "thickness": 0.2,
-     "assumed": true,
+     "assumed": false,
      "area": 70.42,
      "labels": [],
      "split_from": null,
+     "source": "unlabelled = general 0.20 (owner confirmed 2026-11-26)",
      "bbox_local": [
       0.27,
       30.57,
@@ -1161,6 +1183,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       0.17,
       34.87,
@@ -1176,6 +1199,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       0.17,
       -1.52,
@@ -1191,6 +1215,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       0.27,
       27.57,
@@ -1206,6 +1231,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       14.38,
       8.32,
@@ -1215,8 +1241,7 @@
     }
    ],
    "area_by_thickness": {
-    "0.20": 417.11,
-    "0.20 (assumed)": 70.42,
+    "0.20": 487.53,
     "0.35": 154.75
    },
    "beams": [
@@ -1404,6 +1429,7 @@
       20
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       -0.13,
       2.77,
@@ -1413,10 +1439,11 @@
     },
     {
      "thickness": 0.2,
-     "assumed": true,
+     "assumed": false,
      "area": 70.42,
      "labels": [],
      "split_from": null,
+     "source": "unlabelled = general 0.20 (owner confirmed 2026-11-26)",
      "bbox_local": [
       0.27,
       30.57,
@@ -1432,6 +1459,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       0.17,
       34.87,
@@ -1447,6 +1475,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       0.17,
       -1.52,
@@ -1462,6 +1491,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       0.27,
       27.57,
@@ -1477,6 +1507,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       14.38,
       8.32,
@@ -1486,8 +1517,7 @@
     }
    ],
    "area_by_thickness": {
-    "0.20": 417.11,
-    "0.20 (assumed)": 70.42,
+    "0.20": 487.54,
     "0.35": 154.75
    },
    "beams": [
@@ -1675,6 +1705,7 @@
       20
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       -0.13,
       2.75,
@@ -1684,10 +1715,11 @@
     },
     {
      "thickness": 0.2,
-     "assumed": true,
+     "assumed": false,
      "area": 66.9,
      "labels": [],
      "split_from": null,
+     "source": "unlabelled = general 0.20 (owner confirmed 2026-11-26)",
      "bbox_local": [
       1.09,
       30.58,
@@ -1703,6 +1735,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       1.09,
       34.86,
@@ -1718,6 +1751,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       1.31,
       -0.6,
@@ -1733,6 +1767,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       1.09,
       27.58,
@@ -1748,6 +1783,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       14.38,
       8.32,
@@ -1757,8 +1793,7 @@
     }
    ],
    "area_by_thickness": {
-    "0.20": 409.63,
-    "0.20 (assumed)": 66.9,
+    "0.20": 476.53,
     "0.35": 131.15
    },
    "beams": [
@@ -1904,6 +1939,7 @@
       20
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       -0.13,
       2.77,
@@ -1913,10 +1949,11 @@
     },
     {
      "thickness": 0.2,
-     "assumed": true,
+     "assumed": false,
      "area": 64.3,
      "labels": [],
      "split_from": null,
+     "source": "unlabelled = general 0.20 (owner confirmed 2026-11-26)",
      "bbox_local": [
       1.69,
       30.58,
@@ -1932,6 +1969,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       1.41,
       34.88,
@@ -1947,6 +1985,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       1.7,
       27.58,
@@ -1962,6 +2001,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       1.77,
       -0.29,
@@ -1977,6 +2017,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       14.39,
       8.32,
@@ -1986,8 +2027,7 @@
     }
    ],
    "area_by_thickness": {
-    "0.20": 406.48,
-    "0.20 (assumed)": 64.3,
+    "0.20": 470.78,
     "0.35": 114.5
    },
    "beams": [
@@ -2159,6 +2199,7 @@
       20
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       -0.13,
       2.75,
@@ -2168,10 +2209,11 @@
     },
     {
      "thickness": 0.2,
-     "assumed": true,
+     "assumed": false,
      "area": 64.31,
      "labels": [],
      "split_from": null,
+     "source": "unlabelled = general 0.20 (owner confirmed 2026-11-26)",
      "bbox_local": [
       1.69,
       30.58,
@@ -2187,6 +2229,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       1.41,
       34.88,
@@ -2202,6 +2245,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       1.7,
       27.58,
@@ -2217,6 +2261,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       1.31,
       -0.29,
@@ -2232,6 +2277,7 @@
       35
      ],
      "split_from": null,
+     "source": null,
      "bbox_local": [
       14.39,
       8.32,
@@ -2241,8 +2287,7 @@
     }
    ],
    "area_by_thickness": {
-    "0.20": 408.55,
-    "0.20 (assumed)": 64.31,
+    "0.20": 472.86,
     "0.35": 115.59
    },
    "beams": [
