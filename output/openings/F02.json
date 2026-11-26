@@ -1,0 +1,6025 @@
+{
+ "floor": "F02",
+ "floor_no": 2,
+ "name_ar": "الدور الثاني",
+ "level": 8.9,
+ "file": "Diwan_2nd_Floor_19.8.2026.dxf",
+ "sheet_index": 0,
+ "units": "m",
+ "reader_version": 2,
+ "frame": "LOCAL (diwan_common.Floor.to_local: -10 deg, structural-column corner = 0,0)",
+ "doors": [
+  {
+   "source": "raw drawing, no block: arc + leaf line",
+   "block": null,
+   "layer": "WIN",
+   "handle": "1160",
+   "nominal_width": null,
+   "nominal_wall_t": null,
+   "kind": "single swing, glazed (drawn on WIN)",
+   "mirrored": null,
+   "host_type": "curved glazing (no masonry)",
+   "center": [
+    2.886,
+    38.068
+   ],
+   "axis_deg": 16.94,
+   "width": 1.029,
+   "wall_t_block": null,
+   "jamb_a": [
+    [
+     3.361,
+     38.275
+    ],
+    [
+     3.396,
+     38.161
+    ]
+   ],
+   "jamb_b": [
+    [
+     2.376,
+     37.975
+    ],
+    [
+     2.411,
+     37.861
+    ]
+   ],
+   "hinge": [
+    3.378,
+    38.218
+   ],
+   "leaf_r": 1.029,
+   "swing_side": "-n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.6,
+    "bound_minus": "wall",
+    "gap_plus": null,
+    "bound_plus": null,
+    "gap": null,
+    "wall_t_minus": null,
+    "wall_t_plus": null,
+    "face_gaps": [
+     null,
+     null
+    ]
+   },
+   "host_line": {
+    "orientation": "slanted 16.9 deg",
+    "center": [
+     2.886,
+     38.068
+    ]
+   },
+   "dim_check": null,
+   "glazing_gap_chord": null,
+   "leaf_geom": {
+    "c": [
+     3.378,
+     38.218
+    ],
+    "pm": [
+     2.539,
+     38.814
+    ],
+    "p0": [
+     3.338,
+     39.247
+    ],
+    "p1": [
+     2.394,
+     37.918
+    ]
+   },
+   "opens_into": "تراس سماوي",
+   "other_side": "مكتب 4",
+   "id": "F02-D01"
+  },
+  {
+   "source": "block",
+   "block": "D10W12",
+   "layer": "PR",
+   "handle": "702",
+   "insert": [
+    8.134,
+    34.02
+   ],
+   "rotation_local": 90.0,
+   "mirrored": true,
+   "scale": [
+    -1.0,
+    1.0
+   ],
+   "nominal_width": 1.0,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    7.634,
+    34.08
+   ],
+   "axis_deg": 0.0,
+   "width": 1.0,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     8.134,
+     34.02
+    ],
+    [
+     8.134,
+     34.14
+    ]
+   ],
+   "jamb_b": [
+    [
+     7.134,
+     34.02
+    ],
+    [
+     7.134,
+     34.14
+    ]
+   ],
+   "hinge": [
+    8.109,
+    34.14
+   ],
+   "leaf_r": 0.95,
+   "swing_side": "-n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.5,
+    "bound_minus": "wall",
+    "gap_plus": 0.5,
+    "bound_plus": "wall",
+    "gap": 1.0,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     1.0,
+     1.0
+    ]
+   },
+   "host_line": {
+    "orientation": "E-W",
+    "offset_y": 34.08,
+    "from_x": 7.134,
+    "to_x": 8.134
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     8.109,
+     34.14
+    ],
+    "pm": [
+     7.437,
+     34.812
+    ],
+    "p0": [
+     7.159,
+     34.14
+    ],
+    "p1": [
+     8.109,
+     35.09
+    ]
+   },
+   "opens_into": null,
+   "other_side": "بهو المصعد",
+   "id": "F02-D02"
+  },
+  {
+   "source": "block",
+   "block": "D10W12",
+   "layer": "PR",
+   "handle": "6D2",
+   "insert": [
+    8.494,
+    34.02
+   ],
+   "rotation_local": 270.0,
+   "mirrored": false,
+   "scale": [
+    1.0,
+    1.0
+   ],
+   "nominal_width": 1.0,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    8.994,
+    34.08
+   ],
+   "axis_deg": 180.0,
+   "width": 1.0,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     8.494,
+     34.02
+    ],
+    [
+     8.494,
+     34.14
+    ]
+   ],
+   "jamb_b": [
+    [
+     9.494,
+     34.02
+    ],
+    [
+     9.494,
+     34.14
+    ]
+   ],
+   "hinge": [
+    8.519,
+    34.14
+   ],
+   "leaf_r": 0.95,
+   "swing_side": "+n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.5,
+    "bound_minus": "wall",
+    "gap_plus": 0.5,
+    "bound_plus": "wall",
+    "gap": 1.0,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     1.0,
+     1.0
+    ]
+   },
+   "host_line": {
+    "orientation": "E-W",
+    "offset_y": 34.08,
+    "from_x": 8.494,
+    "to_x": 9.494
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     8.519,
+     34.14
+    ],
+    "pm": [
+     9.191,
+     34.812
+    ],
+    "p0": [
+     9.469,
+     34.14
+    ],
+    "p1": [
+     8.519,
+     35.09
+    ]
+   },
+   "opens_into": null,
+   "other_side": "بهو المصعد",
+   "id": "F02-D03"
+  },
+  {
+   "source": "block",
+   "block": "D80W12",
+   "layer": "PR",
+   "handle": "784",
+   "insert": [
+    5.34,
+    33.52
+   ],
+   "rotation_local": 0.0,
+   "mirrored": false,
+   "scale": [
+    1.0,
+    1.0
+   ],
+   "nominal_width": 0.8,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    5.74,
+    33.58
+   ],
+   "axis_deg": 0.0,
+   "width": 0.8,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     5.34,
+     33.64
+    ],
+    [
+     5.34,
+     33.52
+    ]
+   ],
+   "jamb_b": [
+    [
+     6.14,
+     33.64
+    ],
+    [
+     6.14,
+     33.52
+    ]
+   ],
+   "hinge": [
+    5.365,
+    33.64
+   ],
+   "leaf_r": 0.75,
+   "swing_side": "+n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.4,
+    "bound_minus": "wall",
+    "gap_plus": 0.4,
+    "bound_plus": "wall",
+    "gap": 0.8,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     0.8,
+     0.8
+    ]
+   },
+   "host_line": {
+    "orientation": "E-W",
+    "offset_y": 33.58,
+    "from_x": 5.34,
+    "to_x": 6.14
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     5.365,
+     33.64
+    ],
+    "pm": [
+     5.895,
+     34.17
+    ],
+    "p0": [
+     6.115,
+     33.64
+    ],
+    "p1": [
+     5.365,
+     34.39
+    ]
+   },
+   "opens_into": "حمام",
+   "other_side": null,
+   "id": "F02-D04"
+  },
+  {
+   "source": "block",
+   "block": "D80W12",
+   "layer": "PR",
+   "handle": "708",
+   "insert": [
+    11.26,
+    33.52
+   ],
+   "rotation_local": 360.0,
+   "mirrored": true,
+   "scale": [
+    -1.0,
+    1.0
+   ],
+   "nominal_width": 0.8,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    10.86,
+    33.58
+   ],
+   "axis_deg": 180.0,
+   "width": 0.8,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     11.26,
+     33.64
+    ],
+    [
+     11.26,
+     33.52
+    ]
+   ],
+   "jamb_b": [
+    [
+     10.46,
+     33.64
+    ],
+    [
+     10.46,
+     33.52
+    ]
+   ],
+   "hinge": [
+    11.235,
+    33.64
+   ],
+   "leaf_r": 0.75,
+   "swing_side": "-n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.4,
+    "bound_minus": "wall",
+    "gap_plus": 0.4,
+    "bound_plus": "wall",
+    "gap": 0.8,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     0.8,
+     0.8
+    ]
+   },
+   "host_line": {
+    "orientation": "E-W",
+    "offset_y": 33.58,
+    "from_x": 10.46,
+    "to_x": 11.26
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     11.235,
+     33.64
+    ],
+    "pm": [
+     10.705,
+     34.17
+    ],
+    "p0": [
+     10.485,
+     33.64
+    ],
+    "p1": [
+     11.235,
+     34.39
+    ]
+   },
+   "opens_into": "حمام",
+   "other_side": null,
+   "id": "F02-D05"
+  },
+  {
+   "source": "block",
+   "block": "D10W12",
+   "layer": "PR",
+   "handle": "782",
+   "insert": [
+    7.055,
+    32.44
+   ],
+   "rotation_local": 0.0,
+   "mirrored": false,
+   "scale": [
+    1.0,
+    1.0
+   ],
+   "nominal_width": 1.0,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    6.995,
+    32.94
+   ],
+   "axis_deg": 90.0,
+   "width": 1.0,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     7.055,
+     32.44
+    ],
+    [
+     6.935,
+     32.44
+    ]
+   ],
+   "jamb_b": [
+    [
+     7.055,
+     33.44
+    ],
+    [
+     6.935,
+     33.44
+    ]
+   ],
+   "hinge": [
+    6.935,
+    32.465
+   ],
+   "leaf_r": 0.95,
+   "swing_side": "+n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.5,
+    "bound_minus": "wall",
+    "gap_plus": 0.5,
+    "bound_plus": "wall",
+    "gap": 1.0,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     1.0,
+     1.0
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 6.995,
+    "from_y": 32.44,
+    "to_y": 33.44
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     6.935,
+     32.465
+    ],
+    "pm": [
+     6.263,
+     33.137
+    ],
+    "p0": [
+     6.935,
+     33.415
+    ],
+    "p1": [
+     5.985,
+     32.465
+    ]
+   },
+   "opens_into": "مكتب 5",
+   "other_side": "بهو المصعد",
+   "id": "F02-D06"
+  },
+  {
+   "source": "block",
+   "block": "D10W12",
+   "layer": "PR",
+   "handle": "705",
+   "insert": [
+    9.74,
+    32.44
+   ],
+   "rotation_local": 360.0,
+   "mirrored": true,
+   "scale": [
+    -1.0,
+    1.0
+   ],
+   "nominal_width": 1.0,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    9.8,
+    32.94
+   ],
+   "axis_deg": 90.0,
+   "width": 1.0,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     9.74,
+     32.44
+    ],
+    [
+     9.86,
+     32.44
+    ]
+   ],
+   "jamb_b": [
+    [
+     9.74,
+     33.44
+    ],
+    [
+     9.86,
+     33.44
+    ]
+   ],
+   "hinge": [
+    9.86,
+    32.465
+   ],
+   "leaf_r": 0.95,
+   "swing_side": "-n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.5,
+    "bound_minus": "wall",
+    "gap_plus": 0.5,
+    "bound_plus": "wall",
+    "gap": 1.0,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     1.0,
+     1.0
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 9.8,
+    "from_y": 32.44,
+    "to_y": 33.44
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     9.86,
+     32.465
+    ],
+    "pm": [
+     10.532,
+     33.137
+    ],
+    "p0": [
+     9.86,
+     33.415
+    ],
+    "p1": [
+     10.81,
+     32.465
+    ]
+   },
+   "opens_into": "مكتب 2",
+   "other_side": null,
+   "id": "F02-D07"
+  },
+  {
+   "source": "block",
+   "block": "D10W12",
+   "layer": "PR",
+   "handle": "79B",
+   "insert": [
+    7.055,
+    32.08
+   ],
+   "rotation_local": 180.0,
+   "mirrored": true,
+   "scale": [
+    -1.0,
+    1.0
+   ],
+   "nominal_width": 1.0,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    6.995,
+    31.58
+   ],
+   "axis_deg": 90.0,
+   "width": 1.0,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     7.055,
+     32.08
+    ],
+    [
+     6.935,
+     32.08
+    ]
+   ],
+   "jamb_b": [
+    [
+     7.055,
+     31.08
+    ],
+    [
+     6.935,
+     31.08
+    ]
+   ],
+   "hinge": [
+    6.935,
+    32.055
+   ],
+   "leaf_r": 0.95,
+   "swing_side": "-n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.5,
+    "bound_minus": "wall",
+    "gap_plus": 0.5,
+    "bound_plus": "wall",
+    "gap": 1.0,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     1.0,
+     1.0
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 6.995,
+    "from_y": 31.08,
+    "to_y": 32.08
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     6.935,
+     32.055
+    ],
+    "pm": [
+     6.263,
+     31.383
+    ],
+    "p0": [
+     6.935,
+     31.105
+    ],
+    "p1": [
+     5.985,
+     32.055
+    ]
+   },
+   "opens_into": "مكتب 6",
+   "other_side": "بهو المصعد",
+   "id": "F02-D08"
+  },
+  {
+   "source": "block",
+   "block": "D80W12",
+   "layer": "PR",
+   "handle": "7AA",
+   "insert": [
+    5.34,
+    31.0
+   ],
+   "rotation_local": 180.0,
+   "mirrored": true,
+   "scale": [
+    -1.0,
+    1.0
+   ],
+   "nominal_width": 0.8,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    5.74,
+    30.94
+   ],
+   "axis_deg": 0.0,
+   "width": 0.8,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     5.34,
+     30.88
+    ],
+    [
+     5.34,
+     31.0
+    ]
+   ],
+   "jamb_b": [
+    [
+     6.14,
+     30.88
+    ],
+    [
+     6.14,
+     31.0
+    ]
+   ],
+   "hinge": [
+    5.365,
+    30.88
+   ],
+   "leaf_r": 0.75,
+   "swing_side": "-n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.4,
+    "bound_minus": "wall",
+    "gap_plus": 0.4,
+    "bound_plus": "wall",
+    "gap": 0.8,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     0.8,
+     0.8
+    ]
+   },
+   "host_line": {
+    "orientation": "E-W",
+    "offset_y": 30.94,
+    "from_x": 5.34,
+    "to_x": 6.14
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     5.365,
+     30.88
+    ],
+    "pm": [
+     5.895,
+     30.35
+    ],
+    "p0": [
+     6.115,
+     30.88
+    ],
+    "p1": [
+     5.365,
+     30.13
+    ]
+   },
+   "opens_into": "حمام",
+   "other_side": null,
+   "id": "F02-D09"
+  },
+  {
+   "source": "block",
+   "block": "D10W12",
+   "layer": "PR",
+   "handle": "78A",
+   "insert": [
+    8.955,
+    29.12
+   ],
+   "rotation_local": 360.0,
+   "mirrored": true,
+   "scale": [
+    -1.0,
+    1.0
+   ],
+   "nominal_width": 1.0,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    9.015,
+    29.62
+   ],
+   "axis_deg": 90.0,
+   "width": 1.0,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     8.955,
+     29.12
+    ],
+    [
+     9.075,
+     29.12
+    ]
+   ],
+   "jamb_b": [
+    [
+     8.955,
+     30.12
+    ],
+    [
+     9.075,
+     30.12
+    ]
+   ],
+   "hinge": [
+    9.075,
+    29.145
+   ],
+   "leaf_r": 0.95,
+   "swing_side": "-n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.5,
+    "bound_minus": "wall",
+    "gap_plus": 0.5,
+    "bound_plus": "wall",
+    "gap": 1.0,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     1.0,
+     1.0
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 9.015,
+    "from_y": 29.12,
+    "to_y": 30.12
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     9.075,
+     29.145
+    ],
+    "pm": [
+     9.747,
+     29.817
+    ],
+    "p0": [
+     9.075,
+     30.095
+    ],
+    "p1": [
+     10.025,
+     29.145
+    ]
+   },
+   "opens_into": "مكتب 1",
+   "other_side": null,
+   "id": "F02-D10"
+  },
+  {
+   "source": "block",
+   "block": "D80W12",
+   "layer": "PR",
+   "handle": "7BE",
+   "insert": [
+    5.34,
+    26.85
+   ],
+   "rotation_local": 0.0,
+   "mirrored": false,
+   "scale": [
+    1.0,
+    1.0
+   ],
+   "nominal_width": 0.8,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    5.74,
+    26.91
+   ],
+   "axis_deg": 0.0,
+   "width": 0.8,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     5.34,
+     26.97
+    ],
+    [
+     5.34,
+     26.85
+    ]
+   ],
+   "jamb_b": [
+    [
+     6.14,
+     26.97
+    ],
+    [
+     6.14,
+     26.85
+    ]
+   ],
+   "hinge": [
+    5.365,
+    26.97
+   ],
+   "leaf_r": 0.75,
+   "swing_side": "+n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.4,
+    "bound_minus": "wall",
+    "gap_plus": 0.4,
+    "bound_plus": "wall",
+    "gap": 0.8,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     0.8,
+     0.8
+    ]
+   },
+   "host_line": {
+    "orientation": "E-W",
+    "offset_y": 26.91,
+    "from_x": 5.34,
+    "to_x": 6.14
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     5.365,
+     26.97
+    ],
+    "pm": [
+     5.895,
+     27.5
+    ],
+    "p0": [
+     6.115,
+     26.97
+    ],
+    "p1": [
+     5.365,
+     27.72
+    ]
+   },
+   "opens_into": "حمام",
+   "other_side": "مكتب 7",
+   "id": "F02-D11"
+  },
+  {
+   "source": "block",
+   "block": "D10W12",
+   "layer": "PR",
+   "handle": "7B5",
+   "insert": [
+    7.055,
+    25.77
+   ],
+   "rotation_local": 0.0,
+   "mirrored": false,
+   "scale": [
+    1.0,
+    1.0
+   ],
+   "nominal_width": 1.0,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    6.995,
+    26.27
+   ],
+   "axis_deg": 90.0,
+   "width": 1.0,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     7.055,
+     25.77
+    ],
+    [
+     6.935,
+     25.77
+    ]
+   ],
+   "jamb_b": [
+    [
+     7.055,
+     26.77
+    ],
+    [
+     6.935,
+     26.77
+    ]
+   ],
+   "hinge": [
+    6.935,
+    25.795
+   ],
+   "leaf_r": 0.95,
+   "swing_side": "+n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.5,
+    "bound_minus": "wall",
+    "gap_plus": 0.5,
+    "bound_plus": "wall",
+    "gap": 1.0,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     1.0,
+     1.0
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 6.995,
+    "from_y": 25.77,
+    "to_y": 26.77
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     6.935,
+     25.795
+    ],
+    "pm": [
+     6.263,
+     26.467
+    ],
+    "p0": [
+     6.935,
+     26.745
+    ],
+    "p1": [
+     5.985,
+     25.795
+    ]
+   },
+   "opens_into": "مكتب 7",
+   "other_side": "بهو المصعد",
+   "id": "F02-D12"
+  },
+  {
+   "source": "block",
+   "block": "D90W25",
+   "layer": "PR",
+   "handle": "8FA",
+   "insert": [
+    9.325,
+    25.65
+   ],
+   "rotation_local": 0.0,
+   "mirrored": false,
+   "scale": [
+    1.0,
+    1.0
+   ],
+   "nominal_width": 0.9,
+   "nominal_wall_t": 0.25,
+   "kind": "single swing",
+   "center": [
+    9.775,
+    25.775
+   ],
+   "axis_deg": 180.0,
+   "width": 0.9,
+   "wall_t_block": 0.25,
+   "jamb_a": [
+    [
+     10.225,
+     25.65
+    ],
+    [
+     10.225,
+     25.9
+    ]
+   ],
+   "jamb_b": [
+    [
+     9.325,
+     25.65
+    ],
+    [
+     9.325,
+     25.9
+    ]
+   ],
+   "hinge": [
+    9.35,
+    25.9
+   ],
+   "leaf_r": 0.85,
+   "swing_side": "-n",
+   "hinge_at": "b",
+   "host": {
+    "gap_minus": 0.45,
+    "bound_minus": "wall",
+    "gap_plus": 0.45,
+    "bound_plus": "wall",
+    "gap": 0.9,
+    "wall_t_minus": 0.25,
+    "wall_t_plus": 0.25,
+    "face_gaps": [
+     0.9,
+     0.9
+    ]
+   },
+   "host_line": {
+    "orientation": "E-W",
+    "offset_y": 25.775,
+    "from_x": 9.325,
+    "to_x": 10.225
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     9.35,
+     25.9
+    ],
+    "pm": [
+     9.951,
+     26.501
+    ],
+    "p0": [
+     10.2,
+     25.9
+    ],
+    "p1": [
+     9.35,
+     26.75
+    ]
+   },
+   "opens_into": null,
+   "other_side": "بهو المصعد",
+   "id": "F02-D13"
+  },
+  {
+   "source": "block",
+   "block": "D90W12",
+   "layer": "W",
+   "handle": "10F3",
+   "insert": [
+    14.775,
+    25.784
+   ],
+   "rotation_local": 0.0,
+   "mirrored": false,
+   "scale": [
+    1.0,
+    1.0
+   ],
+   "nominal_width": 0.9,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    15.225,
+    25.844
+   ],
+   "axis_deg": 0.0,
+   "width": 0.9,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     14.775,
+     25.784
+    ],
+    [
+     14.775,
+     25.904
+    ]
+   ],
+   "jamb_b": [
+    [
+     15.675,
+     25.784
+    ],
+    [
+     15.675,
+     25.904
+    ]
+   ],
+   "hinge": [
+    14.8,
+    25.904
+   ],
+   "leaf_r": 0.85,
+   "swing_side": "+n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.45,
+    "bound_minus": "wall",
+    "gap_plus": 0.45,
+    "bound_plus": "wall",
+    "gap": 0.9,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     0.9,
+     0.9
+    ]
+   },
+   "host_line": {
+    "orientation": "E-W",
+    "offset_y": 25.844,
+    "from_x": 14.775,
+    "to_x": 15.675
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     14.8,
+     25.904
+    ],
+    "pm": [
+     15.401,
+     26.505
+    ],
+    "p0": [
+     15.65,
+     25.904
+    ],
+    "p1": [
+     14.8,
+     26.754
+    ]
+   },
+   "opens_into": "DAS/GSM",
+   "other_side": null,
+   "id": "F02-D14"
+  },
+  {
+   "source": "block",
+   "block": "D10W12",
+   "layer": "PR",
+   "handle": "7E2",
+   "insert": [
+    7.055,
+    25.41
+   ],
+   "rotation_local": 180.0,
+   "mirrored": true,
+   "scale": [
+    -1.0,
+    1.0
+   ],
+   "nominal_width": 1.0,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    6.995,
+    24.91
+   ],
+   "axis_deg": 90.0,
+   "width": 1.0,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     7.055,
+     25.41
+    ],
+    [
+     6.935,
+     25.41
+    ]
+   ],
+   "jamb_b": [
+    [
+     7.055,
+     24.41
+    ],
+    [
+     6.935,
+     24.41
+    ]
+   ],
+   "hinge": [
+    6.935,
+    25.385
+   ],
+   "leaf_r": 0.95,
+   "swing_side": "-n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.5,
+    "bound_minus": "wall",
+    "gap_plus": 0.5,
+    "bound_plus": "wall",
+    "gap": 1.0,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": null,
+    "face_gaps": [
+     1.078,
+     1.0
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 6.995,
+    "from_y": 24.41,
+    "to_y": 25.41
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     6.935,
+     25.385
+    ],
+    "pm": [
+     6.263,
+     24.713
+    ],
+    "p0": [
+     6.935,
+     24.435
+    ],
+    "p1": [
+     5.985,
+     25.385
+    ]
+   },
+   "opens_into": "مكتب 8",
+   "other_side": "بهو المصعد",
+   "id": "F02-D15"
+  },
+  {
+   "source": "block",
+   "block": "D90W12",
+   "layer": "W",
+   "handle": "10ED",
+   "insert": [
+    15.973,
+    24.54
+   ],
+   "rotation_local": 270.0,
+   "mirrored": true,
+   "scale": [
+    -1.0,
+    1.0
+   ],
+   "nominal_width": 0.9,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    16.033,
+    24.99
+   ],
+   "axis_deg": 90.0,
+   "width": 0.9,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     15.973,
+     24.54
+    ],
+    [
+     16.093,
+     24.54
+    ]
+   ],
+   "jamb_b": [
+    [
+     15.973,
+     25.44
+    ],
+    [
+     16.093,
+     25.44
+    ]
+   ],
+   "hinge": [
+    16.093,
+    24.565
+   ],
+   "leaf_r": 0.85,
+   "swing_side": "-n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.45,
+    "bound_minus": "wall",
+    "gap_plus": 0.45,
+    "bound_plus": "wall",
+    "gap": 0.9,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     0.9,
+     0.9
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 16.033,
+    "from_y": 24.54,
+    "to_y": 25.44
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     16.093,
+     24.565
+    ],
+    "pm": [
+     16.694,
+     25.166
+    ],
+    "p0": [
+     16.093,
+     25.415
+    ],
+    "p1": [
+     16.943,
+     24.565
+    ]
+   },
+   "opens_into": "IT room",
+   "other_side": null,
+   "id": "F02-D16"
+  },
+  {
+   "source": "block",
+   "block": "D80W12",
+   "layer": "PR",
+   "handle": "10AA",
+   "insert": [
+    10.58,
+    23.75
+   ],
+   "rotation_local": 180.0,
+   "mirrored": true,
+   "scale": [
+    -1.0,
+    1.0
+   ],
+   "nominal_width": 0.8,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    10.98,
+    23.69
+   ],
+   "axis_deg": 0.0,
+   "width": 0.8,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     10.58,
+     23.63
+    ],
+    [
+     10.58,
+     23.75
+    ]
+   ],
+   "jamb_b": [
+    [
+     11.38,
+     23.63
+    ],
+    [
+     11.38,
+     23.75
+    ]
+   ],
+   "hinge": [
+    10.605,
+    23.63
+   ],
+   "leaf_r": 0.75,
+   "swing_side": "-n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.4,
+    "bound_minus": "wall",
+    "gap_plus": 0.4,
+    "bound_plus": "wall",
+    "gap": 0.8,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     0.8,
+     0.8
+    ]
+   },
+   "host_line": {
+    "orientation": "E-W",
+    "offset_y": 23.69,
+    "from_x": 10.58,
+    "to_x": 11.38
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     10.605,
+     23.63
+    ],
+    "pm": [
+     11.135,
+     23.1
+    ],
+    "p0": [
+     11.355,
+     23.63
+    ],
+    "p1": [
+     10.605,
+     22.88
+    ]
+   },
+   "opens_into": "FTR room",
+   "other_side": null,
+   "id": "F02-D17"
+  },
+  {
+   "source": "block",
+   "block": "D90W12",
+   "layer": "W",
+   "handle": "8BB",
+   "insert": [
+    15.973,
+    24.18
+   ],
+   "rotation_local": 270.0,
+   "mirrored": false,
+   "scale": [
+    1.0,
+    1.0
+   ],
+   "nominal_width": 0.9,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    16.033,
+    23.73
+   ],
+   "axis_deg": 90.0,
+   "width": 0.9,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     15.973,
+     24.18
+    ],
+    [
+     16.093,
+     24.18
+    ]
+   ],
+   "jamb_b": [
+    [
+     15.973,
+     23.28
+    ],
+    [
+     16.093,
+     23.28
+    ]
+   ],
+   "hinge": [
+    16.093,
+    24.155
+   ],
+   "leaf_r": 0.85,
+   "swing_side": "+n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.45,
+    "bound_minus": "wall",
+    "gap_plus": 0.45,
+    "bound_plus": "wall",
+    "gap": 0.9,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     0.9,
+     0.9
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 16.033,
+    "from_y": 23.28,
+    "to_y": 24.18
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     16.093,
+     24.155
+    ],
+    "pm": [
+     16.694,
+     23.554
+    ],
+    "p0": [
+     16.093,
+     23.305
+    ],
+    "p1": [
+     16.943,
+     24.155
+    ]
+   },
+   "opens_into": "electric room",
+   "other_side": null,
+   "id": "F02-D18"
+  },
+  {
+   "source": "block",
+   "block": "D80W12",
+   "layer": "W",
+   "handle": "8F5",
+   "insert": [
+    15.973,
+    22.92
+   ],
+   "rotation_local": 270.0,
+   "mirrored": false,
+   "scale": [
+    1.0,
+    1.0
+   ],
+   "nominal_width": 0.8,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    16.033,
+    22.52
+   ],
+   "axis_deg": 90.0,
+   "width": 0.8,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     16.093,
+     22.92
+    ],
+    [
+     15.973,
+     22.92
+    ]
+   ],
+   "jamb_b": [
+    [
+     16.093,
+     22.12
+    ],
+    [
+     15.973,
+     22.12
+    ]
+   ],
+   "hinge": [
+    16.093,
+    22.895
+   ],
+   "leaf_r": 0.75,
+   "swing_side": "+n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.4,
+    "bound_minus": "wall",
+    "gap_plus": 0.4,
+    "bound_plus": "wall",
+    "gap": 0.8,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     0.8,
+     0.8
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 16.033,
+    "from_y": 22.12,
+    "to_y": 22.92
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     16.093,
+     22.895
+    ],
+    "pm": [
+     16.623,
+     22.365
+    ],
+    "p0": [
+     16.093,
+     22.145
+    ],
+    "p1": [
+     16.843,
+     22.895
+    ]
+   },
+   "opens_into": "حمام",
+   "other_side": null,
+   "id": "F02-D19"
+  },
+  {
+   "source": "block",
+   "block": "D10W12",
+   "layer": "W",
+   "handle": "8B5",
+   "insert": [
+    13.02,
+    21.4
+   ],
+   "rotation_local": 270.0,
+   "mirrored": false,
+   "scale": [
+    1.0,
+    1.0
+   ],
+   "nominal_width": 1.0,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    13.52,
+    21.46
+   ],
+   "axis_deg": 180.0,
+   "width": 1.0,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     13.02,
+     21.4
+    ],
+    [
+     13.02,
+     21.52
+    ]
+   ],
+   "jamb_b": [
+    [
+     14.02,
+     21.4
+    ],
+    [
+     14.02,
+     21.52
+    ]
+   ],
+   "hinge": [
+    13.045,
+    21.52
+   ],
+   "leaf_r": 0.95,
+   "swing_side": "+n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.5,
+    "bound_minus": "wall",
+    "gap_plus": 0.5,
+    "bound_plus": "wall",
+    "gap": 1.0,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     1.0,
+     1.0
+    ]
+   },
+   "host_line": {
+    "orientation": "E-W",
+    "offset_y": 21.46,
+    "from_x": 13.02,
+    "to_x": 14.02
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     13.045,
+     21.52
+    ],
+    "pm": [
+     13.717,
+     22.192
+    ],
+    "p0": [
+     13.995,
+     21.52
+    ],
+    "p1": [
+     13.045,
+     22.47
+    ]
+   },
+   "opens_into": null,
+   "other_side": "حمام",
+   "id": "F02-D20"
+  },
+  {
+   "source": "block",
+   "block": "D80W12",
+   "layer": "W",
+   "handle": "8F1",
+   "insert": [
+    15.053,
+    21.52
+   ],
+   "rotation_local": 180.0,
+   "mirrored": true,
+   "scale": [
+    -1.0,
+    1.0
+   ],
+   "nominal_width": 0.8,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    15.453,
+    21.46
+   ],
+   "axis_deg": 0.0,
+   "width": 0.8,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     15.053,
+     21.4
+    ],
+    [
+     15.053,
+     21.52
+    ]
+   ],
+   "jamb_b": [
+    [
+     15.853,
+     21.4
+    ],
+    [
+     15.853,
+     21.52
+    ]
+   ],
+   "hinge": [
+    15.078,
+    21.4
+   ],
+   "leaf_r": 0.75,
+   "swing_side": "-n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.4,
+    "bound_minus": "wall",
+    "gap_plus": 0.4,
+    "bound_plus": "wall",
+    "gap": 0.8,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     0.8,
+     0.8
+    ]
+   },
+   "host_line": {
+    "orientation": "E-W",
+    "offset_y": 21.46,
+    "from_x": 15.053,
+    "to_x": 15.853
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     15.078,
+     21.4
+    ],
+    "pm": [
+     15.608,
+     20.87
+    ],
+    "p0": [
+     15.828,
+     21.4
+    ],
+    "p1": [
+     15.078,
+     20.65
+    ]
+   },
+   "opens_into": "حمام",
+   "other_side": null,
+   "id": "F02-D21"
+  },
+  {
+   "source": "block",
+   "block": "D80W12",
+   "layer": "PR",
+   "handle": "7F4",
+   "insert": [
+    5.34,
+    20.135
+   ],
+   "rotation_local": 0.0,
+   "mirrored": false,
+   "scale": [
+    1.0,
+    1.0
+   ],
+   "nominal_width": 0.8,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    5.74,
+    20.195
+   ],
+   "axis_deg": 180.0,
+   "width": 0.8,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     5.34,
+     20.255
+    ],
+    [
+     5.34,
+     20.135
+    ]
+   ],
+   "jamb_b": [
+    [
+     6.14,
+     20.255
+    ],
+    [
+     6.14,
+     20.135
+    ]
+   ],
+   "hinge": [
+    5.365,
+    20.255
+   ],
+   "leaf_r": 0.75,
+   "swing_side": "+n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.4,
+    "bound_minus": "wall",
+    "gap_plus": 0.4,
+    "bound_plus": "wall",
+    "gap": 0.8,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     0.8,
+     0.8
+    ]
+   },
+   "host_line": {
+    "orientation": "E-W",
+    "offset_y": 20.195,
+    "from_x": 5.34,
+    "to_x": 6.14
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     5.365,
+     20.255
+    ],
+    "pm": [
+     5.895,
+     20.785
+    ],
+    "p0": [
+     6.115,
+     20.255
+    ],
+    "p1": [
+     5.365,
+     21.005
+    ]
+   },
+   "opens_into": "حمام",
+   "other_side": null,
+   "id": "F02-D22"
+  },
+  {
+   "source": "block",
+   "block": "D10W12",
+   "layer": "PR",
+   "handle": "7FC",
+   "insert": [
+    7.055,
+    19.03
+   ],
+   "rotation_local": 0.0,
+   "mirrored": false,
+   "scale": [
+    1.0,
+    1.0
+   ],
+   "nominal_width": 1.0,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    6.995,
+    19.53
+   ],
+   "axis_deg": 90.0,
+   "width": 1.0,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     7.055,
+     19.03
+    ],
+    [
+     6.935,
+     19.03
+    ]
+   ],
+   "jamb_b": [
+    [
+     7.055,
+     20.03
+    ],
+    [
+     6.935,
+     20.03
+    ]
+   ],
+   "hinge": [
+    6.935,
+    19.055
+   ],
+   "leaf_r": 0.95,
+   "swing_side": "+n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.5,
+    "bound_minus": "wall",
+    "gap_plus": 0.5,
+    "bound_plus": "wall",
+    "gap": 1.0,
+    "wall_t_minus": null,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     1.0,
+     1.36
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 6.995,
+    "from_y": 19.03,
+    "to_y": 20.03
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     6.935,
+     19.055
+    ],
+    "pm": [
+     6.263,
+     19.727
+    ],
+    "p0": [
+     6.935,
+     20.005
+    ],
+    "p1": [
+     5.985,
+     19.055
+    ]
+   },
+   "opens_into": "مكتب 9",
+   "other_side": "بهو المصعد",
+   "id": "F02-D23"
+  },
+  {
+   "source": "block",
+   "block": "D80W12",
+   "layer": "W",
+   "handle": "8F3",
+   "insert": [
+    16.213,
+    19.17
+   ],
+   "rotation_local": 180.0,
+   "mirrored": true,
+   "scale": [
+    -1.0,
+    1.0
+   ],
+   "nominal_width": 0.8,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    16.613,
+    19.11
+   ],
+   "axis_deg": 0.0,
+   "width": 0.8,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     16.213,
+     19.05
+    ],
+    [
+     16.213,
+     19.17
+    ]
+   ],
+   "jamb_b": [
+    [
+     17.013,
+     19.05
+    ],
+    [
+     17.013,
+     19.17
+    ]
+   ],
+   "hinge": [
+    16.238,
+    19.05
+   ],
+   "leaf_r": 0.75,
+   "swing_side": "-n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.4,
+    "bound_minus": "wall",
+    "gap_plus": 0.4,
+    "bound_plus": "wall",
+    "gap": 0.8,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     0.8,
+     0.8
+    ]
+   },
+   "host_line": {
+    "orientation": "E-W",
+    "offset_y": 19.11,
+    "from_x": 16.213,
+    "to_x": 17.013
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     16.238,
+     19.05
+    ],
+    "pm": [
+     16.768,
+     18.52
+    ],
+    "p0": [
+     16.988,
+     19.05
+    ],
+    "p1": [
+     16.238,
+     18.3
+    ]
+   },
+   "opens_into": "تراس سماوي",
+   "other_side": "حمام",
+   "id": "F02-D24"
+  },
+  {
+   "source": "block",
+   "block": "D10W12",
+   "layer": "PR",
+   "handle": "803",
+   "insert": [
+    7.055,
+    18.67
+   ],
+   "rotation_local": 180.0,
+   "mirrored": true,
+   "scale": [
+    -1.0,
+    1.0
+   ],
+   "nominal_width": 1.0,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    6.995,
+    18.17
+   ],
+   "axis_deg": 90.0,
+   "width": 1.0,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     7.055,
+     18.67
+    ],
+    [
+     6.935,
+     18.67
+    ]
+   ],
+   "jamb_b": [
+    [
+     7.055,
+     17.67
+    ],
+    [
+     6.935,
+     17.67
+    ]
+   ],
+   "hinge": [
+    6.935,
+    18.645
+   ],
+   "leaf_r": 0.95,
+   "swing_side": "-n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.5,
+    "bound_minus": "wall",
+    "gap_plus": 0.5,
+    "bound_plus": "wall",
+    "gap": 1.0,
+    "wall_t_minus": null,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     0.98,
+     1.0
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 6.995,
+    "from_y": 17.67,
+    "to_y": 18.67
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     6.935,
+     18.645
+    ],
+    "pm": [
+     6.263,
+     17.973
+    ],
+    "p0": [
+     6.935,
+     17.695
+    ],
+    "p1": [
+     5.985,
+     18.645
+    ]
+   },
+   "opens_into": "مكتب 10",
+   "other_side": "بهو المصعد",
+   "id": "F02-D25"
+  },
+  {
+   "source": "raw drawing, no block: arc + leaf line",
+   "block": null,
+   "layer": "WIN",
+   "handle": "1166",
+   "nominal_width": null,
+   "nominal_wall_t": null,
+   "kind": "single swing, glazed (drawn on WIN)",
+   "mirrored": null,
+   "center": [
+    14.973,
+    16.335
+   ],
+   "axis_deg": 90.0,
+   "width": 1.0,
+   "wall_t_block": null,
+   "jamb_a": [
+    [
+     14.913,
+     16.835
+    ],
+    [
+     15.033,
+     16.835
+    ]
+   ],
+   "jamb_b": [
+    [
+     14.913,
+     15.835
+    ],
+    [
+     15.033,
+     15.835
+    ]
+   ],
+   "hinge": [
+    14.973,
+    16.835
+   ],
+   "leaf_r": 1.0,
+   "swing_side": "+n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.7,
+    "bound_minus": "wall",
+    "gap_plus": 0.5,
+    "bound_plus": "wall",
+    "gap": 1.2,
+    "wall_t_minus": 0.25,
+    "wall_t_plus": null,
+    "face_gaps": [
+     null,
+     null
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 14.973,
+    "from_y": 15.835,
+    "to_y": 16.835
+   },
+   "dim_check": null,
+   "glazing_gap_chord": null,
+   "leaf_geom": {
+    "c": [
+     14.973,
+     16.835
+    ],
+    "pm": [
+     15.68,
+     16.128
+    ],
+    "p0": [
+     14.973,
+     15.835
+    ],
+    "p1": [
+     15.973,
+     16.835
+    ]
+   },
+   "opens_into": "تراس سماوي",
+   "other_side": "مكتب 19",
+   "id": "F02-D26",
+   "in_assembly": "F02-A01"
+  },
+  {
+   "source": "block",
+   "block": "D10W12",
+   "layer": "W",
+   "handle": "859",
+   "insert": [
+    8.955,
+    15.655
+   ],
+   "rotation_local": 360.0,
+   "mirrored": true,
+   "scale": [
+    -1.0,
+    1.0
+   ],
+   "nominal_width": 1.0,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    9.015,
+    16.155
+   ],
+   "axis_deg": 90.0,
+   "width": 1.0,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     8.955,
+     15.655
+    ],
+    [
+     9.075,
+     15.655
+    ]
+   ],
+   "jamb_b": [
+    [
+     8.955,
+     16.655
+    ],
+    [
+     9.075,
+     16.655
+    ]
+   ],
+   "hinge": [
+    9.075,
+    15.68
+   ],
+   "leaf_r": 0.95,
+   "swing_side": "-n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.5,
+    "bound_minus": "wall",
+    "gap_plus": 0.5,
+    "bound_plus": "wall",
+    "gap": 1.0,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     1.0,
+     1.0
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 9.015,
+    "from_y": 15.655,
+    "to_y": 16.655
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     9.075,
+     15.68
+    ],
+    "pm": [
+     9.747,
+     16.352
+    ],
+    "p0": [
+     9.075,
+     16.63
+    ],
+    "p1": [
+     10.025,
+     15.68
+    ]
+   },
+   "opens_into": "مكتب 19",
+   "other_side": null,
+   "id": "F02-D27"
+  },
+  {
+   "source": "block",
+   "block": "D10W12",
+   "layer": "W",
+   "handle": "85F",
+   "insert": [
+    8.955,
+    15.295
+   ],
+   "rotation_local": 180.0,
+   "mirrored": false,
+   "scale": [
+    1.0,
+    1.0
+   ],
+   "nominal_width": 1.0,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    9.015,
+    14.795
+   ],
+   "axis_deg": 90.0,
+   "width": 1.0,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     8.955,
+     15.295
+    ],
+    [
+     9.075,
+     15.295
+    ]
+   ],
+   "jamb_b": [
+    [
+     8.955,
+     14.295
+    ],
+    [
+     9.075,
+     14.295
+    ]
+   ],
+   "hinge": [
+    9.075,
+    15.27
+   ],
+   "leaf_r": 0.95,
+   "swing_side": "+n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.5,
+    "bound_minus": "wall",
+    "gap_plus": 0.5,
+    "bound_plus": "wall",
+    "gap": 1.0,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     1.0,
+     1.0
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 9.015,
+    "from_y": 14.295,
+    "to_y": 15.295
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     9.075,
+     15.27
+    ],
+    "pm": [
+     9.747,
+     14.598
+    ],
+    "p0": [
+     9.075,
+     14.32
+    ],
+    "p1": [
+     10.025,
+     15.27
+    ]
+   },
+   "opens_into": "مكتب 18",
+   "other_side": null,
+   "id": "F02-D28"
+  },
+  {
+   "source": "block",
+   "block": "D80W12",
+   "layer": "PR",
+   "handle": "80E",
+   "insert": [
+    5.34,
+    13.625
+   ],
+   "rotation_local": 0.0,
+   "mirrored": false,
+   "scale": [
+    1.0,
+    1.0
+   ],
+   "nominal_width": 0.8,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    5.74,
+    13.685
+   ],
+   "axis_deg": 0.0,
+   "width": 0.8,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     5.34,
+     13.745
+    ],
+    [
+     5.34,
+     13.625
+    ]
+   ],
+   "jamb_b": [
+    [
+     6.14,
+     13.745
+    ],
+    [
+     6.14,
+     13.625
+    ]
+   ],
+   "hinge": [
+    5.365,
+    13.745
+   ],
+   "leaf_r": 0.75,
+   "swing_side": "+n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.4,
+    "bound_minus": "wall",
+    "gap_plus": 0.4,
+    "bound_plus": "wall",
+    "gap": 0.8,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     0.8,
+     0.8
+    ]
+   },
+   "host_line": {
+    "orientation": "E-W",
+    "offset_y": 13.685,
+    "from_x": 5.34,
+    "to_x": 6.14
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     5.365,
+     13.745
+    ],
+    "pm": [
+     5.895,
+     14.275
+    ],
+    "p0": [
+     6.115,
+     13.745
+    ],
+    "p1": [
+     5.365,
+     14.495
+    ]
+   },
+   "opens_into": "حمام",
+   "other_side": null,
+   "id": "F02-D29"
+  },
+  {
+   "source": "block",
+   "block": "D10W12",
+   "layer": "PR",
+   "handle": "816",
+   "insert": [
+    7.055,
+    12.52
+   ],
+   "rotation_local": 0.0,
+   "mirrored": false,
+   "scale": [
+    1.0,
+    1.0
+   ],
+   "nominal_width": 1.0,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    6.995,
+    13.02
+   ],
+   "axis_deg": 90.0,
+   "width": 1.0,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     7.055,
+     12.52
+    ],
+    [
+     6.935,
+     12.52
+    ]
+   ],
+   "jamb_b": [
+    [
+     7.055,
+     13.52
+    ],
+    [
+     6.935,
+     13.52
+    ]
+   ],
+   "hinge": [
+    6.935,
+    12.545
+   ],
+   "leaf_r": 0.95,
+   "swing_side": "+n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.5,
+    "bound_minus": "wall",
+    "gap_plus": 0.5,
+    "bound_plus": "wall",
+    "gap": 1.0,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     1.0,
+     1.0
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 6.995,
+    "from_y": 12.52,
+    "to_y": 13.52
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     6.935,
+     12.545
+    ],
+    "pm": [
+     6.263,
+     13.217
+    ],
+    "p0": [
+     6.935,
+     13.495
+    ],
+    "p1": [
+     5.985,
+     12.545
+    ]
+   },
+   "opens_into": null,
+   "other_side": "بهو المصعد",
+   "id": "F02-D30"
+  },
+  {
+   "source": "raw drawing, no block: arc + leaf line",
+   "block": null,
+   "layer": "WIN",
+   "handle": "1165",
+   "nominal_width": null,
+   "nominal_wall_t": null,
+   "kind": "single swing, glazed (drawn on WIN)",
+   "mirrored": null,
+   "center": [
+    14.973,
+    13.12
+   ],
+   "axis_deg": 90.0,
+   "width": 1.0,
+   "wall_t_block": null,
+   "jamb_a": [
+    [
+     15.033,
+     12.62
+    ],
+    [
+     14.913,
+     12.62
+    ]
+   ],
+   "jamb_b": [
+    [
+     15.033,
+     13.62
+    ],
+    [
+     14.913,
+     13.62
+    ]
+   ],
+   "hinge": [
+    14.973,
+    12.62
+   ],
+   "leaf_r": 1.0,
+   "swing_side": "-n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.6,
+    "bound_minus": "wall",
+    "gap_plus": null,
+    "bound_plus": null,
+    "gap": null,
+    "wall_t_minus": 0.25,
+    "wall_t_plus": null,
+    "face_gaps": [
+     null,
+     null
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 14.973,
+    "from_y": 12.62,
+    "to_y": 13.62
+   },
+   "dim_check": null,
+   "glazing_gap_chord": null,
+   "leaf_geom": {
+    "c": [
+     14.973,
+     12.62
+    ],
+    "pm": [
+     15.68,
+     13.327
+    ],
+    "p0": [
+     15.973,
+     12.62
+    ],
+    "p1": [
+     14.973,
+     13.62
+    ]
+   },
+   "opens_into": "تراس سماوي",
+   "other_side": "مكتب 18",
+   "id": "F02-D31",
+   "in_assembly": "F02-A02"
+  },
+  {
+   "source": "block",
+   "block": "D10W12",
+   "layer": "PR",
+   "handle": "82C",
+   "insert": [
+    7.055,
+    9.655
+   ],
+   "rotation_local": 0.0,
+   "mirrored": false,
+   "scale": [
+    1.0,
+    1.0
+   ],
+   "nominal_width": 1.0,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    6.995,
+    10.155
+   ],
+   "axis_deg": 90.0,
+   "width": 1.0,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     7.055,
+     9.655
+    ],
+    [
+     6.935,
+     9.655
+    ]
+   ],
+   "jamb_b": [
+    [
+     7.055,
+     10.655
+    ],
+    [
+     6.935,
+     10.655
+    ]
+   ],
+   "hinge": [
+    6.935,
+    9.68
+   ],
+   "leaf_r": 0.95,
+   "swing_side": "+n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.5,
+    "bound_minus": "wall",
+    "gap_plus": 0.5,
+    "bound_plus": "wall",
+    "gap": 1.0,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     1.0,
+     1.0
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 6.995,
+    "from_y": 9.655,
+    "to_y": 10.655
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     6.935,
+     9.68
+    ],
+    "pm": [
+     6.263,
+     10.352
+    ],
+    "p0": [
+     6.935,
+     10.63
+    ],
+    "p1": [
+     5.985,
+     9.68
+    ]
+   },
+   "opens_into": null,
+   "other_side": "بهو المصعد",
+   "id": "F02-D32"
+  },
+  {
+   "source": "block",
+   "block": "D10W12",
+   "layer": "W",
+   "handle": "866",
+   "insert": [
+    8.955,
+    9.205
+   ],
+   "rotation_local": 360.0,
+   "mirrored": true,
+   "scale": [
+    -1.0,
+    1.0
+   ],
+   "nominal_width": 1.0,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    9.015,
+    9.705
+   ],
+   "axis_deg": 90.0,
+   "width": 1.0,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     8.955,
+     9.205
+    ],
+    [
+     9.075,
+     9.205
+    ]
+   ],
+   "jamb_b": [
+    [
+     8.955,
+     10.205
+    ],
+    [
+     9.075,
+     10.205
+    ]
+   ],
+   "hinge": [
+    9.075,
+    9.23
+   ],
+   "leaf_r": 0.95,
+   "swing_side": "-n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.5,
+    "bound_minus": "wall",
+    "gap_plus": 0.5,
+    "bound_plus": "wall",
+    "gap": 1.0,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     1.0,
+     1.0
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 9.015,
+    "from_y": 9.205,
+    "to_y": 10.205
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     9.075,
+     9.23
+    ],
+    "pm": [
+     9.747,
+     9.902
+    ],
+    "p0": [
+     9.075,
+     10.18
+    ],
+    "p1": [
+     10.025,
+     9.23
+    ]
+   },
+   "opens_into": "مكتب 17",
+   "other_side": null,
+   "id": "F02-D33"
+  },
+  {
+   "source": "block",
+   "block": "D10W12",
+   "layer": "W",
+   "handle": "86B",
+   "insert": [
+    8.955,
+    8.845
+   ],
+   "rotation_local": 180.0,
+   "mirrored": false,
+   "scale": [
+    1.0,
+    1.0
+   ],
+   "nominal_width": 1.0,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    9.015,
+    8.345
+   ],
+   "axis_deg": 90.0,
+   "width": 1.0,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     8.955,
+     8.845
+    ],
+    [
+     9.075,
+     8.845
+    ]
+   ],
+   "jamb_b": [
+    [
+     8.955,
+     7.845
+    ],
+    [
+     9.075,
+     7.845
+    ]
+   ],
+   "hinge": [
+    9.075,
+    8.82
+   ],
+   "leaf_r": 0.95,
+   "swing_side": "+n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.5,
+    "bound_minus": "wall",
+    "gap_plus": 0.5,
+    "bound_plus": "wall",
+    "gap": 1.0,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     1.0,
+     1.0
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 9.015,
+    "from_y": 7.845,
+    "to_y": 8.845
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     9.075,
+     8.82
+    ],
+    "pm": [
+     9.747,
+     8.148
+    ],
+    "p0": [
+     9.075,
+     7.87
+    ],
+    "p1": [
+     10.025,
+     8.82
+    ]
+   },
+   "opens_into": "مكتب 16",
+   "other_side": null,
+   "id": "F02-D34"
+  },
+  {
+   "source": "block",
+   "block": "D10W12",
+   "layer": "PR",
+   "handle": "842",
+   "insert": [
+    7.055,
+    5.74
+   ],
+   "rotation_local": 0.0,
+   "mirrored": false,
+   "scale": [
+    1.0,
+    1.0
+   ],
+   "nominal_width": 1.0,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    6.995,
+    6.24
+   ],
+   "axis_deg": 90.0,
+   "width": 1.0,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     7.055,
+     5.74
+    ],
+    [
+     6.935,
+     5.74
+    ]
+   ],
+   "jamb_b": [
+    [
+     7.055,
+     6.74
+    ],
+    [
+     6.935,
+     6.74
+    ]
+   ],
+   "hinge": [
+    6.935,
+    5.765
+   ],
+   "leaf_r": 0.95,
+   "swing_side": "+n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.5,
+    "bound_minus": "wall",
+    "gap_plus": 0.5,
+    "bound_plus": "wall",
+    "gap": 1.0,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     1.0,
+     1.0
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 6.995,
+    "from_y": 5.74,
+    "to_y": 6.74
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     6.935,
+     5.765
+    ],
+    "pm": [
+     6.263,
+     6.437
+    ],
+    "p0": [
+     6.935,
+     6.715
+    ],
+    "p1": [
+     5.985,
+     5.765
+    ]
+   },
+   "opens_into": "مكتب 12",
+   "other_side": "بهو المصعد",
+   "id": "F02-D35"
+  },
+  {
+   "source": "block",
+   "block": "D10W12",
+   "layer": "PR",
+   "handle": "83E",
+   "insert": [
+    7.055,
+    5.38
+   ],
+   "rotation_local": 180.0,
+   "mirrored": true,
+   "scale": [
+    -1.0,
+    1.0
+   ],
+   "nominal_width": 1.0,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    6.995,
+    4.88
+   ],
+   "axis_deg": 90.0,
+   "width": 1.0,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     7.055,
+     5.38
+    ],
+    [
+     6.935,
+     5.38
+    ]
+   ],
+   "jamb_b": [
+    [
+     7.055,
+     4.38
+    ],
+    [
+     6.935,
+     4.38
+    ]
+   ],
+   "hinge": [
+    6.935,
+    5.355
+   ],
+   "leaf_r": 0.95,
+   "swing_side": "-n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.5,
+    "bound_minus": "wall",
+    "gap_plus": 0.5,
+    "bound_plus": "wall",
+    "gap": 1.0,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     1.0,
+     1.0
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 6.995,
+    "from_y": 4.38,
+    "to_y": 5.38
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     6.935,
+     5.355
+    ],
+    "pm": [
+     6.263,
+     4.683
+    ],
+    "p0": [
+     6.935,
+     4.405
+    ],
+    "p1": [
+     5.985,
+     5.355
+    ]
+   },
+   "opens_into": "مكتب 13",
+   "other_side": null,
+   "id": "F02-D36"
+  },
+  {
+   "source": "block",
+   "block": "D10W12",
+   "layer": "W",
+   "handle": "880",
+   "insert": [
+    8.955,
+    5.53
+   ],
+   "rotation_local": 180.0,
+   "mirrored": false,
+   "scale": [
+    1.0,
+    1.0
+   ],
+   "nominal_width": 1.0,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    9.015,
+    5.03
+   ],
+   "axis_deg": 90.0,
+   "width": 1.0,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     8.955,
+     5.53
+    ],
+    [
+     9.075,
+     5.53
+    ]
+   ],
+   "jamb_b": [
+    [
+     8.955,
+     4.53
+    ],
+    [
+     9.075,
+     4.53
+    ]
+   ],
+   "hinge": [
+    9.075,
+    5.505
+   ],
+   "leaf_r": 0.95,
+   "swing_side": "+n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.5,
+    "bound_minus": "wall",
+    "gap_plus": 0.5,
+    "bound_plus": "wall",
+    "gap": 1.0,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     1.0,
+     1.0
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 9.015,
+    "from_y": 4.53,
+    "to_y": 5.53
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     9.075,
+     5.505
+    ],
+    "pm": [
+     9.747,
+     4.833
+    ],
+    "p0": [
+     9.075,
+     4.555
+    ],
+    "p1": [
+     10.025,
+     5.505
+    ]
+   },
+   "opens_into": "مكتب 15",
+   "other_side": null,
+   "id": "F02-D37"
+  },
+  {
+   "source": "block",
+   "block": "D10W12",
+   "layer": "PR",
+   "handle": "850",
+   "insert": [
+    8.835,
+    4.26
+   ],
+   "rotation_local": 90.0,
+   "mirrored": false,
+   "scale": [
+    1.0,
+    1.0
+   ],
+   "nominal_width": 1.0,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    8.335,
+    4.2
+   ],
+   "axis_deg": 0.0,
+   "width": 1.0,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     8.835,
+     4.26
+    ],
+    [
+     8.835,
+     4.14
+    ]
+   ],
+   "jamb_b": [
+    [
+     7.835,
+     4.26
+    ],
+    [
+     7.835,
+     4.14
+    ]
+   ],
+   "hinge": [
+    8.81,
+    4.14
+   ],
+   "leaf_r": 0.95,
+   "swing_side": "+n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.5,
+    "bound_minus": "wall",
+    "gap_plus": 0.5,
+    "bound_plus": "wall",
+    "gap": 1.0,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     1.0,
+     1.0
+    ]
+   },
+   "host_line": {
+    "orientation": "E-W",
+    "offset_y": 4.2,
+    "from_x": 7.835,
+    "to_x": 8.835
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     8.81,
+     4.14
+    ],
+    "pm": [
+     8.138,
+     3.468
+    ],
+    "p0": [
+     7.86,
+     4.14
+    ],
+    "p1": [
+     8.81,
+     3.19
+    ]
+   },
+   "opens_into": "مكتب 14",
+   "other_side": null,
+   "id": "F02-D38"
+  },
+  {
+   "source": "block",
+   "block": "D80W12",
+   "layer": "PR",
+   "handle": "853",
+   "insert": [
+    7.715,
+    2.22
+   ],
+   "rotation_local": 90.0,
+   "mirrored": false,
+   "scale": [
+    1.0,
+    1.0
+   ],
+   "nominal_width": 0.8,
+   "nominal_wall_t": 0.12,
+   "kind": "single swing",
+   "center": [
+    7.655,
+    2.62
+   ],
+   "axis_deg": 90.0,
+   "width": 0.8,
+   "wall_t_block": 0.12,
+   "jamb_a": [
+    [
+     7.595,
+     2.22
+    ],
+    [
+     7.715,
+     2.22
+    ]
+   ],
+   "jamb_b": [
+    [
+     7.595,
+     3.02
+    ],
+    [
+     7.715,
+     3.02
+    ]
+   ],
+   "hinge": [
+    7.595,
+    2.245
+   ],
+   "leaf_r": 0.75,
+   "swing_side": "+n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.4,
+    "bound_minus": "wall",
+    "gap_plus": 0.4,
+    "bound_plus": "wall",
+    "gap": 0.8,
+    "wall_t_minus": 0.12,
+    "wall_t_plus": 0.12,
+    "face_gaps": [
+     0.8,
+     0.8
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 7.655,
+    "from_y": 2.22,
+    "to_y": 3.02
+   },
+   "dim_check": null,
+   "leaf_geom": {
+    "c": [
+     7.595,
+     2.245
+    ],
+    "pm": [
+     7.065,
+     2.775
+    ],
+    "p0": [
+     7.595,
+     2.995
+    ],
+    "p1": [
+     6.845,
+     2.245
+    ]
+   },
+   "opens_into": "حمام",
+   "other_side": null,
+   "id": "F02-D39"
+  },
+  {
+   "source": "raw drawing, no block: arc + leaf line",
+   "block": null,
+   "layer": "WIN",
+   "handle": "1162",
+   "nominal_width": null,
+   "nominal_wall_t": null,
+   "kind": "single swing, glazed (drawn on WIN)",
+   "mirrored": null,
+   "host_type": "curved glazing (no masonry)",
+   "center": [
+    2.854,
+    -0.192
+   ],
+   "axis_deg": 155.91,
+   "width": 1.029,
+   "wall_t_block": null,
+   "jamb_a": [
+    [
+     3.349,
+     -0.348
+    ],
+    [
+     3.3,
+     -0.457
+    ]
+   ],
+   "jamb_b": [
+    [
+     2.409,
+     0.072
+    ],
+    [
+     2.36,
+     -0.037
+    ]
+   ],
+   "hinge": [
+    3.324,
+    -0.403
+   ],
+   "leaf_r": 1.029,
+   "swing_side": "+n",
+   "hinge_at": "a",
+   "host": {
+    "gap_minus": 0.658,
+    "bound_minus": "wall",
+    "gap_plus": null,
+    "bound_plus": null,
+    "gap": null,
+    "wall_t_minus": 0.294,
+    "wall_t_plus": null,
+    "face_gaps": [
+     null,
+     null
+    ]
+   },
+   "host_line": {
+    "orientation": "slanted 155.9 deg",
+    "center": [
+     2.854,
+     -0.192
+    ]
+   },
+   "dim_check": null,
+   "glazing_gap_chord": null,
+   "leaf_geom": {
+    "c": [
+     3.324,
+     -0.403
+    ],
+    "pm": [
+     2.4,
+     -0.856
+    ],
+    "p0": [
+     2.384,
+     0.018
+    ],
+    "p1": [
+     3.081,
+     -1.403
+    ]
+   },
+   "opens_into": "تراس سماوي",
+   "other_side": "مكتب 14",
+   "id": "F02-D40"
+  }
+ ],
+ "windows": [
+  {
+   "kind": "window in masonry opening",
+   "shape": "straight",
+   "center": [
+    7.354,
+    38.925
+   ],
+   "axis_deg": 0.0,
+   "width": 1.8,
+   "span_all_lines": 1.8,
+   "frame_depth": 0.15,
+   "n_lines": 2,
+   "ends": [
+    [
+     6.454,
+     38.925
+    ],
+    [
+     8.254,
+     38.925
+    ]
+   ],
+   "host": {
+    "gap_minus": 0.9,
+    "bound_minus": "wall",
+    "gap_plus": 0.9,
+    "bound_plus": "wall",
+    "gap": 1.8,
+    "wall_t_minus": 0.25,
+    "wall_t_plus": null,
+    "face_gaps": [
+     2.25,
+     null
+    ]
+   },
+   "host_line": {
+    "orientation": "E-W",
+    "offset_y": 38.925,
+    "from_x": 6.454,
+    "to_x": 8.254
+   },
+   "dim_check": {
+    "value": 1.8,
+    "along": 1.8,
+    "layer": "DIM",
+    "handle": "A16"
+   },
+   "adjoins_door": null,
+   "rooms": [
+    "مكتب 4"
+   ],
+   "id": "F02-W01"
+  },
+  {
+   "kind": "window in masonry opening",
+   "shape": "straight",
+   "center": [
+    11.055,
+    38.925
+   ],
+   "axis_deg": 0.0,
+   "width": 1.8,
+   "span_all_lines": 1.8,
+   "frame_depth": 0.15,
+   "n_lines": 2,
+   "ends": [
+    [
+     10.155,
+     38.925
+    ],
+    [
+     11.955,
+     38.925
+    ]
+   ],
+   "host": {
+    "gap_minus": 0.9,
+    "bound_minus": "wall",
+    "gap_plus": 0.9,
+    "bound_plus": "wall",
+    "gap": 1.8,
+    "wall_t_minus": 0.25,
+    "wall_t_plus": 0.25,
+    "face_gaps": [
+     1.8,
+     null
+    ]
+   },
+   "host_line": {
+    "orientation": "E-W",
+    "offset_y": 38.925,
+    "from_x": 10.155,
+    "to_x": 11.955
+   },
+   "dim_check": {
+    "value": 1.8,
+    "along": 1.8,
+    "layer": "DIM",
+    "handle": "9C8"
+   },
+   "adjoins_door": null,
+   "rooms": [
+    "مكتب 3"
+   ],
+   "id": "F02-W02"
+  },
+  {
+   "kind": "window in masonry opening",
+   "shape": "straight",
+   "center": [
+    15.055,
+    38.525
+   ],
+   "axis_deg": 180.0,
+   "width": 1.8,
+   "span_all_lines": 1.8,
+   "frame_depth": 0.15,
+   "n_lines": 2,
+   "ends": [
+    [
+     14.155,
+     38.525
+    ],
+    [
+     15.955,
+     38.525
+    ]
+   ],
+   "host": {
+    "gap_minus": 0.9,
+    "bound_minus": "wall",
+    "gap_plus": 0.9,
+    "bound_plus": "wall",
+    "gap": 1.8,
+    "wall_t_minus": 0.25,
+    "wall_t_plus": 0.25,
+    "face_gaps": [
+     1.8,
+     null
+    ]
+   },
+   "host_line": {
+    "orientation": "E-W",
+    "offset_y": 38.525,
+    "from_x": 14.155,
+    "to_x": 15.955
+   },
+   "dim_check": {
+    "value": 1.8,
+    "along": 1.8,
+    "layer": "DIM",
+    "handle": "96D"
+   },
+   "adjoins_door": null,
+   "rooms": [
+    "مكتب 3"
+   ],
+   "id": "F02-W03"
+  },
+  {
+   "kind": "window in masonry opening",
+   "shape": "straight",
+   "center": [
+    16.57,
+    36.889
+   ],
+   "axis_deg": 90.0,
+   "width": 1.217,
+   "span_all_lines": 1.217,
+   "frame_depth": 0.13,
+   "n_lines": 2,
+   "ends": [
+    [
+     16.57,
+     36.28
+    ],
+    [
+     16.57,
+     37.497
+    ]
+   ],
+   "host": {
+    "gap_minus": 0.609,
+    "bound_minus": "wall",
+    "gap_plus": 0.609,
+    "bound_plus": "wall",
+    "gap": 1.217,
+    "wall_t_minus": 0.4,
+    "wall_t_plus": 0.4,
+    "face_gaps": [
+     null,
+     1.217
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 16.57,
+    "from_y": 36.28,
+    "to_y": 37.497
+   },
+   "dim_check": null,
+   "adjoins_door": null,
+   "rooms": [
+    "مكتب 3"
+   ],
+   "id": "F02-W04"
+  },
+  {
+   "kind": "curved glazing (corner)",
+   "shape": "arc",
+   "center": [
+    3.47,
+    36.15
+   ],
+   "radius_mid": 2.01,
+   "sweep_deg": 61.1,
+   "width": 2.144,
+   "sweep_inner_deg": 61.0,
+   "sweep_outer_deg": 61.1,
+   "chord": 2.755,
+   "frame_depth": 0.12,
+   "n_lines": 4,
+   "pieces": 2,
+   "ends": [
+    [
+     3.466,
+     38.1
+    ],
+    [
+     1.52,
+     36.15
+    ]
+   ],
+   "host": null,
+   "dim_check": null,
+   "rooms": [
+    "مكتب 5"
+   ],
+   "id": "F02-W05"
+  },
+  {
+   "kind": "window in masonry opening",
+   "shape": "straight",
+   "center": [
+    0.695,
+    33.805
+   ],
+   "axis_deg": 90.0,
+   "width": 2.35,
+   "span_all_lines": 2.35,
+   "frame_depth": 0.15,
+   "n_lines": 2,
+   "ends": [
+    [
+     0.695,
+     32.63
+    ],
+    [
+     0.695,
+     34.98
+    ]
+   ],
+   "host": {
+    "gap_minus": 1.175,
+    "bound_minus": "wall",
+    "gap_plus": 1.175,
+    "bound_plus": "wall",
+    "gap": 2.35,
+    "wall_t_minus": 0.25,
+    "wall_t_plus": 0.25,
+    "face_gaps": [
+     2.35,
+     null
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 0.695,
+    "from_y": 32.63,
+    "to_y": 34.98
+   },
+   "dim_check": {
+    "value": 2.35,
+    "along": 2.35,
+    "layer": "DIM",
+    "handle": "DE5"
+   },
+   "adjoins_door": null,
+   "rooms": [
+    "زرع",
+    "مكتب 5"
+   ],
+   "id": "F02-W06"
+  },
+  {
+   "kind": "window in masonry opening",
+   "shape": "straight",
+   "center": [
+    16.58,
+    33.95
+   ],
+   "axis_deg": 90.0,
+   "width": 2.5,
+   "span_all_lines": 2.5,
+   "frame_depth": 0.15,
+   "n_lines": 2,
+   "ends": [
+    [
+     16.58,
+     32.7
+    ],
+    [
+     16.58,
+     35.2
+    ]
+   ],
+   "host": {
+    "gap_minus": 1.25,
+    "bound_minus": "wall",
+    "gap_plus": 1.25,
+    "bound_plus": "wall",
+    "gap": 2.5,
+    "wall_t_minus": 0.25,
+    "wall_t_plus": 0.25,
+    "face_gaps": [
+     2.5,
+     2.5
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 16.58,
+    "from_y": 32.7,
+    "to_y": 35.2
+   },
+   "dim_check": {
+    "value": 2.5,
+    "along": 2.5,
+    "layer": "DIM",
+    "handle": "BDE"
+   },
+   "adjoins_door": null,
+   "rooms": [
+    "مكتب 2"
+   ],
+   "id": "F02-W07"
+  },
+  {
+   "kind": "window in masonry opening",
+   "shape": "straight",
+   "center": [
+    16.58,
+    30.85
+   ],
+   "axis_deg": 90.0,
+   "width": 2.5,
+   "span_all_lines": 2.5,
+   "frame_depth": 0.15,
+   "n_lines": 2,
+   "ends": [
+    [
+     16.58,
+     29.6
+    ],
+    [
+     16.58,
+     32.1
+    ]
+   ],
+   "host": {
+    "gap_minus": 1.25,
+    "bound_minus": "wall",
+    "gap_plus": 1.25,
+    "bound_plus": "wall",
+    "gap": 2.5,
+    "wall_t_minus": 0.25,
+    "wall_t_plus": 0.25,
+    "face_gaps": [
+     2.5,
+     null
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 16.58,
+    "from_y": 29.6,
+    "to_y": 32.1
+   },
+   "dim_check": {
+    "value": 2.5,
+    "along": 2.5,
+    "layer": "DIM",
+    "handle": "BC4"
+   },
+   "adjoins_door": null,
+   "rooms": [
+    "مكتب 1"
+   ],
+   "id": "F02-W08"
+  },
+  {
+   "kind": "window in masonry opening",
+   "shape": "straight",
+   "center": [
+    0.695,
+    30.655
+   ],
+   "axis_deg": 90.0,
+   "width": 2.35,
+   "span_all_lines": 2.35,
+   "frame_depth": 0.15,
+   "n_lines": 2,
+   "ends": [
+    [
+     0.695,
+     29.48
+    ],
+    [
+     0.695,
+     31.83
+    ]
+   ],
+   "host": {
+    "gap_minus": 1.175,
+    "bound_minus": "wall",
+    "gap_plus": 1.175,
+    "bound_plus": "wall",
+    "gap": 2.35,
+    "wall_t_minus": 0.25,
+    "wall_t_plus": 0.25,
+    "face_gaps": [
+     2.35,
+     null
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 0.695,
+    "from_y": 29.48,
+    "to_y": 31.83
+   },
+   "dim_check": {
+    "value": 2.35,
+    "along": 2.35,
+    "layer": "DIM",
+    "handle": "DB1"
+   },
+   "adjoins_door": null,
+   "rooms": [
+    "زرع",
+    "مكتب 6"
+   ],
+   "id": "F02-W09"
+  },
+  {
+   "kind": "window in masonry opening",
+   "shape": "straight",
+   "center": [
+    19.477,
+    28.151
+   ],
+   "axis_deg": 79.34,
+   "width": 0.8,
+   "span_all_lines": 0.8,
+   "frame_depth": 0.12,
+   "n_lines": 2,
+   "ends": [
+    [
+     19.403,
+     27.758
+    ],
+    [
+     19.551,
+     28.544
+    ]
+   ],
+   "host": {
+    "gap_minus": 0.4,
+    "bound_minus": "wall",
+    "gap_plus": 0.4,
+    "bound_plus": "wall",
+    "gap": 0.8,
+    "wall_t_minus": 0.25,
+    "wall_t_plus": 0.25,
+    "face_gaps": [
+     0.8,
+     0.8
+    ]
+   },
+   "host_line": {
+    "orientation": "slanted 79.3 deg",
+    "center": [
+     19.477,
+     28.151
+    ]
+   },
+   "dim_check": null,
+   "adjoins_door": null,
+   "rooms": [
+    "DAS/GSM"
+   ],
+   "id": "F02-W10"
+  },
+  {
+   "kind": "window in masonry opening",
+   "shape": "straight",
+   "center": [
+    0.695,
+    27.505
+   ],
+   "axis_deg": 90.0,
+   "width": 2.35,
+   "span_all_lines": 2.35,
+   "frame_depth": 0.15,
+   "n_lines": 2,
+   "ends": [
+    [
+     0.695,
+     26.33
+    ],
+    [
+     0.695,
+     28.68
+    ]
+   ],
+   "host": {
+    "gap_minus": 1.175,
+    "bound_minus": "wall",
+    "gap_plus": 1.175,
+    "bound_plus": "wall",
+    "gap": 2.35,
+    "wall_t_minus": 0.25,
+    "wall_t_plus": 0.25,
+    "face_gaps": [
+     2.35,
+     null
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 0.695,
+    "from_y": 26.33,
+    "to_y": 28.68
+   },
+   "dim_check": {
+    "value": 2.35,
+    "along": 2.35,
+    "layer": "DIM",
+    "handle": "D7D"
+   },
+   "adjoins_door": null,
+   "rooms": [
+    "زرع",
+    "مكتب 7"
+   ],
+   "id": "F02-W11"
+  },
+  {
+   "kind": "window in masonry opening",
+   "shape": "straight",
+   "center": [
+    19.144,
+    26.382
+   ],
+   "axis_deg": 79.34,
+   "width": 0.8,
+   "span_all_lines": 0.8,
+   "frame_depth": 0.12,
+   "n_lines": 2,
+   "ends": [
+    [
+     19.07,
+     25.989
+    ],
+    [
+     19.218,
+     26.775
+    ]
+   ],
+   "host": {
+    "gap_minus": 0.4,
+    "bound_minus": "wall",
+    "gap_plus": 0.4,
+    "bound_plus": "wall",
+    "gap": 0.8,
+    "wall_t_minus": 0.249,
+    "wall_t_plus": 0.25,
+    "face_gaps": [
+     0.8,
+     0.8
+    ]
+   },
+   "host_line": {
+    "orientation": "slanted 79.3 deg",
+    "center": [
+     19.144,
+     26.382
+    ]
+   },
+   "dim_check": {
+    "value": 0.786,
+    "along": 0.8,
+    "layer": "DIM",
+    "handle": "B90",
+    "note": "dim value is a projection (linear dim not parallel to the wall); true width along the wall = 'along'"
+   },
+   "adjoins_door": null,
+   "rooms": [
+    "DAS/GSM"
+   ],
+   "id": "F02-W12"
+  },
+  {
+   "kind": "window in masonry opening",
+   "shape": "straight",
+   "center": [
+    17.911,
+    19.838
+   ],
+   "axis_deg": 79.34,
+   "width": 0.8,
+   "span_all_lines": 0.8,
+   "frame_depth": 0.12,
+   "n_lines": 2,
+   "ends": [
+    [
+     17.837,
+     19.445
+    ],
+    [
+     17.985,
+     20.232
+    ]
+   ],
+   "host": {
+    "gap_minus": 0.4,
+    "bound_minus": "wall",
+    "gap_plus": 0.4,
+    "bound_plus": "wall",
+    "gap": 0.8,
+    "wall_t_minus": 0.25,
+    "wall_t_plus": 0.249,
+    "face_gaps": [
+     0.8,
+     0.8
+    ]
+   },
+   "host_line": {
+    "orientation": "slanted 79.3 deg",
+    "center": [
+     17.911,
+     19.838
+    ]
+   },
+   "dim_check": {
+    "value": 0.786,
+    "along": 0.8,
+    "layer": "DIM",
+    "handle": "B76",
+    "note": "dim value is a projection (linear dim not parallel to the wall); true width along the wall = 'along'"
+   },
+   "adjoins_door": null,
+   "rooms": [
+    "حمام"
+   ],
+   "id": "F02-W13"
+  },
+  {
+   "kind": "glazed facade / curtain wall",
+   "shape": "straight",
+   "center": [
+    0.06,
+    19.03
+   ],
+   "axis_deg": 90.0,
+   "width": 13.0,
+   "span_all_lines": 13.0,
+   "frame_depth": 0.12,
+   "n_lines": 2,
+   "ends": [
+    [
+     0.06,
+     12.53
+    ],
+    [
+     0.06,
+     25.53
+    ]
+   ],
+   "host": {
+    "gap_minus": 0.276,
+    "bound_minus": "shaft",
+    "gap_plus": 0.024,
+    "bound_plus": "shaft",
+    "gap": 0.3,
+    "wall_t_minus": null,
+    "wall_t_plus": null,
+    "face_gaps": [
+     null,
+     null
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 0.06,
+    "from_y": 12.53,
+    "to_y": 25.53
+   },
+   "dim_check": {
+    "value": 13.0,
+    "along": 13.0,
+    "layer": "DIM",
+    "handle": "D49"
+   },
+   "adjoins_door": null,
+   "rooms": [
+    "زرع",
+    "مكتب 9"
+   ],
+   "id": "F02-W14"
+  },
+  {
+   "kind": "window in masonry opening",
+   "shape": "straight",
+   "center": [
+    16.603,
+    17.275
+   ],
+   "axis_deg": 0.0,
+   "width": 0.8,
+   "span_all_lines": 0.8,
+   "frame_depth": 0.25,
+   "n_lines": 2,
+   "ends": [
+    [
+     16.203,
+     17.275
+    ],
+    [
+     17.003,
+     17.275
+    ]
+   ],
+   "host": {
+    "gap_minus": 0.4,
+    "bound_minus": "wall",
+    "gap_plus": 0.4,
+    "bound_plus": "wall",
+    "gap": 0.8,
+    "wall_t_minus": 0.25,
+    "wall_t_plus": 0.25,
+    "face_gaps": [
+     0.8,
+     0.8
+    ]
+   },
+   "host_line": {
+    "orientation": "E-W",
+    "offset_y": 17.275,
+    "from_x": 16.203,
+    "to_x": 17.003
+   },
+   "dim_check": null,
+   "adjoins_door": null,
+   "rooms": [
+    "تراس سماوي"
+   ],
+   "id": "F02-W15"
+  },
+  {
+   "kind": "fixed glazing beside a door (same opening)",
+   "shape": "straight",
+   "center": [
+    14.913,
+    14.245
+   ],
+   "axis_deg": 90.0,
+   "width": 1.25,
+   "span_all_lines": 1.25,
+   "frame_depth": 0.12,
+   "n_lines": 2,
+   "ends": [
+    [
+     14.913,
+     13.62
+    ],
+    [
+     14.913,
+     14.87
+    ]
+   ],
+   "host": {
+    "gap_minus": null,
+    "bound_minus": null,
+    "gap_plus": 0.625,
+    "bound_plus": "wall",
+    "gap": null,
+    "wall_t_minus": null,
+    "wall_t_plus": 0.25,
+    "face_gaps": [
+     2.35,
+     2.35
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 14.913,
+    "from_y": 13.62,
+    "to_y": 14.87
+   },
+   "dim_check": null,
+   "adjoins_door": "F02-D31",
+   "rooms": [
+    "مكتب 18",
+    "تراس سماوي"
+   ],
+   "id": "F02-W16",
+   "in_assembly": "F02-A02"
+  },
+  {
+   "kind": "window in masonry opening",
+   "shape": "straight",
+   "center": [
+    0.695,
+    10.52
+   ],
+   "axis_deg": 90.0,
+   "width": 1.92,
+   "span_all_lines": 1.92,
+   "frame_depth": 0.15,
+   "n_lines": 2,
+   "ends": [
+    [
+     0.695,
+     9.56
+    ],
+    [
+     0.695,
+     11.48
+    ]
+   ],
+   "host": {
+    "gap_minus": 0.96,
+    "bound_minus": "wall",
+    "gap_plus": 0.96,
+    "bound_plus": "wall",
+    "gap": 1.92,
+    "wall_t_minus": null,
+    "wall_t_plus": 0.25,
+    "face_gaps": [
+     1.92,
+     null
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 0.695,
+    "from_y": 9.56,
+    "to_y": 11.48
+   },
+   "dim_check": {
+    "value": 1.92,
+    "along": 1.92,
+    "layer": "DIM",
+    "handle": "D08"
+   },
+   "adjoins_door": null,
+   "rooms": [
+    "زرع"
+   ],
+   "id": "F02-W17"
+  },
+  {
+   "kind": "window in masonry opening",
+   "shape": "straight",
+   "center": [
+    14.913,
+    10.705
+   ],
+   "axis_deg": 90.0,
+   "width": 2.35,
+   "span_all_lines": 2.411,
+   "frame_depth": 0.12,
+   "n_lines": 2,
+   "ends": [
+    [
+     14.913,
+     9.53
+    ],
+    [
+     14.913,
+     11.88
+    ]
+   ],
+   "host": {
+    "gap_minus": 1.175,
+    "bound_minus": "wall",
+    "gap_plus": 1.175,
+    "bound_plus": "wall",
+    "gap": 2.35,
+    "wall_t_minus": 0.25,
+    "wall_t_plus": null,
+    "face_gaps": [
+     2.35,
+     2.35
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 14.913,
+    "from_y": 9.53,
+    "to_y": 11.88
+   },
+   "dim_check": null,
+   "adjoins_door": null,
+   "rooms": [
+    "مكتب 17"
+   ],
+   "id": "F02-W18"
+  },
+  {
+   "kind": "window in masonry opening",
+   "shape": "straight",
+   "center": [
+    0.695,
+    7.585
+   ],
+   "axis_deg": 90.0,
+   "width": 2.35,
+   "span_all_lines": 2.35,
+   "frame_depth": 0.15,
+   "n_lines": 2,
+   "ends": [
+    [
+     0.695,
+     6.41
+    ],
+    [
+     0.695,
+     8.76
+    ]
+   ],
+   "host": {
+    "gap_minus": 1.175,
+    "bound_minus": "wall",
+    "gap_plus": 1.175,
+    "bound_plus": "wall",
+    "gap": 2.35,
+    "wall_t_minus": 0.25,
+    "wall_t_plus": 0.25,
+    "face_gaps": [
+     2.35,
+     null
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 0.695,
+    "from_y": 6.41,
+    "to_y": 8.76
+   },
+   "dim_check": {
+    "value": 2.35,
+    "along": 2.35,
+    "layer": "DIM",
+    "handle": "CD4"
+   },
+   "adjoins_door": null,
+   "rooms": [
+    "زرع",
+    "مكتب 12"
+   ],
+   "id": "F02-W19"
+  },
+  {
+   "kind": "window in masonry opening",
+   "shape": "straight",
+   "center": [
+    14.913,
+    7.325
+   ],
+   "axis_deg": 90.0,
+   "width": 2.35,
+   "span_all_lines": 2.419,
+   "frame_depth": 0.12,
+   "n_lines": 2,
+   "ends": [
+    [
+     14.913,
+     6.15
+    ],
+    [
+     14.913,
+     8.5
+    ]
+   ],
+   "host": {
+    "gap_minus": 1.175,
+    "bound_minus": "wall",
+    "gap_plus": 1.175,
+    "bound_plus": "wall",
+    "gap": 2.35,
+    "wall_t_minus": 0.25,
+    "wall_t_plus": 0.25,
+    "face_gaps": [
+     2.35,
+     2.35
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 14.913,
+    "from_y": 6.15,
+    "to_y": 8.5
+   },
+   "dim_check": {
+    "value": 2.35,
+    "along": 2.35,
+    "layer": "DIM",
+    "handle": "AF4"
+   },
+   "adjoins_door": null,
+   "rooms": [
+    "مكتب 16"
+   ],
+   "id": "F02-W20"
+  },
+  {
+   "kind": "window in masonry opening",
+   "shape": "straight",
+   "center": [
+    0.695,
+    4.435
+   ],
+   "axis_deg": 90.0,
+   "width": 2.35,
+   "span_all_lines": 2.35,
+   "frame_depth": 0.15,
+   "n_lines": 2,
+   "ends": [
+    [
+     0.695,
+     3.26
+    ],
+    [
+     0.695,
+     5.61
+    ]
+   ],
+   "host": {
+    "gap_minus": 1.175,
+    "bound_minus": "wall",
+    "gap_plus": 1.175,
+    "bound_plus": "wall",
+    "gap": 2.35,
+    "wall_t_minus": 0.25,
+    "wall_t_plus": 0.25,
+    "face_gaps": [
+     2.35,
+     null
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 0.695,
+    "from_y": 3.26,
+    "to_y": 5.61
+   },
+   "dim_check": {
+    "value": 2.35,
+    "along": 2.35,
+    "layer": "DIM",
+    "handle": "CA0"
+   },
+   "adjoins_door": null,
+   "rooms": [
+    "زرع",
+    "مكتب 13"
+   ],
+   "id": "F02-W21"
+  },
+  {
+   "kind": "window in masonry opening",
+   "shape": "straight",
+   "center": [
+    14.913,
+    4.25
+   ],
+   "axis_deg": 90.0,
+   "width": 1.8,
+   "span_all_lines": 1.8,
+   "frame_depth": 0.12,
+   "n_lines": 2,
+   "ends": [
+    [
+     14.913,
+     5.15
+    ],
+    [
+     14.913,
+     3.35
+    ]
+   ],
+   "host": {
+    "gap_minus": 0.9,
+    "bound_minus": "wall",
+    "gap_plus": 0.9,
+    "bound_plus": "wall",
+    "gap": 1.8,
+    "wall_t_minus": 0.25,
+    "wall_t_plus": 0.25,
+    "face_gaps": [
+     1.8,
+     1.8
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 14.913,
+    "from_y": 3.35,
+    "to_y": 5.15
+   },
+   "dim_check": {
+    "value": 1.8,
+    "along": 1.8,
+    "layer": "DIM",
+    "handle": "ADA"
+   },
+   "adjoins_door": null,
+   "rooms": [
+    "مكتب 15"
+   ],
+   "id": "F02-W22"
+  },
+  {
+   "kind": "curved glazing (corner)",
+   "shape": "arc",
+   "center": [
+    3.47,
+    1.78
+   ],
+   "radius_mid": 2.01,
+   "sweep_deg": 61.5,
+   "width": 2.158,
+   "sweep_inner_deg": 61.5,
+   "sweep_outer_deg": 61.5,
+   "chord": 2.758,
+   "frame_depth": 0.12,
+   "n_lines": 4,
+   "pieces": 2,
+   "ends": [
+    [
+     1.52,
+     1.78
+    ],
+    [
+     3.47,
+     -0.17
+    ]
+   ],
+   "host": null,
+   "dim_check": null,
+   "rooms": [
+    "مكتب 14"
+   ],
+   "id": "F02-W23"
+  },
+  {
+   "kind": "window in masonry opening",
+   "shape": "straight",
+   "center": [
+    5.95,
+    -0.995
+   ],
+   "axis_deg": 0.0,
+   "width": 2.1,
+   "span_all_lines": 2.1,
+   "frame_depth": 0.15,
+   "n_lines": 2,
+   "ends": [
+    [
+     4.9,
+     -0.995
+    ],
+    [
+     7.0,
+     -0.995
+    ]
+   ],
+   "host": {
+    "gap_minus": 1.05,
+    "bound_minus": "wall",
+    "gap_plus": 1.05,
+    "bound_plus": "wall",
+    "gap": 2.1,
+    "wall_t_minus": 0.25,
+    "wall_t_plus": 0.25,
+    "face_gaps": [
+     null,
+     2.1
+    ]
+   },
+   "host_line": {
+    "orientation": "E-W",
+    "offset_y": -0.995,
+    "from_x": 4.9,
+    "to_x": 7.0
+   },
+   "dim_check": {
+    "value": 2.1,
+    "along": 2.1,
+    "layer": "DIM",
+    "handle": "EC1"
+   },
+   "adjoins_door": null,
+   "rooms": [
+    "مكتب 14",
+    "زرع"
+   ],
+   "id": "F02-W24"
+  },
+  {
+   "kind": "window in masonry opening",
+   "shape": "straight",
+   "center": [
+    8.85,
+    -0.995
+   ],
+   "axis_deg": 180.0,
+   "width": 2.1,
+   "span_all_lines": 2.1,
+   "frame_depth": 0.15,
+   "n_lines": 2,
+   "ends": [
+    [
+     7.8,
+     -0.995
+    ],
+    [
+     9.9,
+     -0.995
+    ]
+   ],
+   "host": {
+    "gap_minus": 1.05,
+    "bound_minus": "wall",
+    "gap_plus": 1.05,
+    "bound_plus": "wall",
+    "gap": 2.1,
+    "wall_t_minus": 0.25,
+    "wall_t_plus": 0.25,
+    "face_gaps": [
+     null,
+     1.155
+    ]
+   },
+   "host_line": {
+    "orientation": "E-W",
+    "offset_y": -0.995,
+    "from_x": 7.8,
+    "to_x": 9.9
+   },
+   "dim_check": {
+    "value": 2.1,
+    "along": 2.1,
+    "layer": "DIM",
+    "handle": "EF5"
+   },
+   "adjoins_door": null,
+   "rooms": [
+    "مكتب 14",
+    "زرع"
+   ],
+   "id": "F02-W25"
+  },
+  {
+   "kind": "window in masonry opening",
+   "shape": "straight",
+   "center": [
+    11.753,
+    -0.995
+   ],
+   "axis_deg": 0.0,
+   "width": 2.105,
+   "span_all_lines": 2.105,
+   "frame_depth": 0.15,
+   "n_lines": 2,
+   "ends": [
+    [
+     10.7,
+     -0.995
+    ],
+    [
+     12.805,
+     -0.995
+    ]
+   ],
+   "host": {
+    "gap_minus": 1.053,
+    "bound_minus": "wall",
+    "gap_plus": 1.053,
+    "bound_plus": "wall",
+    "gap": 2.105,
+    "wall_t_minus": 0.25,
+    "wall_t_plus": 0.25,
+    "face_gaps": [
+     null,
+     2.105
+    ]
+   },
+   "host_line": {
+    "orientation": "E-W",
+    "offset_y": -0.995,
+    "from_x": 10.7,
+    "to_x": 12.805
+   },
+   "dim_check": {
+    "value": 2.105,
+    "along": 2.105,
+    "layer": "DIM",
+    "handle": "F29"
+   },
+   "adjoins_door": null,
+   "rooms": [
+    "مكتب 15",
+    "زرع"
+   ],
+   "id": "F02-W26"
+  }
+ ],
+ "openings": [
+  {
+   "kind": "lift landing opening (lift door by supplier, no door block)",
+   "center": [
+    10.49,
+    21.375
+   ],
+   "axis_deg": 90.0,
+   "width": 1.25,
+   "wall_t": 0.3,
+   "ends": [
+    [
+     10.49,
+     22.0
+    ],
+    [
+     10.49,
+     20.75
+    ]
+   ],
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 10.49,
+    "from_y": 20.75,
+    "to_y": 22.0
+   },
+   "found_by": [
+    "band",
+    "caps"
+   ],
+   "dash_across": false,
+   "dash_len_in_gap": 0.0,
+   "side_a": null,
+   "side_b": "بهو المصعد",
+   "confidence": "high",
+   "id": "F02-O01"
+  },
+  {
+   "kind": "lift landing opening (lift door by supplier, no door block)",
+   "center": [
+    10.49,
+    19.625
+   ],
+   "axis_deg": 90.0,
+   "width": 1.25,
+   "wall_t": 0.3,
+   "ends": [
+    [
+     10.49,
+     19.0
+    ],
+    [
+     10.49,
+     20.25
+    ]
+   ],
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 10.49,
+    "from_y": 19.0,
+    "to_y": 20.25
+   },
+   "found_by": [
+    "band"
+   ],
+   "dash_across": false,
+   "dash_len_in_gap": 0.0,
+   "side_a": "بهو المصعد",
+   "side_b": null,
+   "confidence": "high",
+   "id": "F02-O02"
+  }
+ ],
+ "opening_candidates": [
+  {
+   "kind": "candidate: wall end facing a perpendicular wall (review)",
+   "center": [
+    5.22,
+    32.92
+   ],
+   "axis_deg": 90.0,
+   "width": 1.2,
+   "wall_t": 0.24,
+   "ends": [
+    [
+     5.22,
+     33.52
+    ],
+    [
+     5.22,
+     32.32
+    ]
+   ],
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 5.22,
+    "from_y": 32.32,
+    "to_y": 33.52
+   },
+   "found_by": [
+    "caps"
+   ],
+   "dash_across": true,
+   "dash_len_in_gap": 0.017,
+   "side_a": null,
+   "side_b": "مكتب 5",
+   "confidence": "low",
+   "id": "F02-C01"
+  },
+  {
+   "kind": "candidate: wall end facing a perpendicular wall (review)",
+   "center": [
+    11.38,
+    32.92
+   ],
+   "axis_deg": 90.0,
+   "width": 1.2,
+   "wall_t": 0.24,
+   "ends": [
+    [
+     11.38,
+     33.52
+    ],
+    [
+     11.38,
+     32.32
+    ]
+   ],
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 11.38,
+    "from_y": 32.32,
+    "to_y": 33.52
+   },
+   "found_by": [
+    "caps"
+   ],
+   "dash_across": true,
+   "dash_len_in_gap": 0.017,
+   "side_a": "مكتب 2",
+   "side_b": null,
+   "confidence": "low",
+   "id": "F02-C02"
+  },
+  {
+   "kind": "candidate: wall end facing a perpendicular wall (review)",
+   "center": [
+    5.22,
+    31.6
+   ],
+   "axis_deg": 90.0,
+   "width": 1.2,
+   "wall_t": 0.24,
+   "ends": [
+    [
+     5.22,
+     31.0
+    ],
+    [
+     5.22,
+     32.2
+    ]
+   ],
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 5.22,
+    "from_y": 31.0,
+    "to_y": 32.2
+   },
+   "found_by": [
+    "caps"
+   ],
+   "dash_across": true,
+   "dash_len_in_gap": 0.017,
+   "side_a": "مكتب 6",
+   "side_b": null,
+   "confidence": "low",
+   "id": "F02-C03"
+  },
+  {
+   "kind": "candidate: wall end facing a perpendicular wall (review)",
+   "center": [
+    5.22,
+    19.592
+   ],
+   "axis_deg": 90.0,
+   "width": 1.085,
+   "wall_t": 0.24,
+   "ends": [
+    [
+     5.22,
+     20.135
+    ],
+    [
+     5.22,
+     19.05
+    ]
+   ],
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 5.22,
+    "from_y": 19.05,
+    "to_y": 20.135
+   },
+   "found_by": [
+    "caps"
+   ],
+   "dash_across": true,
+   "dash_len_in_gap": 0.017,
+   "side_a": null,
+   "side_b": "مكتب 9",
+   "confidence": "low",
+   "id": "F02-C04"
+  },
+  {
+   "kind": "candidate: wall end facing a perpendicular wall (review)",
+   "center": [
+    5.22,
+    13.012
+   ],
+   "axis_deg": 90.0,
+   "width": 1.225,
+   "wall_t": 0.24,
+   "ends": [
+    [
+     5.22,
+     13.625
+    ],
+    [
+     5.22,
+     12.4
+    ]
+   ],
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 5.22,
+    "from_y": 12.4,
+    "to_y": 13.625
+   },
+   "found_by": [
+    "caps"
+   ],
+   "dash_across": true,
+   "dash_len_in_gap": 0.017,
+   "side_a": null,
+   "side_b": "مكتب 11",
+   "confidence": "low",
+   "id": "F02-C05"
+  },
+  {
+   "kind": "candidate: wall end facing a perpendicular wall (review)",
+   "center": [
+    8.335,
+    2.1
+   ],
+   "axis_deg": 180.0,
+   "width": 1.24,
+   "wall_t": 0.24,
+   "ends": [
+    [
+     7.715,
+     2.1
+    ],
+    [
+     8.955,
+     2.1
+    ]
+   ],
+   "host_line": {
+    "orientation": "E-W",
+    "offset_y": 2.1,
+    "from_x": 7.715,
+    "to_x": 8.955
+   },
+   "found_by": [
+    "caps"
+   ],
+   "dash_across": true,
+   "dash_len_in_gap": 0.017,
+   "side_a": null,
+   "side_b": "مكتب 14",
+   "confidence": "low",
+   "id": "F02-C06"
+  }
+ ],
+ "window_frame_pieces": [
+  {
+   "kind": "frame piece (jamb/mullion, not a window)",
+   "shape": "straight",
+   "center": [
+    2.425,
+    37.867
+   ],
+   "axis_deg": 121.34,
+   "width": 0.12,
+   "span_all_lines": 0.12,
+   "frame_depth": 0.0,
+   "n_lines": 1,
+   "ends": [
+    [
+     2.394,
+     37.918
+    ],
+    [
+     2.456,
+     37.816
+    ]
+   ],
+   "host": {
+    "gap_minus": null,
+    "bound_minus": null,
+    "gap_plus": null,
+    "bound_plus": null,
+    "gap": null,
+    "wall_t_minus": null,
+    "wall_t_plus": null,
+    "face_gaps": [
+     null,
+     null
+    ]
+   },
+   "host_line": {
+    "orientation": "slanted 121.3 deg",
+    "center": [
+     2.425,
+     37.867
+    ]
+   },
+   "dim_check": null,
+   "adjoins_door": null,
+   "rooms": [
+    "تراس سماوي"
+   ],
+   "id": "F02-F01"
+  },
+  {
+   "kind": "frame piece (jamb/mullion, not a window)",
+   "shape": "straight",
+   "center": [
+    14.913,
+    16.935
+   ],
+   "axis_deg": 90.0,
+   "width": 0.2,
+   "span_all_lines": 0.2,
+   "frame_depth": 0.12,
+   "n_lines": 2,
+   "ends": [
+    [
+     14.913,
+     16.835
+    ],
+    [
+     14.913,
+     17.035
+    ]
+   ],
+   "host": {
+    "gap_minus": null,
+    "bound_minus": null,
+    "gap_plus": 0.1,
+    "bound_plus": "wall",
+    "gap": null,
+    "wall_t_minus": null,
+    "wall_t_plus": 0.25,
+    "face_gaps": [
+     1.35,
+     1.77
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 14.913,
+    "from_y": 16.835,
+    "to_y": 17.035
+   },
+   "dim_check": null,
+   "adjoins_door": "F02-D26",
+   "rooms": [
+    "مكتب 19",
+    "تراس سماوي"
+   ],
+   "id": "F02-F02",
+   "in_assembly": "F02-A01"
+  },
+  {
+   "kind": "frame piece (jamb/mullion, not a window)",
+   "shape": "straight",
+   "center": [
+    14.913,
+    15.76
+   ],
+   "axis_deg": 90.0,
+   "width": 0.15,
+   "span_all_lines": 0.15,
+   "frame_depth": 0.12,
+   "n_lines": 2,
+   "ends": [
+    [
+     14.913,
+     15.685
+    ],
+    [
+     14.913,
+     15.835
+    ]
+   ],
+   "host": {
+    "gap_minus": 0.075,
+    "bound_minus": "wall",
+    "gap_plus": 0.075,
+    "bound_plus": "wall",
+    "gap": 0.15,
+    "wall_t_minus": null,
+    "wall_t_plus": null,
+    "face_gaps": [
+     null,
+     null
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 14.913,
+    "from_y": 15.685,
+    "to_y": 15.835
+   },
+   "dim_check": null,
+   "adjoins_door": "F02-D26",
+   "rooms": [
+    "مكتب 19",
+    "تراس سماوي"
+   ],
+   "id": "F02-F03",
+   "in_assembly": "F02-A01"
+  },
+  {
+   "kind": "frame piece (jamb/mullion, not a window)",
+   "shape": "straight",
+   "center": [
+    14.913,
+    13.62
+   ],
+   "axis_deg": 0.0,
+   "width": 0.12,
+   "span_all_lines": 0.12,
+   "frame_depth": 0.0,
+   "n_lines": 1,
+   "ends": [
+    [
+     14.853,
+     13.62
+    ],
+    [
+     14.973,
+     13.62
+    ]
+   ],
+   "host": {
+    "gap_minus": null,
+    "bound_minus": null,
+    "gap_plus": null,
+    "bound_plus": null,
+    "gap": null,
+    "wall_t_minus": null,
+    "wall_t_plus": null,
+    "face_gaps": [
+     null,
+     null
+    ]
+   },
+   "host_line": {
+    "orientation": "E-W",
+    "offset_y": 13.62,
+    "from_x": 14.853,
+    "to_x": 14.973
+   },
+   "dim_check": null,
+   "adjoins_door": null,
+   "rooms": [
+    "تراس سماوي"
+   ],
+   "id": "F02-F04"
+  },
+  {
+   "kind": "frame piece (jamb/mullion, not a window)",
+   "shape": "straight",
+   "center": [
+    14.913,
+    12.57
+   ],
+   "axis_deg": 90.0,
+   "width": 0.1,
+   "span_all_lines": 0.1,
+   "frame_depth": 0.12,
+   "n_lines": 2,
+   "ends": [
+    [
+     14.913,
+     12.52
+    ],
+    [
+     14.913,
+     12.62
+    ]
+   ],
+   "host": {
+    "gap_minus": 0.05,
+    "bound_minus": "wall",
+    "gap_plus": null,
+    "bound_plus": null,
+    "gap": null,
+    "wall_t_minus": 0.25,
+    "wall_t_plus": null,
+    "face_gaps": [
+     2.35,
+     2.35
+    ]
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 14.913,
+    "from_y": 12.52,
+    "to_y": 12.62
+   },
+   "dim_check": null,
+   "adjoins_door": "F02-D31",
+   "rooms": [
+    "مكتب 18",
+    "تراس سماوي"
+   ],
+   "id": "F02-F05",
+   "in_assembly": "F02-A02"
+  },
+  {
+   "kind": "frame piece (jamb/mullion, not a window)",
+   "shape": "straight",
+   "center": [
+    2.416,
+    0.069
+   ],
+   "axis_deg": 58.36,
+   "width": 0.12,
+   "span_all_lines": 0.12,
+   "frame_depth": 0.0,
+   "n_lines": 1,
+   "ends": [
+    [
+     2.384,
+     0.018
+    ],
+    [
+     2.447,
+     0.12
+    ]
+   ],
+   "host": {
+    "gap_minus": null,
+    "bound_minus": null,
+    "gap_plus": null,
+    "bound_plus": null,
+    "gap": null,
+    "wall_t_minus": null,
+    "wall_t_plus": null,
+    "face_gaps": [
+     null,
+     null
+    ]
+   },
+   "host_line": {
+    "orientation": "slanted 58.4 deg",
+    "center": [
+     2.416,
+     0.069
+    ]
+   },
+   "dim_check": null,
+   "adjoins_door": null,
+   "rooms": [
+    "تراس سماوي"
+   ],
+   "id": "F02-F06"
+  },
+  {
+   "kind": "frame piece (jamb/mullion, not a window)",
+   "shape": "straight",
+   "center": [
+    3.359,
+    -0.227
+   ],
+   "axis_deg": 86.84,
+   "width": 0.12,
+   "span_all_lines": 0.12,
+   "frame_depth": 0.0,
+   "n_lines": 1,
+   "ends": [
+    [
+     3.356,
+     -0.287
+    ],
+    [
+     3.363,
+     -0.167
+    ]
+   ],
+   "host": {
+    "gap_minus": null,
+    "bound_minus": null,
+    "gap_plus": null,
+    "bound_plus": null,
+    "gap": null,
+    "wall_t_minus": null,
+    "wall_t_plus": null,
+    "face_gaps": [
+     null,
+     null
+    ]
+   },
+   "host_line": {
+    "orientation": "slanted 86.8 deg",
+    "center": [
+     3.359,
+     -0.227
+    ]
+   },
+   "dim_check": null,
+   "adjoins_door": null,
+   "rooms": [
+    "تراس سماوي",
+    "مكتب 14"
+   ],
+   "id": "F02-F07"
+  }
+ ],
+ "assemblies": [
+  {
+   "kind": "glazed door assembly (door + fixed glazing / frame in ONE masonry opening)",
+   "members": [
+    "F02-F03",
+    "F02-D26",
+    "F02-F02"
+   ],
+   "center": [
+    14.933,
+    16.36
+   ],
+   "axis_deg": 90.0,
+   "ends": [
+    [
+     14.933,
+     15.685
+    ],
+    [
+     14.933,
+     17.035
+    ]
+   ],
+   "span": 1.35,
+   "masonry_gap": 1.35,
+   "host": {
+    "gap_minus": 0.525,
+    "bound_minus": "wall",
+    "gap_plus": 0.675,
+    "bound_plus": "wall",
+    "gap": 1.35,
+    "wall_t_minus": null,
+    "wall_t_plus": 0.25,
+    "face_gaps": [
+     1.35,
+     1.77
+    ],
+    "gap_from": "face line"
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 14.933,
+    "from_y": 15.685,
+    "to_y": 17.035
+   },
+   "width": 1.35,
+   "id": "F02-A01"
+  },
+  {
+   "kind": "glazed door assembly (door + fixed glazing / frame in ONE masonry opening)",
+   "members": [
+    "F02-F05",
+    "F02-D31",
+    "F02-W16"
+   ],
+   "center": [
+    14.933,
+    13.695
+   ],
+   "axis_deg": 90.0,
+   "ends": [
+    [
+     14.933,
+     12.52
+    ],
+    [
+     14.933,
+     14.87
+    ]
+   ],
+   "span": 2.35,
+   "masonry_gap": 2.35,
+   "host": {
+    "gap_minus": 1.175,
+    "bound_minus": "wall",
+    "gap_plus": 1.175,
+    "bound_plus": "wall",
+    "gap": 2.35,
+    "wall_t_minus": 0.25,
+    "wall_t_plus": 0.25,
+    "face_gaps": [
+     2.35,
+     2.35
+    ],
+    "gap_from": "face line"
+   },
+   "host_line": {
+    "orientation": "N-S",
+    "offset_x": 14.933,
+    "from_y": 12.52,
+    "to_y": 14.87
+   },
+   "width": 2.35,
+   "id": "F02-A02"
+  }
+ ],
+ "summary": {
+  "doors": {
+   "count": 40,
+   "total_width": 37.458,
+   "by_type": {
+    "raw (no block)": {
+     "count": 4,
+     "total_width": 4.058,
+     "widths": [
+      1.029,
+      1.0
+     ]
+    },
+    "D10W12": {
+     "count": 21,
+     "total_width": 21.0,
+     "widths": [
+      1.0
+     ]
+    },
+    "D80W12": {
+     "count": 11,
+     "total_width": 8.8,
+     "widths": [
+      0.8
+     ]
+    },
+    "D90W25": {
+     "count": 1,
+     "total_width": 0.9,
+     "widths": [
+      0.9
+     ]
+    },
+    "D90W12": {
+     "count": 3,
+     "total_width": 2.7,
+     "widths": [
+      0.9
+     ]
+    }
+   }
+  },
+  "windows": {
+   "count": 26,
+   "total_width": 59.844,
+   "by_kind": {
+    "window in masonry opening": {
+     "count": 22,
+     "total_width": 41.292
+    },
+    "curved glazing (corner)": {
+     "count": 2,
+     "total_width": 4.302
+    },
+    "glazed facade / curtain wall": {
+     "count": 1,
+     "total_width": 13.0
+    },
+    "fixed glazing beside a door (same opening)": {
+     "count": 1,
+     "total_width": 1.25
+    }
+   }
+  },
+  "openings": {
+   "count": 2,
+   "total_width": 2.5,
+   "by_confidence": {
+    "high": {
+     "count": 2,
+     "total_width": 2.5
+    }
+   }
+  },
+  "assemblies": {
+   "count": 2,
+   "masonry_width": 3.7,
+   "members": {
+    "F02-A01": [
+     "F02-F03",
+     "F02-D26",
+     "F02-F02"
+    ],
+    "F02-A02": [
+     "F02-F05",
+     "F02-D31",
+     "F02-W16"
+    ]
+   }
+  },
+  "masonry_deduction_widths": {
+   "assembly|0.25": {
+    "count": 2,
+    "width": 3.7
+   },
+   "door|0.12": {
+    "count": 35,
+    "width": 32.5
+   },
+   "door|0.25": {
+    "count": 1,
+    "width": 0.9
+   },
+   "opening|0.30": {
+    "count": 2,
+    "width": 2.5
+   },
+   "window|0.25": {
+    "count": 21,
+    "width": 40.075
+   },
+   "window|0.40": {
+    "count": 1,
+    "width": 1.217
+   }
+  },
+  "unresolved_glazing": {
+   "count": 0,
+   "total_width": 0.0,
+   "ids": [],
+   "note": "single WIN lines with no parallel partner: not deducted from masonry, not counted as full-height glazing - review on the drawing"
+  }
+ },
+ "checks": {
+  "door_gap_vs_block": [
+   {
+    "id": "F02-D01",
+    "block_w": 1.029,
+    "gap": null,
+    "diff": null,
+    "face_gaps": [
+     null,
+     null
+    ]
+   },
+   {
+    "id": "F02-D26",
+    "block_w": 1.0,
+    "gap": 1.2,
+    "diff": 0.2,
+    "face_gaps": [
+     null,
+     null
+    ]
+   },
+   {
+    "id": "F02-D31",
+    "block_w": 1.0,
+    "gap": null,
+    "diff": null,
+    "face_gaps": [
+     null,
+     null
+    ]
+   },
+   {
+    "id": "F02-D40",
+    "block_w": 1.029,
+    "gap": null,
+    "diff": null,
+    "face_gaps": [
+     null,
+     null
+    ]
+   }
+  ],
+  "door_wall_t_vs_block": [],
+  "windows_with_dim": 19,
+  "windows_dim_mismatch": [],
+  "doors_with_dim": 0,
+  "windows_dim_projection": [
+   {
+    "id": "F02-W12",
+    "width": 0.8,
+    "dim": 0.786
+   },
+   {
+    "id": "F02-W13",
+    "width": 0.8,
+    "dim": 0.786
+   }
+  ],
+  "dims_along_solid_wall": [
+   {
+    "value": 0.786,
+    "p2": [
+     17.69,
+     17.641
+    ],
+    "p3": [
+     17.838,
+     18.428
+    ],
+    "along_wall": 0.8,
+    "handle": "B5C"
+   }
+  ],
+  "other_inserts": [
+   "W:LP"
+  ],
+  "wall_gaps_explained": {
+   "door": 35,
+   "window": 21
+  },
+  "doors_on_other_layers": [],
+  "win_in_stair_skipped": [],
+  "win_twin_lines_merged": [],
+  "win_corner_return_pairs": [],
+  "glazing_duplicates_dropped": [],
+  "curved_glazing_sweep_mismatch": [],
+  "unresolved_glazing": [],
+  "door_width_totals": {
+   "block": 37.458,
+   "clear_gap_W": 37.458,
+   "min_face_line_gap": 37.438
+  }
+ }
+}

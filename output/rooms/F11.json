@@ -1,0 +1,3180 @@
+{
+ "floor": "F11",
+ "floor_no": 11,
+ "name_ar": "الدور الحادي عشر",
+ "level": 37.7,
+ "file": "Diwan_9th_to_11th_Floor.dxf",
+ "sheet_index": 2,
+ "units": "m / m2, LOCAL frame (diwan_common)",
+ "storey_height": 3.2,
+ "openings_source": "output/openings/F11.json",
+ "rooms": [
+  {
+   "id": "F11-R01",
+   "name": "مكتب 3",
+   "category": "office",
+   "category_ar": "مكاتب",
+   "open_air": false,
+   "indoor": true,
+   "area": 30.44,
+   "perimeter": 23.654,
+   "perimeter_outer": 23.654,
+   "n_holes": 0,
+   "boundary": {
+    "glazing": 12.647,
+    "unresolved": 0.043,
+    "wall": 9.968,
+    "door": 0.996
+   },
+   "doors": [
+    "F11-D01"
+   ],
+   "openings": [],
+   "windows": [
+    "F11-W01",
+    "F11-W04",
+    "F11-W07"
+   ],
+   "labels": [
+    {
+     "text": "مكتب 3",
+     "x": 4.772,
+     "y": 33.669,
+     "layer": "TEXT",
+     "handle": "4879"
+    }
+   ],
+   "flags": [
+    "trimmed: 0.87 m2 of thin strip(s) (< 0.32 m wide) cut off this space as wall body - check the drawing there",
+    "free_lines_inside: 0.37 m of single W/WIN lines stand inside this space (not part of its perimeter) - partial wall / screen?"
+   ],
+   "centroid": [
+    4.884,
+    35.179
+   ],
+   "bbox": [
+    1.526,
+    32.32,
+    8.374,
+    38.096
+   ],
+   "inscribed_r": 2.292,
+   "windows_partial_m": {
+    "F11-W01": 3.521,
+    "F11-W07": 2.473
+   },
+   "free_lines_inside": 0.368,
+   "dim_checks": []
+  },
+  {
+   "id": "F11-R02",
+   "name": "مكتب 2",
+   "category": "office",
+   "category_ar": "مكاتب",
+   "open_air": false,
+   "indoor": true,
+   "area": 35.086,
+   "perimeter": 26.007,
+   "perimeter_outer": 26.007,
+   "n_holes": 0,
+   "boundary": {
+    "wall": 13.613,
+    "glazing": 11.352,
+    "unresolved": 0.042,
+    "door": 1.0
+   },
+   "doors": [
+    "F11-D02"
+   ],
+   "openings": [],
+   "windows": [
+    "F11-W01",
+    "F11-W02",
+    "F11-W03",
+    "F11-W05"
+   ],
+   "labels": [
+    {
+     "text": "مكتب 2",
+     "x": 11.606,
+     "y": 34.003,
+     "layer": "TEXT",
+     "handle": "490F"
+    }
+   ],
+   "flags": [
+    "trimmed: 0.65 m2 of thin strip(s) (< 0.32 m wide) cut off this space as wall body - check the drawing there"
+   ],
+   "centroid": [
+    12.643,
+    34.773
+   ],
+   "bbox": [
+    8.475,
+    32.32,
+    16.505,
+    37.26
+   ],
+   "inscribed_r": 2.31,
+   "windows_partial_m": {
+    "F11-W01": 2.698
+   },
+   "dim_checks": [
+    {
+     "dim": "4A3C",
+     "value": 4.62,
+     "room_width": 4.62,
+     "diff": 0.0,
+     "status": "ok",
+     "lateral": 0.2,
+     "dir_deg": 90.0,
+     "p2": [
+      16.305,
+      36.94
+     ],
+     "p3": [
+      16.505,
+      32.32
+     ]
+    },
+    {
+     "dim": "4A6C",
+     "value": 8.03,
+     "room_width": 8.03,
+     "diff": -0.0,
+     "status": "ok",
+     "lateral": 0.873,
+     "dir_deg": 0.0,
+     "p2": [
+      16.505,
+      34.478
+     ],
+     "p3": [
+      8.475,
+      35.351
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F11-R03",
+   "name": "مكتب 4",
+   "category": "office",
+   "category_ar": "مكاتب",
+   "open_air": false,
+   "indoor": true,
+   "area": 14.284,
+   "perimeter": 15.33,
+   "perimeter_outer": 15.33,
+   "n_holes": 0,
+   "boundary": {
+    "wall": 9.92,
+    "door": 0.99,
+    "column": 1.224,
+    "glazing": 3.196
+   },
+   "doors": [
+    "F11-D03"
+   ],
+   "openings": [],
+   "windows": [
+    "F11-W07"
+   ],
+   "labels": [
+    {
+     "text": "مكتب 4",
+     "x": 5.033,
+     "y": 30.56,
+     "layer": "TEXT",
+     "handle": "4906"
+    }
+   ],
+   "flags": [],
+   "centroid": [
+    4.703,
+    30.6
+   ],
+   "bbox": [
+    2.47,
+    29.0,
+    6.935,
+    32.2
+   ],
+   "inscribed_r": 1.6,
+   "windows_partial_m": {
+    "F11-W07": 3.831
+   },
+   "dim_checks": [
+    {
+     "dim": "4A45",
+     "value": 4.465,
+     "room_width": 4.465,
+     "diff": -0.0,
+     "status": "ok",
+     "lateral": 0.551,
+     "dir_deg": 180.0,
+     "p2": [
+      6.935,
+      31.0
+     ],
+     "p3": [
+      2.47,
+      31.551
+     ]
+    },
+    {
+     "dim": "4A60",
+     "value": 3.2,
+     "room_width": 3.205,
+     "diff": 0.005,
+     "status": "ok",
+     "lateral": 0.357,
+     "dir_deg": 90.0,
+     "p2": [
+      4.139,
+      28.995
+     ],
+     "p3": [
+      4.496,
+      32.195
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F11-R04",
+   "name": "مكتب 1",
+   "category": "office",
+   "category_ar": "مكاتب",
+   "open_air": false,
+   "indoor": true,
+   "area": 20.766,
+   "perimeter": 21.26,
+   "perimeter_outer": 21.26,
+   "n_holes": 0,
+   "boundary": {
+    "wall": 14.881,
+    "door": 1.789,
+    "glazing": 2.5,
+    "column": 2.09
+   },
+   "doors": [
+    "F11-D04",
+    "F11-D05"
+   ],
+   "openings": [],
+   "windows": [
+    "F11-W06"
+   ],
+   "labels": [
+    {
+     "text": "مكتب 1",
+     "x": 12.797,
+     "y": 31.058,
+     "layer": "TEXT",
+     "handle": "4910"
+    }
+   ],
+   "flags": [],
+   "centroid": [
+    13.219,
+    30.513
+   ],
+   "bbox": [
+    9.075,
+    29.0,
+    16.505,
+    32.2
+   ],
+   "inscribed_r": 1.6,
+   "dim_checks": [
+    {
+     "dim": "4A42",
+     "value": 5.925,
+     "room_width": 5.925,
+     "diff": -0.0,
+     "status": "ok",
+     "lateral": 0.389,
+     "dir_deg": 180.0,
+     "p2": [
+      16.505,
+      30.811
+     ],
+     "p3": [
+      10.58,
+      31.2
+     ]
+    },
+    {
+     "dim": "4A61",
+     "value": 3.2,
+     "room_width": 3.2,
+     "diff": 0.0,
+     "status": "ok",
+     "lateral": 0.0,
+     "dir_deg": 90.0,
+     "p2": [
+      12.633,
+      29.0
+     ],
+     "p3": [
+      12.633,
+      32.2
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F11-R05",
+   "name": "مكتب 5",
+   "category": "office",
+   "category_ar": "مكاتب",
+   "open_air": false,
+   "indoor": true,
+   "area": 13.958,
+   "perimeter": 15.39,
+   "perimeter_outer": 15.39,
+   "n_holes": 0,
+   "boundary": {
+    "column": 0.38,
+    "wall": 11.3,
+    "door": 0.99,
+    "glazing": 2.72
+   },
+   "doors": [
+    "F11-D06"
+   ],
+   "openings": [],
+   "windows": [
+    "F11-W07"
+   ],
+   "labels": [
+    {
+     "text": "مكتب 5",
+     "x": 4.704,
+     "y": 26.602,
+     "layer": "TEXT",
+     "handle": "4920"
+    }
+   ],
+   "flags": [],
+   "centroid": [
+    4.756,
+    27.218
+   ],
+   "bbox": [
+    2.47,
+    25.65,
+    6.935,
+    28.88
+   ],
+   "inscribed_r": 1.613,
+   "windows_partial_m": {
+    "F11-W07": 3.037
+   },
+   "dim_checks": [
+    {
+     "dim": "4A49",
+     "value": 4.465,
+     "room_width": 4.465,
+     "diff": -0.0,
+     "status": "ok",
+     "lateral": 0.228,
+     "dir_deg": 180.0,
+     "p2": [
+      6.935,
+      27.625
+     ],
+     "p3": [
+      2.47,
+      27.397
+     ]
+    },
+    {
+     "dim": "4A78",
+     "value": 3.23,
+     "room_width": 3.23,
+     "diff": 0.0,
+     "status": "ok",
+     "lateral": 0.043,
+     "dir_deg": 90.0,
+     "p2": [
+      4.506,
+      28.88
+     ],
+     "p3": [
+      4.464,
+      25.65
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F11-R06",
+   "name": "مكتب 6",
+   "category": "office",
+   "category_ar": "مكاتب",
+   "open_air": false,
+   "indoor": true,
+   "area": 18.956,
+   "perimeter": 20.29,
+   "perimeter_outer": 20.29,
+   "n_holes": 0,
+   "boundary": {
+    "wall": 11.036,
+    "door": 1.791,
+    "column": 3.784,
+    "glazing": 3.33,
+    "solid_try": 0.35
+   },
+   "doors": [
+    "F11-D09",
+    "F11-D11"
+   ],
+   "openings": [],
+   "windows": [
+    "F11-W11"
+   ],
+   "labels": [
+    {
+     "text": "مكتب 6",
+     "x": 4.766,
+     "y": 24.811,
+     "layer": "TEXT",
+     "handle": "4954"
+    }
+   ],
+   "flags": [],
+   "centroid": [
+    3.038,
+    23.994
+   ],
+   "bbox": [
+    0.12,
+    22.2,
+    6.935,
+    25.53
+   ],
+   "inscribed_r": 1.662,
+   "windows_partial_m": {
+    "F11-W11": 3.644
+   },
+   "dim_checks": [
+    {
+     "dim": "4A4A",
+     "value": 4.98,
+     "room_width": 4.98,
+     "diff": -0.0,
+     "status": "ok",
+     "lateral": 0.537,
+     "dir_deg": 180.0,
+     "p2": [
+      0.12,
+      23.914
+     ],
+     "p3": [
+      5.1,
+      23.377
+     ]
+    },
+    {
+     "dim": "4A5F",
+     "value": 3.33,
+     "room_width": 3.33,
+     "diff": -0.0,
+     "status": "ok",
+     "lateral": 0.571,
+     "dir_deg": 90.0,
+     "p2": [
+      1.005,
+      22.2
+     ],
+     "p3": [
+      1.576,
+      25.53
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F11-R07",
+   "name": "مكتب 7",
+   "category": "office",
+   "category_ar": "مكاتب",
+   "open_air": false,
+   "indoor": true,
+   "area": 16.379,
+   "perimeter": 19.969,
+   "perimeter_outer": 19.969,
+   "n_holes": 0,
+   "boundary": {
+    "column": 7.574,
+    "wall": 7.023,
+    "door": 1.768,
+    "solid_try": 0.579,
+    "glazing": 3.026
+   },
+   "doors": [
+    "F11-D17",
+    "F11-D18"
+   ],
+   "openings": [],
+   "windows": [
+    "F11-W11"
+   ],
+   "labels": [
+    {
+     "text": "مكتب 7",
+     "x": 3.567,
+     "y": 20.385,
+     "layer": "TEXT",
+     "handle": "4955"
+    }
+   ],
+   "flags": [],
+   "centroid": [
+    2.967,
+    20.325
+   ],
+   "bbox": [
+    0.12,
+    18.91,
+    6.935,
+    22.08
+   ],
+   "inscribed_r": 1.445,
+   "windows_partial_m": {
+    "F11-W11": 3.655
+   },
+   "dim_checks": [
+    {
+     "dim": "4A5E",
+     "value": 3.159,
+     "room_width": 3.17,
+     "diff": 0.011,
+     "status": "ok",
+     "lateral": 0.904,
+     "dir_deg": 90.0,
+     "p2": [
+      1.985,
+      18.921
+     ],
+     "p3": [
+      1.081,
+      22.08
+     ]
+    },
+    {
+     "dim": "4A6F",
+     "value": 6.815,
+     "room_width": 6.815,
+     "diff": 0.0,
+     "status": "ok",
+     "lateral": 0.0,
+     "dir_deg": 180.0,
+     "p2": [
+      6.935,
+      20.135
+     ],
+     "p3": [
+      0.12,
+      20.135
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F11-R08",
+   "name": "مكتب 8",
+   "category": "office",
+   "category_ar": "مكاتب",
+   "open_air": false,
+   "indoor": true,
+   "area": 19.788,
+   "perimeter": 19.81,
+   "perimeter_outer": 19.81,
+   "n_holes": 0,
+   "boundary": {
+    "wall": 14.825,
+    "door": 0.98,
+    "solid_try": 1.082,
+    "glazing": 2.924
+   },
+   "doors": [
+    "F11-D20"
+   ],
+   "openings": [],
+   "windows": [
+    "F11-W11"
+   ],
+   "labels": [
+    {
+     "text": "مكتب 8",
+     "x": 3.567,
+     "y": 17.338,
+     "layer": "TEXT",
+     "handle": "495C"
+    }
+   ],
+   "flags": [],
+   "centroid": [
+    3.416,
+    17.254
+   ],
+   "bbox": [
+    0.12,
+    15.7,
+    6.935,
+    18.79
+   ],
+   "inscribed_r": 1.542,
+   "windows_partial_m": {
+    "F11-W11": 3.552
+   },
+   "dim_checks": [
+    {
+     "dim": "4A5D",
+     "value": 3.09,
+     "room_width": 3.09,
+     "diff": -0.0,
+     "status": "ok",
+     "lateral": 0.409,
+     "dir_deg": 90.0,
+     "p2": [
+      1.623,
+      15.7
+     ],
+     "p3": [
+      2.031,
+      18.79
+     ]
+    },
+    {
+     "dim": "4A62",
+     "value": 6.815,
+     "room_width": 6.815,
+     "diff": 0.0,
+     "status": "ok",
+     "lateral": 0.06,
+     "dir_deg": 180.0,
+     "p2": [
+      6.935,
+      17.049
+     ],
+     "p3": [
+      0.12,
+      17.109
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F11-R09",
+   "name": "مكتب 16",
+   "category": "office",
+   "category_ar": "مكاتب",
+   "open_air": false,
+   "indoor": true,
+   "area": 15.833,
+   "perimeter": 17.285,
+   "perimeter_outer": 17.285,
+   "n_holes": 0,
+   "boundary": {
+    "wall": 14.805,
+    "glazing": 1.35,
+    "column": 0.129,
+    "door": 1.001
+   },
+   "doors": [
+    "F11-D21"
+   ],
+   "openings": [],
+   "windows": [
+    "F11-W13"
+   ],
+   "labels": [
+    {
+     "text": "مكتب 16",
+     "x": 12.206,
+     "y": 17.338,
+     "layer": "TEXT",
+     "handle": "4981"
+    }
+   ],
+   "flags": [],
+   "centroid": [
+    11.892,
+    16.987
+   ],
+   "bbox": [
+    9.075,
+    15.535,
+    14.853,
+    18.4
+   ],
+   "inscribed_r": 1.43,
+   "dim_checks": [
+    {
+     "dim": "4A4F",
+     "value": 5.778,
+     "room_width": 5.778,
+     "diff": 0.0,
+     "status": "ok",
+     "lateral": 0.071,
+     "dir_deg": 180.0,
+     "p2": [
+      9.075,
+      17.298
+     ],
+     "p3": [
+      14.853,
+      17.228
+     ]
+    },
+    {
+     "dim": "4A5A",
+     "value": 2.865,
+     "room_width": 2.865,
+     "diff": -0.0,
+     "status": "ok",
+     "lateral": 1.236,
+     "dir_deg": 90.0,
+     "p2": [
+      11.165,
+      15.535
+     ],
+     "p3": [
+      9.929,
+      18.4
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F11-R10",
+   "name": "مكتب 9",
+   "category": "office",
+   "category_ar": "مكاتب",
+   "open_air": false,
+   "indoor": true,
+   "area": 16.88,
+   "perimeter": 19.99,
+   "perimeter_outer": 19.99,
+   "n_holes": 0,
+   "boundary": {
+    "wall": 11.048,
+    "door": 1.791,
+    "column": 3.771,
+    "glazing": 2.9,
+    "solid_try": 0.48
+   },
+   "doors": [
+    "F11-D23",
+    "F11-D24"
+   ],
+   "openings": [],
+   "windows": [
+    "F11-W11"
+   ],
+   "labels": [
+    {
+     "text": "مكتب 9",
+     "x": 4.426,
+     "y": 14.052,
+     "layer": "TEXT",
+     "handle": "4987"
+    }
+   ],
+   "flags": [],
+   "centroid": [
+    3.088,
+    13.963
+   ],
+   "bbox": [
+    0.12,
+    12.4,
+    6.935,
+    15.58
+   ],
+   "inscribed_r": 1.45,
+   "windows_partial_m": {
+    "F11-W11": 3.364
+   },
+   "dim_checks": [
+    {
+     "dim": "4A63",
+     "value": 4.98,
+     "room_width": 4.98,
+     "diff": -0.0,
+     "status": "ok",
+     "lateral": 0.236,
+     "dir_deg": 0.0,
+     "p2": [
+      5.1,
+      15.58
+     ],
+     "p3": [
+      0.12,
+      15.344
+     ]
+    },
+    {
+     "dim": "4A64",
+     "value": 3.18,
+     "room_width": 3.18,
+     "diff": -0.0,
+     "status": "ok",
+     "lateral": 0.0,
+     "dir_deg": 90.0,
+     "p2": [
+      4.708,
+      15.58
+     ],
+     "p3": [
+      4.708,
+      12.4
+     ]
+    },
+    {
+     "dim": "4A65",
+     "value": 2.9,
+     "room_width": 2.9,
+     "diff": -0.0,
+     "status": "ok",
+     "lateral": 0.0,
+     "dir_deg": 90.0,
+     "p2": [
+      1.307,
+      15.58
+     ],
+     "p3": [
+      1.307,
+      12.68
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F11-R11",
+   "name": "مكتب 15",
+   "category": "office",
+   "category_ar": "مكاتب",
+   "open_air": false,
+   "indoor": true,
+   "area": 18.424,
+   "perimeter": 18.285,
+   "perimeter_outer": 18.285,
+   "n_holes": 0,
+   "boundary": {
+    "wall": 13.202,
+    "column": 1.732,
+    "glazing": 2.35,
+    "door": 1.001
+   },
+   "doors": [
+    "F11-D22"
+   ],
+   "openings": [],
+   "windows": [
+    "F11-W14"
+   ],
+   "labels": [
+    {
+     "text": "مكتب 15",
+     "x": 12.206,
+     "y": 14.052,
+     "layer": "TEXT",
+     "handle": "4988"
+    }
+   ],
+   "flags": [],
+   "centroid": [
+    12.01,
+    13.72
+   ],
+   "bbox": [
+    9.075,
+    12.05,
+    14.853,
+    15.415
+   ],
+   "inscribed_r": 1.663,
+   "dim_checks": [
+    {
+     "dim": "4A52",
+     "value": 5.778,
+     "room_width": 5.778,
+     "diff": 0.0,
+     "status": "ok",
+     "lateral": 0.593,
+     "dir_deg": 0.0,
+     "p2": [
+      9.075,
+      13.652
+     ],
+     "p3": [
+      14.853,
+      14.245
+     ]
+    },
+    {
+     "dim": "4A59",
+     "value": 3.365,
+     "room_width": 3.365,
+     "diff": -0.0,
+     "status": "ok",
+     "lateral": 2.154,
+     "dir_deg": 90.0,
+     "p2": [
+      13.352,
+      12.05
+     ],
+     "p3": [
+      11.198,
+      15.415
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F11-R12",
+   "name": "مكتب 14",
+   "category": "office",
+   "category_ar": "مكاتب",
+   "open_air": false,
+   "indoor": true,
+   "area": 17.214,
+   "perimeter": 17.545,
+   "perimeter_outer": 17.545,
+   "n_holes": 0,
+   "boundary": {
+    "wall": 13.449,
+    "glazing": 2.35,
+    "column": 0.745,
+    "door": 1.001
+   },
+   "doors": [
+    "F11-D26"
+   ],
+   "openings": [],
+   "windows": [
+    "F11-W16"
+   ],
+   "labels": [
+    {
+     "text": "مكتب 14",
+     "x": 12.206,
+     "y": 10.736,
+     "layer": "TEXT",
+     "handle": "4993"
+    }
+   ],
+   "flags": [],
+   "centroid": [
+    11.949,
+    10.439
+   ],
+   "bbox": [
+    9.075,
+    8.935,
+    14.853,
+    11.93
+   ],
+   "inscribed_r": 1.497,
+   "dim_checks": [
+    {
+     "dim": "4A58",
+     "value": 2.995,
+     "room_width": 2.995,
+     "diff": 0.0,
+     "status": "ok",
+     "lateral": 0.222,
+     "dir_deg": 90.0,
+     "p2": [
+      13.407,
+      8.935
+     ],
+     "p3": [
+      13.185,
+      11.93
+     ]
+    },
+    {
+     "dim": "4A67",
+     "value": 5.778,
+     "room_width": 5.778,
+     "diff": -0.0,
+     "status": "ok",
+     "lateral": 0.0,
+     "dir_deg": 0.0,
+     "p2": [
+      9.075,
+      11.068
+     ],
+     "p3": [
+      14.853,
+      11.068
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F11-R13",
+   "name": "مكتب 10",
+   "category": "office",
+   "category_ar": "مكاتب",
+   "open_air": false,
+   "indoor": true,
+   "area": 14.343,
+   "perimeter": 16.092,
+   "perimeter_outer": 16.092,
+   "n_holes": 0,
+   "boundary": {
+    "column": 3.558,
+    "wall": 8.305,
+    "glazing": 3.239,
+    "door": 0.99
+   },
+   "doors": [
+    "F11-D28"
+   ],
+   "openings": [],
+   "windows": [
+    "F11-W18"
+   ],
+   "labels": [
+    {
+     "text": "مكتب 10",
+     "x": 3.567,
+     "y": 7.494,
+     "layer": "TEXT",
+     "handle": "4996"
+    }
+   ],
+   "flags": [],
+   "centroid": [
+    4.645,
+    7.39
+   ],
+   "bbox": [
+    2.41,
+    5.62,
+    6.935,
+    9.139
+   ],
+   "inscribed_r": 1.615,
+   "windows_partial_m": {
+    "F11-W18": 3.559
+   },
+   "dim_checks": [
+    {
+     "dim": "4A5C",
+     "value": 3.515,
+     "room_width": 3.231,
+     "diff": -0.284,
+     "status": "jog",
+     "lateral": 0.518,
+     "dir_deg": 90.0,
+     "p2": [
+      5.763,
+      5.62
+     ],
+     "p3": [
+      5.245,
+      9.135
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F11-R14",
+   "name": "مكتب 13",
+   "category": "office",
+   "category_ar": "مكاتب",
+   "open_air": false,
+   "indoor": true,
+   "area": 16.822,
+   "perimeter": 18.212,
+   "perimeter_outer": 18.212,
+   "n_holes": 0,
+   "boundary": {
+    "wall": 11.396,
+    "column": 3.466,
+    "glazing": 2.35,
+    "door": 1.001
+   },
+   "doors": [
+    "F11-D27"
+   ],
+   "openings": [],
+   "windows": [
+    "F11-W17"
+   ],
+   "labels": [
+    {
+     "text": "مكتب 13",
+     "x": 12.206,
+     "y": 7.494,
+     "layer": "TEXT",
+     "handle": "4997"
+    }
+   ],
+   "flags": [],
+   "centroid": [
+    12.01,
+    7.337
+   ],
+   "bbox": [
+    9.075,
+    5.77,
+    14.853,
+    8.815
+   ],
+   "inscribed_r": 1.523,
+   "dim_checks": [
+    {
+     "dim": "4A57",
+     "value": 3.045,
+     "room_width": 3.045,
+     "diff": 0.0,
+     "status": "ok",
+     "lateral": 0.303,
+     "dir_deg": 90.0,
+     "p2": [
+      13.087,
+      5.77
+     ],
+     "p3": [
+      13.39,
+      8.815
+     ]
+    },
+    {
+     "dim": "4A66",
+     "value": 5.778,
+     "room_width": 5.778,
+     "diff": 0.0,
+     "status": "ok",
+     "lateral": 0.0,
+     "dir_deg": 180.0,
+     "p2": [
+      9.075,
+      7.349
+     ],
+     "p3": [
+      14.853,
+      7.349
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F11-R15",
+   "name": "مكتب 12",
+   "category": "office",
+   "category_ar": "مكاتب",
+   "open_air": false,
+   "indoor": true,
+   "area": 24.628,
+   "perimeter": 21.415,
+   "perimeter_outer": 21.415,
+   "n_holes": 0,
+   "boundary": {
+    "wall": 12.737,
+    "glazing": 5.93,
+    "column": 1.67,
+    "extension": 0.076,
+    "door": 1.001
+   },
+   "doors": [
+    "F11-D30"
+   ],
+   "openings": [],
+   "windows": [
+    "F11-W19",
+    "F11-W21"
+   ],
+   "labels": [
+    {
+     "text": "مكتب 12",
+     "x": 12.206,
+     "y": 4.078,
+     "layer": "TEXT",
+     "handle": "4998"
+    }
+   ],
+   "flags": [
+    "closed_by_extension: 0.08 m of the boundary is a virtual extension of a wall face (drawing gap)"
+   ],
+   "centroid": [
+    11.641,
+    3.388
+   ],
+   "bbox": [
+    9.075,
+    0.72,
+    14.853,
+    5.65
+   ],
+   "inscribed_r": 2.093,
+   "windows_partial_m": {
+    "F11-W21": 4.6
+   },
+   "dim_checks": [
+    {
+     "dim": "4A6A",
+     "value": 5.778,
+     "room_width": 5.778,
+     "diff": 0.0,
+     "status": "ok",
+     "lateral": 0.0,
+     "dir_deg": 0.0,
+     "p2": [
+      9.075,
+      4.207
+     ],
+     "p3": [
+      14.853,
+      4.207
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F11-R16",
+   "name": "مكتب 11",
+   "category": "office",
+   "category_ar": "مكاتب",
+   "open_air": false,
+   "indoor": true,
+   "area": 32.399,
+   "perimeter": 24.767,
+   "perimeter_outer": 24.767,
+   "n_holes": 0,
+   "boundary": {
+    "glazing": 13.481,
+    "unresolved": 0.02,
+    "column": 1.41,
+    "wall": 8.869,
+    "door": 0.987
+   },
+   "doors": [
+    "F11-D29"
+   ],
+   "openings": [],
+   "windows": [
+    "F11-W18",
+    "F11-W20",
+    "F11-W21"
+   ],
+   "labels": [
+    {
+     "text": "مكتب 11",
+     "x": 4.977,
+     "y": 3.601,
+     "layer": "TEXT",
+     "handle": "49A6"
+    }
+   ],
+   "flags": [],
+   "centroid": [
+    5.144,
+    2.725
+   ],
+   "bbox": [
+    1.52,
+    -0.17,
+    8.955,
+    5.504
+   ],
+   "inscribed_r": 2.326,
+   "windows_partial_m": {
+    "F11-W18": 2.335,
+    "F11-W21": 4.097
+   },
+   "dim_checks": []
+  },
+  {
+   "id": "F11-R17",
+   "name": "حمام",
+   "category": "wc",
+   "category_ar": "حمامات",
+   "open_air": false,
+   "indoor": true,
+   "area": 2.229,
+   "perimeter": 6.53,
+   "perimeter_outer": 6.53,
+   "n_holes": 0,
+   "boundary": {
+    "wall": 5.73,
+    "door": 0.8
+   },
+   "doors": [
+    "F11-D04"
+   ],
+   "openings": [],
+   "windows": [],
+   "labels": [
+    {
+     "text": "حمام",
+     "x": 10.267,
+     "y": 31.189,
+     "layer": "TEXT",
+     "handle": "4911"
+    }
+   ],
+   "flags": [],
+   "centroid": [
+    9.695,
+    31.163
+   ],
+   "bbox": [
+    9.075,
+    30.32,
+    10.46,
+    32.2
+   ],
+   "inscribed_r": 0.608,
+   "wc_pans": 1,
+   "dim_checks": [
+    {
+     "dim": "4A43",
+     "value": 1.385,
+     "room_width": 1.385,
+     "diff": -0.0,
+     "status": "ok",
+     "lateral": 0.316,
+     "dir_deg": 180.0,
+     "p2": [
+      10.46,
+      31.163
+     ],
+     "p3": [
+      9.075,
+      31.479
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F11-R18",
+   "name": "حمام",
+   "category": "wc",
+   "category_ar": "حمامات",
+   "open_air": false,
+   "indoor": true,
+   "area": 2.47,
+   "perimeter": 6.31,
+   "perimeter_outer": 6.31,
+   "n_holes": 0,
+   "boundary": {
+    "door": 0.79,
+    "wall": 5.52
+   },
+   "doors": [
+    "F11-D11"
+   ],
+   "openings": [],
+   "windows": [],
+   "labels": [
+    {
+     "text": "حمام",
+     "x": 6.361,
+     "y": 23.194,
+     "layer": "TEXT",
+     "handle": "4932"
+    }
+   ],
+   "flags": [],
+   "centroid": [
+    6.078,
+    23.39
+   ],
+   "bbox": [
+    5.22,
+    22.67,
+    6.935,
+    24.11
+   ],
+   "inscribed_r": 0.72,
+   "wc_pans": 1,
+   "dim_checks": []
+  },
+  {
+   "id": "F11-R19",
+   "name": "حمام",
+   "category": "wc",
+   "category_ar": "حمامات",
+   "open_air": false,
+   "indoor": true,
+   "area": 7.722,
+   "perimeter": 11.8,
+   "perimeter_outer": 11.8,
+   "n_holes": 0,
+   "boundary": {
+    "wall": 9.398,
+    "glazing": 0.801,
+    "door": 1.601
+   },
+   "doors": [
+    "F11-D14",
+    "F11-D19"
+   ],
+   "openings": [],
+   "windows": [
+    "F11-W10"
+   ],
+   "labels": [
+    {
+     "text": "حمام",
+     "x": 17.319,
+     "y": 21.687,
+     "layer": "TEXT",
+     "handle": "481B"
+    }
+   ],
+   "flags": [],
+   "centroid": [
+    17.101,
+    21.223
+   ],
+   "bbox": [
+    16.093,
+    19.17,
+    18.453,
+    23.04
+   ],
+   "inscribed_r": 1.069,
+   "dim_checks": [
+    {
+     "dim": "4A74",
+     "value": 3.87,
+     "room_width": 3.87,
+     "diff": -0.0,
+     "status": "ok",
+     "lateral": 0.0,
+     "dir_deg": 90.0,
+     "p2": [
+      17.368,
+      19.17
+     ],
+     "p3": [
+      17.368,
+      23.04
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F11-R20",
+   "name": "حمام",
+   "category": "wc",
+   "category_ar": "حمامات",
+   "open_air": false,
+   "indoor": true,
+   "area": 2.702,
+   "perimeter": 6.582,
+   "perimeter_outer": 6.582,
+   "n_holes": 0,
+   "boundary": {
+    "wall": 5.76,
+    "door": 0.801,
+    "column": 0.021
+   },
+   "doors": [
+    "F11-D17"
+   ],
+   "openings": [],
+   "windows": [],
+   "labels": [
+    {
+     "text": "حمام",
+     "x": 6.361,
+     "y": 21.106,
+     "layer": "TEXT",
+     "handle": "494E"
+    }
+   ],
+   "flags": [],
+   "centroid": [
+    6.078,
+    21.042
+   ],
+   "bbox": [
+    5.22,
+    20.255,
+    6.935,
+    21.83
+   ],
+   "inscribed_r": 0.787,
+   "wc_pans": 1,
+   "dim_checks": [
+    {
+     "dim": "4A4C",
+     "value": 1.715,
+     "room_width": 1.715,
+     "diff": 0.0,
+     "status": "ok",
+     "lateral": 0.251,
+     "dir_deg": 180.0,
+     "p2": [
+      5.22,
+      21.579
+     ],
+     "p3": [
+      6.935,
+      21.83
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F11-R21",
+   "name": "حمام",
+   "category": "wc",
+   "category_ar": "حمامات",
+   "open_air": false,
+   "indoor": true,
+   "area": 2.319,
+   "perimeter": 6.54,
+   "perimeter_outer": 6.54,
+   "n_holes": 0,
+   "boundary": {
+    "door": 0.79,
+    "wall": 5.75
+   },
+   "doors": [
+    "F11-D16"
+   ],
+   "openings": [],
+   "windows": [],
+   "labels": [
+    {
+     "text": "حمام",
+     "x": 15.895,
+     "y": 20.775,
+     "layer": "TEXT",
+     "handle": "481D"
+    }
+   ],
+   "flags": [],
+   "centroid": [
+    15.453,
+    20.285
+   ],
+   "bbox": [
+    14.933,
+    19.17,
+    15.973,
+    21.4
+   ],
+   "inscribed_r": 0.52,
+   "wc_pans": 1,
+   "dim_checks": []
+  },
+  {
+   "id": "F11-R22",
+   "name": "حمام ذوي الهمم",
+   "category": "wc",
+   "category_ar": "حمامات",
+   "open_air": false,
+   "indoor": true,
+   "area": 5.224,
+   "perimeter": 9.299,
+   "perimeter_outer": 9.299,
+   "n_holes": 0,
+   "boundary": {
+    "door": 0.99,
+    "wall": 5.559,
+    "column": 2.75
+   },
+   "doors": [
+    "F11-D15"
+   ],
+   "openings": [],
+   "windows": [],
+   "labels": [
+    {
+     "text": "حمام",
+     "x": 14.478,
+     "y": 20.296,
+     "layer": "TEXT",
+     "handle": "481C"
+    },
+    {
+     "text": "ذوي الهمم",
+     "x": 14.478,
+     "y": 19.804,
+     "layer": "TEXT",
+     "handle": "481E"
+    }
+   ],
+   "flags": [],
+   "centroid": [
+    13.863,
+    20.025
+   ],
+   "bbox": [
+    12.913,
+    18.65,
+    14.813,
+    21.4
+   ],
+   "inscribed_r": 0.95,
+   "wc_pans": 1,
+   "dim_checks": [
+    {
+     "dim": "4A76",
+     "value": 2.75,
+     "room_width": 2.75,
+     "diff": 0.0,
+     "status": "ok",
+     "lateral": 0.0,
+     "dir_deg": 90.0,
+     "p2": [
+      13.347,
+      21.4
+     ],
+     "p3": [
+      13.347,
+      18.65
+     ]
+    },
+    {
+     "dim": "4A77",
+     "value": 1.9,
+     "room_width": 1.9,
+     "diff": 0.0,
+     "status": "ok",
+     "lateral": 0.0,
+     "dir_deg": 0.0,
+     "p2": [
+      14.813,
+      20.679
+     ],
+     "p3": [
+      12.913,
+      20.679
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F11-R23",
+   "name": "حمام (بلا اسم)",
+   "category": "wc",
+   "category_ar": "حمامات",
+   "open_air": false,
+   "indoor": true,
+   "area": 2.628,
+   "perimeter": 6.515,
+   "perimeter_outer": 6.515,
+   "n_holes": 0,
+   "boundary": {
+    "wall": 4.927,
+    "door": 0.788,
+    "glazing": 0.8
+   },
+   "doors": [
+    "F11-D19"
+   ],
+   "openings": [],
+   "windows": [
+    "F11-W12"
+   ],
+   "labels": [],
+   "flags": [
+    "unlabelled_wc: no room label; named from the WC pan block P (FUR) inside"
+   ],
+   "centroid": [
+    16.752,
+    18.252
+   ],
+   "bbox": [
+    15.953,
+    17.4,
+    17.701,
+    19.05
+   ],
+   "inscribed_r": 0.792,
+   "wc_pans": 1,
+   "dim_checks": []
+  },
+  {
+   "id": "F11-R24",
+   "name": "حمام",
+   "category": "wc",
+   "category_ar": "حمامات",
+   "open_air": false,
+   "indoor": true,
+   "area": 2.53,
+   "perimeter": 6.382,
+   "perimeter_outer": 6.382,
+   "n_holes": 0,
+   "boundary": {
+    "wall": 5.581,
+    "door": 0.801
+   },
+   "doors": [
+    "F11-D23"
+   ],
+   "openings": [],
+   "windows": [],
+   "labels": [
+    {
+     "text": "حمام",
+     "x": 6.361,
+     "y": 14.596,
+     "layer": "TEXT",
+     "handle": "4969"
+    }
+   ],
+   "flags": [],
+   "centroid": [
+    6.078,
+    14.482
+   ],
+   "bbox": [
+    5.22,
+    13.745,
+    6.935,
+    15.22
+   ],
+   "inscribed_r": 0.738,
+   "wc_pans": 1,
+   "dim_checks": []
+  },
+  {
+   "id": "F11-R25",
+   "name": "ممر",
+   "category": "corridor",
+   "category_ar": "ممرات",
+   "open_air": false,
+   "indoor": true,
+   "area": 57.948,
+   "perimeter": 65.138,
+   "perimeter_outer": 65.138,
+   "n_holes": 0,
+   "boundary": {
+    "wall": 38.075,
+    "door": 17.048,
+    "column": 2.966,
+    "unresolved": 0.05,
+    "virtual": 7.0
+   },
+   "doors": [
+    "F11-D01",
+    "F11-D02",
+    "F11-D03",
+    "F11-D05",
+    "F11-D06",
+    "F11-D09",
+    "F11-D18",
+    "F11-D20",
+    "F11-D21",
+    "F11-D22",
+    "F11-D24",
+    "F11-D25",
+    "F11-D26",
+    "F11-D27",
+    "F11-D28",
+    "F11-D29",
+    "F11-D30"
+   ],
+   "openings": [],
+   "windows": [],
+   "labels": [
+    {
+     "text": "ممر",
+     "x": 8.408,
+     "y": 27.596,
+     "layer": "TEXT",
+     "handle": "4A82"
+    },
+    {
+     "text": "ممر",
+     "x": 8.162,
+     "y": 17.435,
+     "layer": "TEXT",
+     "handle": "4A83"
+    },
+    {
+     "text": "ممر",
+     "x": 8.352,
+     "y": 8.266,
+     "layer": "TEXT",
+     "handle": "4A84"
+    },
+    {
+     "text": "ممر",
+     "x": 8.52,
+     "y": 32.928,
+     "layer": "TEXT",
+     "handle": "4A85"
+    }
+   ],
+   "flags": [
+    "split_virtual: separated from the lobby by a virtual line 7.00 m (continuation of the corridor wall face; no wall drawn)",
+    "multi_label: 4 x 'ممر' in one space"
+   ],
+   "centroid": [
+    8.035,
+    19.454
+   ],
+   "bbox": [
+    6.935,
+    4.26,
+    9.74,
+    34.02
+   ],
+   "inscribed_r": 1.057,
+   "dim_checks": [
+    {
+     "dim": "4A44",
+     "value": 1.9,
+     "room_width": 1.9,
+     "diff": -0.0,
+     "status": "ok",
+     "lateral": 0.074,
+     "dir_deg": 180.0,
+     "p2": [
+      8.955,
+      31.408
+     ],
+     "p3": [
+      7.055,
+      31.334
+     ]
+    },
+    {
+     "dim": "4A46",
+     "value": 1.9,
+     "room_width": 1.9,
+     "diff": 0.0,
+     "status": "ok",
+     "lateral": 0.628,
+     "dir_deg": 180.0,
+     "p2": [
+      8.955,
+      30.575
+     ],
+     "p3": [
+      7.055,
+      29.947
+     ]
+    },
+    {
+     "dim": "4A4E",
+     "value": 1.9,
+     "room_width": 1.9,
+     "diff": -0.0,
+     "status": "ok",
+     "lateral": 0.01,
+     "dir_deg": 180.0,
+     "p2": [
+      7.055,
+      17.064
+     ],
+     "p3": [
+      8.955,
+      17.074
+     ]
+    },
+    {
+     "dim": "4A51",
+     "value": 1.9,
+     "room_width": 1.9,
+     "diff": -0.0,
+     "status": "ok",
+     "lateral": 0.605,
+     "dir_deg": 0.0,
+     "p2": [
+      7.055,
+      14.256
+     ],
+     "p3": [
+      8.955,
+      13.651
+     ]
+    },
+    {
+     "dim": "4A53",
+     "value": 1.9,
+     "room_width": 1.9,
+     "diff": 0.0,
+     "status": "ok",
+     "lateral": 0.113,
+     "dir_deg": 180.0,
+     "p2": [
+      8.955,
+      7.402
+     ],
+     "p3": [
+      7.055,
+      7.289
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F11-R26",
+   "name": "بهو المصعد",
+   "category": "lobby",
+   "category_ar": "بهو المصعد",
+   "open_air": false,
+   "indoor": true,
+   "area": 26.804,
+   "perimeter": 33.059,
+   "perimeter_outer": 33.059,
+   "n_holes": 0,
+   "boundary": {
+    "wall": 12.518,
+    "door": 6.984,
+    "column": 4.095,
+    "opening": 2.462,
+    "virtual": 7.0
+   },
+   "doors": [
+    "F11-D07",
+    "F11-D08",
+    "F11-D10",
+    "F11-D12",
+    "F11-D13",
+    "F11-D14",
+    "F11-D15",
+    "F11-D16"
+   ],
+   "openings": [
+    "F11-O01",
+    "F11-O02"
+   ],
+   "windows": [],
+   "labels": [
+    {
+     "text": "ممر",
+     "x": 14.702,
+     "y": 23.226,
+     "layer": "TEXT",
+     "handle": "4A86",
+     "misplaced": "corridor label inside the lobby part (extra / left-over label) - not used for the name"
+    },
+    {
+     "text": "بهو المصعد",
+     "x": 9.498,
+     "y": 20.02,
+     "layer": "TEXT",
+     "handle": "4A87"
+    },
+    {
+     "text": "المصاعد الادارية فقط",
+     "x": 9.107,
+     "y": 21.825,
+     "layer": "TEXT",
+     "handle": "4A8B",
+     "note": true
+    }
+   ],
+   "flags": [
+    "split_virtual: separated from the corridor by a virtual line 7.00 m (continuation of the corridor wall face; no wall drawn)",
+    "label_in_lobby: 'ممر' 4A86 (14.70, 23.23) lies in the lobby part - the corridor/lobby split ignores it"
+   ],
+   "centroid": [
+    12.241,
+    23.238
+   ],
+   "bbox": [
+    8.955,
+    18.65,
+    15.973,
+    25.784
+   ],
+   "inscribed_r": 1.541,
+   "dim_checks": []
+  },
+  {
+   "id": "F11-R27",
+   "name": "DAS/GSM",
+   "category": "service",
+   "category_ar": "غرف خدمات",
+   "open_air": false,
+   "indoor": true,
+   "area": 12.369,
+   "perimeter": 14.954,
+   "perimeter_outer": 14.954,
+   "n_holes": 0,
+   "boundary": {
+    "wall": 8.049,
+    "column": 4.404,
+    "glazing": 1.601,
+    "door": 0.901
+   },
+   "doors": [
+    "F11-D08"
+   ],
+   "openings": [],
+   "windows": [
+    "F11-W08",
+    "F11-W09"
+   ],
+   "labels": [
+    {
+     "text": "DAS/GSM",
+     "x": 16.727,
+     "y": 27.147,
+     "layer": "-A-TEXT",
+     "handle": "49F5"
+    }
+   ],
+   "flags": [],
+   "centroid": [
+    17.006,
+    27.279
+   ],
+   "bbox": [
+    14.655,
+    25.904,
+    19.528,
+    28.75
+   ],
+   "inscribed_r": 1.347,
+   "dim_checks": []
+  },
+  {
+   "id": "F11-R28",
+   "name": "IT room",
+   "category": "service",
+   "category_ar": "غرف خدمات",
+   "open_air": false,
+   "indoor": true,
+   "area": 3.178,
+   "perimeter": 9.084,
+   "perimeter_outer": 9.084,
+   "n_holes": 0,
+   "boundary": {
+    "wall": 5.943,
+    "column": 2.24,
+    "door": 0.901
+   },
+   "doors": [
+    "F11-D10"
+   ],
+   "openings": [],
+   "windows": [],
+   "labels": [
+    {
+     "text": "IT room",
+     "x": 16.954,
+     "y": 25.116,
+     "layer": "-A-TEXT",
+     "handle": "49F6"
+    }
+   ],
+   "flags": [],
+   "centroid": [
+    17.341,
+    25.193
+   ],
+   "bbox": [
+    16.093,
+    24.42,
+    18.969,
+    25.784
+   ],
+   "inscribed_r": 0.673,
+   "dim_checks": [
+    {
+     "dim": "4A70",
+     "value": 1.364,
+     "room_width": 1.364,
+     "diff": -0.0,
+     "status": "ok",
+     "lateral": 0.0,
+     "dir_deg": 90.0,
+     "p2": [
+      17.124,
+      24.42
+     ],
+     "p3": [
+      17.124,
+      25.784
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F11-R29",
+   "name": "electric room",
+   "category": "service",
+   "category_ar": "غرف خدمات",
+   "open_air": false,
+   "indoor": true,
+   "area": 2.838,
+   "perimeter": 7.281,
+   "perimeter_outer": 7.281,
+   "n_holes": 0,
+   "boundary": {
+    "wall": 6.38,
+    "door": 0.901
+   },
+   "doors": [
+    "F11-D13"
+   ],
+   "openings": [],
+   "windows": [],
+   "labels": [
+    {
+     "text": "electric room",
+     "x": 17.03,
+     "y": 23.781,
+     "layer": "-A-TEXT",
+     "handle": "480E"
+    }
+   ],
+   "flags": [],
+   "centroid": [
+    17.339,
+    23.738
+   ],
+   "bbox": [
+    16.093,
+    23.16,
+    18.69,
+    24.3
+   ],
+   "inscribed_r": 0.57,
+   "dim_checks": [
+    {
+     "dim": "4A72",
+     "value": 1.14,
+     "room_width": 1.14,
+     "diff": -0.0,
+     "status": "ok",
+     "lateral": 0.0,
+     "dir_deg": 90.0,
+     "p2": [
+      17.178,
+      24.3
+     ],
+     "p3": [
+      17.178,
+      23.16
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F11-R30",
+   "name": "FTR room",
+   "category": "service",
+   "category_ar": "غرف خدمات",
+   "open_air": false,
+   "indoor": true,
+   "area": 1.715,
+   "perimeter": 5.506,
+   "perimeter_outer": 5.506,
+   "n_holes": 0,
+   "boundary": {
+    "door": 0.798,
+    "wall": 2.908,
+    "column": 1.8
+   },
+   "doors": [
+    "F11-D12"
+   ],
+   "openings": [],
+   "windows": [],
+   "labels": [
+    {
+     "text": "FTR room",
+     "x": 11.29,
+     "y": 22.833,
+     "layer": "-A-TEXT",
+     "handle": "49EE"
+    }
+   ],
+   "flags": [],
+   "centroid": [
+    11.36,
+    23.154
+   ],
+   "bbox": [
+    10.46,
+    22.677,
+    12.26,
+    23.63
+   ],
+   "inscribed_r": 0.476,
+   "dim_checks": []
+  },
+  {
+   "id": "F11-R31",
+   "name": "السلم",
+   "category": "stair",
+   "category_ar": "سلالم",
+   "open_air": false,
+   "indoor": true,
+   "area": 14.664,
+   "perimeter": 16.1,
+   "perimeter_outer": 16.1,
+   "n_holes": 0,
+   "boundary": {
+    "wall": 11.206,
+    "column": 3.994,
+    "door": 0.9
+   },
+   "doors": [
+    "F11-D07"
+   ],
+   "openings": [],
+   "windows": [],
+   "labels": [],
+   "flags": [
+    "stair_eye_on_WIN: 3 WIN line(s) inside this stair (WIN:4707, WIN:4708, WIN:4744) = the stair eye / break line drawn on WIN - ignored (not glazing, not a boundary)"
+   ],
+   "centroid": [
+    11.829,
+    27.317
+   ],
+   "bbox": [
+    9.205,
+    25.9,
+    14.405,
+    28.75
+   ],
+   "inscribed_r": 1.422,
+   "dim_checks": []
+  },
+  {
+   "id": "F11-R32",
+   "name": "السلم",
+   "category": "stair",
+   "category_ar": "سلالم",
+   "open_air": false,
+   "indoor": true,
+   "area": 13.041,
+   "perimeter": 15.0,
+   "perimeter_outer": 15.0,
+   "n_holes": 0,
+   "boundary": {
+    "wall": 6.305,
+    "door": 0.99,
+    "column": 4.964,
+    "glazing": 2.741
+   },
+   "doors": [
+    "F11-D25"
+   ],
+   "openings": [],
+   "windows": [
+    "F11-W15"
+   ],
+   "labels": [],
+   "flags": [
+    "stair_eye_on_WIN: 8 WIN line(s) inside this stair (WIN:4746, WIN:4747, WIN:4748, WIN:4749, WIN:474A, WIN:474B, WIN:474C, WIN:474D) = the stair eye / break line drawn on WIN - ignored (not glazing, not a boundary)"
+   ],
+   "centroid": [
+    4.538,
+    10.909
+   ],
+   "bbox": [
+    2.16,
+    9.535,
+    6.915,
+    12.28
+   ],
+   "inscribed_r": 1.37,
+   "dim_checks": []
+  },
+  {
+   "id": "F11-R33",
+   "name": "بئر المصاعد",
+   "category": "lift",
+   "category_ar": "بئر المصاعد",
+   "open_air": false,
+   "indoor": true,
+   "area": 6.898,
+   "perimeter": 10.966,
+   "perimeter_outer": 10.966,
+   "n_holes": 0,
+   "boundary": {
+    "opening": 2.423,
+    "wall": 6.047,
+    "column": 2.496
+   },
+   "doors": [],
+   "openings": [
+    "F11-O01",
+    "F11-O02"
+   ],
+   "windows": [],
+   "labels": [],
+   "flags": [],
+   "centroid": [
+    11.621,
+    20.539
+   ],
+   "bbox": [
+    10.64,
+    18.777,
+    12.6,
+    22.3
+   ],
+   "inscribed_r": 0.98,
+   "n_cars": 2,
+   "dim_checks": []
+  },
+  {
+   "id": "F11-R34",
+   "name": "شفت",
+   "category": "shaft",
+   "category_ar": "شفتات/دكتات",
+   "open_air": false,
+   "indoor": true,
+   "area": 0.24,
+   "perimeter": 2.0,
+   "perimeter_outer": 2.0,
+   "n_holes": 0,
+   "boundary": {
+    "shaft": 2.0
+   },
+   "doors": [],
+   "openings": [],
+   "windows": [],
+   "labels": [],
+   "flags": [],
+   "centroid": [
+    10.26,
+    31.9
+   ],
+   "bbox": [
+    10.06,
+    31.6,
+    10.46,
+    32.2
+   ],
+   "inscribed_r": 0.2,
+   "dim_checks": []
+  },
+  {
+   "id": "F11-R35",
+   "name": "شفت",
+   "category": "shaft",
+   "category_ar": "شفتات/دكتات",
+   "open_air": false,
+   "indoor": true,
+   "area": 0.381,
+   "perimeter": 2.706,
+   "perimeter_outer": 2.706,
+   "n_holes": 0,
+   "boundary": {
+    "shaft": 2.306,
+    "column": 0.4
+   },
+   "doors": [],
+   "openings": [],
+   "windows": [],
+   "labels": [],
+   "flags": [],
+   "centroid": [
+    12.58,
+    23.154
+   ],
+   "bbox": [
+    12.38,
+    22.677,
+    12.78,
+    23.63
+   ],
+   "inscribed_r": 0.2,
+   "dim_checks": []
+  },
+  {
+   "id": "F11-R36",
+   "name": "شفت",
+   "category": "shaft",
+   "category_ar": "شفتات/دكتات",
+   "open_air": false,
+   "indoor": true,
+   "area": 1.029,
+   "perimeter": 4.63,
+   "perimeter_outer": 4.63,
+   "n_holes": 0,
+   "boundary": {
+    "column": 0.251,
+    "shaft": 4.379
+   },
+   "doors": [],
+   "openings": [],
+   "windows": [],
+   "labels": [],
+   "flags": [],
+   "centroid": [
+    6.078,
+    22.25
+   ],
+   "bbox": [
+    5.22,
+    21.95,
+    6.935,
+    22.55
+   ],
+   "inscribed_r": 0.3,
+   "dim_checks": []
+  },
+  {
+   "id": "F11-R37",
+   "name": "شفت",
+   "category": "shaft",
+   "category_ar": "شفتات/دكتات",
+   "open_air": false,
+   "indoor": true,
+   "area": 1.37,
+   "perimeter": 4.842,
+   "perimeter_outer": 4.842,
+   "n_holes": 0,
+   "boundary": {
+    "wall": 4.842
+   },
+   "doors": [],
+   "openings": [],
+   "windows": [],
+   "labels": [],
+   "flags": [],
+   "centroid": [
+    15.393,
+    18.16
+   ],
+   "bbox": [
+    14.933,
+    17.397,
+    15.854,
+    18.922
+   ],
+   "inscribed_r": 0.451,
+   "dim_checks": []
+  },
+  {
+   "id": "F11-R38",
+   "name": "شفت",
+   "category": "shaft",
+   "category_ar": "شفتات/دكتات",
+   "open_air": false,
+   "indoor": true,
+   "area": 1.029,
+   "perimeter": 4.63,
+   "perimeter_outer": 4.63,
+   "n_holes": 0,
+   "boundary": {
+    "shaft": 4.63
+   },
+   "doors": [],
+   "openings": [],
+   "windows": [],
+   "labels": [],
+   "flags": [],
+   "centroid": [
+    6.078,
+    15.64
+   ],
+   "bbox": [
+    5.22,
+    15.34,
+    6.935,
+    15.94
+   ],
+   "inscribed_r": 0.3,
+   "dim_checks": []
+  },
+  {
+   "id": "F11-R39",
+   "name": "شفت",
+   "category": "shaft",
+   "category_ar": "شفتات/دكتات",
+   "open_air": false,
+   "indoor": true,
+   "area": 0.935,
+   "perimeter": 4.34,
+   "perimeter_outer": 4.34,
+   "n_holes": 0,
+   "boundary": {
+    "shaft": 4.039,
+    "column": 0.301
+   },
+   "doors": [],
+   "openings": [],
+   "windows": [],
+   "labels": [],
+   "flags": [],
+   "centroid": [
+    6.156,
+    9.114
+   ],
+   "bbox": [
+    5.365,
+    8.815,
+    6.935,
+    9.415
+   ],
+   "inscribed_r": 0.3,
+   "dim_checks": []
+  },
+  {
+   "id": "F11-R40",
+   "name": "زرع",
+   "category": "planter",
+   "category_ar": "أحواض زرع",
+   "open_air": true,
+   "indoor": false,
+   "area": 6.159,
+   "perimeter": 24.73,
+   "perimeter_outer": 24.73,
+   "n_holes": 0,
+   "boundary": {
+    "mass": 12.885,
+    "glazing": 11.845
+   },
+   "doors": [],
+   "openings": [],
+   "windows": [
+    "F11-W01",
+    "F11-W02"
+   ],
+   "labels": [
+    {
+     "text": "زرع",
+     "x": 14.949,
+     "y": 37.258,
+     "layer": "TEXT",
+     "handle": "4A33"
+    },
+    {
+     "text": "زرع",
+     "x": 8.593,
+     "y": 37.609,
+     "layer": "TEXT",
+     "handle": "4A34"
+    }
+   ],
+   "flags": [],
+   "centroid": [
+    10.991,
+    37.438
+   ],
+   "bbox": [
+    5.22,
+    37.02,
+    16.755,
+    37.85
+   ],
+   "inscribed_r": 0.304,
+   "dim_checks": []
+  },
+  {
+   "id": "F11-R41",
+   "name": "زرع",
+   "category": "planter",
+   "category_ar": "أحواض زرع",
+   "open_air": true,
+   "indoor": false,
+   "area": 3.453,
+   "perimeter": 12.363,
+   "perimeter_outer": 12.363,
+   "n_holes": 0,
+   "boundary": {
+    "mass": 5.927,
+    "glazing": 5.817,
+    "column": 0.62
+   },
+   "doors": [],
+   "openings": [],
+   "windows": [
+    "F11-W07"
+   ],
+   "labels": [
+    {
+     "text": "زرع",
+     "x": 1.0,
+     "y": 34.003,
+     "layer": "TEXT",
+     "handle": "482B",
+     "snapped": 0.863
+    },
+    {
+     "text": "زرع",
+     "x": 1.694,
+     "y": 34.003,
+     "layer": "TEXT",
+     "handle": "484A",
+     "snapped": 0.17
+    },
+    {
+     "text": "زرع",
+     "x": 2.322,
+     "y": 34.003,
+     "layer": "TEXT",
+     "handle": "484C"
+    }
+   ],
+   "flags": [
+    "label_outside: label snapped from outside the polygon",
+    "label_snapped_far: 'زرع' 482B from 0.86 m (left over from another floor?)"
+   ],
+   "centroid": [
+    2.077,
+    31.789
+   ],
+   "bbox": [
+    1.77,
+    29.004,
+    2.39,
+    34.651
+   ],
+   "inscribed_r": 0.31,
+   "windows_partial_m": {
+    "F11-W07": 5.79
+   },
+   "dim_checks": []
+  },
+  {
+   "id": "F11-R42",
+   "name": "زرع",
+   "category": "planter",
+   "category_ar": "أحواض زرع",
+   "open_air": true,
+   "indoor": false,
+   "area": 1.689,
+   "perimeter": 6.687,
+   "perimeter_outer": 6.687,
+   "n_holes": 0,
+   "boundary": {
+    "glazing": 2.724,
+    "wall": 0.62,
+    "mass": 2.724,
+    "column": 0.62
+   },
+   "doors": [],
+   "openings": [],
+   "windows": [
+    "F11-W07"
+   ],
+   "labels": [
+    {
+     "text": "زرع",
+     "x": 1.0,
+     "y": 27.041,
+     "layer": "TEXT",
+     "handle": "4843",
+     "snapped": 0.863
+    },
+    {
+     "text": "زرع",
+     "x": 2.39,
+     "y": 26.672,
+     "layer": "TEXT",
+     "handle": "4A35"
+    }
+   ],
+   "flags": [
+    "label_outside: label snapped from outside the polygon",
+    "label_snapped_far: 'زرع' 4843 from 0.86 m (left over from another floor?)"
+   ],
+   "centroid": [
+    2.08,
+    27.142
+   ],
+   "bbox": [
+    1.77,
+    25.78,
+    2.39,
+    28.504
+   ],
+   "inscribed_r": 0.31,
+   "windows_partial_m": {
+    "F11-W07": 3.041
+   },
+   "dim_checks": []
+  },
+  {
+   "id": "F11-R43",
+   "name": "زرع",
+   "category": "planter",
+   "category_ar": "أحواض زرع",
+   "open_air": true,
+   "indoor": false,
+   "area": 0.96,
+   "perimeter": 6.183,
+   "perimeter_outer": 6.183,
+   "n_holes": 0,
+   "boundary": {
+    "column": 0.7,
+    "glazing": 2.741,
+    "mass": 2.741
+   },
+   "doors": [],
+   "openings": [],
+   "windows": [
+    "F11-W15"
+   ],
+   "labels": [
+    {
+     "text": "زرع",
+     "x": 1.659,
+     "y": 11.628,
+     "layer": "TEXT",
+     "handle": "4844",
+     "snapped": 0.204
+    }
+   ],
+   "flags": [
+    "label_outside: label snapped from outside the polygon",
+    "open_air_inside_outline: 0.96 m2 lies INSIDE the try floor outline (slab edge); planters lie outside it - a strip between glass and parapet, not a planter?"
+   ],
+   "centroid": [
+    1.945,
+    10.909
+   ],
+   "bbox": [
+    1.77,
+    9.539,
+    2.12,
+    12.28
+   ],
+   "inscribed_r": 0.175,
+   "dim_checks": []
+  },
+  {
+   "id": "F11-R44",
+   "name": "زرع",
+   "category": "planter",
+   "category_ar": "أحواض زرع",
+   "open_air": true,
+   "indoor": false,
+   "area": 3.473,
+   "perimeter": 12.756,
+   "perimeter_outer": 12.756,
+   "n_holes": 0,
+   "boundary": {
+    "mass": 6.138,
+    "column": 0.6,
+    "glazing": 6.018
+   },
+   "doors": [],
+   "openings": [],
+   "windows": [
+    "F11-W18"
+   ],
+   "labels": [
+    {
+     "text": "زرع",
+     "x": 1.683,
+     "y": 3.664,
+     "layer": "TEXT",
+     "handle": "4845",
+     "snapped": 0.18
+    },
+    {
+     "text": "زرع",
+     "x": 2.37,
+     "y": 4.569,
+     "layer": "TEXT",
+     "handle": "4A36"
+    },
+    {
+     "text": "زرع",
+     "x": 2.319,
+     "y": 8.721,
+     "layer": "TEXT",
+     "handle": "4A37"
+    }
+   ],
+   "flags": [
+    "label_outside: label snapped from outside the polygon"
+   ],
+   "centroid": [
+    2.068,
+    6.244
+   ],
+   "bbox": [
+    1.77,
+    3.28,
+    2.37,
+    9.139
+   ],
+   "inscribed_r": 0.3,
+   "dim_checks": []
+  },
+  {
+   "id": "F11-R45",
+   "name": "زرع",
+   "category": "planter",
+   "category_ar": "أحواض زرع",
+   "open_air": true,
+   "indoor": false,
+   "area": 4.791,
+   "perimeter": 17.17,
+   "perimeter_outer": 17.17,
+   "n_holes": 0,
+   "boundary": {
+    "mass": 8.585,
+    "glazing": 7.985,
+    "column": 0.6
+   },
+   "doors": [],
+   "openings": [],
+   "windows": [
+    "F11-W21"
+   ],
+   "labels": [
+    {
+     "text": "زرع",
+     "x": 7.112,
+     "y": 0.318,
+     "layer": "TEXT",
+     "handle": "4A38"
+    },
+    {
+     "text": "زرع",
+     "x": 11.835,
+     "y": 0.369,
+     "layer": "TEXT",
+     "handle": "4A39"
+    }
+   ],
+   "flags": [],
+   "centroid": [
+    9.213,
+    0.38
+   ],
+   "bbox": [
+    5.22,
+    0.08,
+    13.205,
+    0.68
+   ],
+   "inscribed_r": 0.3,
+   "dim_checks": []
+  }
+ ],
+ "totals": {
+  "by_category": {
+   "office": {
+    "name_ar": "مكاتب",
+    "n": 16,
+    "area": 326.2,
+    "perimeter": 315.301
+   },
+   "wc": {
+    "name_ar": "حمامات",
+    "n": 8,
+    "area": 27.824,
+    "perimeter": 59.958
+   },
+   "corridor": {
+    "name_ar": "ممرات",
+    "n": 1,
+    "area": 57.948,
+    "perimeter": 65.138
+   },
+   "lobby": {
+    "name_ar": "بهو المصعد",
+    "n": 1,
+    "area": 26.804,
+    "perimeter": 33.059
+   },
+   "service": {
+    "name_ar": "غرف خدمات",
+    "n": 4,
+    "area": 20.1,
+    "perimeter": 36.825
+   },
+   "stair": {
+    "name_ar": "سلالم",
+    "n": 2,
+    "area": 27.705,
+    "perimeter": 31.1
+   },
+   "lift": {
+    "name_ar": "بئر المصاعد",
+    "n": 1,
+    "area": 6.898,
+    "perimeter": 10.966
+   },
+   "shaft": {
+    "name_ar": "شفتات/دكتات",
+    "n": 6,
+    "area": 4.984,
+    "perimeter": 23.148
+   },
+   "planter": {
+    "name_ar": "أحواض زرع",
+    "n": 6,
+    "area": 20.525,
+    "perimeter": 79.889
+   }
+  },
+  "n_rooms": 45,
+  "net_indoor_area": 498.463,
+  "boundary_by_kind_indoor": {
+   "door": 55.861,
+   "opening": 2.462,
+   "glazing": 81.588,
+   "column": 58.767,
+   "solid_try": 2.491,
+   "wall": 325.986,
+   "extension": 0.076,
+   "virtual": 14.0,
+   "unresolved": 0.155
+  },
+  "boundary_by_kind_open_air": {
+   "glazing": 37.13,
+   "column": 3.14,
+   "mass": 39.0,
+   "wall": 0.62
+  },
+  "net_usable_area": 458.876,
+  "ceiling_area": 486.581,
+  "open_air_area": 20.525,
+  "gross_floor_area": 559.512,
+  "gross_outline_perimeter": 122.546,
+  "walls_columns_area": 61.049,
+  "footprint_bbox": [
+   -0.145,
+   -0.305,
+   19.848,
+   38.235
+  ],
+  "footprint_dropped_parts": []
+ },
+ "checks": {
+  "labels_unplaced": [],
+  "label_count": 48,
+  "office_numbers": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16
+  ],
+  "offices_missing": [],
+  "duplicate_names": [],
+  "rooms_flagged": [
+   {
+    "id": "F11-R01",
+    "name": "مكتب 3",
+    "flags": [
+     "trimmed: 0.87 m2 of thin strip(s) (< 0.32 m wide) cut off this space as wall body - check the drawing there",
+     "free_lines_inside: 0.37 m of single W/WIN lines stand inside this space (not part of its perimeter) - partial wall / screen?"
+    ]
+   },
+   {
+    "id": "F11-R02",
+    "name": "مكتب 2",
+    "flags": [
+     "trimmed: 0.65 m2 of thin strip(s) (< 0.32 m wide) cut off this space as wall body - check the drawing there"
+    ]
+   },
+   {
+    "id": "F11-R15",
+    "name": "مكتب 12",
+    "flags": [
+     "closed_by_extension: 0.08 m of the boundary is a virtual extension of a wall face (drawing gap)"
+    ]
+   },
+   {
+    "id": "F11-R23",
+    "name": "حمام (بلا اسم)",
+    "flags": [
+     "unlabelled_wc: no room label; named from the WC pan block P (FUR) inside"
+    ]
+   },
+   {
+    "id": "F11-R25",
+    "name": "ممر",
+    "flags": [
+     "split_virtual: separated from the lobby by a virtual line 7.00 m (continuation of the corridor wall face; no wall drawn)",
+     "multi_label: 4 x 'ممر' in one space"
+    ]
+   },
+   {
+    "id": "F11-R26",
+    "name": "بهو المصعد",
+    "flags": [
+     "split_virtual: separated from the corridor by a virtual line 7.00 m (continuation of the corridor wall face; no wall drawn)",
+     "label_in_lobby: 'ممر' 4A86 (14.70, 23.23) lies in the lobby part - the corridor/lobby split ignores it"
+    ]
+   },
+   {
+    "id": "F11-R31",
+    "name": "السلم",
+    "flags": [
+     "stair_eye_on_WIN: 3 WIN line(s) inside this stair (WIN:4707, WIN:4708, WIN:4744) = the stair eye / break line drawn on WIN - ignored (not glazing, not a boundary)"
+    ]
+   },
+   {
+    "id": "F11-R32",
+    "name": "السلم",
+    "flags": [
+     "stair_eye_on_WIN: 8 WIN line(s) inside this stair (WIN:4746, WIN:4747, WIN:4748, WIN:4749, WIN:474A, WIN:474B, WIN:474C, WIN:474D) = the stair eye / break line drawn on WIN - ignored (not glazing, not a boundary)"
+    ]
+   },
+   {
+    "id": "F11-R41",
+    "name": "زرع",
+    "flags": [
+     "label_outside: label snapped from outside the polygon",
+     "label_snapped_far: 'زرع' 482B from 0.86 m (left over from another floor?)"
+    ]
+   },
+   {
+    "id": "F11-R42",
+    "name": "زرع",
+    "flags": [
+     "label_outside: label snapped from outside the polygon",
+     "label_snapped_far: 'زرع' 4843 from 0.86 m (left over from another floor?)"
+    ]
+   },
+   {
+    "id": "F11-R43",
+    "name": "زرع",
+    "flags": [
+     "label_outside: label snapped from outside the polygon",
+     "open_air_inside_outline: 0.96 m2 lies INSIDE the try floor outline (slab edge); planters lie outside it - a strip between glass and parapet, not a planter?"
+    ]
+   },
+   {
+    "id": "F11-R44",
+    "name": "زرع",
+    "flags": [
+     "label_outside: label snapped from outside the polygon"
+    ]
+   }
+  ],
+  "extensions": [
+   {
+    "from": [
+     9.075,
+     4.452
+    ],
+    "to": [
+     9.075,
+     4.53
+    ],
+    "length": 0.078,
+    "wall": "W:48C3",
+    "hits": "wall W:499A"
+   },
+   {
+    "from": [
+     2.02,
+     34.92
+    ],
+    "to": [
+     2.02,
+     34.866
+    ],
+    "length": 0.054,
+    "wall": "W:49A5",
+    "hits": "glazing WIN:4869"
+   }
+  ],
+  "corridor_lobby_splits": [
+   {
+    "chord": [
+     [
+      8.955,
+      25.65
+     ],
+     [
+      8.955,
+      18.65
+     ]
+    ],
+    "length": 7.0,
+    "areas": [
+     57.948,
+     26.804
+    ],
+    "labels_ignored": [
+     {
+      "text": "ممر",
+      "handle": "4A86",
+      "x": 14.702,
+      "y": 23.226
+     }
+    ]
+   }
+  ],
+  "closed_pockets_as_solid": [],
+  "primitives_skipped": [
+   "WIN:4707 (inside a stair: stair eye / break line drawn on WIN)",
+   "WIN:4708 (inside a stair: stair eye / break line drawn on WIN)",
+   "WIN:4744 (inside a stair: stair eye / break line drawn on WIN)",
+   "WIN:4746 (inside a stair: stair eye / break line drawn on WIN)",
+   "WIN:4747 (inside a stair: stair eye / break line drawn on WIN)",
+   "WIN:4748 (inside a stair: stair eye / break line drawn on WIN)",
+   "WIN:4749 (inside a stair: stair eye / break line drawn on WIN)",
+   "WIN:474A (inside a stair: stair eye / break line drawn on WIN)",
+   "WIN:474B (inside a stair: stair eye / break line drawn on WIN)",
+   "WIN:474C (inside a stair: stair eye / break line drawn on WIN)",
+   "WIN:474D (inside a stair: stair eye / break line drawn on WIN)",
+   "try-outline:49AF kept 3.90 of 118.96 m (dropped where W / WIN lies within 0.15 m)",
+   "try-outline: 0.38 m more dropped where it runs inside a closed face (it would cut that space short of its glass); 3.52 m kept (open-air side)"
+  ],
+  "win_inside_stair_skipped": [
+   "WIN:4707",
+   "WIN:4708",
+   "WIN:4744",
+   "WIN:4746",
+   "WIN:4747",
+   "WIN:4748",
+   "WIN:4749",
+   "WIN:474A",
+   "WIN:474B",
+   "WIN:474C",
+   "WIN:474D"
+  ],
+  "windows_in_stair_ignored": [],
+  "wall_bodies": {
+   "n": 93,
+   "area": 38.977
+  },
+  "outside_pieces": 1,
+  "dims_checked": 39,
+  "doors_not_two_sided": [],
+  "windows_unassigned": [],
+  "dims_ok": 38,
+  "dims_jog": [
+   {
+    "room": "F11-R13",
+    "dim": "4A5C",
+    "value": 3.515,
+    "room_width": 3.231,
+    "diff": -0.284,
+    "status": "jog",
+    "lateral": 0.518,
+    "dir_deg": 90.0,
+    "p2": [
+     5.763,
+     5.62
+    ],
+    "p3": [
+     5.245,
+     9.135
+    ]
+   }
+  ],
+  "dims_mismatch": []
+ },
+ "elapsed_s": 1.7
+}
