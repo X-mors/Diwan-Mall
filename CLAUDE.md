@@ -40,7 +40,7 @@ pitfalls, open questions). Findings per topic are in `docs/findings/`.
 | overlay structural on architectural / floors on each other | `python tools/str_arch_compare.py 6`, `--arch 9 8`, `--str 8 9` | `output/compare/*.png/json` |
 | walls, openings, rooms, concrete separately | `tools/walls.py`, `openings.py`, `rooms.py`, `structure.py` | `output/<topic>/` |
 | drawing screenshots (arch + structural side by side) | `python tools/snap.py both 6 x0 y0 x1 y1 out.png` | — |
-| floor on the slab under it / planters vs slab | `python tools/slab_boards.py`, `python tools/planter_sections.py 8 9 10 11` | `output/compare/slab_board_Fnn.png`, `section_Fnn_north.png` |
+| floor on the slab under it / planters vs slab | `python tools/slab_boards.py`, `python tools/planter_sections.py 8 9 10 11` (plan + sections AA north, BB west, CC south) | `output/compare/slab_board_Fnn.png`, `plan_Fnn_slab_planters.png`, `section_Fnn_AA/BB/CC.png` |
 | layer-by-layer floor differences | `tools/floor_compare.py` | `output/floor_compare/` |
 | DWG ↔ DXF | `tools/dwg_dxf_convert.py` (Linux: ODA .deb + xvfb-run, see docstring) | — |
 
