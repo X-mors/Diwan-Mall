@@ -1,6 +1,9 @@
 """
-Convert between .dwg and .dxf using the ODA File Converter (installed at
-C:\\Program Files\\ODA\\ODAFileConverter *\\ODAFileConverter.exe).
+Convert between .dwg and .dxf using the ODA File Converter.
+  Windows: C:\\Program Files\\ODA\\ODAFileConverter *\\ODAFileConverter.exe
+  Linux (cloud sessions): /usr/bin/ODAFileConverter from the official .deb
+    (opendesign.com/guestfiles/oda_file_converter -> ODAFileConverter_QT6_lnxX64_*dll.deb;
+     needs libopengl0 libxkbcommon-x11-0 libxcb-* and xvfb; it runs under `xvfb-run -a`).
 
 Usage:
     python dwg_dxf_convert.py <input_file> <output_dir> [--to dxf|dwg] [--version ACAD2018]
@@ -18,13 +21,21 @@ import tempfile
 from pathlib import Path
 
 ODA_EXE_GLOB = r"C:\Program Files\ODA\ODAFileConverter*\ODAFileConverter.exe"
+ODA_LINUX = "/usr/bin/ODAFileConverter"
 
 
-def find_oda_exe() -> str:
-    matches = glob.glob(ODA_EXE_GLOB)
-    if not matches:
-        sys.exit("ODA File Converter not found at " + ODA_EXE_GLOB)
-    return matches[0]
+def find_oda_exe() -> list:
+    """Command prefix that runs the converter (Linux: headless under xvfb-run)."""
+    if sys.platform.startswith("win"):
+        matches = glob.glob(ODA_EXE_GLOB)
+        if not matches:
+            sys.exit("ODA File Converter not found at " + ODA_EXE_GLOB)
+        return [matches[0]]
+    exe = shutil.which("ODAFileConverter") or (ODA_LINUX if Path(ODA_LINUX).exists() else None)
+    if not exe:
+        sys.exit("ODA File Converter not found (install the Linux .deb, see the docstring)")
+    xvfb = shutil.which("xvfb-run")
+    return ([xvfb, "-a"] if xvfb else []) + [exe]
 
 
 def convert(input_file: str, output_dir: str, to: str, version: str) -> Path:
@@ -32,17 +43,17 @@ def convert(input_file: str, output_dir: str, to: str, version: str) -> Path:
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     out_type = "DXF" if to == "dxf" else "DWG"
-    in_filter = "*.dwg" if input_file.suffix.lower() == ".dwg" else "*.dxf"
+    in_filter = "*.DWG" if input_file.suffix.lower() == ".dwg" else "*.DXF"
 
     exe = find_oda_exe()
     with tempfile.TemporaryDirectory() as tmp_in, tempfile.TemporaryDirectory() as tmp_out:
         shutil.copy(input_file, tmp_in)
         subprocess.run(
-            [exe, tmp_in, tmp_out, version, out_type, "0", "1", in_filter],
+            exe + [tmp_in, tmp_out, version, out_type, "0", "1", in_filter],
             check=True,
-            timeout=120,
+            timeout=600,
         )
-        produced = list(Path(tmp_out).glob(f"*.{out_type.lower()}"))
+        produced = [p for p in Path(tmp_out).iterdir() if p.suffix.lower() == "." + out_type.lower()]
         if not produced:
             sys.exit("Conversion failed: no output file produced")
         result = output_dir / produced[0].name
