@@ -28,6 +28,7 @@ pitfalls, open questions). Findings per topic are in `docs/findings/`.
 - ETABS `tr`-block elements are real concrete (walls on them are not masonry); columns that exist only in the
   structural exist on site. `read_plan.py` therefore excludes walls on tr elements and deducts wall lengths inside
   structural columns/cores (`Params.tr_concrete`, `Params.str_concrete`).
+- The owner speaks in ACTUAL floor numbers (8, 9, 10, 11): never use the structural sheet names in replies.
 - When asking the owner a question, attach a screenshot of the drawing (`tools/snap.py`, images in `output/questions/`).
 
 ## Tools (all default to every floor)
@@ -39,6 +40,7 @@ pitfalls, open questions). Findings per topic are in `docs/findings/`.
 | overlay structural on architectural / floors on each other | `python tools/str_arch_compare.py 6`, `--arch 9 8`, `--str 8 9` | `output/compare/*.png/json` |
 | walls, openings, rooms, concrete separately | `tools/walls.py`, `openings.py`, `rooms.py`, `structure.py` | `output/<topic>/` |
 | drawing screenshots (arch + structural side by side) | `python tools/snap.py both 6 x0 y0 x1 y1 out.png` | — |
+| floor on the slab under it / planters vs slab | `python tools/slab_boards.py`, `python tools/planter_sections.py 8 9 10 11` | `output/compare/slab_board_Fnn.png`, `section_Fnn_north.png` |
 | layer-by-layer floor differences | `tools/floor_compare.py` | `output/floor_compare/` |
 | DWG ↔ DXF | `tools/dwg_dxf_convert.py` (Linux: ODA .deb + xvfb-run, see docstring) | — |
 
