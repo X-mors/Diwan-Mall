@@ -1,0 +1,186 @@
+[
+ {
+  "floor": "F02",
+  "slab_under": "سقف الاول",
+  "slab_under_ceiling_of": 1,
+  "slab_under_area": 707.44,
+  "facade_footprint_area": 638.17,
+  "slab_beyond_facade": 65.68,
+  "slab_beyond_facade_nothing_drawn": 1.75,
+  "planter_terrace_area": 67.66,
+  "planter_on_slab": 67.66,
+  "planter_without_slab": 0.0,
+  "planter_without_slab_parts": [],
+  "png": "output/compare/slab_board_F02.png"
+ },
+ {
+  "floor": "F03",
+  "slab_under": "سقف 6  و 5  و 3  و 2",
+  "slab_under_ceiling_of": 2,
+  "slab_under_area": 635.06,
+  "facade_footprint_area": 633.95,
+  "slab_beyond_facade": 1.06,
+  "slab_beyond_facade_nothing_drawn": 0.0,
+  "planter_terrace_area": 0.0,
+  "planter_on_slab": 0.0,
+  "planter_without_slab": 0.0,
+  "planter_without_slab_parts": [],
+  "png": "output/compare/slab_board_F03.png"
+ },
+ {
+  "floor": "F04",
+  "slab_under": "سقف 6  و 5  و 3  و 2",
+  "slab_under_ceiling_of": 3,
+  "slab_under_area": 635.06,
+  "facade_footprint_area": 633.95,
+  "slab_beyond_facade": 1.06,
+  "slab_beyond_facade_nothing_drawn": 0.0,
+  "planter_terrace_area": 0.0,
+  "planter_on_slab": 0.0,
+  "planter_without_slab": 0.0,
+  "planter_without_slab_parts": [],
+  "png": "output/compare/slab_board_F04.png"
+ },
+ {
+  "floor": "F05",
+  "slab_under": "سقف الرابع",
+  "slab_under_ceiling_of": 4,
+  "slab_under_area": 643.67,
+  "facade_footprint_area": 634.06,
+  "slab_beyond_facade": 8.47,
+  "slab_beyond_facade_nothing_drawn": 8.29,
+  "planter_terrace_area": 0.0,
+  "planter_on_slab": 0.0,
+  "planter_without_slab": 0.0,
+  "planter_without_slab_parts": [],
+  "png": "output/compare/slab_board_F05.png"
+ },
+ {
+  "floor": "F06",
+  "slab_under": "سقف 6  و 5  و 3  و 2",
+  "slab_under_ceiling_of": 5,
+  "slab_under_area": 635.06,
+  "facade_footprint_area": 634.06,
+  "slab_beyond_facade": 1.0,
+  "slab_beyond_facade_nothing_drawn": 0.0,
+  "planter_terrace_area": 0.0,
+  "planter_on_slab": 0.0,
+  "planter_without_slab": 0.0,
+  "planter_without_slab_parts": [],
+  "png": "output/compare/slab_board_F06.png"
+ },
+ {
+  "floor": "F07",
+  "slab_under": "سقف 6  و 5  و 3  و 2",
+  "slab_under_ceiling_of": 6,
+  "slab_under_area": 635.06,
+  "facade_footprint_area": 633.95,
+  "slab_beyond_facade": 1.06,
+  "slab_beyond_facade_nothing_drawn": 0.0,
+  "planter_terrace_area": 0.0,
+  "planter_on_slab": 0.0,
+  "planter_without_slab": 0.0,
+  "planter_without_slab_parts": [],
+  "png": "output/compare/slab_board_F07.png"
+ },
+ {
+  "floor": "F08",
+  "slab_under": "سقف السابع",
+  "slab_under_ceiling_of": 7,
+  "slab_under_area": 643.67,
+  "facade_footprint_area": 634.06,
+  "slab_beyond_facade": 8.47,
+  "slab_beyond_facade_nothing_drawn": 8.36,
+  "planter_terrace_area": 0.0,
+  "planter_on_slab": 0.0,
+  "planter_without_slab": 0.0,
+  "planter_without_slab_parts": [],
+  "png": "output/compare/slab_board_F08.png"
+ },
+ {
+  "floor": "F09",
+  "slab_under": "سقف السابع المتكرر",
+  "slab_under_ceiling_of": 8,
+  "slab_under_area": 643.67,
+  "facade_footprint_area": 608.75,
+  "slab_beyond_facade": 33.44,
+  "slab_beyond_facade_nothing_drawn": 0.0,
+  "planter_terrace_area": 40.32,
+  "planter_on_slab": 36.75,
+  "planter_without_slab": 3.57,
+  "planter_without_slab_parts": [
+   [
+    4.12,
+    39.12,
+    12.76,
+    39.45,
+    0.73
+   ],
+   [
+    13.93,
+    38.62,
+    16.19,
+    38.82,
+    0.4
+   ],
+   [
+    4.12,
+    -1.52,
+    13.61,
+    -1.19,
+    0.78
+   ],
+   [
+    0.17,
+    2.43,
+    0.25,
+    12.23,
+    0.79
+   ],
+   [
+    0.17,
+    25.98,
+    0.25,
+    35.5,
+    0.77
+   ]
+  ],
+  "png": "output/compare/slab_board_F09.png"
+ },
+ {
+  "floor": "F10",
+  "slab_under": "سقف الثامن",
+  "slab_under_ceiling_of": 9,
+  "slab_under_area": 609.07,
+  "facade_footprint_area": 583.59,
+  "slab_beyond_facade": 24.12,
+  "slab_beyond_facade_nothing_drawn": 1.6,
+  "planter_terrace_area": 24.58,
+  "planter_on_slab": 24.32,
+  "planter_without_slab": 0.26,
+  "planter_without_slab_parts": [
+   [
+    1.09,
+    2.53,
+    1.28,
+    5.11,
+    0.26
+   ]
+  ],
+  "png": "output/compare/slab_board_F10.png"
+ },
+ {
+  "floor": "F11",
+  "slab_under": "سقف التاسع",
+  "slab_under_ceiling_of": 10,
+  "slab_under_area": 586.57,
+  "facade_footprint_area": 559.51,
+  "slab_beyond_facade": 26.85,
+  "slab_beyond_facade_nothing_drawn": 4.71,
+  "planter_terrace_area": 23.85,
+  "planter_on_slab": 23.85,
+  "planter_without_slab": 0.0,
+  "planter_without_slab_parts": [],
+  "png": "output/compare/slab_board_F11.png"
+ }
+]
