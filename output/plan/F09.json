@@ -279,6 +279,14 @@
     "openings_width": 0.0,
     "area_gross_at_h": 148.81,
     "area_net_at_h": 148.81
+   },
+   "planter_parapet|0.25": {
+    "n": 11,
+    "length_gross": 49.6,
+    "length_net": 49.6,
+    "openings_width": 0.0,
+    "area_gross_at_h": 148.81,
+    "area_net_at_h": 148.81
    }
   },
   "thickness_histogram_net": {
@@ -9089,8 +9097,8 @@
   }
  },
  "timing_s": {
-  "openings": 1.0,
-  "rooms": 1.9,
+  "openings": 0.7,
+  "rooms": 2.1,
   "walls": 0.5,
   "structure": 0.9
  }

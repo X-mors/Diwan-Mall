@@ -1822,10 +1822,20 @@ def _reading_order_recs(recs):
 def parapet_totals(pars, height):
     if not pars:
         return {}
-    L = sum(p["length_gross"] for p in pars)
-    return {"planter_parapet|ALL": {"n": len(pars), "length_gross": round(L, 2), "length_net": round(L, 2),
-                                    "openings_width": 0.0, "area_gross_at_h": round(L * height, 2),
-                                    "area_net_at_h": round(L * height, 2)}}
+    def tot(ps):
+        L = sum(p["length_gross"] for p in ps)
+        return {"n": len(ps), "length_gross": round(L, 2), "length_net": round(L, 2), "openings_width": 0.0,
+                "area_gross_at_h": round(L * height, 2), "area_net_at_h": round(L * height, 2)}
+    out = {"planter_parapet|ALL": tot(pars)}
+    # 0.25 bands = parapets proper; <= 0.15 bands on F10/F11 repeat the glazing lines of the floor
+    # below (curb / glass balustrade / slab edge?) -> reported apart
+    thick = [p for p in pars if p["thickness"] >= 0.15]
+    thin = [p for p in pars if p["thickness"] < 0.15]
+    if thick:
+        out["planter_parapet|0.25"] = tot(thick)
+    if thin:
+        out["planter_parapet|thin"] = tot(thin)
+    return out
 
 
 def totals(recs, height):

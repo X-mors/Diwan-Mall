@@ -11583,8 +11583,8 @@
  },
  "timing_s": {
   "openings": 1.4,
-  "rooms": 1.9,
-  "walls": 0.8,
-  "structure": 1.4
+  "rooms": 1.8,
+  "walls": 1.0,
+  "structure": 1.5
  }
 }

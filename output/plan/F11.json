@@ -279,6 +279,22 @@
     "openings_width": 0.0,
     "area_gross_at_h": 118.76,
     "area_net_at_h": 118.76
+   },
+   "planter_parapet|0.25": {
+    "n": 2,
+    "length_gross": 1.11,
+    "length_net": 1.11,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.34,
+    "area_net_at_h": 3.34
+   },
+   "planter_parapet|thin": {
+    "n": 6,
+    "length_gross": 38.47,
+    "length_net": 38.47,
+    "openings_width": 0.0,
+    "area_gross_at_h": 115.42,
+    "area_net_at_h": 115.42
    }
   },
   "thickness_histogram_net": {
@@ -8273,7 +8289,7 @@
    "item": "8 دروة",
    "element": "-",
    "detail": "planter parapets (MASS line pairs) 39.59 m - masonry or concrete? height? (not in masonry)",
-   "detail_ar": "دروات أحواض الزرع (أزواج خطوط MASS) 39.59 م — مباني أم خرسانة؟ الارتفاع؟ (غير محسوبة في المباني)"
+   "detail_ar": "دروات أحواض الزرع (أزواج خطوط MASS) 39.59 م (منها 0.25: 1.11 م، ورفيعة ≤ 0.12 تكرر زجاج الدور الأسفل: 38.47 م) — مباني أم خرسانة؟ الارتفاع؟ (غير محسوبة في المباني)"
   },
   {
    "type": "needs_check_counts",
@@ -8732,9 +8748,9 @@
   }
  },
  "timing_s": {
-  "openings": 1.1,
-  "rooms": 2.7,
-  "walls": 1.3,
-  "structure": 2.0
+  "openings": 0.9,
+  "rooms": 1.8,
+  "walls": 0.4,
+  "structure": 0.8
  }
 }

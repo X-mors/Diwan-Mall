@@ -7820,6 +7820,22 @@
    "openings_width": 0.0,
    "area_gross_at_h": 118.76,
    "area_net_at_h": 118.76
+  },
+  "planter_parapet|0.25": {
+   "n": 2,
+   "length_gross": 1.11,
+   "length_net": 1.11,
+   "openings_width": 0.0,
+   "area_gross_at_h": 3.34,
+   "area_net_at_h": 3.34
+  },
+  "planter_parapet|thin": {
+   "n": 6,
+   "length_gross": 38.47,
+   "length_net": 38.47,
+   "openings_width": 0.0,
+   "area_gross_at_h": 115.42,
+   "area_net_at_h": 115.42
   }
  },
  "planter_parapets": [

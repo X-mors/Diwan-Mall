@@ -592,8 +592,11 @@ def merge_floor(b, P: Params):
     if pp:
         conf.append({"type": "planter_parapet", "item": f"{pp['n']} دروة", "element": "-",
                      "detail": f"planter parapets (MASS line pairs) {pp['length_gross']} m - masonry or concrete? height? (not in masonry)",
-                     "detail_ar": f"دروات أحواض الزرع (أزواج خطوط MASS) {pp['length_gross']} م — مباني أم خرسانة؟ الارتفاع؟ "
-                                  f"(غير محسوبة في المباني)"})
+                     "detail_ar": f"دروات أحواض الزرع (أزواج خطوط MASS) {pp['length_gross']} م"
+                                  + (f" (منها 0.25: {W['totals']['planter_parapet|0.25']['length_gross']} م"
+                                     f"، ورفيعة ≤ 0.12 تكرر زجاج الدور الأسفل: {W['totals']['planter_parapet|thin']['length_gross']} م)"
+                                     if 'planter_parapet|thin' in W['totals'] and 'planter_parapet|0.25' in W['totals'] else "")
+                                  + " — مباني أم خرسانة؟ الارتفاع؟ (غير محسوبة في المباني)"})
     for g in pla["external"].get("glazing_off_footprint", []):
         conf.append({"type": "glazing_off_footprint", "item": g["id"], "element": "-",
                      "detail": f"full-height glazing {g['id']} ({g['width']} m) is not on the facade line -> not deducted",
@@ -1007,6 +1010,10 @@ def write_workbook(plans, P: Params, out_xlsx):
             sh.line(["دروات أحواض الزرع (خطوط MASS، F09–F11) — غير محسوبة في المباني"]
                     + row_vals(lambda p: _get(p, "walls", "totals", "planter_parapet|ALL", metric, default=0)),
                     fmt="0" if metric == "n" else "0.00", warn=True)
+            for key, lab in (("planter_parapet|0.25", "  منها دروات 0.25"),
+                             ("planter_parapet|thin", "  منها خطوط رفيعة ≤ 0.12 (تكرار زجاج الدور الأسفل: بردورة/درابزين زجاج/حافة بلاطة؟)")):
+                sh.line([lab] + row_vals(lambda p, key=key: _get(p, "walls", "totals", key, metric, default=0)),
+                        fmt="0" if metric == "n" else "0.00", warn=True)
         sh.blank()
 
     # ---------------- 3. doors & windows

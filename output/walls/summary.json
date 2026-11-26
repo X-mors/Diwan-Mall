@@ -2512,6 +2512,14 @@
     "openings_width": 0.0,
     "area_gross_at_h": 148.81,
     "area_net_at_h": 148.81
+   },
+   "planter_parapet|0.25": {
+    "n": 11,
+    "length_gross": 49.6,
+    "length_net": 49.6,
+    "openings_width": 0.0,
+    "area_gross_at_h": 148.81,
+    "area_net_at_h": 148.81
    }
   },
   "thickness_histogram_net": {
@@ -2812,6 +2820,22 @@
     "openings_width": 0.0,
     "area_gross_at_h": 130.23,
     "area_net_at_h": 130.23
+   },
+   "planter_parapet|0.25": {
+    "n": 5,
+    "length_gross": 2.44,
+    "length_net": 2.44,
+    "openings_width": 0.0,
+    "area_gross_at_h": 7.31,
+    "area_net_at_h": 7.31
+   },
+   "planter_parapet|thin": {
+    "n": 6,
+    "length_gross": 40.97,
+    "length_net": 40.97,
+    "openings_width": 0.0,
+    "area_gross_at_h": 122.92,
+    "area_net_at_h": 122.92
    }
   },
   "thickness_histogram_net": {
@@ -3116,6 +3140,22 @@
     "openings_width": 0.0,
     "area_gross_at_h": 118.76,
     "area_net_at_h": 118.76
+   },
+   "planter_parapet|0.25": {
+    "n": 2,
+    "length_gross": 1.11,
+    "length_net": 1.11,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.34,
+    "area_net_at_h": 3.34
+   },
+   "planter_parapet|thin": {
+    "n": 6,
+    "length_gross": 38.47,
+    "length_net": 38.47,
+    "openings_width": 0.0,
+    "area_gross_at_h": 115.42,
+    "area_net_at_h": 115.42
    }
   },
   "thickness_histogram_net": {
