@@ -3970,7 +3970,7 @@
       0.435,
       0.2,
       3.0,
-      "slab"
+      "outside slab outline (general thickness)"
      ]
     ]
    },
@@ -3997,7 +3997,7 @@
       0.085,
       0.2,
       3.0,
-      "slab"
+      "outside slab outline (general thickness)"
      ]
     ]
    },
@@ -4311,7 +4311,7 @@
       0.24,
       0.2,
       3.0,
-      "slab"
+      "outside slab outline (general thickness)"
      ]
     ]
    },
@@ -4335,6 +4335,13 @@
     "masonry_height_runs": [
      [
       0.0,
+      0.358,
+      0.2,
+      3.0,
+      "outside slab outline (general thickness)"
+     ],
+     [
+      0.358,
       1.175,
       0.2,
       3.0,
@@ -9869,7 +9876,7 @@
   ],
   "shafts": [
    {
-    "id": "SH04",
+    "id": "SH01",
     "kind": "shaft (X)",
     "size_txt": "0.40 x 0.60",
     "bbox": [
@@ -9880,20 +9887,13 @@
     ],
     "area": 0.24,
     "floors": [
-     "F02",
-     "F03",
-     "F04",
-     "F05",
-     "F06",
-     "F07",
-     "F08",
      "F09",
      "F10",
      "F11"
     ]
    },
    {
-    "id": "SH06",
+    "id": "SH02",
     "kind": "shaft (X)",
     "size_txt": "0.40 x 0.60",
     "bbox": [
@@ -9904,19 +9904,12 @@
     ],
     "area": 0.24,
     "floors": [
-     "F02",
-     "F03",
-     "F04",
-     "F05",
-     "F06",
-     "F07",
-     "F08",
      "F09",
      "F10"
     ]
    },
    {
-    "id": "SH07",
+    "id": "SH03",
     "kind": "post_at_curtain_wall (hatched)",
     "size_txt": "0.60 x 0.25",
     "bbox": [
@@ -9927,20 +9920,13 @@
     ],
     "area": 0.15,
     "floors": [
-     "F02",
-     "F03",
-     "F04",
-     "F05",
-     "F06",
-     "F07",
-     "F08",
      "F09",
      "F10",
      "F11"
     ]
    },
    {
-    "id": "SH08",
+    "id": "SH04",
     "kind": "shaft (X, DASH only)",
     "size_txt": "1.00 x 0.40",
     "bbox": [
@@ -9951,20 +9937,13 @@
     ],
     "area": 0.406,
     "floors": [
-     "F02",
-     "F03",
-     "F04",
-     "F05",
-     "F06",
-     "F07",
-     "F08",
      "F09",
      "F10",
      "F11"
     ]
    },
    {
-    "id": "SH09",
+    "id": "SH05",
     "kind": "shaft (X)",
     "size_txt": "0.40 x 1.03",
     "bbox": [
@@ -9975,20 +9954,13 @@
     ],
     "area": 0.412,
     "floors": [
-     "F02",
-     "F03",
-     "F04",
-     "F05",
-     "F06",
-     "F07",
-     "F08",
      "F09",
      "F10",
      "F11"
     ]
    },
    {
-    "id": "SH10",
+    "id": "SH06",
     "kind": "shaft (X)",
     "size_txt": "1.72 x 0.60",
     "bbox": [
@@ -9999,20 +9971,13 @@
     ],
     "area": 1.029,
     "floors": [
-     "F02",
-     "F03",
-     "F04",
-     "F05",
-     "F06",
-     "F07",
-     "F08",
      "F09",
      "F10",
      "F11"
     ]
    },
    {
-    "id": "SH11",
+    "id": "SH07",
     "kind": "post_at_curtain_wall (hatched)",
     "size_txt": "0.60 x 0.30",
     "bbox": [
@@ -10023,20 +9988,13 @@
     ],
     "area": 0.18,
     "floors": [
-     "F02",
-     "F03",
-     "F04",
-     "F05",
-     "F06",
-     "F07",
-     "F08",
      "F09",
      "F10",
      "F11"
     ]
    },
    {
-    "id": "SH12",
+    "id": "SH08",
     "kind": "shaft (X, DASH only)",
     "size_txt": "0.92 x 1.52",
     "bbox": [
@@ -10047,20 +10005,13 @@
     ],
     "area": 1.403,
     "floors": [
-     "F02",
-     "F03",
-     "F04",
-     "F05",
-     "F06",
-     "F07",
-     "F08",
      "F09",
      "F10",
      "F11"
     ]
    },
    {
-    "id": "SH13",
+    "id": "SH09",
     "kind": "post_at_curtain_wall (hatched)",
     "size_txt": "0.60 x 0.25",
     "bbox": [
@@ -10071,20 +10022,13 @@
     ],
     "area": 0.15,
     "floors": [
-     "F02",
-     "F03",
-     "F04",
-     "F05",
-     "F06",
-     "F07",
-     "F08",
      "F09",
      "F10",
      "F11"
     ]
    },
    {
-    "id": "SH14",
+    "id": "SH10",
     "kind": "box (no X)",
     "size_txt": "1.72 x 0.60",
     "bbox": [
@@ -10095,20 +10039,13 @@
     ],
     "area": 1.029,
     "floors": [
-     "F02",
-     "F03",
-     "F04",
-     "F05",
-     "F06",
-     "F07",
-     "F08",
      "F09",
      "F10",
      "F11"
     ]
    },
    {
-    "id": "SH16",
+    "id": "SH11",
     "kind": "shaft (X)",
     "size_txt": "1.57 x 0.60",
     "bbox": [
@@ -10119,20 +10056,13 @@
     ],
     "area": 0.942,
     "floors": [
-     "F02",
-     "F03",
-     "F04",
-     "F05",
-     "F06",
-     "F07",
-     "F08",
      "F09",
      "F10",
      "F11"
     ]
    },
    {
-    "id": "SH18",
+    "id": "SH12",
     "kind": "box (no X)",
     "size_txt": "0.40 x 0.60",
     "bbox": [
@@ -10143,13 +10073,6 @@
     ],
     "area": 0.24,
     "floors": [
-     "F02",
-     "F03",
-     "F04",
-     "F05",
-     "F06",
-     "F07",
-     "F08",
      "F09",
      "F10"
     ]
@@ -10759,10 +10682,10 @@
     "2.30": 15.79
    },
    "length_by_source": {
-    "slab": 209.55,
+    "slab": 208.44,
     "beam ك3 30x90": 6.27,
+    "outside slab outline (general thickness)": 5.84,
     "beam ك2 25x90": 5.17,
-    "outside slab outline (general thickness)": 4.72,
     "beam ك4 25x90": 3.0,
     "beam ك1 25x70": 2.77,
     "beam ك5 25x70": 2.58,

@@ -58,7 +58,7 @@ from sosa_decode import decode_if_encoded, is_arabic_style  # noqa: E402
 
 STR_DXF = REPO / "dxf" / "Dewan_STR_REV01.dxf"
 OUT = OUT_DIR / "structure_str"
-CACHE_VER = "s1"
+CACHE_VER = "s2"
 STR_STOREY = 3.30          # m, top-to-top of slab as DRAWN in the structural sheets (+4.50 ... +40.80)
 EXEC_STOREY = 3.20         # m, top-to-top AS EXECUTED (owner 2026-11-26: clear 3.00 under the 20 cm slab on
                            # floors 2-11) = the architectural levels (+8.90 ... +37.70).  The structural
@@ -127,7 +127,7 @@ def extract(use_cache=True):
     logging.disable(logging.NOTSET)
     msp = doc.modelspace()
     g = {"anchors": [], "texts": [], "slab_edge": [], "etabs_slab": [], "thk_polys": [],
-         "beams": [], "cols": [], "x_lines": []}
+         "beams": [], "cols": [], "x_lines": [], "w_lines": []}
     for e in msp:
         lay, t = e.dxf.layer, e.dxftype()
         if t == "INSERT" and lay == AXES_BLOCK_LAYER:
@@ -142,6 +142,11 @@ def extract(use_cache=True):
         if lay == "Slab edge" and t in ("LWPOLYLINE", "LINE", "ARC", "POLYLINE"):
             g["slab_edge"].append({"pts": _flatten(e), "closed": bool(getattr(e, "closed", False)),
                                    "handle": e.dxf.handle})
+        # facade walls drawn on the structural sheets: they close a slab outline left open (sheets 9-11 SW)
+        if lay == "W" and t in ("LWPOLYLINE", "LINE", "ARC", "POLYLINE"):
+            pts = _flatten(e)
+            if len(pts) >= 2:
+                g["w_lines"].append(pts)
         if lay == "Etabs-Slab" and t == "LWPOLYLINE":
             g["etabs_slab"].append({"pts": _flatten(e), "handle": e.dxf.handle})
         if lay == "slab thickness" and t == "LWPOLYLINE" and e.closed:
@@ -183,6 +188,40 @@ def _poly(pts):
     return None if P.is_empty else P
 
 
+def _close_open_outline(pts, w_lines):
+    """Some sheets (ceilings of 9, 10, 11) leave the Slab-edge polyline OPEN at the SW corner
+    (from the step at the west wall down to the end of the SW arc).  Closing it with a straight
+    chord invents a diagonal slab edge.  The engineer drew the facade wall (layer W) along the
+    missing edge, so close the gap along those W lines; return None if they do not close it."""
+    from shapely.geometry import LineString, Point, box
+    from shapely.ops import nearest_points, polygonize, unary_union
+    a, b = Point(pts[0]), Point(pts[-1])
+    region = box(min(a.x, b.x), min(a.y, b.y), max(a.x, b.x), max(a.y, b.y)).buffer(2.5)
+    W = [LineString(q) for q in w_lines if LineString(q).intersects(region)]
+    W = [w.intersection(region) for w in W]
+    W = [w for w in W if not w.is_empty and w.length > 0.05]
+    if not W:
+        return None
+    Wu = unary_union(W)
+    path = LineString(pts)
+    lines = [path] + W
+    for p in (a, b):
+        q = nearest_points(p, Wu)[1]
+        if p.distance(q) < 2.0:
+            lines.append(LineString([p, q]))
+        else:
+            return None
+    faces = list(polygonize(unary_union(lines)))
+    if not faces:
+        return None
+    P = max(faces, key=lambda f: f.area)
+    chord = _poly(pts)
+    # sanity: the closed outline differs from the chord closure only near the gap
+    if chord is None or P.symmetric_difference(chord).area > 0.25 * a.distance(b) * 4 + 5:
+        return None
+    return P.buffer(0)
+
+
 def _plans(g):
     from shapely.geometry import Point, box
     titles = []
@@ -198,6 +237,9 @@ def _plans(g):
     for s in g["slab_edge"]:
         P = _poly(s["pts"])
         if P is not None and P.area > 300:
+            gap = math.dist(s["pts"][0], s["pts"][-1])
+            if gap > 0.3:
+                P = _close_open_outline(s["pts"], g.get("w_lines", [])) or P
             outlines.append((P, s["handle"]))
     plans = []
     for ax, ay in anchors:
@@ -308,7 +350,7 @@ def _zones(g, plan):
     # removes, e.g. the south 35/20 limit on the lower sheets) -> keep its raw linework too
     raw = next((s["pts"] for s in g["slab_edge"] if s["handle"] == plan["outline_handle"]), None)
     if raw and len(raw) >= 2:
-        lines.append(LineString(raw + [raw[0]]))
+        lines.append(LineString(raw + [raw[0]]) if math.dist(raw[0], raw[-1]) <= 0.3 else LineString(raw))
     for s in g["slab_edge"]:
         if len(s["pts"]) >= 2:
             L = LineString(s["pts"])

@@ -1694,13 +1694,13 @@
     "9": 34.2
    },
    "level_source": "plan level mark",
-   "outline_area": 609.07,
+   "outline_area": 601.37,
    "general_thickness": 0.2,
    "zones": [
     {
      "thickness": 0.2,
      "assumed": false,
-     "area": 409.63,
+     "area": 402.13,
      "labels": [
       20
      ],
@@ -1708,7 +1708,7 @@
      "source": null,
      "bbox_local": [
       -0.13,
-      2.75,
+      2.77,
       19.81,
       29.0
      ]
@@ -1746,14 +1746,14 @@
     {
      "thickness": 0.35,
      "assumed": false,
-     "area": 39.75,
+     "area": 39.6,
      "labels": [
       35
      ],
      "split_from": null,
      "source": null,
      "bbox_local": [
-      1.31,
+      1.39,
       -0.6,
       13.61,
       2.85
@@ -1793,8 +1793,8 @@
     }
    ],
    "area_by_thickness": {
-    "0.20": 476.53,
-    "0.35": 131.15
+    "0.20": 469.03,
+    "0.35": 131.0
    },
    "beams": [
     {
@@ -1928,13 +1928,13 @@
     "10": 37.5
    },
    "level_source": "plan level mark",
-   "outline_area": 586.57,
+   "outline_area": 582.2,
    "general_thickness": 0.2,
    "zones": [
     {
      "thickness": 0.2,
      "assumed": false,
-     "area": 406.48,
+     "area": 401.06,
      "labels": [
       20
      ],
@@ -1996,14 +1996,14 @@
     {
      "thickness": 0.35,
      "assumed": false,
-     "area": 32.97,
+     "area": 33.95,
      "labels": [
       35
      ],
      "split_from": null,
      "source": null,
      "bbox_local": [
-      1.77,
+      1.39,
       -0.29,
       13.61,
       2.85
@@ -2027,8 +2027,8 @@
     }
    ],
    "area_by_thickness": {
-    "0.20": 470.78,
-    "0.35": 114.5
+    "0.20": 465.36,
+    "0.35": 115.48
    },
    "beams": [
     {
@@ -2188,13 +2188,13 @@
     "11": 40.8
    },
    "level_source": "plan level mark",
-   "outline_area": 589.86,
+   "outline_area": 582.19,
    "general_thickness": 0.2,
    "zones": [
     {
      "thickness": 0.2,
      "assumed": false,
-     "area": 408.55,
+     "area": 401.09,
      "labels": [
       20
      ],
@@ -2202,7 +2202,7 @@
      "source": null,
      "bbox_local": [
       -0.13,
-      2.75,
+      2.77,
       19.81,
       29.0
      ]
@@ -2256,14 +2256,14 @@
     {
      "thickness": 0.35,
      "assumed": false,
-     "area": 34.05,
+     "area": 33.93,
      "labels": [
       35
      ],
      "split_from": null,
      "source": null,
      "bbox_local": [
-      1.31,
+      1.39,
       -0.29,
       13.61,
       2.85
@@ -2287,8 +2287,8 @@
     }
    ],
    "area_by_thickness": {
-    "0.20": 472.86,
-    "0.35": 115.59
+    "0.20": 465.4,
+    "0.35": 115.47
    },
    "beams": [
     {
