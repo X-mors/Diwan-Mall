@@ -41,6 +41,7 @@ pitfalls, open questions). Findings per topic are in `docs/findings/`.
 | walls, openings, rooms, concrete separately | `tools/walls.py`, `openings.py`, `rooms.py`, `structure.py` | `output/<topic>/` |
 | drawing screenshots (arch + structural side by side) | `python tools/snap.py both 6 x0 y0 x1 y1 out.png` | — |
 | floor on the slab under it / planters vs slab | `python tools/slab_boards.py`, `python tools/planter_sections.py 8 9 10 11` (plan + sections AA north, BB west, CC south) | `output/compare/slab_board_Fnn.png`, `plan_Fnn_slab_planters.png`, `section_Fnn_AA/BB/CC.png` |
+| one floor as separate CAD files (arch + structural slab under / above) | `python tools/extract_floor_cad.py 9` | `output/cad_extract/floor_NN_*.dwg` |
 | layer-by-layer floor differences | `tools/floor_compare.py` | `output/floor_compare/` |
 | DWG ↔ DXF | `tools/dwg_dxf_convert.py` (Linux: ODA .deb + xvfb-run, see docstring) | — |
 
