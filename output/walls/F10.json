@@ -1,0 +1,9147 @@
+{
+ "floor": "F10",
+ "floor_no": 10,
+ "name_ar": "الدور العاشر",
+ "level": 34.5,
+ "source": {
+  "file": "Diwan_9th_to_11th_Floor.dxf",
+  "sheet_index": 1
+ },
+ "frame": "local (diwan_common): rotation -10 deg, origin = min corner of Etabs-col",
+ "method": "face pairing of layer W; centre-line lengths; T-junctions to through-wall; L-corners to centre-line crossing; net excludes openings; split at concrete",
+ "height_assumed": 3.0,
+ "storey_height": 3.2,
+ "walls": [
+  {
+   "id": "W1",
+   "x1": 16.555,
+   "y1": 35.284,
+   "x2": 16.555,
+   "y2": 36.284,
+   "angle": 90.0,
+   "thickness": 0.4,
+   "family": "0.40",
+   "length_gross": 1.0,
+   "length_net": 1.0,
+   "openings_width": 0,
+   "kind": "exterior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "out": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 2"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -16.755,
+    -16.355
+   ],
+   "_t": [
+    35.2835,
+    36.2835
+   ]
+  },
+  {
+   "id": "W2",
+   "x1": 6.995,
+   "y1": 34.08,
+   "x2": 9.8,
+   "y2": 34.08,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 2.805,
+   "length_net": 2.805,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.06,
+    0.06
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 2"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    34.02,
+    34.14
+   ],
+   "_t": [
+    6.9951,
+    9.8
+   ]
+  },
+  {
+   "id": "W3",
+   "x1": 16.63,
+   "y1": 32.26,
+   "x2": 16.63,
+   "y2": 35.284,
+   "angle": 90.0,
+   "thickness": 0.25,
+   "family": "0.25",
+   "length_gross": 3.023,
+   "length_net": 0.523,
+   "openings_width": 2.5,
+   "kind": "exterior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "facade line with glazing bays: gross includes the windows",
+   "openings": [
+    {
+     "type": "window",
+     "width": 2.5,
+     "at": [
+      16.63,
+      33.95
+     ]
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "out": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 2"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 3,
+   "_band": [
+    -16.755,
+    -16.505
+   ],
+   "_t": [
+    32.26,
+    35.2835
+   ]
+  },
+  {
+   "id": "W4",
+   "x1": 1.77,
+   "y1": 32.26,
+   "x2": 6.935,
+   "y2": 32.26,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 5.165,
+   "length_net": 5.165,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "break",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 4",
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 3"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    32.2,
+    32.32
+   ],
+   "_t": [
+    1.7701,
+    6.9351
+   ]
+  },
+  {
+   "id": "W5",
+   "x1": 6.995,
+   "y1": 32.26,
+   "x2": 6.995,
+   "y2": 34.08,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.82,
+   "length_net": 0.82,
+   "openings_width": 1.0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [
+    {
+     "type": "door",
+     "width": 1.0,
+     "at": [
+      6.995,
+      32.94
+     ],
+     "block": "D10W12",
+     "door_width": 1.0
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.06
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 3",
+      "ممر"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 3"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 7,
+   "_band": [
+    -7.0551,
+    -6.9351
+   ],
+   "_t": [
+    32.26,
+    34.08
+   ]
+  },
+  {
+   "id": "W6",
+   "x1": 9.015,
+   "y1": 32.26,
+   "x2": 9.8,
+   "y2": 32.26,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.785,
+   "length_net": 0.785,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.06,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 2",
+      "مكتب 3"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    32.2,
+    32.32
+   ],
+   "_t": [
+    9.0151,
+    9.8
+   ]
+  },
+  {
+   "id": "W7",
+   "x1": 9.8,
+   "y1": 32.32,
+   "x2": 9.8,
+   "y2": 34.08,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.76,
+   "length_net": 0.76,
+   "openings_width": 1.0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [
+    {
+     "type": "door",
+     "width": 1.0,
+     "at": [
+      9.8,
+      32.94
+     ],
+     "block": "D10W12",
+     "door_width": 1.0
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.06
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 2"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 2",
+      "مكتب 3"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 2,
+   "_band": [
+    -9.86,
+    -9.74
+   ],
+   "_t": [
+    32.32,
+    34.08
+   ]
+  },
+  {
+   "id": "W8",
+   "x1": 9.8,
+   "y1": 32.26,
+   "x2": 10.0,
+   "y2": 32.26,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.2,
+   "length_net": 0.2,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "short piece (<0.30 m): nib / stub / pier return",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 2"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    32.2,
+    32.32
+   ],
+   "_t": [
+    9.8,
+    10.0
+   ]
+  },
+  {
+   "id": "W9",
+   "x1": 10.0,
+   "y1": 32.26,
+   "x2": 10.52,
+   "y2": 32.26,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.52,
+   "length_net": 0.52,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 2"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    32.2,
+    32.32
+   ],
+   "_t": [
+    10.0,
+    10.52
+   ]
+  },
+  {
+   "id": "W10",
+   "x1": 10.52,
+   "y1": 32.26,
+   "x2": 16.505,
+   "y2": 32.26,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 5.985,
+   "length_net": 5.985,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 1"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 2"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    32.2,
+    32.32
+   ],
+   "_t": [
+    10.52,
+    16.505
+   ]
+  },
+  {
+   "id": "W11",
+   "x1": 5.16,
+   "y1": 30.94,
+   "x2": 6.935,
+   "y2": 30.94,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.775,
+   "length_net": 0.975,
+   "openings_width": 0.8,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [
+    {
+     "type": "door",
+     "width": 0.8,
+     "at": [
+      5.74,
+      30.94
+     ],
+     "block": "D80W12",
+     "door_width": 0.8
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.06,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    }
+   ],
+   "n_pieces": 2,
+   "_band": [
+    30.88,
+    31.0
+   ],
+   "_t": [
+    5.16,
+    6.9351
+   ]
+  },
+  {
+   "id": "W12",
+   "x1": 6.995,
+   "y1": 30.94,
+   "x2": 6.995,
+   "y2": 32.26,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.32,
+   "length_net": 0.32,
+   "openings_width": 1.0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [
+    {
+     "type": "door",
+     "width": 1.0,
+     "at": [
+      6.995,
+      31.58
+     ],
+     "block": "D10W12",
+     "door_width": 1.0
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر",
+      "مكتب 4"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 4",
+      "مكتب 2"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 7,
+   "_band": [
+    -7.0551,
+    -6.9351
+   ],
+   "_t": [
+    30.94,
+    32.26
+   ]
+  },
+  {
+   "id": "W13",
+   "x1": 10.0,
+   "y1": 31.54,
+   "x2": 10.0,
+   "y2": 32.2,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.66,
+   "length_net": 0.66,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.06,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -10.06,
+    -9.94
+   ],
+   "_t": [
+    31.54,
+    32.2
+   ]
+  },
+  {
+   "id": "W14",
+   "x1": 10.0,
+   "y1": 31.54,
+   "x2": 10.52,
+   "y2": 31.54,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.52,
+   "length_net": 0.52,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.06,
+    0.06
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 1"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    31.48,
+    31.6
+   ],
+   "_t": [
+    10.0,
+    10.52
+   ]
+  },
+  {
+   "id": "W15",
+   "x1": 10.52,
+   "y1": 31.54,
+   "x2": 10.52,
+   "y2": 32.2,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.66,
+   "length_net": 0.66,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.06,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 1"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -10.58,
+    -10.46
+   ],
+   "_t": [
+    31.54,
+    32.2
+   ]
+  },
+  {
+   "id": "W16",
+   "x1": 5.16,
+   "y1": 29.3,
+   "x2": 5.16,
+   "y2": 30.94,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.64,
+   "length_net": 1.64,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.06
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 4"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -5.22,
+    -5.1
+   ],
+   "_t": [
+    29.3,
+    30.94
+   ]
+  },
+  {
+   "id": "W17",
+   "x1": 5.22,
+   "y1": 29.3,
+   "x2": 5.68,
+   "y2": 29.3,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.46,
+   "length_net": 0.46,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.06
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    29.24,
+    29.36
+   ],
+   "_t": [
+    5.22,
+    5.68
+   ]
+  },
+  {
+   "id": "W18",
+   "x1": 6.995,
+   "y1": 28.94,
+   "x2": 6.995,
+   "y2": 30.94,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 2.0,
+   "length_net": 2.0,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    }
+   ],
+   "n_pieces": 7,
+   "_band": [
+    -7.0551,
+    -6.9351
+   ],
+   "_t": [
+    28.94,
+    30.94
+   ]
+  },
+  {
+   "id": "W19",
+   "x1": 9.015,
+   "y1": 29.0,
+   "x2": 9.015,
+   "y2": 32.26,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 3.26,
+   "length_net": 2.26,
+   "openings_width": 1.0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "one-face drafting break <= 0.15 m read through (other face continuous, nothing abuts); L-corner: extended to the centre-line crossing",
+   "openings": [
+    {
+     "type": "door",
+     "width": 1.0,
+     "at": [
+      9.015,
+      29.62
+     ],
+     "block": "D10W12",
+     "door_width": 1.0
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.06
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 1",
+      "ممر"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 3,
+   "_band": [
+    -9.0751,
+    -8.9551
+   ],
+   "_t": [
+    29.0,
+    32.26
+   ]
+  },
+  {
+   "id": "W20",
+   "x1": 16.63,
+   "y1": 29.0,
+   "x2": 16.63,
+   "y2": 32.26,
+   "angle": 90.0,
+   "thickness": 0.25,
+   "family": "0.25",
+   "length_gross": 3.26,
+   "length_net": 0.76,
+   "openings_width": 2.5,
+   "kind": "exterior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "facade line with glazing bays: gross includes the windows",
+   "openings": [
+    {
+     "type": "window",
+     "width": 2.5,
+     "at": [
+      16.63,
+      30.85
+     ]
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "out": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 1"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 3,
+   "_band": [
+    -16.755,
+    -16.505
+   ],
+   "_t": [
+    29.0,
+    32.26
+   ]
+  },
+  {
+   "id": "W21",
+   "x1": 3.69,
+   "y1": 28.94,
+   "x2": 5.1,
+   "y2": 28.94,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.41,
+   "length_net": 1.41,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "void",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 5"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 4"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    28.88,
+    29.0
+   ],
+   "_t": [
+    3.6901,
+    5.1
+   ]
+  },
+  {
+   "id": "W22",
+   "x1": 5.16,
+   "y1": 28.58,
+   "x2": 5.16,
+   "y2": 28.94,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.36,
+   "length_net": 0.36,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 5"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -5.22,
+    -5.1
+   ],
+   "_t": [
+    28.58,
+    28.94
+   ]
+  },
+  {
+   "id": "W23",
+   "x1": 5.16,
+   "y1": 28.94,
+   "x2": 5.16,
+   "y2": 29.3,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.36,
+   "length_net": 0.36,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 4"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -5.22,
+    -5.1
+   ],
+   "_t": [
+    28.94,
+    29.3
+   ]
+  },
+  {
+   "id": "W24",
+   "x1": 5.22,
+   "y1": 28.58,
+   "x2": 5.68,
+   "y2": 28.58,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.46,
+   "length_net": 0.46,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.06
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    },
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    28.52,
+    28.64
+   ],
+   "_t": [
+    5.22,
+    5.68
+   ]
+  },
+  {
+   "id": "W25",
+   "x1": 5.68,
+   "y1": 28.58,
+   "x2": 5.68,
+   "y2": 28.94,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.36,
+   "length_net": 0.36,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.06,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    },
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -5.74,
+    -5.62
+   ],
+   "_t": [
+    28.58,
+    28.94
+   ]
+  },
+  {
+   "id": "W26",
+   "x1": 5.68,
+   "y1": 28.94,
+   "x2": 5.68,
+   "y2": 29.3,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.36,
+   "length_net": 0.36,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.06
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    },
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -5.74,
+    -5.62
+   ],
+   "_t": [
+    28.94,
+    29.3
+   ]
+  },
+  {
+   "id": "W27",
+   "x1": 5.74,
+   "y1": 28.94,
+   "x2": 6.935,
+   "y2": 28.94,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.195,
+   "length_net": 1.195,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    28.88,
+    29.0
+   ],
+   "_t": [
+    5.74,
+    6.9351
+   ]
+  },
+  {
+   "id": "W28",
+   "x1": 6.995,
+   "y1": 26.91,
+   "x2": 6.995,
+   "y2": 28.94,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 2.03,
+   "length_net": 2.03,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    }
+   ],
+   "n_pieces": 7,
+   "_band": [
+    -7.0551,
+    -6.9351
+   ],
+   "_t": [
+    26.91,
+    28.94
+   ]
+  },
+  {
+   "id": "W29",
+   "x1": 9.155,
+   "y1": 27.8,
+   "x2": 9.155,
+   "y2": 28.875,
+   "angle": 90.0,
+   "thickness": 0.4,
+   "family": "0.40",
+   "length_gross": 1.075,
+   "length_net": 1.075,
+   "openings_width": 0,
+   "kind": "stair_lift",
+   "needs_check": true,
+   "reason": "thick wall (>=0.35) like the shear walls - concrete or masonry?",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.125
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [],
+     "stair": true,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -9.3551,
+    -8.9551
+   ],
+   "_t": [
+    27.8,
+    28.875
+   ]
+  },
+  {
+   "id": "W30",
+   "x1": 9.155,
+   "y1": 28.875,
+   "x2": 14.405,
+   "y2": 28.875,
+   "angle": 0.0,
+   "thickness": 0.25,
+   "family": "0.25",
+   "length_gross": 5.25,
+   "length_net": 5.25,
+   "openings_width": 0,
+   "kind": "stair_lift",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.2,
+    0.0
+   ],
+   "end_reason": "column",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [],
+     "stair": true,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 1"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    28.75,
+    29.0
+   ],
+   "_t": [
+    9.1551,
+    14.4051
+   ]
+  },
+  {
+   "id": "W31",
+   "x1": 18.505,
+   "y1": 28.875,
+   "x2": 19.679,
+   "y2": 28.875,
+   "angle": 0.0,
+   "thickness": 0.25,
+   "family": "0.25",
+   "length_gross": 1.174,
+   "length_net": 1.174,
+   "openings_width": 0,
+   "kind": "exterior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.151
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "DAS/GSM"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "out": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    28.75,
+    29.0
+   ],
+   "_t": [
+    18.5051,
+    19.6791
+   ]
+  },
+  {
+   "id": "W32",
+   "x1": 5.16,
+   "y1": 26.91,
+   "x2": 5.16,
+   "y2": 28.58,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.67,
+   "length_net": 1.67,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.06,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 5"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -5.22,
+    -5.1
+   ],
+   "_t": [
+    26.91,
+    28.58
+   ]
+  },
+  {
+   "id": "W33",
+   "x1": 5.16,
+   "y1": 26.91,
+   "x2": 6.935,
+   "y2": 26.91,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.775,
+   "length_net": 0.975,
+   "openings_width": 0.8,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [
+    {
+     "type": "door",
+     "width": 0.8,
+     "at": [
+      5.74,
+      26.91
+     ],
+     "block": "D80W12",
+     "door_width": 0.8
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.06,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 5",
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    }
+   ],
+   "n_pieces": 2,
+   "_band": [
+    26.85,
+    26.97
+   ],
+   "_t": [
+    5.16,
+    6.9351
+   ]
+  },
+  {
+   "id": "W34",
+   "x1": 6.995,
+   "y1": 25.59,
+   "x2": 6.995,
+   "y2": 26.91,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.32,
+   "length_net": 0.32,
+   "openings_width": 1.0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [
+    {
+     "type": "door",
+     "width": 1.0,
+     "at": [
+      6.995,
+      26.27
+     ],
+     "block": "D10W12",
+     "door_width": 1.0
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 5",
+      "ممر"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 7,
+   "_band": [
+    -7.0551,
+    -6.9351
+   ],
+   "_t": [
+    25.59,
+    26.91
+   ]
+  },
+  {
+   "id": "W35",
+   "x1": 9.08,
+   "y1": 25.9,
+   "x2": 9.08,
+   "y2": 27.8,
+   "angle": 90.0,
+   "thickness": 0.25,
+   "family": "0.25",
+   "length_gross": 1.9,
+   "length_net": 1.9,
+   "openings_width": 0,
+   "kind": "stair_lift",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "FTR room",
+      "ممر"
+     ],
+     "stair": true,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -9.2051,
+    -8.9551
+   ],
+   "_t": [
+    25.9,
+    27.8
+   ]
+  },
+  {
+   "id": "W36",
+   "x1": 14.53,
+   "y1": 25.904,
+   "x2": 14.53,
+   "y2": 28.6,
+   "angle": 90.0,
+   "thickness": 0.25,
+   "family": "0.25",
+   "length_gross": 2.696,
+   "length_net": 2.696,
+   "openings_width": 0,
+   "kind": "stair_lift",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 0.9,
+      "concrete": 0.1
+     },
+     "labels": [
+      "DAS/GSM"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [],
+     "stair": true,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -14.6551,
+    -14.4051
+   ],
+   "_t": [
+    25.9035,
+    28.6
+   ]
+  },
+  {
+   "id": "W37",
+   "x1": 19.108,
+   "y1": 25.842,
+   "x2": 19.679,
+   "y2": 28.875,
+   "angle": 79.33,
+   "thickness": 0.25,
+   "family": "0.25",
+   "length_gross": 3.086,
+   "length_net": 1.486,
+   "openings_width": 1.6,
+   "kind": "exterior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "facade line with glazing bays: gross includes the windows; L-corner: extended to the centre-line crossing",
+   "openings": [
+    {
+     "type": "window",
+     "width": 0.8,
+     "at": [
+      19.207,
+      26.37
+     ]
+    },
+    {
+     "type": "window",
+     "width": 0.8,
+     "at": [
+      19.54,
+      28.139
+     ]
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.151
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "out": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "DAS/GSM"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 3,
+   "_band": [
+    -14.1182,
+    -13.8682
+   ],
+   "_t": [
+    28.9326,
+    32.0191
+   ]
+  },
+  {
+   "id": "W38",
+   "x1": -0.13,
+   "y1": 25.656,
+   "x2": 1.775,
+   "y2": 25.656,
+   "angle": 0.0,
+   "thickness": 0.252,
+   "family": "0.25",
+   "length_gross": 1.905,
+   "length_net": 1.905,
+   "openings_width": 0,
+   "kind": "exterior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 6"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "out": 1.0
+     },
+     "labels": [
+      "زرع"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    25.53,
+    25.7822
+   ],
+   "_t": [
+    -0.13,
+    1.775
+   ]
+  },
+  {
+   "id": "W39",
+   "x1": 1.775,
+   "y1": 25.59,
+   "x2": 6.935,
+   "y2": 25.59,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 5.16,
+   "length_net": 5.16,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 6"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 5",
+      "ممر",
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    25.53,
+    25.65
+   ],
+   "_t": [
+    1.775,
+    6.9351
+   ]
+  },
+  {
+   "id": "W40",
+   "x1": 6.995,
+   "y1": 24.17,
+   "x2": 6.995,
+   "y2": 25.59,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.42,
+   "length_net": 0.42,
+   "openings_width": 1.0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [
+    {
+     "type": "door",
+     "width": 1.0,
+     "at": [
+      6.995,
+      24.91
+     ],
+     "block": "D10W12",
+     "door_width": 1.0
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر",
+      "المصاعد الادارية فقط"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر",
+      "المصاعد الادارية فقط"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 7,
+   "_band": [
+    -7.0551,
+    -6.9351
+   ],
+   "_t": [
+    24.17,
+    25.59
+   ]
+  },
+  {
+   "id": "W41",
+   "x1": 9.14,
+   "y1": 25.65,
+   "x2": 9.14,
+   "y2": 25.776,
+   "angle": 90.0,
+   "thickness": 0.37,
+   "family": "other",
+   "length_gross": 0.126,
+   "length_net": 0.126,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": true,
+   "reason": "thickness 0.370 m is not a standard family (composite pier / nib / drafting?)",
+   "notes": "short piece (<0.30 m): nib / stub / pier return",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -9.3251,
+    -8.9551
+   ],
+   "_t": [
+    25.65,
+    25.7758
+   ]
+  },
+  {
+   "id": "W42",
+   "x1": 9.14,
+   "y1": 25.776,
+   "x2": 9.14,
+   "y2": 25.9,
+   "angle": 90.0,
+   "thickness": 0.37,
+   "family": "other",
+   "length_gross": 0.124,
+   "length_net": 0.124,
+   "openings_width": 0,
+   "kind": "stair_lift",
+   "needs_check": true,
+   "reason": "thickness 0.370 m is not a standard family (composite pier / nib / drafting?)",
+   "notes": "short piece (<0.30 m): nib / stub / pier return",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر"
+     ],
+     "stair": true,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -9.3251,
+    -8.9551
+   ],
+   "_t": [
+    25.7758,
+    25.9
+   ]
+  },
+  {
+   "id": "W43",
+   "x1": 9.205,
+   "y1": 25.776,
+   "x2": 10.555,
+   "y2": 25.776,
+   "angle": 0.0,
+   "thickness": 0.252,
+   "family": "0.25",
+   "length_gross": 1.35,
+   "length_net": 0.45,
+   "openings_width": 0.9,
+   "kind": "stair_lift",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [
+    {
+     "type": "door",
+     "width": 0.9,
+     "at": [
+      9.775,
+      25.776
+     ],
+     "block": "D90W25",
+     "door_width": 0.9
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر",
+      "FTR room"
+     ],
+     "stair": true,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 2,
+   "_band": [
+    25.65,
+    25.9016
+   ],
+   "_t": [
+    9.2051,
+    10.5551
+   ]
+  },
+  {
+   "id": "W44",
+   "x1": 14.655,
+   "y1": 25.842,
+   "x2": 16.033,
+   "y2": 25.842,
+   "angle": 0.0,
+   "thickness": 0.119,
+   "family": "0.12",
+   "length_gross": 1.377,
+   "length_net": 0.477,
+   "openings_width": 0.9,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [
+    {
+     "type": "door",
+     "width": 0.9,
+     "at": [
+      15.225,
+      25.842
+     ],
+     "block": "D90W12",
+     "door_width": 0.9
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "IT room",
+      "ممر",
+      "DAS/GSM"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "DAS/GSM"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 2,
+   "_band": [
+    25.7822,
+    25.9016
+   ],
+   "_t": [
+    14.6551,
+    16.0326
+   ]
+  },
+  {
+   "id": "W45",
+   "x1": 16.033,
+   "y1": 24.36,
+   "x2": 16.033,
+   "y2": 25.784,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.423,
+   "length_net": 0.523,
+   "openings_width": 0.9,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [
+    {
+     "type": "door",
+     "width": 0.9,
+     "at": [
+      16.033,
+      24.99
+     ],
+     "block": "D90W12",
+     "door_width": 0.9
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "IT room"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر",
+      "IT room"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 4,
+   "_band": [
+    -16.0926,
+    -15.9726
+   ],
+   "_t": [
+    24.36,
+    25.7835
+   ]
+  },
+  {
+   "id": "W46",
+   "x1": 16.033,
+   "y1": 25.842,
+   "x2": 18.97,
+   "y2": 25.842,
+   "angle": 0.0,
+   "thickness": 0.119,
+   "family": "0.12",
+   "length_gross": 2.937,
+   "length_net": 2.937,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "IT room"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "DAS/GSM"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 2,
+   "_band": [
+    25.7822,
+    25.9016
+   ],
+   "_t": [
+    16.0326,
+    18.9695
+   ]
+  },
+  {
+   "id": "W47",
+   "x1": 18.894,
+   "y1": 24.71,
+   "x2": 19.108,
+   "y2": 25.842,
+   "angle": 79.33,
+   "thickness": 0.25,
+   "family": "0.25",
+   "length_gross": 1.152,
+   "length_net": 1.152,
+   "openings_width": 0,
+   "kind": "exterior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "out": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "IT room"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 3,
+   "_band": [
+    -14.1182,
+    -13.8682
+   ],
+   "_t": [
+    27.7806,
+    28.9326
+   ]
+  },
+  {
+   "id": "W48",
+   "x1": 5.16,
+   "y1": 22.61,
+   "x2": 5.16,
+   "y2": 24.17,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.56,
+   "length_net": 1.56,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.06
+   ],
+   "end_reason": "break",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 6"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -5.22,
+    -5.1
+   ],
+   "_t": [
+    22.61,
+    24.17
+   ]
+  },
+  {
+   "id": "W49",
+   "x1": 5.16,
+   "y1": 24.17,
+   "x2": 6.935,
+   "y2": 24.17,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.775,
+   "length_net": 0.975,
+   "openings_width": 0.8,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [
+    {
+     "type": "door",
+     "width": 0.8,
+     "at": [
+      5.74,
+      24.17
+     ],
+     "block": "D80W12",
+     "door_width": 0.8
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.06,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام",
+      "ممر"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    }
+   ],
+   "n_pieces": 2,
+   "_band": [
+    24.11,
+    24.23
+   ],
+   "_t": [
+    5.16,
+    6.9351
+   ]
+  },
+  {
+   "id": "W50",
+   "x1": 6.995,
+   "y1": 22.61,
+   "x2": 6.995,
+   "y2": 24.17,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.56,
+   "length_net": 1.56,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "المصاعد الادارية فقط"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    }
+   ],
+   "n_pieces": 7,
+   "_band": [
+    -7.0551,
+    -6.9351
+   ],
+   "_t": [
+    22.61,
+    24.17
+   ]
+  },
+  {
+   "id": "W51",
+   "x1": 10.4,
+   "y1": 23.69,
+   "x2": 12.32,
+   "y2": 23.69,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.92,
+   "length_net": 1.12,
+   "openings_width": 0.8,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [
+    {
+     "type": "door",
+     "width": 0.8,
+     "at": [
+      10.98,
+      23.69
+     ],
+     "block": "D80W12",
+     "door_width": 0.8
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.06,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "FTR room"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر",
+      "FTR room"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 2,
+   "_band": [
+    23.63,
+    23.75
+   ],
+   "_t": [
+    10.4,
+    12.32
+   ]
+  },
+  {
+   "id": "W52",
+   "x1": 12.32,
+   "y1": 23.69,
+   "x2": 12.84,
+   "y2": 23.69,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.52,
+   "length_net": 0.52,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.06
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 2,
+   "_band": [
+    23.63,
+    23.75
+   ],
+   "_t": [
+    12.32,
+    12.84
+   ]
+  },
+  {
+   "id": "W53",
+   "x1": 16.033,
+   "y1": 23.1,
+   "x2": 16.033,
+   "y2": 24.36,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.26,
+   "length_net": 0.36,
+   "openings_width": 0.9,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [
+    {
+     "type": "door",
+     "width": 0.9,
+     "at": [
+      16.033,
+      23.73
+     ],
+     "block": "D90W12",
+     "door_width": 0.9
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "electric room"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر",
+      "electric room"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 4,
+   "_band": [
+    -16.0926,
+    -15.9726
+   ],
+   "_t": [
+    23.1,
+    24.36
+   ]
+  },
+  {
+   "id": "W54",
+   "x1": 16.093,
+   "y1": 24.36,
+   "x2": 17.305,
+   "y2": 24.36,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.212,
+   "length_net": 1.212,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "electric room"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "IT room"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    24.3,
+    24.42
+   ],
+   "_t": [
+    16.0926,
+    17.3051
+   ]
+  },
+  {
+   "id": "W55",
+   "x1": 17.305,
+   "y1": 24.5,
+   "x2": 17.328,
+   "y2": 24.5,
+   "angle": 0.0,
+   "thickness": 0.4,
+   "family": "0.40",
+   "length_gross": 0.022,
+   "length_net": 0.022,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": true,
+   "reason": "tiny fragment (<0.10 m); thick wall (>=0.35) like the shear walls - concrete or masonry?",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "electric room"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "IT room"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    24.3,
+    24.7
+   ],
+   "_t": [
+    17.3051,
+    17.3276
+   ]
+  },
+  {
+   "id": "W56",
+   "x1": 18.591,
+   "y1": 23.1,
+   "x2": 18.814,
+   "y2": 24.28,
+   "angle": 79.33,
+   "thickness": 0.25,
+   "family": "0.25",
+   "length_gross": 1.201,
+   "length_net": 1.201,
+   "openings_width": 0,
+   "kind": "exterior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "column",
+   "sides": [
+    {
+     "share": {
+      "out": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "electric room"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 3,
+   "_band": [
+    -14.1182,
+    -13.8682
+   ],
+   "_t": [
+    26.1425,
+    27.3437
+   ]
+  },
+  {
+   "id": "W57",
+   "x1": 0.12,
+   "y1": 22.14,
+   "x2": 1.32,
+   "y2": 22.14,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.2,
+   "length_net": 1.2,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 7"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 6"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    22.08,
+    22.2
+   ],
+   "_t": [
+    0.12,
+    1.3199
+   ]
+  },
+  {
+   "id": "W58",
+   "x1": 5.16,
+   "y1": 22.204,
+   "x2": 5.16,
+   "y2": 22.61,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.406,
+   "length_net": 0.406,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 6"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -5.22,
+    -5.1
+   ],
+   "_t": [
+    22.2035,
+    22.61
+   ]
+  },
+  {
+   "id": "W59",
+   "x1": 5.22,
+   "y1": 21.89,
+   "x2": 6.935,
+   "y2": 21.89,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.715,
+   "length_net": 1.715,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 7"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    21.83,
+    21.95
+   ],
+   "_t": [
+    5.22,
+    6.9351
+   ]
+  },
+  {
+   "id": "W60",
+   "x1": 5.22,
+   "y1": 22.61,
+   "x2": 6.935,
+   "y2": 22.61,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.715,
+   "length_net": 1.715,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    22.55,
+    22.67
+   ],
+   "_t": [
+    5.22,
+    6.9351
+   ]
+  },
+  {
+   "id": "W61",
+   "x1": 6.995,
+   "y1": 21.89,
+   "x2": 6.995,
+   "y2": 22.61,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.72,
+   "length_net": 0.72,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "one-face drafting break <= 0.15 m read through (other face continuous, nothing abuts)",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "المصاعد الادارية فقط"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 7,
+   "_band": [
+    -7.0551,
+    -6.9351
+   ],
+   "_t": [
+    21.89,
+    22.61
+   ]
+  },
+  {
+   "id": "W62",
+   "x1": 10.4,
+   "y1": 22.677,
+   "x2": 10.4,
+   "y2": 23.69,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.013,
+   "length_net": 1.013,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.06
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "FTR room"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "المصاعد الادارية فقط"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -10.46,
+    -10.34
+   ],
+   "_t": [
+    22.6772,
+    23.69
+   ]
+  },
+  {
+   "id": "W63",
+   "x1": 12.32,
+   "y1": 22.677,
+   "x2": 12.32,
+   "y2": 23.63,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.953,
+   "length_net": 0.953,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "FTR room"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -12.38,
+    -12.26
+   ],
+   "_t": [
+    22.6772,
+    23.63
+   ]
+  },
+  {
+   "id": "W64",
+   "x1": 12.84,
+   "y1": 22.677,
+   "x2": 12.84,
+   "y2": 23.69,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.013,
+   "length_net": 1.013,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.06
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    },
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -12.9,
+    -12.78
+   ],
+   "_t": [
+    22.6772,
+    23.69
+   ]
+  },
+  {
+   "id": "W65",
+   "x1": 16.033,
+   "y1": 21.46,
+   "x2": 16.033,
+   "y2": 23.1,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.64,
+   "length_net": 0.84,
+   "openings_width": 0.8,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [
+    {
+     "type": "door",
+     "width": 0.8,
+     "at": [
+      16.033,
+      22.52
+     ],
+     "block": "D80W12",
+     "door_width": 0.8
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    }
+   ],
+   "n_pieces": 4,
+   "_band": [
+    -16.0926,
+    -15.9726
+   ],
+   "_t": [
+    21.46,
+    23.1
+   ]
+  },
+  {
+   "id": "W66",
+   "x1": 16.093,
+   "y1": 23.1,
+   "x2": 18.453,
+   "y2": 23.1,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 2.36,
+   "length_net": 2.36,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "electric room"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    23.04,
+    23.16
+   ],
+   "_t": [
+    16.0926,
+    18.4526
+   ]
+  },
+  {
+   "id": "W67",
+   "x1": 6.995,
+   "y1": 19.054,
+   "x2": 6.995,
+   "y2": 21.89,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 2.836,
+   "length_net": 1.86,
+   "openings_width": 0.976,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "gross bridged an opening up to a column/core face (concrete jamb); one-face drafting break <= 0.15 m read through (other face continuous, nothing abuts)",
+   "openings": [
+    {
+     "type": "door",
+     "width": 0.976,
+     "at": [
+      6.995,
+      19.542
+     ],
+     "block": "D10W12",
+     "door_width": 1.0,
+     "to_concrete": true
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "بهو المصعد",
+      "المصاعد الادارية فقط"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 7",
+      "بهو المصعد"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 7,
+   "_band": [
+    -7.0551,
+    -6.9351
+   ],
+   "_t": [
+    19.0535,
+    21.89
+   ]
+  },
+  {
+   "id": "W68",
+   "x1": 10.49,
+   "y1": 19.077,
+   "x2": 10.49,
+   "y2": 22.077,
+   "angle": 90.0,
+   "thickness": 0.3,
+   "family": "0.30",
+   "length_gross": 3.0,
+   "length_net": 0.577,
+   "openings_width": 2.423,
+   "kind": "interior",
+   "needs_check": true,
+   "reason": "bridged a door-less gap (no door block/window) - opening or missing door?",
+   "notes": "gross bridged an opening up to a column/core face (concrete jamb)",
+   "openings": [
+    {
+     "type": "opening",
+     "width": 1.25,
+     "at": [
+      10.49,
+      21.375
+     ]
+    },
+    {
+     "type": "opening",
+     "width": 1.173,
+     "at": [
+      10.49,
+      19.664
+     ],
+     "to_concrete": true
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "بهو المصعد",
+      "المصاعد الادارية فقط"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "بهو المصعد",
+      "المصاعد الادارية فقط"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 2,
+   "_band": [
+    -10.64,
+    -10.34
+   ],
+   "_t": [
+    19.0772,
+    22.0772
+   ]
+  },
+  {
+   "id": "W69",
+   "x1": 12.913,
+   "y1": 21.46,
+   "x2": 14.874,
+   "y2": 21.46,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.961,
+   "length_net": 0.961,
+   "openings_width": 1.0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [
+    {
+     "type": "door",
+     "width": 1.0,
+     "at": [
+      13.52,
+      21.46
+     ],
+     "block": "D10W12",
+     "door_width": 1.0
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    }
+   ],
+   "n_pieces": 3,
+   "_band": [
+    21.4,
+    21.52
+   ],
+   "_t": [
+    12.913,
+    14.8742
+   ]
+  },
+  {
+   "id": "W70",
+   "x1": 14.874,
+   "y1": 21.46,
+   "x2": 15.973,
+   "y2": 21.46,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.098,
+   "length_net": 0.298,
+   "openings_width": 0.8,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [
+    {
+     "type": "door",
+     "width": 0.8,
+     "at": [
+      15.453,
+      21.46
+     ],
+     "block": "D80W12",
+     "door_width": 0.8
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    }
+   ],
+   "n_pieces": 3,
+   "_band": [
+    21.4,
+    21.52
+   ],
+   "_t": [
+    14.8742,
+    15.9726
+   ]
+  },
+  {
+   "id": "W71",
+   "x1": 16.033,
+   "y1": 19.17,
+   "x2": 16.033,
+   "y2": 21.46,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 2.29,
+   "length_net": 2.29,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    }
+   ],
+   "n_pieces": 4,
+   "_band": [
+    -16.0926,
+    -15.9726
+   ],
+   "_t": [
+    19.17,
+    21.46
+   ]
+  },
+  {
+   "id": "W72",
+   "x1": 17.839,
+   "y1": 19.11,
+   "x2": 18.591,
+   "y2": 23.1,
+   "angle": 79.33,
+   "thickness": 0.25,
+   "family": "0.25",
+   "length_gross": 4.06,
+   "length_net": 3.26,
+   "openings_width": 0.8,
+   "kind": "exterior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "facade line with glazing bays: gross includes the windows",
+   "openings": [
+    {
+     "type": "window",
+     "width": 0.8,
+     "at": [
+      17.974,
+      19.826
+     ]
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "out": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    }
+   ],
+   "n_pieces": 3,
+   "_band": [
+    -14.1182,
+    -13.8682
+   ],
+   "_t": [
+    22.0823,
+    26.1425
+   ]
+  },
+  {
+   "id": "W73",
+   "x1": 0.12,
+   "y1": 18.851,
+   "x2": 3.155,
+   "y2": 18.851,
+   "angle": 0.0,
+   "thickness": 0.122,
+   "family": "0.12",
+   "length_gross": 3.035,
+   "length_net": 3.035,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 8"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 7"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    18.79,
+    18.9123
+   ],
+   "_t": [
+    0.12,
+    3.155
+   ]
+  },
+  {
+   "id": "W74",
+   "x1": 14.874,
+   "y1": 19.041,
+   "x2": 14.874,
+   "y2": 21.4,
+   "angle": 90.0,
+   "thickness": 0.124,
+   "family": "0.12",
+   "length_gross": 2.359,
+   "length_net": 2.359,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام",
+      "ذوي الهمم"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -14.9364,
+    -14.8121
+   ],
+   "_t": [
+    19.0411,
+    21.4
+   ]
+  },
+  {
+   "id": "W75",
+   "x1": 14.936,
+   "y1": 19.041,
+   "x2": 15.898,
+   "y2": 19.041,
+   "angle": 0.0,
+   "thickness": 0.258,
+   "family": "0.25",
+   "length_gross": 0.961,
+   "length_net": 0.961,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.065
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    18.9123,
+    19.17
+   ],
+   "_t": [
+    14.9364,
+    15.8978
+   ]
+  },
+  {
+   "id": "W76",
+   "x1": 15.953,
+   "y1": 19.11,
+   "x2": 16.033,
+   "y2": 19.11,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.08,
+   "length_net": 0.08,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": true,
+   "reason": "tiny fragment (<0.10 m)",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    }
+   ],
+   "n_pieces": 2,
+   "_band": [
+    19.05,
+    19.17
+   ],
+   "_t": [
+    15.9526,
+    16.0326
+   ]
+  },
+  {
+   "id": "W77",
+   "x1": 16.033,
+   "y1": 19.11,
+   "x2": 17.701,
+   "y2": 19.11,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.668,
+   "length_net": 0.868,
+   "openings_width": 0.8,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [
+    {
+     "type": "door",
+     "width": 0.8,
+     "at": [
+      16.613,
+      19.11
+     ],
+     "block": "D80W12",
+     "door_width": 0.8
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    }
+   ],
+   "n_pieces": 2,
+   "_band": [
+    19.05,
+    19.17
+   ],
+   "_t": [
+    16.0326,
+    17.701
+   ]
+  },
+  {
+   "id": "W78",
+   "x1": 6.995,
+   "y1": 16.0,
+   "x2": 6.995,
+   "y2": 18.654,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 2.654,
+   "length_net": 1.67,
+   "openings_width": 0.984,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "gross bridged an opening up to a column/core face (concrete jamb)",
+   "openings": [
+    {
+     "type": "door",
+     "width": 0.984,
+     "at": [
+      6.995,
+      18.162
+     ],
+     "block": "D10W12",
+     "door_width": 1.0,
+     "to_concrete": true
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "break",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "بهو المصعد"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 8",
+      "بهو المصعد"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 6,
+   "_band": [
+    -7.0551,
+    -6.9351
+   ],
+   "_t": [
+    16.0,
+    18.6535
+   ]
+  },
+  {
+   "id": "W79",
+   "x1": 9.015,
+   "y1": 18.525,
+   "x2": 10.34,
+   "y2": 18.525,
+   "angle": 0.0,
+   "thickness": 0.25,
+   "family": "0.25",
+   "length_gross": 1.325,
+   "length_net": 1.325,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.06,
+    0.0
+   ],
+   "end_reason": "column",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 16"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "بهو المصعد"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    18.4,
+    18.65
+   ],
+   "_t": [
+    9.0151,
+    10.34
+   ]
+  },
+  {
+   "id": "W80",
+   "x1": 12.913,
+   "y1": 18.525,
+   "x2": 13.203,
+   "y2": 18.525,
+   "angle": 0.0,
+   "thickness": 0.25,
+   "family": "0.25",
+   "length_gross": 0.29,
+   "length_net": 0.29,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "short piece (<0.30 m): nib / stub / pier return",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 16"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ذوي الهمم"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    18.4,
+    18.65
+   ],
+   "_t": [
+    12.913,
+    13.2026
+   ]
+  },
+  {
+   "id": "W81",
+   "x1": 13.203,
+   "y1": 18.45,
+   "x2": 14.874,
+   "y2": 18.45,
+   "angle": 0.0,
+   "thickness": 0.4,
+   "family": "0.40",
+   "length_gross": 1.672,
+   "length_net": 1.672,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": true,
+   "reason": "thick wall (>=0.35) like the shear walls - concrete or masonry?",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.062
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 16"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ذوي الهمم"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    18.25,
+    18.65
+   ],
+   "_t": [
+    13.2026,
+    14.8742
+   ]
+  },
+  {
+   "id": "W82",
+   "x1": 14.874,
+   "y1": 18.45,
+   "x2": 14.874,
+   "y2": 19.041,
+   "angle": 90.0,
+   "thickness": 0.124,
+   "family": "0.12",
+   "length_gross": 0.591,
+   "length_net": 0.591,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.2,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ذوي الهمم"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -14.9364,
+    -14.8121
+   ],
+   "_t": [
+    18.45,
+    19.0411
+   ]
+  },
+  {
+   "id": "W83",
+   "x1": 14.895,
+   "y1": 17.403,
+   "x2": 14.895,
+   "y2": 18.25,
+   "angle": 90.0,
+   "thickness": 0.084,
+   "family": "other",
+   "length_gross": 0.847,
+   "length_net": 0.847,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": true,
+   "reason": "thickness 0.084 m is not a standard family (composite pier / nib / drafting?)",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 16"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -14.9364,
+    -14.8526
+   ],
+   "_t": [
+    17.4027,
+    18.25
+   ]
+  },
+  {
+   "id": "W84",
+   "x1": 15.103,
+   "y1": 17.275,
+   "x2": 15.898,
+   "y2": 17.275,
+   "angle": 0.0,
+   "thickness": 0.25,
+   "family": "0.25",
+   "length_gross": 0.795,
+   "length_net": 0.795,
+   "openings_width": 0,
+   "kind": "exterior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "out": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 2,
+   "_band": [
+    17.15,
+    17.4
+   ],
+   "_t": [
+    15.1026,
+    15.8978
+   ]
+  },
+  {
+   "id": "W85",
+   "x1": 15.898,
+   "y1": 17.4,
+   "x2": 15.898,
+   "y2": 19.041,
+   "angle": 90.0,
+   "thickness": 0.109,
+   "family": "0.10",
+   "length_gross": 1.641,
+   "length_net": 1.641,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.12
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    },
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -15.9526,
+    -15.8431
+   ],
+   "_t": [
+    17.4,
+    19.0411
+   ]
+  },
+  {
+   "id": "W86",
+   "x1": 15.898,
+   "y1": 17.275,
+   "x2": 17.39,
+   "y2": 17.275,
+   "angle": 0.0,
+   "thickness": 0.25,
+   "family": "0.25",
+   "length_gross": 1.492,
+   "length_net": 0.692,
+   "openings_width": 0.8,
+   "kind": "exterior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "facade line with glazing bays: gross includes the windows",
+   "openings": [
+    {
+     "type": "window",
+     "width": 0.8,
+     "at": [
+      16.603,
+      17.275
+     ]
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "out": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    }
+   ],
+   "n_pieces": 2,
+   "_band": [
+    17.15,
+    17.4
+   ],
+   "_t": [
+    15.8978,
+    17.3901
+   ]
+  },
+  {
+   "id": "W87",
+   "x1": 17.513,
+   "y1": 17.377,
+   "x2": 17.839,
+   "y2": 19.11,
+   "angle": 79.33,
+   "thickness": 0.25,
+   "family": "0.25",
+   "length_gross": 1.764,
+   "length_net": 0.964,
+   "openings_width": 0.8,
+   "kind": "exterior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "facade line with glazing bays: gross includes the windows",
+   "openings": [
+    {
+     "type": "window",
+     "width": 0.8,
+     "at": [
+      17.641,
+      18.058
+     ]
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "out": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 3,
+   "_band": [
+    -14.1182,
+    -13.8682
+   ],
+   "_t": [
+    20.3187,
+    22.0823
+   ]
+  },
+  {
+   "id": "W88",
+   "x1": 5.16,
+   "y1": 15.64,
+   "x2": 5.16,
+   "y2": 16.0,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.36,
+   "length_net": 0.36,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.06
+   ],
+   "end_reason": "break",
+   "sides": [
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 8"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -5.22,
+    -5.1
+   ],
+   "_t": [
+    15.64,
+    16.0
+   ]
+  },
+  {
+   "id": "W89",
+   "x1": 5.16,
+   "y1": 16.0,
+   "x2": 6.935,
+   "y2": 16.0,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.775,
+   "length_net": 1.775,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.06,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 8"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    15.94,
+    16.06
+   ],
+   "_t": [
+    5.16,
+    6.9351
+   ]
+  },
+  {
+   "id": "W90",
+   "x1": 9.015,
+   "y1": 15.475,
+   "x2": 9.015,
+   "y2": 18.525,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 3.05,
+   "length_net": 2.05,
+   "openings_width": 1.0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [
+    {
+     "type": "door",
+     "width": 1.0,
+     "at": [
+      9.015,
+      16.155
+     ],
+     "block": "D10W12",
+     "door_width": 1.0
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.125
+   ],
+   "end_reason": "break",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 16"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 16",
+      "ممر",
+      "مكتب 8"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 3,
+   "_band": [
+    -9.0751,
+    -8.9551
+   ],
+   "_t": [
+    15.475,
+    18.525
+   ]
+  },
+  {
+   "id": "W91",
+   "x1": 14.952,
+   "y1": 17.218,
+   "x2": 15.103,
+   "y2": 17.218,
+   "angle": 0.0,
+   "thickness": 0.365,
+   "family": "other",
+   "length_gross": 0.151,
+   "length_net": 0.151,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": true,
+   "reason": "thickness 0.365 m is not a standard family (composite pier / nib / drafting?)",
+   "notes": "short piece (<0.30 m): nib / stub / pier return",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    17.035,
+    17.4
+   ],
+   "_t": [
+    14.9515,
+    15.1026
+   ]
+  },
+  {
+   "id": "W92",
+   "x1": 0.12,
+   "y1": 15.64,
+   "x2": 5.1,
+   "y2": 15.64,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 4.98,
+   "length_net": 4.98,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 9"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 8"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    15.58,
+    15.7
+   ],
+   "_t": [
+    0.12,
+    5.1
+   ]
+  },
+  {
+   "id": "W93",
+   "x1": 5.16,
+   "y1": 13.685,
+   "x2": 5.16,
+   "y2": 15.28,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.595,
+   "length_net": 1.595,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.06,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 9"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -5.22,
+    -5.1
+   ],
+   "_t": [
+    13.6846,
+    15.28
+   ]
+  },
+  {
+   "id": "W94",
+   "x1": 5.16,
+   "y1": 15.28,
+   "x2": 5.16,
+   "y2": 15.64,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.36,
+   "length_net": 0.36,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 9"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -5.22,
+    -5.1
+   ],
+   "_t": [
+    15.28,
+    15.64
+   ]
+  },
+  {
+   "id": "W95",
+   "x1": 5.22,
+   "y1": 15.28,
+   "x2": 6.935,
+   "y2": 15.28,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.715,
+   "length_net": 1.715,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    },
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    15.22,
+    15.34
+   ],
+   "_t": [
+    5.22,
+    6.9351
+   ]
+  },
+  {
+   "id": "W96",
+   "x1": 6.995,
+   "y1": 13.685,
+   "x2": 6.995,
+   "y2": 15.28,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.595,
+   "length_net": 1.595,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    }
+   ],
+   "n_pieces": 6,
+   "_band": [
+    -7.0551,
+    -6.9351
+   ],
+   "_t": [
+    13.6846,
+    15.28
+   ]
+  },
+  {
+   "id": "W97",
+   "x1": 6.995,
+   "y1": 15.28,
+   "x2": 6.995,
+   "y2": 16.0,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.72,
+   "length_net": 0.72,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "one-face drafting break <= 0.15 m read through (other face continuous, nothing abuts)",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر",
+      "بهو المصعد"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 6,
+   "_band": [
+    -7.0551,
+    -6.9351
+   ],
+   "_t": [
+    15.28,
+    16.0
+   ]
+  },
+  {
+   "id": "W98",
+   "x1": 9.015,
+   "y1": 13.484,
+   "x2": 9.015,
+   "y2": 15.475,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.992,
+   "length_net": 0.992,
+   "openings_width": 1.0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [
+    {
+     "type": "door",
+     "width": 1.0,
+     "at": [
+      9.015,
+      14.795
+     ],
+     "block": "D10W12",
+     "door_width": 1.0
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 15"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر",
+      "مكتب 15"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 3,
+   "_band": [
+    -9.0751,
+    -8.9551
+   ],
+   "_t": [
+    13.4835,
+    15.475
+   ]
+  },
+  {
+   "id": "W99",
+   "x1": 9.075,
+   "y1": 15.475,
+   "x2": 11.703,
+   "y2": 15.475,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 2.627,
+   "length_net": 2.627,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 15"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 16"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    15.415,
+    15.535
+   ],
+   "_t": [
+    9.0751,
+    11.7026
+   ]
+  },
+  {
+   "id": "W100",
+   "x1": 14.803,
+   "y1": 15.475,
+   "x2": 14.957,
+   "y2": 15.475,
+   "angle": 0.0,
+   "thickness": 0.42,
+   "family": "other",
+   "length_gross": 0.155,
+   "length_net": 0.155,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": true,
+   "reason": "thickness 0.420 m is not a standard family (composite pier / nib / drafting?)",
+   "notes": "short piece (<0.30 m): nib / stub / pier return; L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.105
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 15"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 16"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    15.265,
+    15.685
+   ],
+   "_t": [
+    14.8026,
+    14.9573
+   ]
+  },
+  {
+   "id": "W101",
+   "x1": 14.957,
+   "y1": 15.268,
+   "x2": 14.957,
+   "y2": 15.475,
+   "angle": 90.0,
+   "thickness": 0.291,
+   "family": "0.30",
+   "length_gross": 0.207,
+   "length_net": 0.207,
+   "openings_width": 0,
+   "kind": "exterior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "short piece (<0.30 m): nib / stub / pier return; L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.057
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "out": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "concrete": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -15.1026,
+    -14.8121
+   ],
+   "_t": [
+    15.2685,
+    15.475
+   ]
+  },
+  {
+   "id": "W102",
+   "x1": 14.978,
+   "y1": 11.99,
+   "x2": 14.978,
+   "y2": 17.15,
+   "angle": 90.0,
+   "thickness": 0.25,
+   "family": "0.25",
+   "length_gross": 5.16,
+   "length_net": 1.04,
+   "openings_width": 4.12,
+   "kind": "exterior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "facade line with glazing bays: gross includes the windows",
+   "openings": [
+    {
+     "type": "window",
+     "width": 2.35,
+     "at": [
+      14.978,
+      13.695
+     ]
+    },
+    {
+     "type": "window",
+     "width": 1.77,
+     "at": [
+      14.978,
+      16.15
+     ]
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "out": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 15",
+      "مكتب 16"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 3,
+   "_band": [
+    -15.1026,
+    -14.8526
+   ],
+   "_t": [
+    11.99,
+    17.15
+   ]
+  },
+  {
+   "id": "W103",
+   "x1": 5.16,
+   "y1": 13.685,
+   "x2": 6.935,
+   "y2": 13.685,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.775,
+   "length_net": 0.975,
+   "openings_width": 0.8,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [
+    {
+     "type": "door",
+     "width": 0.8,
+     "at": [
+      5.74,
+      13.685
+     ],
+     "block": "D80W12",
+     "door_width": 0.8
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.06,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام",
+      "ممر"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "حمام"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": true
+    }
+   ],
+   "n_pieces": 2,
+   "_band": [
+    13.6246,
+    13.7446
+   ],
+   "_t": [
+    5.16,
+    6.9351
+   ]
+  },
+  {
+   "id": "W104",
+   "x1": 6.995,
+   "y1": 12.34,
+   "x2": 6.995,
+   "y2": 13.685,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.345,
+   "length_net": 0.345,
+   "openings_width": 1.0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [
+    {
+     "type": "door",
+     "width": 1.0,
+     "at": [
+      6.995,
+      13.02
+     ],
+     "block": "D10W12",
+     "door_width": 1.0
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر",
+      "مكتب 9"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 6,
+   "_band": [
+    -7.0551,
+    -6.9351
+   ],
+   "_t": [
+    12.34,
+    13.6846
+   ]
+  },
+  {
+   "id": "W105",
+   "x1": -0.13,
+   "y1": 12.405,
+   "x2": 0.0,
+   "y2": 12.405,
+   "angle": 0.0,
+   "thickness": 0.25,
+   "family": "0.25",
+   "length_gross": 0.13,
+   "length_net": 0.13,
+   "openings_width": 0,
+   "kind": "exterior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "short piece (<0.30 m): nib / stub / pier return",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "out": 1.0
+     },
+     "labels": [
+      "زرع"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    12.28,
+    12.53
+   ],
+   "_t": [
+    -0.13,
+    0.0
+   ]
+  },
+  {
+   "id": "W106",
+   "x1": 3.9,
+   "y1": 12.34,
+   "x2": 6.935,
+   "y2": 12.34,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 3.035,
+   "length_net": 3.035,
+   "openings_width": 0,
+   "kind": "stair_lift",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [],
+     "stair": true,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 9"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    12.28,
+    12.4
+   ],
+   "_t": [
+    3.9,
+    6.9351
+   ]
+  },
+  {
+   "id": "W107",
+   "x1": 9.205,
+   "y1": 11.99,
+   "x2": 9.205,
+   "y2": 12.284,
+   "angle": 90.0,
+   "thickness": 0.5,
+   "family": "0.50",
+   "length_gross": 0.294,
+   "length_net": 0.294,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": true,
+   "reason": "thick wall (>=0.35) like the shear walls - concrete or masonry?",
+   "notes": "short piece (<0.30 m): nib / stub / pier return; L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.06,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 15"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -9.4551,
+    -8.9551
+   ],
+   "_t": [
+    11.99,
+    12.2835
+   ]
+  },
+  {
+   "id": "W108",
+   "x1": 9.205,
+   "y1": 11.99,
+   "x2": 14.853,
+   "y2": 11.99,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 5.648,
+   "length_net": 5.648,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.25,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 14"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 15"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    11.93,
+    12.05
+   ],
+   "_t": [
+    9.2051,
+    14.8526
+   ]
+  },
+  {
+   "id": "W109",
+   "x1": 6.995,
+   "y1": 9.475,
+   "x2": 6.995,
+   "y2": 12.34,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 2.865,
+   "length_net": 1.865,
+   "openings_width": 1.0,
+   "kind": "stair_lift",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [
+    {
+     "type": "door",
+     "width": 1.0,
+     "at": [
+      6.995,
+      10.155
+     ],
+     "block": "D10W12",
+     "door_width": 1.0
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر"
+     ],
+     "stair": true,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر"
+     ],
+     "stair": true,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 6,
+   "_band": [
+    -7.0551,
+    -6.9351
+   ],
+   "_t": [
+    9.475,
+    12.34
+   ]
+  },
+  {
+   "id": "W110",
+   "x1": 9.015,
+   "y1": 8.875,
+   "x2": 9.015,
+   "y2": 11.93,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 3.055,
+   "length_net": 2.055,
+   "openings_width": 1.0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [
+    {
+     "type": "door",
+     "width": 1.0,
+     "at": [
+      9.015,
+      9.555
+     ],
+     "block": "D10W12",
+     "door_width": 1.0
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "column",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 14",
+      "ممر"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 3,
+   "_band": [
+    -9.0751,
+    -8.9551
+   ],
+   "_t": [
+    8.875,
+    11.93
+   ]
+  },
+  {
+   "id": "W111",
+   "x1": 14.978,
+   "y1": 9.53,
+   "x2": 14.978,
+   "y2": 11.99,
+   "angle": 90.0,
+   "thickness": 0.25,
+   "family": "0.25",
+   "length_gross": 2.46,
+   "length_net": 0.11,
+   "openings_width": 2.35,
+   "kind": "exterior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "gross bridged an opening up to a column/core face (concrete jamb); facade line with glazing bays: gross includes the windows",
+   "openings": [
+    {
+     "type": "window",
+     "width": 2.35,
+     "at": [
+      14.978,
+      10.705
+     ],
+     "to_concrete": true
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "out": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 14"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 3,
+   "_band": [
+    -15.1026,
+    -14.8526
+   ],
+   "_t": [
+    9.53,
+    11.99
+   ]
+  },
+  {
+   "id": "W112",
+   "x1": 5.305,
+   "y1": 8.755,
+   "x2": 5.305,
+   "y2": 9.135,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.38,
+   "length_net": 0.38,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.06,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 10"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -5.3651,
+    -5.2451
+   ],
+   "_t": [
+    8.755,
+    9.135
+   ]
+  },
+  {
+   "id": "W113",
+   "x1": 5.305,
+   "y1": 8.755,
+   "x2": 6.935,
+   "y2": 8.755,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.63,
+   "length_net": 1.63,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.06,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 10"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    8.695,
+    8.815
+   ],
+   "_t": [
+    5.3051,
+    6.9351
+   ]
+  },
+  {
+   "id": "W114",
+   "x1": 5.39,
+   "y1": 9.475,
+   "x2": 6.935,
+   "y2": 9.475,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.545,
+   "length_net": 1.545,
+   "openings_width": 0,
+   "kind": "stair_lift",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر"
+     ],
+     "stair": true,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    9.415,
+    9.535
+   ],
+   "_t": [
+    5.39,
+    6.9351
+   ]
+  },
+  {
+   "id": "W115",
+   "x1": 6.995,
+   "y1": 8.755,
+   "x2": 6.995,
+   "y2": 9.475,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.72,
+   "length_net": 0.72,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 6,
+   "_band": [
+    -7.0551,
+    -6.9351
+   ],
+   "_t": [
+    8.755,
+    9.475
+   ]
+  },
+  {
+   "id": "W116",
+   "x1": 9.075,
+   "y1": 8.875,
+   "x2": 14.703,
+   "y2": 8.875,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 5.627,
+   "length_net": 5.627,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 13"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 14",
+      "ممر"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    8.815,
+    8.935
+   ],
+   "_t": [
+    9.0751,
+    14.7026
+   ]
+  },
+  {
+   "id": "W117",
+   "x1": 6.995,
+   "y1": 5.56,
+   "x2": 6.995,
+   "y2": 8.755,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 3.195,
+   "length_net": 2.195,
+   "openings_width": 1.0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [
+    {
+     "type": "door",
+     "width": 1.0,
+     "at": [
+      6.995,
+      6.24
+     ],
+     "block": "D10W12",
+     "door_width": 1.0
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر",
+      "مكتب 10",
+      "مكتب 12"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 10"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 6,
+   "_band": [
+    -7.0551,
+    -6.9351
+   ],
+   "_t": [
+    5.56,
+    8.755
+   ]
+  },
+  {
+   "id": "W118",
+   "x1": 9.015,
+   "y1": 7.054,
+   "x2": 9.015,
+   "y2": 8.875,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.822,
+   "length_net": 0.822,
+   "openings_width": 1.0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [
+    {
+     "type": "door",
+     "width": 1.0,
+     "at": [
+      9.015,
+      8.195
+     ],
+     "block": "D10W12",
+     "door_width": 1.0
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 13"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "ممر",
+      "مكتب 13"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 3,
+   "_band": [
+    -9.0751,
+    -8.9551
+   ],
+   "_t": [
+    7.0535,
+    8.875
+   ]
+  },
+  {
+   "id": "W119",
+   "x1": 14.978,
+   "y1": 5.711,
+   "x2": 14.978,
+   "y2": 8.63,
+   "angle": 90.0,
+   "thickness": 0.25,
+   "family": "0.25",
+   "length_gross": 2.919,
+   "length_net": 0.569,
+   "openings_width": 2.35,
+   "kind": "exterior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "facade line with glazing bays: gross includes the windows",
+   "openings": [
+    {
+     "type": "window",
+     "width": 2.35,
+     "at": [
+      14.978,
+      7.325
+     ]
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "column",
+   "sides": [
+    {
+     "share": {
+      "out": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 13"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 3,
+   "_band": [
+    -15.1026,
+    -14.8526
+   ],
+   "_t": [
+    5.7107,
+    8.63
+   ]
+  },
+  {
+   "id": "W120",
+   "x1": 1.77,
+   "y1": 5.836,
+   "x2": 2.505,
+   "y2": 5.836,
+   "angle": 0.0,
+   "thickness": 0.129,
+   "family": "0.12",
+   "length_gross": 0.735,
+   "length_net": 0.735,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 11"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 10"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    5.7714,
+    5.9
+   ],
+   "_t": [
+    1.7701,
+    2.505
+   ]
+  },
+  {
+   "id": "W121",
+   "x1": 5.305,
+   "y1": 5.56,
+   "x2": 6.935,
+   "y2": 5.56,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.63,
+   "length_net": 1.63,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 11"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 10"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    5.5,
+    5.62
+   ],
+   "_t": [
+    5.3051,
+    6.9351
+   ]
+  },
+  {
+   "id": "W122",
+   "x1": 9.455,
+   "y1": 5.711,
+   "x2": 13.305,
+   "y2": 5.711,
+   "angle": 0.0,
+   "thickness": 0.121,
+   "family": "0.12",
+   "length_gross": 3.85,
+   "length_net": 3.85,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "column",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 12"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 13"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    5.65,
+    5.7714
+   ],
+   "_t": [
+    9.4551,
+    13.3051
+   ]
+  },
+  {
+   "id": "W123",
+   "x1": 14.205,
+   "y1": 5.711,
+   "x2": 14.853,
+   "y2": 5.711,
+   "angle": 0.0,
+   "thickness": 0.121,
+   "family": "0.12",
+   "length_gross": 0.648,
+   "length_net": 0.648,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 12"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 13"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    5.65,
+    5.7714
+   ],
+   "_t": [
+    14.2051,
+    14.8526
+   ]
+  },
+  {
+   "id": "W124",
+   "x1": 6.995,
+   "y1": 4.2,
+   "x2": 6.995,
+   "y2": 5.56,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.36,
+   "length_net": 0.36,
+   "openings_width": 1.0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [
+    {
+     "type": "door",
+     "width": 1.0,
+     "at": [
+      6.995,
+      4.88
+     ],
+     "block": "D10W12",
+     "door_width": 1.0
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 11",
+      "مكتب 12"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 11"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 6,
+   "_band": [
+    -7.0551,
+    -6.9351
+   ],
+   "_t": [
+    4.2,
+    5.56
+   ]
+  },
+  {
+   "id": "W125",
+   "x1": 7.055,
+   "y1": 4.2,
+   "x2": 8.955,
+   "y2": 4.2,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.9,
+   "length_net": 1.9,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    4.14,
+    4.26
+   ],
+   "_t": [
+    7.0551,
+    8.9551
+   ]
+  },
+  {
+   "id": "W126",
+   "x1": 9.015,
+   "y1": 3.59,
+   "x2": 9.015,
+   "y2": 4.2,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.61,
+   "length_net": 0.61,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 12"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 2,
+   "_band": [
+    -9.0751,
+    -8.9551
+   ],
+   "_t": [
+    3.59,
+    4.2
+   ]
+  },
+  {
+   "id": "W127",
+   "x1": 9.015,
+   "y1": 4.2,
+   "x2": 9.015,
+   "y2": 5.65,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.45,
+   "length_net": 0.45,
+   "openings_width": 1.0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [
+    {
+     "type": "door",
+     "width": 1.0,
+     "at": [
+      9.015,
+      5.03
+     ],
+     "block": "D10W12",
+     "door_width": 1.0
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "column",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 12"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 12",
+      "مكتب 11"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 2,
+   "_band": [
+    -9.0751,
+    -8.9551
+   ],
+   "_t": [
+    4.2,
+    5.65
+   ]
+  },
+  {
+   "id": "W128",
+   "x1": 14.978,
+   "y1": 2.935,
+   "x2": 14.978,
+   "y2": 5.711,
+   "angle": 90.0,
+   "thickness": 0.25,
+   "family": "0.25",
+   "length_gross": 2.776,
+   "length_net": 0.976,
+   "openings_width": 1.8,
+   "kind": "exterior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "facade line with glazing bays: gross includes the windows; L-corner: extended to the centre-line crossing",
+   "openings": [
+    {
+     "type": "window",
+     "width": 1.8,
+     "at": [
+      14.978,
+      4.25
+     ]
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.125,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "out": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 12"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 3,
+   "_band": [
+    -15.1026,
+    -14.8526
+   ],
+   "_t": [
+    2.935,
+    5.7107
+   ]
+  },
+  {
+   "id": "W129",
+   "x1": 6.995,
+   "y1": 2.87,
+   "x2": 6.995,
+   "y2": 4.2,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.33,
+   "length_net": 1.33,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.06,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 11"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 6,
+   "_band": [
+    -7.0551,
+    -6.9351
+   ],
+   "_t": [
+    2.87,
+    4.2
+   ]
+  },
+  {
+   "id": "W130",
+   "x1": 6.995,
+   "y1": 2.87,
+   "x2": 8.955,
+   "y2": 2.87,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 1.96,
+   "length_net": 1.16,
+   "openings_width": 0.8,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [
+    {
+     "type": "door",
+     "width": 0.8,
+     "at": [
+      7.575,
+      2.87
+     ],
+     "block": "D80W12",
+     "door_width": 0.8
+    }
+   ],
+   "junctions": 0,
+   "corner_ext": [
+    0.06,
+    0.0
+   ],
+   "end_reason": "break",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 2,
+   "_band": [
+    2.81,
+    2.93
+   ],
+   "_t": [
+    6.9951,
+    8.9551
+   ]
+  },
+  {
+   "id": "W131",
+   "x1": 9.015,
+   "y1": 2.87,
+   "x2": 9.015,
+   "y2": 3.59,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.72,
+   "length_net": 0.72,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 2,
+   "_band": [
+    -9.0751,
+    -8.9551
+   ],
+   "_t": [
+    2.87,
+    3.59
+   ]
+  },
+  {
+   "id": "W132",
+   "x1": 9.075,
+   "y1": 2.87,
+   "x2": 9.535,
+   "y2": 2.87,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.46,
+   "length_net": 0.46,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.06
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    2.81,
+    2.93
+   ],
+   "_t": [
+    9.0751,
+    9.5351
+   ]
+  },
+  {
+   "id": "W133",
+   "x1": 9.075,
+   "y1": 3.59,
+   "x2": 9.535,
+   "y2": 3.59,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.46,
+   "length_net": 0.46,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.06
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 12"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    3.53,
+    3.65
+   ],
+   "_t": [
+    9.0751,
+    9.5351
+   ]
+  },
+  {
+   "id": "W134",
+   "x1": 9.535,
+   "y1": 2.87,
+   "x2": 9.535,
+   "y2": 3.59,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 0.72,
+   "length_net": 0.72,
+   "openings_width": 0,
+   "kind": "shaft",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.06,
+    0.06
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 12"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "void": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -9.5951,
+    -9.4751
+   ],
+   "_t": [
+    2.87,
+    3.59
+   ]
+  },
+  {
+   "id": "W135",
+   "x1": 13.405,
+   "y1": 2.4,
+   "x2": 13.405,
+   "y2": 2.935,
+   "angle": 90.0,
+   "thickness": 0.4,
+   "family": "0.40",
+   "length_gross": 0.535,
+   "length_net": 0.535,
+   "openings_width": 0,
+   "kind": "exterior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.125
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "out": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 12"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    -13.6051,
+    -13.2049
+   ],
+   "_t": [
+    2.4,
+    2.935
+   ]
+  },
+  {
+   "id": "W136",
+   "x1": 13.405,
+   "y1": 2.935,
+   "x2": 14.978,
+   "y2": 2.935,
+   "angle": 0.0,
+   "thickness": 0.25,
+   "family": "0.25",
+   "length_gross": 1.573,
+   "length_net": 1.573,
+   "openings_width": 0,
+   "kind": "exterior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "L-corner: extended to the centre-line crossing",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.2,
+    0.125
+   ],
+   "end_reason": null,
+   "sides": [
+    {
+     "share": {
+      "out": 1.0
+     },
+     "labels": [],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 12"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 1,
+   "_band": [
+    2.81,
+    3.06
+   ],
+   "_t": [
+    13.405,
+    14.9776
+   ]
+  },
+  {
+   "id": "W137",
+   "x1": 9.015,
+   "y1": 0.08,
+   "x2": 9.015,
+   "y2": 2.87,
+   "angle": 90.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 2.79,
+   "length_net": 2.79,
+   "openings_width": 0,
+   "kind": "interior",
+   "needs_check": false,
+   "reason": "",
+   "notes": "",
+   "openings": [],
+   "junctions": 0,
+   "corner_ext": [
+    0.0,
+    0.0
+   ],
+   "end_reason": "T-junction",
+   "sides": [
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 12"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    },
+    {
+     "share": {
+      "room": 1.0
+     },
+     "labels": [
+      "مكتب 11"
+     ],
+     "stair": false,
+     "lift": false,
+     "wet": false
+    }
+   ],
+   "n_pieces": 2,
+   "_band": [
+    -9.0751,
+    -8.9551
+   ],
+   "_t": [
+    0.08,
+    2.87
+   ]
+  }
+ ],
+ "totals": {
+  "0.10|ALL": {
+   "n": 1,
+   "length_gross": 1.64,
+   "length_net": 1.64,
+   "openings_width": 0.0,
+   "area_gross_at_h": 4.92,
+   "area_net_at_h": 4.92
+  },
+  "0.10|shaft": {
+   "n": 1,
+   "length_gross": 1.64,
+   "length_net": 1.64,
+   "openings_width": 0.0,
+   "area_gross_at_h": 4.92,
+   "area_net_at_h": 4.92
+  },
+  "0.12|ALL": {
+   "n": 99,
+   "length_gross": 170.1,
+   "length_net": 142.24,
+   "openings_width": 27.86,
+   "area_gross_at_h": 510.3,
+   "area_net_at_h": 426.72
+  },
+  "0.12|interior": {
+   "n": 66,
+   "length_gross": 140.28,
+   "length_net": 113.42,
+   "openings_width": 26.86,
+   "area_gross_at_h": 420.85,
+   "area_net_at_h": 340.27
+  },
+  "0.12|shaft": {
+   "n": 30,
+   "length_gross": 22.37,
+   "length_net": 22.37,
+   "openings_width": 0.0,
+   "area_gross_at_h": 67.12,
+   "area_net_at_h": 67.12
+  },
+  "0.12|stair_lift": {
+   "n": 3,
+   "length_gross": 7.44,
+   "length_net": 6.44,
+   "openings_width": 1.0,
+   "area_gross_at_h": 22.34,
+   "area_net_at_h": 19.34
+  },
+  "0.25|ALL": {
+   "n": 24,
+   "length_gross": 51.7,
+   "length_net": 31.18,
+   "openings_width": 20.52,
+   "area_gross_at_h": 155.11,
+   "area_net_at_h": 93.55
+  },
+  "0.25|exterior": {
+   "n": 17,
+   "length_gross": 37.93,
+   "length_net": 18.31,
+   "openings_width": 19.62,
+   "area_gross_at_h": 113.79,
+   "area_net_at_h": 54.93
+  },
+  "0.25|interior": {
+   "n": 2,
+   "length_gross": 1.62,
+   "length_net": 1.62,
+   "openings_width": 0.0,
+   "area_gross_at_h": 4.84,
+   "area_net_at_h": 4.84
+  },
+  "0.25|shaft": {
+   "n": 1,
+   "length_gross": 0.96,
+   "length_net": 0.96,
+   "openings_width": 0.0,
+   "area_gross_at_h": 2.88,
+   "area_net_at_h": 2.88
+  },
+  "0.25|stair_lift": {
+   "n": 4,
+   "length_gross": 11.2,
+   "length_net": 10.3,
+   "openings_width": 0.9,
+   "area_gross_at_h": 33.59,
+   "area_net_at_h": 30.89
+  },
+  "0.30|ALL": {
+   "n": 2,
+   "length_gross": 3.21,
+   "length_net": 0.78,
+   "openings_width": 2.42,
+   "area_gross_at_h": 9.62,
+   "area_net_at_h": 2.35
+  },
+  "0.30|exterior": {
+   "n": 1,
+   "length_gross": 0.21,
+   "length_net": 0.21,
+   "openings_width": 0.0,
+   "area_gross_at_h": 0.62,
+   "area_net_at_h": 0.62
+  },
+  "0.30|interior": {
+   "n": 1,
+   "length_gross": 3.0,
+   "length_net": 0.58,
+   "openings_width": 2.42,
+   "area_gross_at_h": 9.0,
+   "area_net_at_h": 1.73
+  },
+  "0.40|ALL": {
+   "n": 5,
+   "length_gross": 4.3,
+   "length_net": 4.3,
+   "openings_width": 0.0,
+   "area_gross_at_h": 12.91,
+   "area_net_at_h": 12.91
+  },
+  "0.40|exterior": {
+   "n": 2,
+   "length_gross": 1.54,
+   "length_net": 1.54,
+   "openings_width": 0.0,
+   "area_gross_at_h": 4.61,
+   "area_net_at_h": 4.61
+  },
+  "0.40|interior": {
+   "n": 2,
+   "length_gross": 1.69,
+   "length_net": 1.69,
+   "openings_width": 0.0,
+   "area_gross_at_h": 5.08,
+   "area_net_at_h": 5.08
+  },
+  "0.40|stair_lift": {
+   "n": 1,
+   "length_gross": 1.08,
+   "length_net": 1.08,
+   "openings_width": 0.0,
+   "area_gross_at_h": 3.22,
+   "area_net_at_h": 3.22
+  },
+  "0.50|ALL": {
+   "n": 1,
+   "length_gross": 0.29,
+   "length_net": 0.29,
+   "openings_width": 0.0,
+   "area_gross_at_h": 0.88,
+   "area_net_at_h": 0.88
+  },
+  "0.50|interior": {
+   "n": 1,
+   "length_gross": 0.29,
+   "length_net": 0.29,
+   "openings_width": 0.0,
+   "area_gross_at_h": 0.88,
+   "area_net_at_h": 0.88
+  },
+  "ALL|ALL": {
+   "n": 137,
+   "length_gross": 232.65,
+   "length_net": 181.85,
+   "openings_width": 50.8,
+   "area_gross_at_h": 697.95,
+   "area_net_at_h": 545.54
+  },
+  "ALL|exterior": {
+   "n": 20,
+   "length_gross": 39.67,
+   "length_net": 20.05,
+   "openings_width": 19.62,
+   "area_gross_at_h": 119.02,
+   "area_net_at_h": 60.16
+  },
+  "ALL|interior": {
+   "n": 74,
+   "length_gross": 147.17,
+   "length_net": 117.88,
+   "openings_width": 29.28,
+   "area_gross_at_h": 441.5,
+   "area_net_at_h": 353.65
+  },
+  "ALL|shaft": {
+   "n": 34,
+   "length_gross": 25.97,
+   "length_net": 25.97,
+   "openings_width": 0.0,
+   "area_gross_at_h": 77.92,
+   "area_net_at_h": 77.92
+  },
+  "ALL|stair_lift": {
+   "n": 9,
+   "length_gross": 19.84,
+   "length_net": 17.94,
+   "openings_width": 1.9,
+   "area_gross_at_h": 59.52,
+   "area_net_at_h": 53.82
+  },
+  "other|ALL": {
+   "n": 5,
+   "length_gross": 1.4,
+   "length_net": 1.4,
+   "openings_width": 0.0,
+   "area_gross_at_h": 4.21,
+   "area_net_at_h": 4.21
+  },
+  "other|interior": {
+   "n": 2,
+   "length_gross": 0.28,
+   "length_net": 0.28,
+   "openings_width": 0.0,
+   "area_gross_at_h": 0.84,
+   "area_net_at_h": 0.84
+  },
+  "other|shaft": {
+   "n": 2,
+   "length_gross": 1.0,
+   "length_net": 1.0,
+   "openings_width": 0.0,
+   "area_gross_at_h": 2.99,
+   "area_net_at_h": 2.99
+  },
+  "other|stair_lift": {
+   "n": 1,
+   "length_gross": 0.12,
+   "length_net": 0.12,
+   "openings_width": 0.0,
+   "area_gross_at_h": 0.37,
+   "area_net_at_h": 0.37
+  },
+  "planter_parapet|ALL": {
+   "n": 11,
+   "length_gross": 43.41,
+   "length_net": 43.41,
+   "openings_width": 0.0,
+   "area_gross_at_h": 130.23,
+   "area_net_at_h": 130.23
+  },
+  "planter_parapet|0.25": {
+   "n": 5,
+   "length_gross": 2.44,
+   "length_net": 2.44,
+   "openings_width": 0.0,
+   "area_gross_at_h": 7.31,
+   "area_net_at_h": 7.31
+  },
+  "planter_parapet|thin": {
+   "n": 6,
+   "length_gross": 40.97,
+   "length_net": 40.97,
+   "openings_width": 0.0,
+   "area_gross_at_h": 122.92,
+   "area_net_at_h": 122.92
+  }
+ },
+ "planter_parapets": [
+  {
+   "id": "P1",
+   "x1": 4.345,
+   "y1": 38.021,
+   "x2": 4.345,
+   "y2": 38.49,
+   "angle": 90.0,
+   "thickness": 0.25,
+   "family": "0.25",
+   "length_gross": 0.469,
+   "length_net": 0.469,
+   "openings_width": 0.0,
+   "kind": "planter_parapet",
+   "needs_check": true,
+   "reason": "planter parapet / curb drawn as a pair of MASS lines (not on W): masonry or concrete? height? - kept OUT of the masonry totals",
+   "on_planter_hatch": true,
+   "mass_handles": [
+    "44F3",
+    "44F4",
+    "4502",
+    "4503"
+   ],
+   "corner_ext": [
+    0.058,
+    0.04
+   ],
+   "_band": [
+    -4.47,
+    -4.22
+   ],
+   "_t": [
+    38.0209,
+    38.49
+   ]
+  },
+  {
+   "id": "P2",
+   "x1": 4.345,
+   "y1": 38.49,
+   "x2": 12.015,
+   "y2": 38.49,
+   "angle": 0.0,
+   "thickness": 0.08,
+   "family": "other",
+   "length_gross": 7.67,
+   "length_net": 7.67,
+   "openings_width": 0.0,
+   "kind": "planter_parapet",
+   "needs_check": true,
+   "reason": "planter parapet / curb drawn as a pair of MASS lines (not on W): masonry or concrete? height? - kept OUT of the masonry totals",
+   "on_planter_hatch": true,
+   "mass_handles": [
+    "4393",
+    "4396"
+   ],
+   "corner_ext": [
+    0.125,
+    0.04
+   ],
+   "_band": [
+    38.45,
+    38.53
+   ],
+   "_t": [
+    4.345,
+    12.015
+   ]
+  },
+  {
+   "id": "P3",
+   "x1": 12.015,
+   "y1": 38.18,
+   "x2": 12.015,
+   "y2": 38.49,
+   "angle": 90.0,
+   "thickness": 0.08,
+   "family": "other",
+   "length_gross": 0.31,
+   "length_net": 0.31,
+   "openings_width": 0.0,
+   "kind": "planter_parapet",
+   "needs_check": true,
+   "reason": "planter parapet / curb drawn as a pair of MASS lines (not on W): masonry or concrete? height? - kept OUT of the masonry totals",
+   "on_planter_hatch": true,
+   "mass_handles": [
+    "4386",
+    "4389"
+   ],
+   "corner_ext": [
+    0.04,
+    0.04
+   ],
+   "_band": [
+    -12.055,
+    -11.975
+   ],
+   "_t": [
+    38.18,
+    38.49
+   ]
+  },
+  {
+   "id": "P4",
+   "x1": 12.015,
+   "y1": 38.18,
+   "x2": 16.755,
+   "y2": 38.18,
+   "angle": 0.0,
+   "thickness": 0.08,
+   "family": "other",
+   "length_gross": 4.74,
+   "length_net": 4.74,
+   "openings_width": 0.0,
+   "kind": "planter_parapet",
+   "needs_check": true,
+   "reason": "planter parapet / curb drawn as a pair of MASS lines (not on W): masonry or concrete? height? - kept OUT of the masonry totals",
+   "on_planter_hatch": true,
+   "mass_handles": [
+    "4499",
+    "449C"
+   ],
+   "corner_ext": [
+    0.04,
+    0.0
+   ],
+   "_band": [
+    38.14,
+    38.22
+   ],
+   "_t": [
+    12.015,
+    16.755
+   ]
+  },
+  {
+   "id": "P5",
+   "x1": 1.13,
+   "y1": 35.275,
+   "x2": 1.599,
+   "y2": 35.275,
+   "angle": 0.0,
+   "thickness": 0.25,
+   "family": "0.25",
+   "length_gross": 0.469,
+   "length_net": 0.469,
+   "openings_width": 0.0,
+   "kind": "planter_parapet",
+   "needs_check": true,
+   "reason": "planter parapet / curb drawn as a pair of MASS lines (not on W): masonry or concrete? height? - kept OUT of the masonry totals",
+   "on_planter_hatch": true,
+   "mass_handles": [
+    "44F9",
+    "44FB"
+   ],
+   "corner_ext": [
+    0.04,
+    0.058
+   ],
+   "_band": [
+    35.15,
+    35.4
+   ],
+   "_t": [
+    1.1301,
+    1.5991
+   ]
+  },
+  {
+   "id": "P6",
+   "x1": 1.13,
+   "y1": 25.78,
+   "x2": 1.13,
+   "y2": 35.275,
+   "angle": 90.0,
+   "thickness": 0.08,
+   "family": "other",
+   "length_gross": 9.495,
+   "length_net": 9.495,
+   "openings_width": 0.0,
+   "kind": "planter_parapet",
+   "needs_check": true,
+   "reason": "planter parapet / curb drawn as a pair of MASS lines (not on W): masonry or concrete? height? - kept OUT of the masonry totals",
+   "on_planter_hatch": true,
+   "mass_handles": [
+    "448D",
+    "448E",
+    "44A1",
+    "44A2"
+   ],
+   "corner_ext": [
+    0.0,
+    0.125
+   ],
+   "_band": [
+    -1.1701,
+    -1.0901
+   ],
+   "_t": [
+    25.78,
+    35.275
+   ]
+  },
+  {
+   "id": "P7",
+   "x1": 1.13,
+   "y1": 2.655,
+   "x2": 1.13,
+   "y2": 12.28,
+   "angle": 90.0,
+   "thickness": 0.08,
+   "family": "other",
+   "length_gross": 9.625,
+   "length_net": 9.625,
+   "openings_width": 0.0,
+   "kind": "planter_parapet",
+   "needs_check": true,
+   "reason": "planter parapet / curb drawn as a pair of MASS lines (not on W): masonry or concrete? height? - kept OUT of the masonry totals",
+   "on_planter_hatch": true,
+   "mass_handles": [
+    "448D",
+    "448E",
+    "44A1",
+    "44A2"
+   ],
+   "corner_ext": [
+    0.125,
+    0.0
+   ],
+   "_band": [
+    -1.1701,
+    -1.0901
+   ],
+   "_t": [
+    2.655,
+    12.28
+   ]
+  },
+  {
+   "id": "P8",
+   "x1": 1.13,
+   "y1": 2.655,
+   "x2": 1.599,
+   "y2": 2.655,
+   "angle": 0.0,
+   "thickness": 0.25,
+   "family": "0.25",
+   "length_gross": 0.469,
+   "length_net": 0.469,
+   "openings_width": 0.0,
+   "kind": "planter_parapet",
+   "needs_check": true,
+   "reason": "planter parapet / curb drawn as a pair of MASS lines (not on W): masonry or concrete? height? - kept OUT of the masonry totals",
+   "on_planter_hatch": true,
+   "mass_handles": [
+    "4509",
+    "450B"
+   ],
+   "corner_ext": [
+    0.04,
+    0.058
+   ],
+   "_band": [
+    2.53,
+    2.78
+   ],
+   "_t": [
+    1.1301,
+    1.5991
+   ]
+  },
+  {
+   "id": "P9",
+   "x1": 4.345,
+   "y1": -0.54,
+   "x2": 4.345,
+   "y2": -0.091,
+   "angle": 90.0,
+   "thickness": 0.25,
+   "family": "0.25",
+   "length_gross": 0.449,
+   "length_net": 0.449,
+   "openings_width": 0.0,
+   "kind": "planter_parapet",
+   "needs_check": true,
+   "reason": "planter parapet / curb drawn as a pair of MASS lines (not on W): masonry or concrete? height? - kept OUT of the masonry totals",
+   "on_planter_hatch": true,
+   "mass_handles": [
+    "44F3",
+    "44F4",
+    "4502",
+    "4503"
+   ],
+   "corner_ext": [
+    0.06,
+    0.058
+   ],
+   "_band": [
+    -4.47,
+    -4.22
+   ],
+   "_t": [
+    -0.54,
+    -0.0909
+   ]
+  },
+  {
+   "id": "P10",
+   "x1": 4.345,
+   "y1": -0.54,
+   "x2": 13.48,
+   "y2": -0.54,
+   "angle": 0.0,
+   "thickness": 0.12,
+   "family": "0.12",
+   "length_gross": 9.135,
+   "length_net": 9.135,
+   "openings_width": 0.0,
+   "kind": "planter_parapet",
+   "needs_check": true,
+   "reason": "planter parapet / curb drawn as a pair of MASS lines (not on W): masonry or concrete? height? - kept OUT of the masonry totals",
+   "on_planter_hatch": true,
+   "mass_handles": [
+    "4410",
+    "4414"
+   ],
+   "corner_ext": [
+    0.125,
+    0.125
+   ],
+   "_band": [
+    -0.6,
+    -0.48
+   ],
+   "_t": [
+    4.345,
+    13.4801
+   ]
+  },
+  {
+   "id": "P11",
+   "x1": 13.48,
+   "y1": -0.54,
+   "x2": 13.48,
+   "y2": 0.04,
+   "angle": 90.0,
+   "thickness": 0.25,
+   "family": "0.25",
+   "length_gross": 0.58,
+   "length_net": 0.58,
+   "openings_width": 0.0,
+   "kind": "planter_parapet",
+   "needs_check": true,
+   "reason": "planter parapet / curb drawn as a pair of MASS lines (not on W): masonry or concrete? height? - kept OUT of the masonry totals",
+   "on_planter_hatch": true,
+   "mass_handles": [
+    "4457",
+    "44AA"
+   ],
+   "corner_ext": [
+    0.06,
+    0.04
+   ],
+   "_band": [
+    -13.6051,
+    -13.3551
+   ],
+   "_t": [
+    -0.54,
+    0.04
+   ]
+  }
+ ],
+ "thickness_histogram_net": {
+  "0.08": 0.85,
+  "0.11": 1.64,
+  "0.12": 141.51,
+  "0.13": 0.74,
+  "0.25": 30.22,
+  "0.26": 0.96,
+  "0.29": 0.21,
+  "0.30": 0.58,
+  "0.36": 0.15,
+  "0.37": 0.25,
+  "0.40": 4.3,
+  "0.42": 0.16,
+  "0.50": 0.29
+ },
+ "diagnostics": {
+  "n_corners": 27,
+  "n_junction_cuts": 47,
+  "n_concrete_jamb_bridges": 4,
+  "n_door_fallback": 0,
+  "caps": 90,
+  "dup_len": 8.126,
+  "virtual_fills": 52,
+  "concrete_len": 42.05,
+  "void_len": 9.03,
+  "conflict_trim": 0.604,
+  "w_segments_raw": 451,
+  "w_segments_used": 449,
+  "w_arcs": 0,
+  "w_hatches": [
+   {
+    "pattern": "AR-CONC",
+    "handle": "4229"
+   },
+   {
+    "pattern": "AR-CONC",
+    "handle": "4413"
+   },
+   {
+    "pattern": "AR-CONC",
+    "handle": "448C"
+   },
+   {
+    "pattern": "AR-CONC",
+    "handle": "44A0"
+   }
+  ],
+  "w_inserts": {
+   "LP": 7,
+   "D10W12": 6,
+   "D90W12": 3,
+   "D80W12": 3
+  },
+  "w_ignored": [
+   {
+    "handle": "4568",
+    "type": "LWPOLYLINE",
+    "why": "sheet-size polyline (frame)"
+   },
+   {
+    "handle": "43B1",
+    "why": "W line on a WIN glazing line (0.50 m cut)"
+   }
+  ],
+  "directions": [
+   0.0,
+   90.0,
+   79.33,
+   169.34
+  ],
+  "concrete_polys": 30,
+  "voids": 11,
+  "fins": 3,
+  "stair_zones": 2,
+  "doors_blocks": 31,
+  "doors_matched": 31,
+  "doors_unmatched": [],
+  "planter_parapets": 11
+ },
+ "openings_summary": {
+  "by_type_kind": {
+   "door|interior": {
+    "n": 29,
+    "width": 26.86
+   },
+   "door|stair_lift": {
+    "n": 2,
+    "width": 1.9
+   },
+   "opening|interior": {
+    "n": 2,
+    "width": 2.42
+   },
+   "window|exterior": {
+    "n": 12,
+    "width": 19.62
+   }
+  },
+  "door_blocks": {
+   "D10W12": 18,
+   "D80W12": 9,
+   "D90W25": 1,
+   "D90W12": 3
+  }
+ },
+ "curves": {
+  "w_arcs": [],
+  "win_arcs": [
+   {
+    "center": [
+     3.47,
+     36.15
+    ],
+    "r": 1.95,
+    "sweep_deg": 224.5,
+    "length": 7.64
+   },
+   {
+    "center": [
+     3.47,
+     36.15
+    ],
+    "r": 2.07,
+    "sweep_deg": 199.3,
+    "length": 7.2
+   },
+   {
+    "center": [
+     3.47,
+     1.78
+    ],
+    "r": 1.95,
+    "sweep_deg": 219.7,
+    "length": 7.48
+   },
+   {
+    "center": [
+     3.47,
+     1.78
+    ],
+    "r": 2.07,
+    "sweep_deg": 206.1,
+    "length": 7.45
+   }
+  ],
+  "win_arcs_length": 29.77
+ },
+ "dim_crosscheck": {
+  "n_dims": 106,
+  "stats": {
+   "end_axis": 89,
+   "end_none": 14,
+   "end_face": 7,
+   "end_wall_end": 5,
+   "end_window": 12,
+   "end_wall": 81,
+   "end_concrete": 4
+  },
+  "thickness_dims": [],
+  "points_on_unused_W_faces": [
+   {
+    "at": [
+     19.528,
+     28.75
+    ],
+    "dim": 4.873
+   },
+   {
+    "at": [
+     10.58,
+     31.48
+    ],
+    "dim": 5.925
+   },
+   {
+    "at": [
+     10.58,
+     31.48
+    ],
+    "dim": 1.505
+   },
+   {
+    "at": [
+     14.853,
+     17.228
+    ],
+    "dim": 5.778
+   },
+   {
+    "at": [
+     13.355,
+     0.586
+    ],
+    "dim": 4.28
+   },
+   {
+    "at": [
+     18.475,
+     23.16
+    ],
+    "dim": 2.368
+   },
+   {
+    "at": [
+     16.108,
+     23.16
+    ],
+    "dim": 2.368
+   }
+  ]
+ },
+ "overlap_check": {
+  "overlap_area_m2": 0.1617,
+  "corner_quarter_overlap_m2": 0.2024,
+  "pairs": [
+   [
+    "W31",
+    "W37",
+    0.0187
+   ],
+   [
+    "W41",
+    "W43",
+    0.0151
+   ],
+   [
+    "W42",
+    "W43",
+    0.0149
+   ],
+   [
+    "W91",
+    "W102",
+    0.0174
+   ],
+   [
+    "W100",
+    "W102",
+    0.044
+   ],
+   [
+    "W101",
+    "W102",
+    0.0516
+   ]
+  ]
+ },
+ "face_coverage": {
+  "w_length": 476.82,
+  "on_wall_records": 336.23,
+  "on_concrete_shaft_planter": 120.75,
+  "unexplained": 19.84,
+  "largest_unexplained": [
+   {
+    "handle": "417C",
+    "len": 2.54,
+    "from": [
+     9.08,
+     18.4
+    ],
+    "to": [
+     13.2,
+     18.4
+    ]
+   },
+   {
+    "handle": "4191",
+    "len": 1.92,
+    "from": [
+     12.6,
+     22.3
+    ],
+    "to": [
+     10.64,
+     22.3
+    ]
+   },
+   {
+    "handle": "410A",
+    "len": 0.38,
+    "from": [
+     18.17,
+     20.2
+    ],
+    "to": [
+     19.26,
+     25.95
+    ]
+   },
+   {
+    "handle": "42DF",
+    "len": 0.27,
+    "from": [
+     10.64,
+     20.25
+    ],
+    "to": [
+     10.34,
+     20.25
+    ]
+   },
+   {
+    "handle": "42FE",
+    "len": 0.27,
+    "from": [
+     10.64,
+     22.0
+    ],
+    "to": [
+     10.34,
+     22.0
+    ]
+   },
+   {
+    "handle": "42FF",
+    "len": 0.27,
+    "from": [
+     10.64,
+     20.75
+    ],
+    "to": [
+     10.34,
+     20.75
+    ]
+   }
+  ]
+ }
+}

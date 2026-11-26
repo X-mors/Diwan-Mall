@@ -1,0 +1,3215 @@
+{
+ "F02": {
+  "level": 8.9,
+  "totals": {
+   "0.10|ALL": {
+    "n": 1,
+    "length_gross": 1.64,
+    "length_net": 1.64,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.92,
+    "area_net_at_h": 4.92
+   },
+   "0.10|shaft": {
+    "n": 1,
+    "length_gross": 1.64,
+    "length_net": 1.64,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.92,
+    "area_net_at_h": 4.92
+   },
+   "0.12|ALL": {
+    "n": 167,
+    "length_gross": 216.17,
+    "length_net": 183.64,
+    "openings_width": 32.54,
+    "area_gross_at_h": 648.52,
+    "area_net_at_h": 550.91
+   },
+   "0.12|exterior": {
+    "n": 22,
+    "length_gross": 10.83,
+    "length_net": 10.83,
+    "openings_width": 0.0,
+    "area_gross_at_h": 32.48,
+    "area_net_at_h": 32.48
+   },
+   "0.12|interior": {
+    "n": 90,
+    "length_gross": 163.37,
+    "length_net": 131.83,
+    "openings_width": 31.54,
+    "area_gross_at_h": 490.1,
+    "area_net_at_h": 395.48
+   },
+   "0.12|shaft": {
+    "n": 52,
+    "length_gross": 34.54,
+    "length_net": 34.54,
+    "openings_width": 0.0,
+    "area_gross_at_h": 103.61,
+    "area_net_at_h": 103.61
+   },
+   "0.12|stair_lift": {
+    "n": 3,
+    "length_gross": 7.44,
+    "length_net": 6.44,
+    "openings_width": 1.0,
+    "area_gross_at_h": 22.34,
+    "area_net_at_h": 19.34
+   },
+   "0.15|ALL": {
+    "n": 1,
+    "length_gross": 0.12,
+    "length_net": 0.12,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.36,
+    "area_net_at_h": 0.36
+   },
+   "0.15|interior": {
+    "n": 1,
+    "length_gross": 0.12,
+    "length_net": 0.12,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.36,
+    "area_net_at_h": 0.36
+   },
+   "0.25|ALL": {
+    "n": 33,
+    "length_gross": 92.4,
+    "length_net": 46.86,
+    "openings_width": 45.54,
+    "area_gross_at_h": 277.21,
+    "area_net_at_h": 140.57
+   },
+   "0.25|exterior": {
+    "n": 26,
+    "length_gross": 77.91,
+    "length_net": 33.26,
+    "openings_width": 44.64,
+    "area_gross_at_h": 233.72,
+    "area_net_at_h": 99.79
+   },
+   "0.25|interior": {
+    "n": 2,
+    "length_gross": 2.36,
+    "length_net": 2.36,
+    "openings_width": 0.0,
+    "area_gross_at_h": 7.09,
+    "area_net_at_h": 7.09
+   },
+   "0.25|shaft": {
+    "n": 1,
+    "length_gross": 0.96,
+    "length_net": 0.96,
+    "openings_width": 0.0,
+    "area_gross_at_h": 2.88,
+    "area_net_at_h": 2.88
+   },
+   "0.25|stair_lift": {
+    "n": 4,
+    "length_gross": 11.17,
+    "length_net": 10.27,
+    "openings_width": 0.9,
+    "area_gross_at_h": 33.51,
+    "area_net_at_h": 30.81
+   },
+   "0.30|ALL": {
+    "n": 3,
+    "length_gross": 4.66,
+    "length_net": 2.24,
+    "openings_width": 2.42,
+    "area_gross_at_h": 13.99,
+    "area_net_at_h": 6.72
+   },
+   "0.30|exterior": {
+    "n": 1,
+    "length_gross": 0.16,
+    "length_net": 0.16,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.49,
+    "area_net_at_h": 0.49
+   },
+   "0.30|interior": {
+    "n": 2,
+    "length_gross": 4.5,
+    "length_net": 2.08,
+    "openings_width": 2.42,
+    "area_gross_at_h": 13.5,
+    "area_net_at_h": 6.23
+   },
+   "0.40|ALL": {
+    "n": 6,
+    "length_gross": 3.82,
+    "length_net": 2.6,
+    "openings_width": 1.22,
+    "area_gross_at_h": 11.45,
+    "area_net_at_h": 7.8
+   },
+   "0.40|exterior": {
+    "n": 3,
+    "length_gross": 3.59,
+    "length_net": 2.37,
+    "openings_width": 1.22,
+    "area_gross_at_h": 10.77,
+    "area_net_at_h": 7.12
+   },
+   "0.40|interior": {
+    "n": 3,
+    "length_gross": 0.23,
+    "length_net": 0.23,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.68,
+    "area_net_at_h": 0.68
+   },
+   "0.50|ALL": {
+    "n": 2,
+    "length_gross": 2.19,
+    "length_net": 2.19,
+    "openings_width": 0.0,
+    "area_gross_at_h": 6.58,
+    "area_net_at_h": 6.58
+   },
+   "0.50|exterior": {
+    "n": 1,
+    "length_gross": 0.7,
+    "length_net": 0.7,
+    "openings_width": 0.0,
+    "area_gross_at_h": 2.1,
+    "area_net_at_h": 2.1
+   },
+   "0.50|interior": {
+    "n": 1,
+    "length_gross": 1.49,
+    "length_net": 1.49,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.48,
+    "area_net_at_h": 4.48
+   },
+   "0.60|ALL": {
+    "n": 3,
+    "length_gross": 1.29,
+    "length_net": 1.29,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.88,
+    "area_net_at_h": 3.88
+   },
+   "0.60|exterior": {
+    "n": 3,
+    "length_gross": 1.29,
+    "length_net": 1.29,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.88,
+    "area_net_at_h": 3.88
+   },
+   "ALL|ALL": {
+    "n": 231,
+    "length_gross": 330.83,
+    "length_net": 249.11,
+    "openings_width": 81.72,
+    "area_gross_at_h": 992.5,
+    "area_net_at_h": 747.34
+   },
+   "ALL|exterior": {
+    "n": 61,
+    "length_gross": 96.56,
+    "length_net": 50.7,
+    "openings_width": 45.86,
+    "area_gross_at_h": 289.69,
+    "area_net_at_h": 152.11
+   },
+   "ALL|interior": {
+    "n": 105,
+    "length_gross": 176.17,
+    "length_net": 142.21,
+    "openings_width": 33.96,
+    "area_gross_at_h": 528.51,
+    "area_net_at_h": 426.63
+   },
+   "ALL|shaft": {
+    "n": 56,
+    "length_gross": 38.29,
+    "length_net": 38.29,
+    "openings_width": 0.0,
+    "area_gross_at_h": 114.86,
+    "area_net_at_h": 114.86
+   },
+   "ALL|stair_lift": {
+    "n": 9,
+    "length_gross": 19.81,
+    "length_net": 17.92,
+    "openings_width": 1.9,
+    "area_gross_at_h": 59.44,
+    "area_net_at_h": 53.74
+   },
+   "other|ALL": {
+    "n": 15,
+    "length_gross": 8.54,
+    "length_net": 8.54,
+    "openings_width": 0.0,
+    "area_gross_at_h": 25.61,
+    "area_net_at_h": 25.61
+   },
+   "other|exterior": {
+    "n": 5,
+    "length_gross": 2.09,
+    "length_net": 2.09,
+    "openings_width": 0.0,
+    "area_gross_at_h": 6.26,
+    "area_net_at_h": 6.26
+   },
+   "other|interior": {
+    "n": 6,
+    "length_gross": 4.1,
+    "length_net": 4.1,
+    "openings_width": 0.0,
+    "area_gross_at_h": 12.31,
+    "area_net_at_h": 12.31
+   },
+   "other|shaft": {
+    "n": 2,
+    "length_gross": 1.15,
+    "length_net": 1.15,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.44,
+    "area_net_at_h": 3.44
+   },
+   "other|stair_lift": {
+    "n": 2,
+    "length_gross": 1.2,
+    "length_net": 1.2,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.6,
+    "area_net_at_h": 3.6
+   }
+  },
+  "thickness_histogram_net": {
+   "0.08": 1.0,
+   "0.11": 2.62,
+   "0.12": 178.47,
+   "0.13": 4.19,
+   "0.15": 0.12,
+   "0.25": 44.32,
+   "0.26": 2.53,
+   "0.30": 2.24,
+   "0.33": 0.15,
+   "0.35": 1.2,
+   "0.36": 0.15,
+   "0.37": 0.25,
+   "0.40": 2.6,
+   "0.42": 0.05,
+   "0.45": 2.32,
+   "0.47": 0.57,
+   "0.50": 2.19,
+   "0.57": 1.94,
+   "0.58": 0.91,
+   "0.60": 1.29
+  },
+  "needs_check": 23,
+  "diagnostics": {
+   "n_corners": 54,
+   "n_junction_cuts": 66,
+   "n_concrete_jamb_bridges": 4,
+   "n_door_fallback": 0,
+   "caps": 111,
+   "dup_len": 48.673,
+   "virtual_fills": 68,
+   "concrete_len": 45.328,
+   "void_len": 13.907,
+   "conflict_trim": 3.359,
+   "sliver_len": 0.051,
+   "w_segments_raw": 777,
+   "w_segments_used": 767,
+   "w_arcs": 5,
+   "w_inserts": {
+    "LP": 7,
+    "D10W12": 6,
+    "D90W12": 3,
+    "D80W12": 3
+   },
+   "directions": [
+    0.0,
+    90.0,
+    79.33,
+    169.34
+   ],
+   "concrete_polys": 31,
+   "voids": 16,
+   "fins": 6,
+   "stair_zones": 2,
+   "doors_blocks": 36,
+   "doors_matched": 37,
+   "doors_unmatched": [],
+   "planter_parapets": 0
+  }
+ },
+ "F03": {
+  "level": 12.1,
+  "totals": {
+   "0.10|ALL": {
+    "n": 1,
+    "length_gross": 1.64,
+    "length_net": 1.64,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.92,
+    "area_net_at_h": 4.92
+   },
+   "0.10|shaft": {
+    "n": 1,
+    "length_gross": 1.64,
+    "length_net": 1.64,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.92,
+    "area_net_at_h": 4.92
+   },
+   "0.12|ALL": {
+    "n": 165,
+    "length_gross": 227.19,
+    "length_net": 192.86,
+    "openings_width": 34.32,
+    "area_gross_at_h": 681.56,
+    "area_net_at_h": 578.59
+   },
+   "0.12|exterior": {
+    "n": 15,
+    "length_gross": 5.72,
+    "length_net": 5.72,
+    "openings_width": 0.0,
+    "area_gross_at_h": 17.16,
+    "area_net_at_h": 17.16
+   },
+   "0.12|interior": {
+    "n": 91,
+    "length_gross": 178.71,
+    "length_net": 145.38,
+    "openings_width": 33.32,
+    "area_gross_at_h": 536.12,
+    "area_net_at_h": 436.16
+   },
+   "0.12|shaft": {
+    "n": 55,
+    "length_gross": 34.93,
+    "length_net": 34.93,
+    "openings_width": 0.0,
+    "area_gross_at_h": 104.79,
+    "area_net_at_h": 104.79
+   },
+   "0.12|stair_lift": {
+    "n": 4,
+    "length_gross": 7.83,
+    "length_net": 6.83,
+    "openings_width": 1.0,
+    "area_gross_at_h": 23.48,
+    "area_net_at_h": 20.48
+   },
+   "0.25|ALL": {
+    "n": 40,
+    "length_gross": 93.78,
+    "length_net": 48.57,
+    "openings_width": 45.22,
+    "area_gross_at_h": 281.35,
+    "area_net_at_h": 145.7
+   },
+   "0.25|exterior": {
+    "n": 27,
+    "length_gross": 76.32,
+    "length_net": 32.0,
+    "openings_width": 44.32,
+    "area_gross_at_h": 228.95,
+    "area_net_at_h": 96.01
+   },
+   "0.25|interior": {
+    "n": 4,
+    "length_gross": 2.6,
+    "length_net": 2.6,
+    "openings_width": 0.0,
+    "area_gross_at_h": 7.81,
+    "area_net_at_h": 7.81
+   },
+   "0.25|shaft": {
+    "n": 4,
+    "length_gross": 3.69,
+    "length_net": 3.69,
+    "openings_width": 0.0,
+    "area_gross_at_h": 11.07,
+    "area_net_at_h": 11.07
+   },
+   "0.25|stair_lift": {
+    "n": 5,
+    "length_gross": 11.17,
+    "length_net": 10.27,
+    "openings_width": 0.9,
+    "area_gross_at_h": 33.51,
+    "area_net_at_h": 30.81
+   },
+   "0.30|ALL": {
+    "n": 5,
+    "length_gross": 3.51,
+    "length_net": 1.09,
+    "openings_width": 2.42,
+    "area_gross_at_h": 10.53,
+    "area_net_at_h": 3.26
+   },
+   "0.30|exterior": {
+    "n": 3,
+    "length_gross": 0.39,
+    "length_net": 0.39,
+    "openings_width": 0.0,
+    "area_gross_at_h": 1.17,
+    "area_net_at_h": 1.17
+   },
+   "0.30|interior": {
+    "n": 2,
+    "length_gross": 3.12,
+    "length_net": 0.7,
+    "openings_width": 2.42,
+    "area_gross_at_h": 9.36,
+    "area_net_at_h": 2.09
+   },
+   "0.40|ALL": {
+    "n": 5,
+    "length_gross": 3.6,
+    "length_net": 2.39,
+    "openings_width": 1.22,
+    "area_gross_at_h": 10.81,
+    "area_net_at_h": 7.16
+   },
+   "0.40|exterior": {
+    "n": 3,
+    "length_gross": 3.46,
+    "length_net": 2.25,
+    "openings_width": 1.22,
+    "area_gross_at_h": 10.39,
+    "area_net_at_h": 6.74
+   },
+   "0.40|interior": {
+    "n": 2,
+    "length_gross": 0.14,
+    "length_net": 0.14,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.43,
+    "area_net_at_h": 0.43
+   },
+   "0.50|ALL": {
+    "n": 1,
+    "length_gross": 0.7,
+    "length_net": 0.7,
+    "openings_width": 0.0,
+    "area_gross_at_h": 2.1,
+    "area_net_at_h": 2.1
+   },
+   "0.50|exterior": {
+    "n": 1,
+    "length_gross": 0.7,
+    "length_net": 0.7,
+    "openings_width": 0.0,
+    "area_gross_at_h": 2.1,
+    "area_net_at_h": 2.1
+   },
+   "0.60|ALL": {
+    "n": 2,
+    "length_gross": 0.82,
+    "length_net": 0.82,
+    "openings_width": 0.0,
+    "area_gross_at_h": 2.45,
+    "area_net_at_h": 2.45
+   },
+   "0.60|exterior": {
+    "n": 2,
+    "length_gross": 0.82,
+    "length_net": 0.82,
+    "openings_width": 0.0,
+    "area_gross_at_h": 2.45,
+    "area_net_at_h": 2.45
+   },
+   "ALL|ALL": {
+    "n": 232,
+    "length_gross": 336.5,
+    "length_net": 253.32,
+    "openings_width": 83.18,
+    "area_gross_at_h": 1009.49,
+    "area_net_at_h": 759.96
+   },
+   "ALL|exterior": {
+    "n": 58,
+    "length_gross": 90.14,
+    "length_net": 44.61,
+    "openings_width": 45.53,
+    "area_gross_at_h": 270.43,
+    "area_net_at_h": 133.83
+   },
+   "ALL|interior": {
+    "n": 101,
+    "length_gross": 184.75,
+    "length_net": 149.0,
+    "openings_width": 35.75,
+    "area_gross_at_h": 554.24,
+    "area_net_at_h": 447.01
+   },
+   "ALL|shaft": {
+    "n": 62,
+    "length_gross": 41.41,
+    "length_net": 41.41,
+    "openings_width": 0.0,
+    "area_gross_at_h": 124.23,
+    "area_net_at_h": 124.23
+   },
+   "ALL|stair_lift": {
+    "n": 11,
+    "length_gross": 20.2,
+    "length_net": 18.3,
+    "openings_width": 1.9,
+    "area_gross_at_h": 60.59,
+    "area_net_at_h": 54.89
+   },
+   "other|ALL": {
+    "n": 13,
+    "length_gross": 5.26,
+    "length_net": 5.26,
+    "openings_width": 0.0,
+    "area_gross_at_h": 15.77,
+    "area_net_at_h": 15.77
+   },
+   "other|exterior": {
+    "n": 7,
+    "length_gross": 2.73,
+    "length_net": 2.73,
+    "openings_width": 0.0,
+    "area_gross_at_h": 8.2,
+    "area_net_at_h": 8.2
+   },
+   "other|interior": {
+    "n": 2,
+    "length_gross": 0.18,
+    "length_net": 0.18,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.53,
+    "area_net_at_h": 0.53
+   },
+   "other|shaft": {
+    "n": 2,
+    "length_gross": 1.15,
+    "length_net": 1.15,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.44,
+    "area_net_at_h": 3.44
+   },
+   "other|stair_lift": {
+    "n": 2,
+    "length_gross": 1.2,
+    "length_net": 1.2,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.6,
+    "area_net_at_h": 3.6
+   }
+  },
+  "thickness_histogram_net": {
+   "0.08": 1.0,
+   "0.11": 2.24,
+   "0.12": 188.38,
+   "0.13": 3.89,
+   "0.25": 46.03,
+   "0.26": 2.53,
+   "0.30": 1.09,
+   "0.36": 0.15,
+   "0.37": 1.12,
+   "0.38": 1.3,
+   "0.40": 2.39,
+   "0.42": 0.05,
+   "0.45": 1.12,
+   "0.47": 0.51,
+   "0.50": 0.7,
+   "0.60": 0.82
+  },
+  "needs_check": 22,
+  "diagnostics": {
+   "n_corners": 52,
+   "n_junction_cuts": 71,
+   "n_concrete_jamb_bridges": 4,
+   "n_door_fallback": 0,
+   "caps": 111,
+   "dup_len": 16.787,
+   "virtual_fills": 88,
+   "concrete_len": 41.415,
+   "void_len": 14.94,
+   "conflict_trim": 2.538,
+   "sliver_len": 0.057,
+   "w_segments_raw": 745,
+   "w_segments_used": 721,
+   "w_arcs": 0,
+   "w_inserts": {
+    "LP": 7,
+    "D10W12": 6,
+    "D90W12": 3,
+    "D80W12": 3
+   },
+   "directions": [
+    0.0,
+    90.0,
+    79.33,
+    169.34,
+    70.49
+   ],
+   "concrete_polys": 17,
+   "voids": 17,
+   "fins": 6,
+   "stair_zones": 2,
+   "doors_blocks": 37,
+   "doors_matched": 37,
+   "doors_unmatched": [],
+   "planter_parapets": 0
+  }
+ },
+ "F04": {
+  "level": 15.3,
+  "totals": {
+   "0.10|ALL": {
+    "n": 1,
+    "length_gross": 1.64,
+    "length_net": 1.64,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.92,
+    "area_net_at_h": 4.92
+   },
+   "0.10|shaft": {
+    "n": 1,
+    "length_gross": 1.64,
+    "length_net": 1.64,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.92,
+    "area_net_at_h": 4.92
+   },
+   "0.12|ALL": {
+    "n": 166,
+    "length_gross": 224.02,
+    "length_net": 189.96,
+    "openings_width": 34.06,
+    "area_gross_at_h": 672.05,
+    "area_net_at_h": 569.87
+   },
+   "0.12|exterior": {
+    "n": 15,
+    "length_gross": 5.72,
+    "length_net": 5.72,
+    "openings_width": 0.0,
+    "area_gross_at_h": 17.16,
+    "area_net_at_h": 17.16
+   },
+   "0.12|interior": {
+    "n": 94,
+    "length_gross": 175.86,
+    "length_net": 142.8,
+    "openings_width": 33.06,
+    "area_gross_at_h": 527.58,
+    "area_net_at_h": 428.4
+   },
+   "0.12|shaft": {
+    "n": 54,
+    "length_gross": 34.99,
+    "length_net": 34.99,
+    "openings_width": 0.0,
+    "area_gross_at_h": 104.97,
+    "area_net_at_h": 104.97
+   },
+   "0.12|stair_lift": {
+    "n": 3,
+    "length_gross": 7.44,
+    "length_net": 6.44,
+    "openings_width": 1.0,
+    "area_gross_at_h": 22.34,
+    "area_net_at_h": 19.34
+   },
+   "0.25|ALL": {
+    "n": 40,
+    "length_gross": 93.78,
+    "length_net": 48.57,
+    "openings_width": 45.22,
+    "area_gross_at_h": 281.35,
+    "area_net_at_h": 145.7
+   },
+   "0.25|exterior": {
+    "n": 27,
+    "length_gross": 76.32,
+    "length_net": 32.0,
+    "openings_width": 44.32,
+    "area_gross_at_h": 228.95,
+    "area_net_at_h": 96.01
+   },
+   "0.25|interior": {
+    "n": 4,
+    "length_gross": 2.6,
+    "length_net": 2.6,
+    "openings_width": 0.0,
+    "area_gross_at_h": 7.81,
+    "area_net_at_h": 7.81
+   },
+   "0.25|shaft": {
+    "n": 4,
+    "length_gross": 3.69,
+    "length_net": 3.69,
+    "openings_width": 0.0,
+    "area_gross_at_h": 11.07,
+    "area_net_at_h": 11.07
+   },
+   "0.25|stair_lift": {
+    "n": 5,
+    "length_gross": 11.17,
+    "length_net": 10.27,
+    "openings_width": 0.9,
+    "area_gross_at_h": 33.51,
+    "area_net_at_h": 30.81
+   },
+   "0.30|ALL": {
+    "n": 5,
+    "length_gross": 3.51,
+    "length_net": 1.09,
+    "openings_width": 2.42,
+    "area_gross_at_h": 10.53,
+    "area_net_at_h": 3.26
+   },
+   "0.30|exterior": {
+    "n": 3,
+    "length_gross": 0.39,
+    "length_net": 0.39,
+    "openings_width": 0.0,
+    "area_gross_at_h": 1.17,
+    "area_net_at_h": 1.17
+   },
+   "0.30|interior": {
+    "n": 2,
+    "length_gross": 3.12,
+    "length_net": 0.7,
+    "openings_width": 2.42,
+    "area_gross_at_h": 9.36,
+    "area_net_at_h": 2.09
+   },
+   "0.40|ALL": {
+    "n": 6,
+    "length_gross": 3.69,
+    "length_net": 2.47,
+    "openings_width": 1.22,
+    "area_gross_at_h": 11.07,
+    "area_net_at_h": 7.42
+   },
+   "0.40|exterior": {
+    "n": 3,
+    "length_gross": 3.46,
+    "length_net": 2.25,
+    "openings_width": 1.22,
+    "area_gross_at_h": 10.39,
+    "area_net_at_h": 6.74
+   },
+   "0.40|interior": {
+    "n": 3,
+    "length_gross": 0.23,
+    "length_net": 0.23,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.68,
+    "area_net_at_h": 0.68
+   },
+   "0.50|ALL": {
+    "n": 2,
+    "length_gross": 2.19,
+    "length_net": 2.19,
+    "openings_width": 0.0,
+    "area_gross_at_h": 6.58,
+    "area_net_at_h": 6.58
+   },
+   "0.50|exterior": {
+    "n": 1,
+    "length_gross": 0.7,
+    "length_net": 0.7,
+    "openings_width": 0.0,
+    "area_gross_at_h": 2.1,
+    "area_net_at_h": 2.1
+   },
+   "0.50|interior": {
+    "n": 1,
+    "length_gross": 1.49,
+    "length_net": 1.49,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.48,
+    "area_net_at_h": 4.48
+   },
+   "0.60|ALL": {
+    "n": 3,
+    "length_gross": 0.88,
+    "length_net": 0.88,
+    "openings_width": 0.0,
+    "area_gross_at_h": 2.63,
+    "area_net_at_h": 2.63
+   },
+   "0.60|exterior": {
+    "n": 3,
+    "length_gross": 0.88,
+    "length_net": 0.88,
+    "openings_width": 0.0,
+    "area_gross_at_h": 2.63,
+    "area_net_at_h": 2.63
+   },
+   "ALL|ALL": {
+    "n": 237,
+    "length_gross": 335.88,
+    "length_net": 252.96,
+    "openings_width": 82.91,
+    "area_gross_at_h": 1007.63,
+    "area_net_at_h": 758.88
+   },
+   "ALL|exterior": {
+    "n": 59,
+    "length_gross": 90.2,
+    "length_net": 44.67,
+    "openings_width": 45.53,
+    "area_gross_at_h": 270.61,
+    "area_net_at_h": 134.01
+   },
+   "ALL|interior": {
+    "n": 107,
+    "length_gross": 184.39,
+    "length_net": 148.91,
+    "openings_width": 35.48,
+    "area_gross_at_h": 553.16,
+    "area_net_at_h": 446.72
+   },
+   "ALL|shaft": {
+    "n": 61,
+    "length_gross": 41.47,
+    "length_net": 41.47,
+    "openings_width": 0.0,
+    "area_gross_at_h": 124.41,
+    "area_net_at_h": 124.41
+   },
+   "ALL|stair_lift": {
+    "n": 10,
+    "length_gross": 19.82,
+    "length_net": 17.92,
+    "openings_width": 1.9,
+    "area_gross_at_h": 59.45,
+    "area_net_at_h": 53.74
+   },
+   "other|ALL": {
+    "n": 14,
+    "length_gross": 6.17,
+    "length_net": 6.17,
+    "openings_width": 0.0,
+    "area_gross_at_h": 18.5,
+    "area_net_at_h": 18.5
+   },
+   "other|exterior": {
+    "n": 7,
+    "length_gross": 2.73,
+    "length_net": 2.73,
+    "openings_width": 0.0,
+    "area_gross_at_h": 8.2,
+    "area_net_at_h": 8.2
+   },
+   "other|interior": {
+    "n": 3,
+    "length_gross": 1.09,
+    "length_net": 1.09,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.26,
+    "area_net_at_h": 3.26
+   },
+   "other|shaft": {
+    "n": 2,
+    "length_gross": 1.15,
+    "length_net": 1.15,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.44,
+    "area_net_at_h": 3.44
+   },
+   "other|stair_lift": {
+    "n": 2,
+    "length_gross": 1.2,
+    "length_net": 1.2,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.6,
+    "area_net_at_h": 3.6
+   }
+  },
+  "thickness_histogram_net": {
+   "0.08": 1.0,
+   "0.11": 2.1,
+   "0.12": 185.61,
+   "0.13": 3.89,
+   "0.25": 46.03,
+   "0.26": 2.53,
+   "0.30": 1.09,
+   "0.36": 0.15,
+   "0.37": 1.12,
+   "0.38": 1.3,
+   "0.40": 2.47,
+   "0.42": 0.05,
+   "0.45": 1.12,
+   "0.47": 0.51,
+   "0.50": 2.19,
+   "0.58": 0.91,
+   "0.60": 0.88
+  },
+  "needs_check": 27,
+  "diagnostics": {
+   "n_corners": 53,
+   "n_junction_cuts": 71,
+   "n_concrete_jamb_bridges": 4,
+   "n_door_fallback": 0,
+   "caps": 112,
+   "dup_len": 17.222,
+   "virtual_fills": 87,
+   "concrete_len": 44.307,
+   "void_len": 14.94,
+   "conflict_trim": 2.66,
+   "sliver_len": 0.058,
+   "w_segments_raw": 750,
+   "w_segments_used": 726,
+   "w_arcs": 0,
+   "w_inserts": {
+    "LP": 7,
+    "D10W12": 6,
+    "D90W12": 3,
+    "D80W12": 3
+   },
+   "directions": [
+    0.0,
+    90.0,
+    79.33,
+    169.34,
+    178.59,
+    70.49
+   ],
+   "concrete_polys": 17,
+   "voids": 17,
+   "fins": 6,
+   "stair_zones": 2,
+   "doors_blocks": 37,
+   "doors_matched": 37,
+   "doors_unmatched": [],
+   "planter_parapets": 0
+  }
+ },
+ "F05": {
+  "level": 18.5,
+  "totals": {
+   "0.10|ALL": {
+    "n": 1,
+    "length_gross": 1.64,
+    "length_net": 1.64,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.92,
+    "area_net_at_h": 4.92
+   },
+   "0.10|shaft": {
+    "n": 1,
+    "length_gross": 1.64,
+    "length_net": 1.64,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.92,
+    "area_net_at_h": 4.92
+   },
+   "0.12|ALL": {
+    "n": 166,
+    "length_gross": 223.01,
+    "length_net": 190.55,
+    "openings_width": 32.46,
+    "area_gross_at_h": 669.04,
+    "area_net_at_h": 571.66
+   },
+   "0.12|exterior": {
+    "n": 16,
+    "length_gross": 6.83,
+    "length_net": 6.83,
+    "openings_width": 0.0,
+    "area_gross_at_h": 20.5,
+    "area_net_at_h": 20.5
+   },
+   "0.12|interior": {
+    "n": 93,
+    "length_gross": 173.69,
+    "length_net": 142.23,
+    "openings_width": 31.46,
+    "area_gross_at_h": 521.06,
+    "area_net_at_h": 426.68
+   },
+   "0.12|shaft": {
+    "n": 54,
+    "length_gross": 35.05,
+    "length_net": 35.05,
+    "openings_width": 0.0,
+    "area_gross_at_h": 105.15,
+    "area_net_at_h": 105.15
+   },
+   "0.12|stair_lift": {
+    "n": 3,
+    "length_gross": 7.44,
+    "length_net": 6.44,
+    "openings_width": 1.0,
+    "area_gross_at_h": 22.34,
+    "area_net_at_h": 19.34
+   },
+   "0.25|ALL": {
+    "n": 40,
+    "length_gross": 93.78,
+    "length_net": 48.45,
+    "openings_width": 45.34,
+    "area_gross_at_h": 281.35,
+    "area_net_at_h": 145.34
+   },
+   "0.25|exterior": {
+    "n": 27,
+    "length_gross": 76.32,
+    "length_net": 31.88,
+    "openings_width": 44.44,
+    "area_gross_at_h": 228.95,
+    "area_net_at_h": 95.65
+   },
+   "0.25|interior": {
+    "n": 4,
+    "length_gross": 2.6,
+    "length_net": 2.6,
+    "openings_width": 0.0,
+    "area_gross_at_h": 7.81,
+    "area_net_at_h": 7.81
+   },
+   "0.25|shaft": {
+    "n": 4,
+    "length_gross": 3.69,
+    "length_net": 3.69,
+    "openings_width": 0.0,
+    "area_gross_at_h": 11.07,
+    "area_net_at_h": 11.07
+   },
+   "0.25|stair_lift": {
+    "n": 5,
+    "length_gross": 11.17,
+    "length_net": 10.27,
+    "openings_width": 0.9,
+    "area_gross_at_h": 33.51,
+    "area_net_at_h": 30.81
+   },
+   "0.30|ALL": {
+    "n": 5,
+    "length_gross": 3.51,
+    "length_net": 1.09,
+    "openings_width": 2.42,
+    "area_gross_at_h": 10.53,
+    "area_net_at_h": 3.26
+   },
+   "0.30|exterior": {
+    "n": 3,
+    "length_gross": 0.39,
+    "length_net": 0.39,
+    "openings_width": 0.0,
+    "area_gross_at_h": 1.17,
+    "area_net_at_h": 1.17
+   },
+   "0.30|interior": {
+    "n": 2,
+    "length_gross": 3.12,
+    "length_net": 0.7,
+    "openings_width": 2.42,
+    "area_gross_at_h": 9.36,
+    "area_net_at_h": 2.09
+   },
+   "0.40|ALL": {
+    "n": 6,
+    "length_gross": 3.63,
+    "length_net": 2.41,
+    "openings_width": 1.22,
+    "area_gross_at_h": 10.88,
+    "area_net_at_h": 7.23
+   },
+   "0.40|exterior": {
+    "n": 3,
+    "length_gross": 3.4,
+    "length_net": 2.18,
+    "openings_width": 1.22,
+    "area_gross_at_h": 10.2,
+    "area_net_at_h": 6.55
+   },
+   "0.40|interior": {
+    "n": 3,
+    "length_gross": 0.23,
+    "length_net": 0.23,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.68,
+    "area_net_at_h": 0.68
+   },
+   "0.50|ALL": {
+    "n": 1,
+    "length_gross": 0.7,
+    "length_net": 0.7,
+    "openings_width": 0.0,
+    "area_gross_at_h": 2.1,
+    "area_net_at_h": 2.1
+   },
+   "0.50|exterior": {
+    "n": 1,
+    "length_gross": 0.7,
+    "length_net": 0.7,
+    "openings_width": 0.0,
+    "area_gross_at_h": 2.1,
+    "area_net_at_h": 2.1
+   },
+   "0.60|ALL": {
+    "n": 3,
+    "length_gross": 1.16,
+    "length_net": 1.16,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.49,
+    "area_net_at_h": 3.49
+   },
+   "0.60|exterior": {
+    "n": 3,
+    "length_gross": 1.16,
+    "length_net": 1.16,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.49,
+    "area_net_at_h": 3.49
+   },
+   "ALL|ALL": {
+    "n": 236,
+    "length_gross": 333.76,
+    "length_net": 252.32,
+    "openings_width": 81.43,
+    "area_gross_at_h": 1001.27,
+    "area_net_at_h": 756.96
+   },
+   "ALL|exterior": {
+    "n": 61,
+    "length_gross": 92.6,
+    "length_net": 46.95,
+    "openings_width": 45.65,
+    "area_gross_at_h": 277.8,
+    "area_net_at_h": 140.85
+   },
+   "ALL|interior": {
+    "n": 104,
+    "length_gross": 179.81,
+    "length_net": 145.93,
+    "openings_width": 33.88,
+    "area_gross_at_h": 539.43,
+    "area_net_at_h": 437.78
+   },
+   "ALL|shaft": {
+    "n": 61,
+    "length_gross": 41.53,
+    "length_net": 41.53,
+    "openings_width": 0.0,
+    "area_gross_at_h": 124.59,
+    "area_net_at_h": 124.59
+   },
+   "ALL|stair_lift": {
+    "n": 10,
+    "length_gross": 19.82,
+    "length_net": 17.92,
+    "openings_width": 1.9,
+    "area_gross_at_h": 59.45,
+    "area_net_at_h": 53.74
+   },
+   "other|ALL": {
+    "n": 14,
+    "length_gross": 6.32,
+    "length_net": 6.32,
+    "openings_width": 0.0,
+    "area_gross_at_h": 18.97,
+    "area_net_at_h": 18.97
+   },
+   "other|exterior": {
+    "n": 8,
+    "length_gross": 3.8,
+    "length_net": 3.8,
+    "openings_width": 0.0,
+    "area_gross_at_h": 11.4,
+    "area_net_at_h": 11.4
+   },
+   "other|interior": {
+    "n": 2,
+    "length_gross": 0.18,
+    "length_net": 0.18,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.53,
+    "area_net_at_h": 0.53
+   },
+   "other|shaft": {
+    "n": 2,
+    "length_gross": 1.15,
+    "length_net": 1.15,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.44,
+    "area_net_at_h": 3.44
+   },
+   "other|stair_lift": {
+    "n": 2,
+    "length_gross": 1.2,
+    "length_net": 1.2,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.6,
+    "area_net_at_h": 3.6
+   }
+  },
+  "thickness_histogram_net": {
+   "0.08": 1.0,
+   "0.11": 2.1,
+   "0.12": 186.2,
+   "0.13": 3.89,
+   "0.25": 45.91,
+   "0.26": 2.53,
+   "0.30": 1.09,
+   "0.36": 0.15,
+   "0.37": 1.12,
+   "0.38": 1.3,
+   "0.40": 2.41,
+   "0.42": 0.05,
+   "0.45": 1.12,
+   "0.47": 0.57,
+   "0.51": 0.7,
+   "0.57": 1.01,
+   "0.60": 1.16
+  },
+  "needs_check": 25,
+  "diagnostics": {
+   "n_corners": 54,
+   "n_junction_cuts": 69,
+   "n_concrete_jamb_bridges": 4,
+   "n_door_fallback": 0,
+   "caps": 111,
+   "dup_len": 17.687,
+   "virtual_fills": 86,
+   "concrete_len": 46.006,
+   "void_len": 14.939,
+   "conflict_trim": 2.782,
+   "sliver_len": 0.054,
+   "w_segments_raw": 764,
+   "w_segments_used": 738,
+   "w_arcs": 0,
+   "w_inserts": {
+    "LP": 7,
+    "D10W12": 6,
+    "D90W12": 3,
+    "D80W12": 3
+   },
+   "directions": [
+    0.0,
+    90.0,
+    79.33,
+    169.34,
+    178.59,
+    74.08,
+    70.49
+   ],
+   "concrete_polys": 17,
+   "voids": 17,
+   "fins": 6,
+   "stair_zones": 2,
+   "doors_blocks": 36,
+   "doors_matched": 36,
+   "doors_unmatched": [],
+   "planter_parapets": 0
+  }
+ },
+ "F06": {
+  "level": 21.7,
+  "totals": {
+   "0.10|ALL": {
+    "n": 1,
+    "length_gross": 1.64,
+    "length_net": 1.64,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.92,
+    "area_net_at_h": 4.92
+   },
+   "0.10|shaft": {
+    "n": 1,
+    "length_gross": 1.64,
+    "length_net": 1.64,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.92,
+    "area_net_at_h": 4.92
+   },
+   "0.12|ALL": {
+    "n": 165,
+    "length_gross": 228.1,
+    "length_net": 195.64,
+    "openings_width": 32.46,
+    "area_gross_at_h": 684.31,
+    "area_net_at_h": 586.93
+   },
+   "0.12|exterior": {
+    "n": 16,
+    "length_gross": 6.95,
+    "length_net": 6.95,
+    "openings_width": 0.0,
+    "area_gross_at_h": 20.86,
+    "area_net_at_h": 20.86
+   },
+   "0.12|interior": {
+    "n": 92,
+    "length_gross": 178.65,
+    "length_net": 147.19,
+    "openings_width": 31.46,
+    "area_gross_at_h": 535.95,
+    "area_net_at_h": 441.57
+   },
+   "0.12|shaft": {
+    "n": 54,
+    "length_gross": 35.06,
+    "length_net": 35.06,
+    "openings_width": 0.0,
+    "area_gross_at_h": 105.17,
+    "area_net_at_h": 105.17
+   },
+   "0.12|stair_lift": {
+    "n": 3,
+    "length_gross": 7.44,
+    "length_net": 6.44,
+    "openings_width": 1.0,
+    "area_gross_at_h": 22.34,
+    "area_net_at_h": 19.34
+   },
+   "0.25|ALL": {
+    "n": 40,
+    "length_gross": 93.66,
+    "length_net": 48.33,
+    "openings_width": 45.34,
+    "area_gross_at_h": 280.99,
+    "area_net_at_h": 144.98
+   },
+   "0.25|exterior": {
+    "n": 27,
+    "length_gross": 76.2,
+    "length_net": 31.76,
+    "openings_width": 44.44,
+    "area_gross_at_h": 228.59,
+    "area_net_at_h": 95.29
+   },
+   "0.25|interior": {
+    "n": 4,
+    "length_gross": 2.6,
+    "length_net": 2.6,
+    "openings_width": 0.0,
+    "area_gross_at_h": 7.81,
+    "area_net_at_h": 7.81
+   },
+   "0.25|shaft": {
+    "n": 4,
+    "length_gross": 3.69,
+    "length_net": 3.69,
+    "openings_width": 0.0,
+    "area_gross_at_h": 11.07,
+    "area_net_at_h": 11.07
+   },
+   "0.25|stair_lift": {
+    "n": 5,
+    "length_gross": 11.17,
+    "length_net": 10.27,
+    "openings_width": 0.9,
+    "area_gross_at_h": 33.51,
+    "area_net_at_h": 30.81
+   },
+   "0.30|ALL": {
+    "n": 5,
+    "length_gross": 3.51,
+    "length_net": 1.09,
+    "openings_width": 2.42,
+    "area_gross_at_h": 10.53,
+    "area_net_at_h": 3.26
+   },
+   "0.30|exterior": {
+    "n": 3,
+    "length_gross": 0.39,
+    "length_net": 0.39,
+    "openings_width": 0.0,
+    "area_gross_at_h": 1.17,
+    "area_net_at_h": 1.17
+   },
+   "0.30|interior": {
+    "n": 2,
+    "length_gross": 3.12,
+    "length_net": 0.7,
+    "openings_width": 2.42,
+    "area_gross_at_h": 9.36,
+    "area_net_at_h": 2.09
+   },
+   "0.40|ALL": {
+    "n": 6,
+    "length_gross": 3.69,
+    "length_net": 2.47,
+    "openings_width": 1.22,
+    "area_gross_at_h": 11.07,
+    "area_net_at_h": 7.42
+   },
+   "0.40|exterior": {
+    "n": 3,
+    "length_gross": 3.46,
+    "length_net": 2.25,
+    "openings_width": 1.22,
+    "area_gross_at_h": 10.39,
+    "area_net_at_h": 6.74
+   },
+   "0.40|interior": {
+    "n": 3,
+    "length_gross": 0.23,
+    "length_net": 0.23,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.68,
+    "area_net_at_h": 0.68
+   },
+   "0.50|ALL": {
+    "n": 1,
+    "length_gross": 1.05,
+    "length_net": 1.05,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.15,
+    "area_net_at_h": 3.15
+   },
+   "0.50|exterior": {
+    "n": 1,
+    "length_gross": 1.05,
+    "length_net": 1.05,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.15,
+    "area_net_at_h": 3.15
+   },
+   "0.60|ALL": {
+    "n": 3,
+    "length_gross": 1.16,
+    "length_net": 1.16,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.49,
+    "area_net_at_h": 3.49
+   },
+   "0.60|exterior": {
+    "n": 3,
+    "length_gross": 1.16,
+    "length_net": 1.16,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.49,
+    "area_net_at_h": 3.49
+   },
+   "ALL|ALL": {
+    "n": 236,
+    "length_gross": 339.33,
+    "length_net": 257.89,
+    "openings_width": 81.43,
+    "area_gross_at_h": 1017.98,
+    "area_net_at_h": 773.68
+   },
+   "ALL|exterior": {
+    "n": 61,
+    "length_gross": 93.02,
+    "length_net": 47.36,
+    "openings_width": 45.65,
+    "area_gross_at_h": 279.05,
+    "area_net_at_h": 142.09
+   },
+   "ALL|interior": {
+    "n": 104,
+    "length_gross": 184.96,
+    "length_net": 151.08,
+    "openings_width": 33.88,
+    "area_gross_at_h": 554.88,
+    "area_net_at_h": 453.23
+   },
+   "ALL|shaft": {
+    "n": 61,
+    "length_gross": 41.54,
+    "length_net": 41.54,
+    "openings_width": 0.0,
+    "area_gross_at_h": 124.61,
+    "area_net_at_h": 124.61
+   },
+   "ALL|stair_lift": {
+    "n": 10,
+    "length_gross": 19.82,
+    "length_net": 17.92,
+    "openings_width": 1.9,
+    "area_gross_at_h": 59.45,
+    "area_net_at_h": 53.74
+   },
+   "other|ALL": {
+    "n": 15,
+    "length_gross": 6.51,
+    "length_net": 6.51,
+    "openings_width": 0.0,
+    "area_gross_at_h": 19.52,
+    "area_net_at_h": 19.52
+   },
+   "other|exterior": {
+    "n": 8,
+    "length_gross": 3.8,
+    "length_net": 3.8,
+    "openings_width": 0.0,
+    "area_gross_at_h": 11.4,
+    "area_net_at_h": 11.4
+   },
+   "other|interior": {
+    "n": 3,
+    "length_gross": 0.36,
+    "length_net": 0.36,
+    "openings_width": 0.0,
+    "area_gross_at_h": 1.08,
+    "area_net_at_h": 1.08
+   },
+   "other|shaft": {
+    "n": 2,
+    "length_gross": 1.15,
+    "length_net": 1.15,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.44,
+    "area_net_at_h": 3.44
+   },
+   "other|stair_lift": {
+    "n": 2,
+    "length_gross": 1.2,
+    "length_net": 1.2,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.6,
+    "area_net_at_h": 3.6
+   }
+  },
+  "thickness_histogram_net": {
+   "0.08": 1.0,
+   "0.11": 2.1,
+   "0.12": 191.29,
+   "0.13": 3.89,
+   "0.25": 45.79,
+   "0.26": 2.53,
+   "0.28": 0.18,
+   "0.30": 1.09,
+   "0.36": 0.15,
+   "0.37": 1.12,
+   "0.38": 1.3,
+   "0.40": 2.47,
+   "0.42": 0.05,
+   "0.45": 1.12,
+   "0.47": 0.57,
+   "0.50": 1.05,
+   "0.57": 1.01,
+   "0.60": 1.16
+  },
+  "needs_check": 25,
+  "diagnostics": {
+   "n_corners": 54,
+   "n_junction_cuts": 70,
+   "n_concrete_jamb_bridges": 4,
+   "n_door_fallback": 0,
+   "caps": 111,
+   "dup_len": 15.722,
+   "virtual_fills": 87,
+   "concrete_len": 46.257,
+   "void_len": 14.94,
+   "conflict_trim": 2.779,
+   "sliver_len": 0.066,
+   "w_segments_raw": 753,
+   "w_segments_used": 729,
+   "w_arcs": 0,
+   "w_inserts": {
+    "LP": 7,
+    "D10W12": 6,
+    "D90W12": 3,
+    "D80W12": 3
+   },
+   "directions": [
+    0.0,
+    90.0,
+    79.33,
+    169.34,
+    178.59,
+    70.49
+   ],
+   "concrete_polys": 17,
+   "voids": 17,
+   "fins": 6,
+   "stair_zones": 2,
+   "doors_blocks": 36,
+   "doors_matched": 36,
+   "doors_unmatched": [],
+   "planter_parapets": 0
+  }
+ },
+ "F07": {
+  "level": 24.9,
+  "totals": {
+   "0.10|ALL": {
+    "n": 1,
+    "length_gross": 1.64,
+    "length_net": 1.64,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.92,
+    "area_net_at_h": 4.92
+   },
+   "0.10|shaft": {
+    "n": 1,
+    "length_gross": 1.64,
+    "length_net": 1.64,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.92,
+    "area_net_at_h": 4.92
+   },
+   "0.12|ALL": {
+    "n": 167,
+    "length_gross": 228.11,
+    "length_net": 194.05,
+    "openings_width": 34.06,
+    "area_gross_at_h": 684.34,
+    "area_net_at_h": 582.16
+   },
+   "0.12|exterior": {
+    "n": 15,
+    "length_gross": 5.08,
+    "length_net": 5.08,
+    "openings_width": 0.0,
+    "area_gross_at_h": 15.23,
+    "area_net_at_h": 15.23
+   },
+   "0.12|interior": {
+    "n": 95,
+    "length_gross": 180.54,
+    "length_net": 147.48,
+    "openings_width": 33.06,
+    "area_gross_at_h": 541.61,
+    "area_net_at_h": 442.43
+   },
+   "0.12|shaft": {
+    "n": 54,
+    "length_gross": 35.06,
+    "length_net": 35.06,
+    "openings_width": 0.0,
+    "area_gross_at_h": 105.17,
+    "area_net_at_h": 105.17
+   },
+   "0.12|stair_lift": {
+    "n": 3,
+    "length_gross": 7.44,
+    "length_net": 6.44,
+    "openings_width": 1.0,
+    "area_gross_at_h": 22.34,
+    "area_net_at_h": 19.34
+   },
+   "0.25|ALL": {
+    "n": 40,
+    "length_gross": 93.66,
+    "length_net": 48.33,
+    "openings_width": 45.34,
+    "area_gross_at_h": 280.99,
+    "area_net_at_h": 144.98
+   },
+   "0.25|exterior": {
+    "n": 27,
+    "length_gross": 76.2,
+    "length_net": 31.76,
+    "openings_width": 44.44,
+    "area_gross_at_h": 228.59,
+    "area_net_at_h": 95.29
+   },
+   "0.25|interior": {
+    "n": 4,
+    "length_gross": 2.6,
+    "length_net": 2.6,
+    "openings_width": 0.0,
+    "area_gross_at_h": 7.81,
+    "area_net_at_h": 7.81
+   },
+   "0.25|shaft": {
+    "n": 4,
+    "length_gross": 3.69,
+    "length_net": 3.69,
+    "openings_width": 0.0,
+    "area_gross_at_h": 11.07,
+    "area_net_at_h": 11.07
+   },
+   "0.25|stair_lift": {
+    "n": 5,
+    "length_gross": 11.17,
+    "length_net": 10.27,
+    "openings_width": 0.9,
+    "area_gross_at_h": 33.51,
+    "area_net_at_h": 30.81
+   },
+   "0.30|ALL": {
+    "n": 5,
+    "length_gross": 3.51,
+    "length_net": 1.09,
+    "openings_width": 2.42,
+    "area_gross_at_h": 10.53,
+    "area_net_at_h": 3.26
+   },
+   "0.30|exterior": {
+    "n": 3,
+    "length_gross": 0.39,
+    "length_net": 0.39,
+    "openings_width": 0.0,
+    "area_gross_at_h": 1.17,
+    "area_net_at_h": 1.17
+   },
+   "0.30|interior": {
+    "n": 2,
+    "length_gross": 3.12,
+    "length_net": 0.7,
+    "openings_width": 2.42,
+    "area_gross_at_h": 9.36,
+    "area_net_at_h": 2.09
+   },
+   "0.40|ALL": {
+    "n": 6,
+    "length_gross": 3.69,
+    "length_net": 2.47,
+    "openings_width": 1.22,
+    "area_gross_at_h": 11.07,
+    "area_net_at_h": 7.42
+   },
+   "0.40|exterior": {
+    "n": 3,
+    "length_gross": 3.46,
+    "length_net": 2.25,
+    "openings_width": 1.22,
+    "area_gross_at_h": 10.39,
+    "area_net_at_h": 6.74
+   },
+   "0.40|interior": {
+    "n": 3,
+    "length_gross": 0.23,
+    "length_net": 0.23,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.68,
+    "area_net_at_h": 0.68
+   },
+   "0.50|ALL": {
+    "n": 1,
+    "length_gross": 0.7,
+    "length_net": 0.7,
+    "openings_width": 0.0,
+    "area_gross_at_h": 2.1,
+    "area_net_at_h": 2.1
+   },
+   "0.50|exterior": {
+    "n": 1,
+    "length_gross": 0.7,
+    "length_net": 0.7,
+    "openings_width": 0.0,
+    "area_gross_at_h": 2.1,
+    "area_net_at_h": 2.1
+   },
+   "0.60|ALL": {
+    "n": 2,
+    "length_gross": 0.82,
+    "length_net": 0.82,
+    "openings_width": 0.0,
+    "area_gross_at_h": 2.45,
+    "area_net_at_h": 2.45
+   },
+   "0.60|exterior": {
+    "n": 2,
+    "length_gross": 0.82,
+    "length_net": 0.82,
+    "openings_width": 0.0,
+    "area_gross_at_h": 2.45,
+    "area_net_at_h": 2.45
+   },
+   "ALL|ALL": {
+    "n": 234,
+    "length_gross": 336.88,
+    "length_net": 253.85,
+    "openings_width": 83.03,
+    "area_gross_at_h": 1010.65,
+    "area_net_at_h": 761.54
+   },
+   "ALL|exterior": {
+    "n": 57,
+    "length_gross": 88.87,
+    "length_net": 43.22,
+    "openings_width": 45.65,
+    "area_gross_at_h": 266.61,
+    "area_net_at_h": 129.65
+   },
+   "ALL|interior": {
+    "n": 106,
+    "length_gross": 186.66,
+    "length_net": 151.18,
+    "openings_width": 35.48,
+    "area_gross_at_h": 559.99,
+    "area_net_at_h": 453.54
+   },
+   "ALL|shaft": {
+    "n": 61,
+    "length_gross": 41.54,
+    "length_net": 41.54,
+    "openings_width": 0.0,
+    "area_gross_at_h": 124.61,
+    "area_net_at_h": 124.61
+   },
+   "ALL|stair_lift": {
+    "n": 10,
+    "length_gross": 19.82,
+    "length_net": 17.92,
+    "openings_width": 1.9,
+    "area_gross_at_h": 59.45,
+    "area_net_at_h": 53.74
+   },
+   "other|ALL": {
+    "n": 12,
+    "length_gross": 4.75,
+    "length_net": 4.75,
+    "openings_width": 0.0,
+    "area_gross_at_h": 14.24,
+    "area_net_at_h": 14.24
+   },
+   "other|exterior": {
+    "n": 6,
+    "length_gross": 2.22,
+    "length_net": 2.22,
+    "openings_width": 0.0,
+    "area_gross_at_h": 6.67,
+    "area_net_at_h": 6.67
+   },
+   "other|interior": {
+    "n": 2,
+    "length_gross": 0.18,
+    "length_net": 0.18,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.53,
+    "area_net_at_h": 0.53
+   },
+   "other|shaft": {
+    "n": 2,
+    "length_gross": 1.15,
+    "length_net": 1.15,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.44,
+    "area_net_at_h": 3.44
+   },
+   "other|stair_lift": {
+    "n": 2,
+    "length_gross": 1.2,
+    "length_net": 1.2,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.6,
+    "area_net_at_h": 3.6
+   }
+  },
+  "thickness_histogram_net": {
+   "0.08": 1.0,
+   "0.11": 2.1,
+   "0.12": 189.7,
+   "0.13": 3.89,
+   "0.25": 45.79,
+   "0.26": 2.53,
+   "0.30": 1.09,
+   "0.36": 0.15,
+   "0.37": 1.12,
+   "0.38": 1.3,
+   "0.40": 2.47,
+   "0.42": 0.05,
+   "0.45": 1.12,
+   "0.50": 0.7,
+   "0.60": 0.82
+  },
+  "needs_check": 21,
+  "diagnostics": {
+   "n_corners": 55,
+   "n_junction_cuts": 71,
+   "n_concrete_jamb_bridges": 4,
+   "n_door_fallback": 0,
+   "caps": 113,
+   "dup_len": 17.327,
+   "virtual_fills": 88,
+   "concrete_len": 46.257,
+   "void_len": 14.94,
+   "conflict_trim": 2.539,
+   "sliver_len": 0.066,
+   "w_segments_raw": 762,
+   "w_segments_used": 738,
+   "w_arcs": 0,
+   "w_inserts": {
+    "LP": 7,
+    "D10W12": 6,
+    "D90W12": 3,
+    "D80W12": 3
+   },
+   "directions": [
+    0.0,
+    90.0,
+    79.33,
+    169.34,
+    178.59,
+    70.49
+   ],
+   "concrete_polys": 17,
+   "voids": 17,
+   "fins": 6,
+   "stair_zones": 2,
+   "doors_blocks": 38,
+   "doors_matched": 38,
+   "doors_unmatched": [],
+   "planter_parapets": 0
+  }
+ },
+ "F08": {
+  "level": 28.1,
+  "totals": {
+   "0.10|ALL": {
+    "n": 1,
+    "length_gross": 1.64,
+    "length_net": 1.64,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.92,
+    "area_net_at_h": 4.92
+   },
+   "0.10|shaft": {
+    "n": 1,
+    "length_gross": 1.64,
+    "length_net": 1.64,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.92,
+    "area_net_at_h": 4.92
+   },
+   "0.12|ALL": {
+    "n": 160,
+    "length_gross": 222.08,
+    "length_net": 189.62,
+    "openings_width": 32.46,
+    "area_gross_at_h": 666.23,
+    "area_net_at_h": 568.85
+   },
+   "0.12|exterior": {
+    "n": 16,
+    "length_gross": 6.83,
+    "length_net": 6.83,
+    "openings_width": 0.0,
+    "area_gross_at_h": 20.5,
+    "area_net_at_h": 20.5
+   },
+   "0.12|interior": {
+    "n": 89,
+    "length_gross": 174.32,
+    "length_net": 142.85,
+    "openings_width": 31.46,
+    "area_gross_at_h": 522.95,
+    "area_net_at_h": 428.56
+   },
+   "0.12|shaft": {
+    "n": 52,
+    "length_gross": 33.48,
+    "length_net": 33.48,
+    "openings_width": 0.0,
+    "area_gross_at_h": 100.45,
+    "area_net_at_h": 100.45
+   },
+   "0.12|stair_lift": {
+    "n": 3,
+    "length_gross": 7.44,
+    "length_net": 6.44,
+    "openings_width": 1.0,
+    "area_gross_at_h": 22.34,
+    "area_net_at_h": 19.34
+   },
+   "0.25|ALL": {
+    "n": 40,
+    "length_gross": 93.57,
+    "length_net": 48.35,
+    "openings_width": 45.22,
+    "area_gross_at_h": 280.71,
+    "area_net_at_h": 145.06
+   },
+   "0.25|exterior": {
+    "n": 27,
+    "length_gross": 76.11,
+    "length_net": 31.79,
+    "openings_width": 44.32,
+    "area_gross_at_h": 228.32,
+    "area_net_at_h": 95.37
+   },
+   "0.25|interior": {
+    "n": 4,
+    "length_gross": 2.6,
+    "length_net": 2.6,
+    "openings_width": 0.0,
+    "area_gross_at_h": 7.81,
+    "area_net_at_h": 7.81
+   },
+   "0.25|shaft": {
+    "n": 4,
+    "length_gross": 3.69,
+    "length_net": 3.69,
+    "openings_width": 0.0,
+    "area_gross_at_h": 11.07,
+    "area_net_at_h": 11.07
+   },
+   "0.25|stair_lift": {
+    "n": 5,
+    "length_gross": 11.17,
+    "length_net": 10.27,
+    "openings_width": 0.9,
+    "area_gross_at_h": 33.51,
+    "area_net_at_h": 30.81
+   },
+   "0.30|ALL": {
+    "n": 5,
+    "length_gross": 3.51,
+    "length_net": 1.09,
+    "openings_width": 2.42,
+    "area_gross_at_h": 10.53,
+    "area_net_at_h": 3.26
+   },
+   "0.30|exterior": {
+    "n": 3,
+    "length_gross": 0.39,
+    "length_net": 0.39,
+    "openings_width": 0.0,
+    "area_gross_at_h": 1.17,
+    "area_net_at_h": 1.17
+   },
+   "0.30|interior": {
+    "n": 2,
+    "length_gross": 3.12,
+    "length_net": 0.7,
+    "openings_width": 2.42,
+    "area_gross_at_h": 9.36,
+    "area_net_at_h": 2.09
+   },
+   "0.40|ALL": {
+    "n": 6,
+    "length_gross": 1.66,
+    "length_net": 1.66,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.97,
+    "area_net_at_h": 4.97
+   },
+   "0.40|exterior": {
+    "n": 3,
+    "length_gross": 1.43,
+    "length_net": 1.43,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.29,
+    "area_net_at_h": 4.29
+   },
+   "0.40|interior": {
+    "n": 3,
+    "length_gross": 0.23,
+    "length_net": 0.23,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.68,
+    "area_net_at_h": 0.68
+   },
+   "0.50|ALL": {
+    "n": 1,
+    "length_gross": 0.7,
+    "length_net": 0.7,
+    "openings_width": 0.0,
+    "area_gross_at_h": 2.1,
+    "area_net_at_h": 2.1
+   },
+   "0.50|exterior": {
+    "n": 1,
+    "length_gross": 0.7,
+    "length_net": 0.7,
+    "openings_width": 0.0,
+    "area_gross_at_h": 2.1,
+    "area_net_at_h": 2.1
+   },
+   "0.60|ALL": {
+    "n": 3,
+    "length_gross": 1.16,
+    "length_net": 1.16,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.49,
+    "area_net_at_h": 3.49
+   },
+   "0.60|exterior": {
+    "n": 3,
+    "length_gross": 1.16,
+    "length_net": 1.16,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.49,
+    "area_net_at_h": 3.49
+   },
+   "ALL|ALL": {
+    "n": 230,
+    "length_gross": 330.64,
+    "length_net": 250.54,
+    "openings_width": 80.1,
+    "area_gross_at_h": 991.92,
+    "area_net_at_h": 751.62
+   },
+   "ALL|exterior": {
+    "n": 61,
+    "length_gross": 90.42,
+    "length_net": 46.1,
+    "openings_width": 44.32,
+    "area_gross_at_h": 271.26,
+    "area_net_at_h": 138.31
+   },
+   "ALL|interior": {
+    "n": 100,
+    "length_gross": 180.44,
+    "length_net": 146.56,
+    "openings_width": 33.88,
+    "area_gross_at_h": 541.32,
+    "area_net_at_h": 439.67
+   },
+   "ALL|shaft": {
+    "n": 59,
+    "length_gross": 39.96,
+    "length_net": 39.96,
+    "openings_width": 0.0,
+    "area_gross_at_h": 119.89,
+    "area_net_at_h": 119.89
+   },
+   "ALL|stair_lift": {
+    "n": 10,
+    "length_gross": 19.82,
+    "length_net": 17.92,
+    "openings_width": 1.9,
+    "area_gross_at_h": 59.45,
+    "area_net_at_h": 53.74
+   },
+   "other|ALL": {
+    "n": 14,
+    "length_gross": 6.32,
+    "length_net": 6.32,
+    "openings_width": 0.0,
+    "area_gross_at_h": 18.97,
+    "area_net_at_h": 18.97
+   },
+   "other|exterior": {
+    "n": 8,
+    "length_gross": 3.8,
+    "length_net": 3.8,
+    "openings_width": 0.0,
+    "area_gross_at_h": 11.4,
+    "area_net_at_h": 11.4
+   },
+   "other|interior": {
+    "n": 2,
+    "length_gross": 0.18,
+    "length_net": 0.18,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.53,
+    "area_net_at_h": 0.53
+   },
+   "other|shaft": {
+    "n": 2,
+    "length_gross": 1.15,
+    "length_net": 1.15,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.44,
+    "area_net_at_h": 3.44
+   },
+   "other|stair_lift": {
+    "n": 2,
+    "length_gross": 1.2,
+    "length_net": 1.2,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.6,
+    "area_net_at_h": 3.6
+   }
+  },
+  "thickness_histogram_net": {
+   "0.08": 1.0,
+   "0.11": 2.1,
+   "0.12": 185.27,
+   "0.13": 3.89,
+   "0.25": 45.82,
+   "0.26": 2.53,
+   "0.30": 1.09,
+   "0.36": 0.15,
+   "0.37": 1.12,
+   "0.38": 1.3,
+   "0.40": 1.66,
+   "0.42": 0.05,
+   "0.45": 1.12,
+   "0.47": 0.57,
+   "0.51": 0.7,
+   "0.57": 1.01,
+   "0.60": 1.16
+  },
+  "needs_check": 24,
+  "diagnostics": {
+   "n_corners": 52,
+   "n_junction_cuts": 67,
+   "n_concrete_jamb_bridges": 4,
+   "n_door_fallback": 0,
+   "caps": 109,
+   "dup_len": 16.764,
+   "virtual_fills": 86,
+   "concrete_len": 46.97,
+   "void_len": 14.34,
+   "conflict_trim": 2.298,
+   "sliver_len": 0.048,
+   "w_segments_raw": 722,
+   "w_segments_used": 719,
+   "w_arcs": 0,
+   "w_inserts": {
+    "LP": 7,
+    "D10W12": 6,
+    "D90W12": 3,
+    "D80W12": 3
+   },
+   "directions": [
+    0.0,
+    90.0,
+    79.33,
+    169.34,
+    70.49
+   ],
+   "concrete_polys": 17,
+   "voids": 17,
+   "fins": 6,
+   "stair_zones": 2,
+   "doors_blocks": 36,
+   "doors_matched": 36,
+   "doors_unmatched": [],
+   "planter_parapets": 0
+  }
+ },
+ "F09": {
+  "level": 31.3,
+  "totals": {
+   "0.10|ALL": {
+    "n": 2,
+    "length_gross": 5.95,
+    "length_net": 5.95,
+    "openings_width": 0.0,
+    "area_gross_at_h": 17.85,
+    "area_net_at_h": 17.85
+   },
+   "0.10|interior": {
+    "n": 1,
+    "length_gross": 4.31,
+    "length_net": 4.31,
+    "openings_width": 0.0,
+    "area_gross_at_h": 12.93,
+    "area_net_at_h": 12.93
+   },
+   "0.10|shaft": {
+    "n": 1,
+    "length_gross": 1.64,
+    "length_net": 1.64,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.92,
+    "area_net_at_h": 4.92
+   },
+   "0.12|ALL": {
+    "n": 100,
+    "length_gross": 169.41,
+    "length_net": 142.35,
+    "openings_width": 27.06,
+    "area_gross_at_h": 508.23,
+    "area_net_at_h": 427.05
+   },
+   "0.12|interior": {
+    "n": 67,
+    "length_gross": 140.19,
+    "length_net": 114.13,
+    "openings_width": 26.06,
+    "area_gross_at_h": 420.56,
+    "area_net_at_h": 342.38
+   },
+   "0.12|shaft": {
+    "n": 30,
+    "length_gross": 22.3,
+    "length_net": 22.3,
+    "openings_width": 0.0,
+    "area_gross_at_h": 66.89,
+    "area_net_at_h": 66.89
+   },
+   "0.12|stair_lift": {
+    "n": 3,
+    "length_gross": 6.93,
+    "length_net": 5.92,
+    "openings_width": 1.0,
+    "area_gross_at_h": 20.78,
+    "area_net_at_h": 17.77
+   },
+   "0.25|ALL": {
+    "n": 25,
+    "length_gross": 53.22,
+    "length_net": 33.5,
+    "openings_width": 19.72,
+    "area_gross_at_h": 159.67,
+    "area_net_at_h": 100.51
+   },
+   "0.25|exterior": {
+    "n": 18,
+    "length_gross": 37.8,
+    "length_net": 18.98,
+    "openings_width": 18.82,
+    "area_gross_at_h": 113.41,
+    "area_net_at_h": 56.95
+   },
+   "0.25|interior": {
+    "n": 2,
+    "length_gross": 3.29,
+    "length_net": 3.29,
+    "openings_width": 0.0,
+    "area_gross_at_h": 9.86,
+    "area_net_at_h": 9.86
+   },
+   "0.25|shaft": {
+    "n": 1,
+    "length_gross": 0.96,
+    "length_net": 0.96,
+    "openings_width": 0.0,
+    "area_gross_at_h": 2.88,
+    "area_net_at_h": 2.88
+   },
+   "0.25|stair_lift": {
+    "n": 4,
+    "length_gross": 11.17,
+    "length_net": 10.27,
+    "openings_width": 0.9,
+    "area_gross_at_h": 33.51,
+    "area_net_at_h": 30.81
+   },
+   "0.30|ALL": {
+    "n": 2,
+    "length_gross": 3.21,
+    "length_net": 0.78,
+    "openings_width": 2.42,
+    "area_gross_at_h": 9.62,
+    "area_net_at_h": 2.35
+   },
+   "0.30|exterior": {
+    "n": 1,
+    "length_gross": 0.21,
+    "length_net": 0.21,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.62,
+    "area_net_at_h": 0.62
+   },
+   "0.30|interior": {
+    "n": 1,
+    "length_gross": 3.0,
+    "length_net": 0.58,
+    "openings_width": 2.42,
+    "area_gross_at_h": 9.0,
+    "area_net_at_h": 1.73
+   },
+   "0.40|ALL": {
+    "n": 6,
+    "length_gross": 2.4,
+    "length_net": 2.4,
+    "openings_width": 0.0,
+    "area_gross_at_h": 7.21,
+    "area_net_at_h": 7.21
+   },
+   "0.40|exterior": {
+    "n": 2,
+    "length_gross": 1.54,
+    "length_net": 1.54,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.61,
+    "area_net_at_h": 4.61
+   },
+   "0.40|interior": {
+    "n": 3,
+    "length_gross": 0.35,
+    "length_net": 0.35,
+    "openings_width": 0.0,
+    "area_gross_at_h": 1.04,
+    "area_net_at_h": 1.04
+   },
+   "0.40|stair_lift": {
+    "n": 1,
+    "length_gross": 0.52,
+    "length_net": 0.52,
+    "openings_width": 0.0,
+    "area_gross_at_h": 1.56,
+    "area_net_at_h": 1.56
+   },
+   "0.50|ALL": {
+    "n": 1,
+    "length_gross": 0.29,
+    "length_net": 0.29,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.88,
+    "area_net_at_h": 0.88
+   },
+   "0.50|interior": {
+    "n": 1,
+    "length_gross": 0.29,
+    "length_net": 0.29,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.88,
+    "area_net_at_h": 0.88
+   },
+   "ALL|ALL": {
+    "n": 142,
+    "length_gross": 237.11,
+    "length_net": 187.91,
+    "openings_width": 49.2,
+    "area_gross_at_h": 711.34,
+    "area_net_at_h": 563.73
+   },
+   "ALL|exterior": {
+    "n": 21,
+    "length_gross": 39.55,
+    "length_net": 20.73,
+    "openings_width": 18.82,
+    "area_gross_at_h": 118.64,
+    "area_net_at_h": 62.18
+   },
+   "ALL|interior": {
+    "n": 77,
+    "length_gross": 151.7,
+    "length_net": 123.22,
+    "openings_width": 28.48,
+    "area_gross_at_h": 455.11,
+    "area_net_at_h": 369.66
+   },
+   "ALL|shaft": {
+    "n": 34,
+    "length_gross": 26.05,
+    "length_net": 26.05,
+    "openings_width": 0.0,
+    "area_gross_at_h": 78.14,
+    "area_net_at_h": 78.14
+   },
+   "ALL|stair_lift": {
+    "n": 10,
+    "length_gross": 19.81,
+    "length_net": 17.92,
+    "openings_width": 1.9,
+    "area_gross_at_h": 59.44,
+    "area_net_at_h": 53.74
+   },
+   "other|ALL": {
+    "n": 6,
+    "length_gross": 2.63,
+    "length_net": 2.63,
+    "openings_width": 0.0,
+    "area_gross_at_h": 7.88,
+    "area_net_at_h": 7.88
+   },
+   "other|interior": {
+    "n": 2,
+    "length_gross": 0.28,
+    "length_net": 0.28,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.84,
+    "area_net_at_h": 0.84
+   },
+   "other|shaft": {
+    "n": 2,
+    "length_gross": 1.15,
+    "length_net": 1.15,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.44,
+    "area_net_at_h": 3.44
+   },
+   "other|stair_lift": {
+    "n": 2,
+    "length_gross": 1.2,
+    "length_net": 1.2,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.6,
+    "area_net_at_h": 3.6
+   },
+   "planter_parapet|ALL": {
+    "n": 11,
+    "length_gross": 49.6,
+    "length_net": 49.6,
+    "openings_width": 0.0,
+    "area_gross_at_h": 148.81,
+    "area_net_at_h": 148.81
+   },
+   "planter_parapet|0.25": {
+    "n": 11,
+    "length_gross": 49.6,
+    "length_net": 49.6,
+    "openings_width": 0.0,
+    "area_gross_at_h": 148.81,
+    "area_net_at_h": 148.81
+   }
+  },
+  "thickness_histogram_net": {
+   "0.08": 1.0,
+   "0.10": 4.31,
+   "0.11": 1.64,
+   "0.12": 141.17,
+   "0.13": 1.18,
+   "0.25": 32.54,
+   "0.26": 0.96,
+   "0.29": 0.21,
+   "0.30": 0.58,
+   "0.36": 0.15,
+   "0.37": 0.25,
+   "0.40": 2.16,
+   "0.41": 0.24,
+   "0.42": 0.16,
+   "0.45": 1.08,
+   "0.50": 0.29
+  },
+  "needs_check": 13,
+  "diagnostics": {
+   "n_corners": 27,
+   "n_junction_cuts": 47,
+   "n_concrete_jamb_bridges": 4,
+   "n_door_fallback": 0,
+   "caps": 87,
+   "dup_len": 6.229,
+   "virtual_fills": 45,
+   "concrete_len": 46.315,
+   "void_len": 9.19,
+   "conflict_trim": 0.484,
+   "sliver_len": 0.026,
+   "w_segments_raw": 445,
+   "w_segments_used": 441,
+   "w_arcs": 0,
+   "w_inserts": {
+    "LP": 7,
+    "D10W12": 6,
+    "D90W12": 3,
+    "D80W12": 3
+   },
+   "directions": [
+    0.0,
+    90.0,
+    79.33,
+    169.34
+   ],
+   "concrete_polys": 29,
+   "voids": 12,
+   "fins": 2,
+   "stair_zones": 2,
+   "doors_blocks": 30,
+   "doors_matched": 30,
+   "doors_unmatched": [],
+   "planter_parapets": 11
+  }
+ },
+ "F10": {
+  "level": 34.5,
+  "totals": {
+   "0.10|ALL": {
+    "n": 1,
+    "length_gross": 1.64,
+    "length_net": 1.64,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.92,
+    "area_net_at_h": 4.92
+   },
+   "0.10|shaft": {
+    "n": 1,
+    "length_gross": 1.64,
+    "length_net": 1.64,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.92,
+    "area_net_at_h": 4.92
+   },
+   "0.12|ALL": {
+    "n": 99,
+    "length_gross": 170.1,
+    "length_net": 142.24,
+    "openings_width": 27.86,
+    "area_gross_at_h": 510.3,
+    "area_net_at_h": 426.72
+   },
+   "0.12|interior": {
+    "n": 66,
+    "length_gross": 140.28,
+    "length_net": 113.42,
+    "openings_width": 26.86,
+    "area_gross_at_h": 420.85,
+    "area_net_at_h": 340.27
+   },
+   "0.12|shaft": {
+    "n": 30,
+    "length_gross": 22.37,
+    "length_net": 22.37,
+    "openings_width": 0.0,
+    "area_gross_at_h": 67.12,
+    "area_net_at_h": 67.12
+   },
+   "0.12|stair_lift": {
+    "n": 3,
+    "length_gross": 7.44,
+    "length_net": 6.44,
+    "openings_width": 1.0,
+    "area_gross_at_h": 22.34,
+    "area_net_at_h": 19.34
+   },
+   "0.25|ALL": {
+    "n": 24,
+    "length_gross": 51.7,
+    "length_net": 31.18,
+    "openings_width": 20.52,
+    "area_gross_at_h": 155.11,
+    "area_net_at_h": 93.55
+   },
+   "0.25|exterior": {
+    "n": 17,
+    "length_gross": 37.93,
+    "length_net": 18.31,
+    "openings_width": 19.62,
+    "area_gross_at_h": 113.79,
+    "area_net_at_h": 54.93
+   },
+   "0.25|interior": {
+    "n": 2,
+    "length_gross": 1.62,
+    "length_net": 1.62,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.84,
+    "area_net_at_h": 4.84
+   },
+   "0.25|shaft": {
+    "n": 1,
+    "length_gross": 0.96,
+    "length_net": 0.96,
+    "openings_width": 0.0,
+    "area_gross_at_h": 2.88,
+    "area_net_at_h": 2.88
+   },
+   "0.25|stair_lift": {
+    "n": 4,
+    "length_gross": 11.2,
+    "length_net": 10.3,
+    "openings_width": 0.9,
+    "area_gross_at_h": 33.59,
+    "area_net_at_h": 30.89
+   },
+   "0.30|ALL": {
+    "n": 2,
+    "length_gross": 3.21,
+    "length_net": 0.78,
+    "openings_width": 2.42,
+    "area_gross_at_h": 9.62,
+    "area_net_at_h": 2.35
+   },
+   "0.30|exterior": {
+    "n": 1,
+    "length_gross": 0.21,
+    "length_net": 0.21,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.62,
+    "area_net_at_h": 0.62
+   },
+   "0.30|interior": {
+    "n": 1,
+    "length_gross": 3.0,
+    "length_net": 0.58,
+    "openings_width": 2.42,
+    "area_gross_at_h": 9.0,
+    "area_net_at_h": 1.73
+   },
+   "0.40|ALL": {
+    "n": 5,
+    "length_gross": 4.3,
+    "length_net": 4.3,
+    "openings_width": 0.0,
+    "area_gross_at_h": 12.91,
+    "area_net_at_h": 12.91
+   },
+   "0.40|exterior": {
+    "n": 2,
+    "length_gross": 1.54,
+    "length_net": 1.54,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.61,
+    "area_net_at_h": 4.61
+   },
+   "0.40|interior": {
+    "n": 2,
+    "length_gross": 1.69,
+    "length_net": 1.69,
+    "openings_width": 0.0,
+    "area_gross_at_h": 5.08,
+    "area_net_at_h": 5.08
+   },
+   "0.40|stair_lift": {
+    "n": 1,
+    "length_gross": 1.08,
+    "length_net": 1.08,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.22,
+    "area_net_at_h": 3.22
+   },
+   "0.50|ALL": {
+    "n": 1,
+    "length_gross": 0.29,
+    "length_net": 0.29,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.88,
+    "area_net_at_h": 0.88
+   },
+   "0.50|interior": {
+    "n": 1,
+    "length_gross": 0.29,
+    "length_net": 0.29,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.88,
+    "area_net_at_h": 0.88
+   },
+   "ALL|ALL": {
+    "n": 137,
+    "length_gross": 232.65,
+    "length_net": 181.85,
+    "openings_width": 50.8,
+    "area_gross_at_h": 697.95,
+    "area_net_at_h": 545.54
+   },
+   "ALL|exterior": {
+    "n": 20,
+    "length_gross": 39.67,
+    "length_net": 20.05,
+    "openings_width": 19.62,
+    "area_gross_at_h": 119.02,
+    "area_net_at_h": 60.16
+   },
+   "ALL|interior": {
+    "n": 74,
+    "length_gross": 147.17,
+    "length_net": 117.88,
+    "openings_width": 29.28,
+    "area_gross_at_h": 441.5,
+    "area_net_at_h": 353.65
+   },
+   "ALL|shaft": {
+    "n": 34,
+    "length_gross": 25.97,
+    "length_net": 25.97,
+    "openings_width": 0.0,
+    "area_gross_at_h": 77.92,
+    "area_net_at_h": 77.92
+   },
+   "ALL|stair_lift": {
+    "n": 9,
+    "length_gross": 19.84,
+    "length_net": 17.94,
+    "openings_width": 1.9,
+    "area_gross_at_h": 59.52,
+    "area_net_at_h": 53.82
+   },
+   "other|ALL": {
+    "n": 5,
+    "length_gross": 1.4,
+    "length_net": 1.4,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.21,
+    "area_net_at_h": 4.21
+   },
+   "other|interior": {
+    "n": 2,
+    "length_gross": 0.28,
+    "length_net": 0.28,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.84,
+    "area_net_at_h": 0.84
+   },
+   "other|shaft": {
+    "n": 2,
+    "length_gross": 1.0,
+    "length_net": 1.0,
+    "openings_width": 0.0,
+    "area_gross_at_h": 2.99,
+    "area_net_at_h": 2.99
+   },
+   "other|stair_lift": {
+    "n": 1,
+    "length_gross": 0.12,
+    "length_net": 0.12,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.37,
+    "area_net_at_h": 0.37
+   },
+   "planter_parapet|ALL": {
+    "n": 11,
+    "length_gross": 43.41,
+    "length_net": 43.41,
+    "openings_width": 0.0,
+    "area_gross_at_h": 130.23,
+    "area_net_at_h": 130.23
+   },
+   "planter_parapet|0.25": {
+    "n": 5,
+    "length_gross": 2.44,
+    "length_net": 2.44,
+    "openings_width": 0.0,
+    "area_gross_at_h": 7.31,
+    "area_net_at_h": 7.31
+   },
+   "planter_parapet|thin": {
+    "n": 6,
+    "length_gross": 40.97,
+    "length_net": 40.97,
+    "openings_width": 0.0,
+    "area_gross_at_h": 122.92,
+    "area_net_at_h": 122.92
+   }
+  },
+  "thickness_histogram_net": {
+   "0.08": 0.85,
+   "0.11": 1.64,
+   "0.12": 141.51,
+   "0.13": 0.74,
+   "0.25": 30.22,
+   "0.26": 0.96,
+   "0.29": 0.21,
+   "0.30": 0.58,
+   "0.36": 0.15,
+   "0.37": 0.25,
+   "0.40": 4.3,
+   "0.42": 0.16,
+   "0.50": 0.29
+  },
+  "needs_check": 11,
+  "diagnostics": {
+   "n_corners": 27,
+   "n_junction_cuts": 47,
+   "n_concrete_jamb_bridges": 4,
+   "n_door_fallback": 0,
+   "caps": 90,
+   "dup_len": 8.126,
+   "virtual_fills": 52,
+   "concrete_len": 42.05,
+   "void_len": 9.03,
+   "conflict_trim": 0.604,
+   "w_segments_raw": 451,
+   "w_segments_used": 449,
+   "w_arcs": 0,
+   "w_inserts": {
+    "LP": 7,
+    "D10W12": 6,
+    "D90W12": 3,
+    "D80W12": 3
+   },
+   "directions": [
+    0.0,
+    90.0,
+    79.33,
+    169.34
+   ],
+   "concrete_polys": 30,
+   "voids": 11,
+   "fins": 3,
+   "stair_zones": 2,
+   "doors_blocks": 31,
+   "doors_matched": 31,
+   "doors_unmatched": [],
+   "planter_parapets": 11
+  }
+ },
+ "F11": {
+  "level": 37.7,
+  "totals": {
+   "0.10|ALL": {
+    "n": 2,
+    "length_gross": 4.83,
+    "length_net": 4.83,
+    "openings_width": 0.0,
+    "area_gross_at_h": 14.49,
+    "area_net_at_h": 14.49
+   },
+   "0.10|interior": {
+    "n": 1,
+    "length_gross": 3.19,
+    "length_net": 3.19,
+    "openings_width": 0.0,
+    "area_gross_at_h": 9.57,
+    "area_net_at_h": 9.57
+   },
+   "0.10|shaft": {
+    "n": 1,
+    "length_gross": 1.64,
+    "length_net": 1.64,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.92,
+    "area_net_at_h": 4.92
+   },
+   "0.12|ALL": {
+    "n": 86,
+    "length_gross": 159.58,
+    "length_net": 132.44,
+    "openings_width": 27.14,
+    "area_gross_at_h": 478.73,
+    "area_net_at_h": 397.32
+   },
+   "0.12|interior": {
+    "n": 63,
+    "length_gross": 135.02,
+    "length_net": 108.88,
+    "openings_width": 26.14,
+    "area_gross_at_h": 405.06,
+    "area_net_at_h": 326.65
+   },
+   "0.12|shaft": {
+    "n": 20,
+    "length_gross": 17.59,
+    "length_net": 17.59,
+    "openings_width": 0.0,
+    "area_gross_at_h": 52.78,
+    "area_net_at_h": 52.78
+   },
+   "0.12|stair_lift": {
+    "n": 3,
+    "length_gross": 6.96,
+    "length_net": 5.96,
+    "openings_width": 1.0,
+    "area_gross_at_h": 20.9,
+    "area_net_at_h": 17.9
+   },
+   "0.25|ALL": {
+    "n": 24,
+    "length_gross": 52.4,
+    "length_net": 32.68,
+    "openings_width": 19.72,
+    "area_gross_at_h": 157.19,
+    "area_net_at_h": 98.03
+   },
+   "0.25|exterior": {
+    "n": 17,
+    "length_gross": 38.63,
+    "length_net": 19.8,
+    "openings_width": 18.82,
+    "area_gross_at_h": 115.88,
+    "area_net_at_h": 59.41
+   },
+   "0.25|interior": {
+    "n": 2,
+    "length_gross": 1.62,
+    "length_net": 1.62,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.84,
+    "area_net_at_h": 4.84
+   },
+   "0.25|shaft": {
+    "n": 1,
+    "length_gross": 0.96,
+    "length_net": 0.96,
+    "openings_width": 0.0,
+    "area_gross_at_h": 2.88,
+    "area_net_at_h": 2.88
+   },
+   "0.25|stair_lift": {
+    "n": 4,
+    "length_gross": 11.2,
+    "length_net": 10.3,
+    "openings_width": 0.9,
+    "area_gross_at_h": 33.59,
+    "area_net_at_h": 30.89
+   },
+   "0.30|ALL": {
+    "n": 2,
+    "length_gross": 3.21,
+    "length_net": 0.78,
+    "openings_width": 2.42,
+    "area_gross_at_h": 9.62,
+    "area_net_at_h": 2.35
+   },
+   "0.30|exterior": {
+    "n": 1,
+    "length_gross": 0.21,
+    "length_net": 0.21,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.62,
+    "area_net_at_h": 0.62
+   },
+   "0.30|interior": {
+    "n": 1,
+    "length_gross": 3.0,
+    "length_net": 0.58,
+    "openings_width": 2.42,
+    "area_gross_at_h": 9.0,
+    "area_net_at_h": 1.73
+   },
+   "0.40|ALL": {
+    "n": 6,
+    "length_gross": 4.82,
+    "length_net": 4.82,
+    "openings_width": 0.0,
+    "area_gross_at_h": 14.47,
+    "area_net_at_h": 14.47
+   },
+   "0.40|exterior": {
+    "n": 2,
+    "length_gross": 1.54,
+    "length_net": 1.54,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.61,
+    "area_net_at_h": 4.61
+   },
+   "0.40|interior": {
+    "n": 2,
+    "length_gross": 1.69,
+    "length_net": 1.69,
+    "openings_width": 0.0,
+    "area_gross_at_h": 5.08,
+    "area_net_at_h": 5.08
+   },
+   "0.40|stair_lift": {
+    "n": 2,
+    "length_gross": 1.6,
+    "length_net": 1.6,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.78,
+    "area_net_at_h": 4.78
+   },
+   "0.50|ALL": {
+    "n": 1,
+    "length_gross": 0.29,
+    "length_net": 0.29,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.88,
+    "area_net_at_h": 0.88
+   },
+   "0.50|interior": {
+    "n": 1,
+    "length_gross": 0.29,
+    "length_net": 0.29,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.88,
+    "area_net_at_h": 0.88
+   },
+   "ALL|ALL": {
+    "n": 126,
+    "length_gross": 226.54,
+    "length_net": 177.25,
+    "openings_width": 49.28,
+    "area_gross_at_h": 679.61,
+    "area_net_at_h": 531.76
+   },
+   "ALL|exterior": {
+    "n": 20,
+    "length_gross": 40.37,
+    "length_net": 21.55,
+    "openings_width": 18.82,
+    "area_gross_at_h": 121.1,
+    "area_net_at_h": 64.64
+   },
+   "ALL|interior": {
+    "n": 72,
+    "length_gross": 145.09,
+    "length_net": 116.53,
+    "openings_width": 28.56,
+    "area_gross_at_h": 435.28,
+    "area_net_at_h": 349.6
+   },
+   "ALL|shaft": {
+    "n": 24,
+    "length_gross": 21.19,
+    "length_net": 21.19,
+    "openings_width": 0.0,
+    "area_gross_at_h": 63.58,
+    "area_net_at_h": 63.58
+   },
+   "ALL|stair_lift": {
+    "n": 10,
+    "length_gross": 19.88,
+    "length_net": 17.98,
+    "openings_width": 1.9,
+    "area_gross_at_h": 59.64,
+    "area_net_at_h": 53.94
+   },
+   "other|ALL": {
+    "n": 5,
+    "length_gross": 1.4,
+    "length_net": 1.4,
+    "openings_width": 0.0,
+    "area_gross_at_h": 4.21,
+    "area_net_at_h": 4.21
+   },
+   "other|interior": {
+    "n": 2,
+    "length_gross": 0.28,
+    "length_net": 0.28,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.84,
+    "area_net_at_h": 0.84
+   },
+   "other|shaft": {
+    "n": 2,
+    "length_gross": 1.0,
+    "length_net": 1.0,
+    "openings_width": 0.0,
+    "area_gross_at_h": 2.99,
+    "area_net_at_h": 2.99
+   },
+   "other|stair_lift": {
+    "n": 1,
+    "length_gross": 0.12,
+    "length_net": 0.12,
+    "openings_width": 0.0,
+    "area_gross_at_h": 0.37,
+    "area_net_at_h": 0.37
+   },
+   "planter_parapet|ALL": {
+    "n": 8,
+    "length_gross": 39.59,
+    "length_net": 39.59,
+    "openings_width": 0.0,
+    "area_gross_at_h": 118.76,
+    "area_net_at_h": 118.76
+   },
+   "planter_parapet|0.25": {
+    "n": 2,
+    "length_gross": 1.11,
+    "length_net": 1.11,
+    "openings_width": 0.0,
+    "area_gross_at_h": 3.34,
+    "area_net_at_h": 3.34
+   },
+   "planter_parapet|thin": {
+    "n": 6,
+    "length_gross": 38.47,
+    "length_net": 38.47,
+    "openings_width": 0.0,
+    "area_gross_at_h": 115.42,
+    "area_net_at_h": 115.42
+   }
+  },
+  "thickness_histogram_net": {
+   "0.08": 0.85,
+   "0.10": 3.19,
+   "0.11": 1.64,
+   "0.12": 132.3,
+   "0.13": 0.14,
+   "0.25": 31.72,
+   "0.26": 0.96,
+   "0.29": 0.21,
+   "0.30": 0.58,
+   "0.36": 0.15,
+   "0.37": 0.25,
+   "0.40": 4.82,
+   "0.42": 0.16,
+   "0.50": 0.29
+  },
+  "needs_check": 12,
+  "diagnostics": {
+   "n_corners": 24,
+   "n_junction_cuts": 40,
+   "n_concrete_jamb_bridges": 4,
+   "n_door_fallback": 2,
+   "caps": 86,
+   "dup_len": 11.262,
+   "virtual_fills": 40,
+   "concrete_len": 45.96,
+   "void_len": 7.03,
+   "conflict_trim": 0.124,
+   "sliver_len": 0.026,
+   "w_segments_raw": 429,
+   "w_segments_used": 426,
+   "w_arcs": 0,
+   "w_inserts": {
+    "LP": 7,
+    "D10W12": 6,
+    "D90W12": 3,
+    "D80W12": 3
+   },
+   "directions": [
+    0.0,
+    90.0,
+    79.33,
+    169.34
+   ],
+   "concrete_polys": 37,
+   "voids": 10,
+   "fins": 2,
+   "stair_zones": 2,
+   "doors_blocks": 30,
+   "doors_matched": 30,
+   "doors_unmatched": [],
+   "planter_parapets": 8
+  }
+ }
+}

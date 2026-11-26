@@ -1,6 +1,6 @@
-# مخرجات مؤقتة
-output/
-*.xlsx
+# مخرجات مؤقتة (الكاش مربوط بتوقيت الملفات فلا يفيد بعد clone)
+output/**/_cache/
+output/render_*.png
 ~$*
 __pycache__/
 *.pyc

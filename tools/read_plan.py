@@ -74,7 +74,7 @@ PLAN_OUT = OUT_DIR / "plan"
 CACHE_DIR = PLAN_OUT / "_cache"
 TOOLS = Path(__file__).resolve().parent
 READER_SOURCES = ["diwan_common.py", "sosa_decode.py", "walls.py", "openings.py", "rooms.py", "structure.py"]
-BUNDLE_VER = "b1"
+BUNDLE_VER = "b2"   # b2: + try_outline (F09-F11 facade line)
 
 KIND_AR = {"exterior": "خارجي (واجهة)", "interior": "داخلي", "shaft": "حول شفت", "stair_lift": "سلم / مصعد"}
 FAMILY_ORDER = ["0.10", "0.12", "0.15", "0.20", "0.25", "0.30", "0.40", "0.50", "0.60", "other"]
@@ -199,7 +199,31 @@ def run_readers(fl, deep=False, log=print):
             "file": fl.file.name, "sheet_index": fl.sheet_index,
             "walls": _plain(wres), "openings": _plain(op), "rooms": _plain(rooms_json),
             "structure": _plain(st_json), "rooms_polys": rooms_polys, "footprint": rr.get("_footprint"),
-            "timing_s": tm}
+            "try_outline": try_outline_area(fl), "timing_s": tm}
+
+
+def try_outline_area(fl):
+    """F09-F11: area / perimeter of the FACADE line drawn as a closed polyline on layer `try`
+    (is_try_outline; the plot boundary - >1500 m2 - is skipped).  Bulge-aware (arcs of the curved
+    corners flattened to 1 cm via ezdxf.path).  None on floors without one (F02-F08)."""
+    from diwan_common import floor_entities, is_try_outline
+    from ezdxf import path as ezpath
+    from shapely.geometry import Polygon
+    out = []
+    for e in floor_entities(fl, layers="try", types="LWPOLYLINE"):
+        pts = [fl.to_local(p[0], p[1]) for p in e.get_points("xy")]
+        if not is_try_outline(pts):
+            continue
+        try:
+            fpts = [fl.to_local(v.x, v.y) for v in ezpath.make_path(e).flattening(0.01)]
+            P = Polygon(fpts).buffer(0)
+        except Exception:
+            continue
+        if P.is_empty or P.area > 1500:
+            continue
+        out.append({"handle": e.dxf.handle, "area_m2": round(P.area, 3), "perimeter_m": round(P.exterior.length, 3)
+                    if P.geom_type == "Polygon" else round(P.length, 3)})
+    return out or None
 
 
 def read_floor(floor, use_cache=True, deep=False, log=print):
@@ -325,7 +349,10 @@ def concrete_faces_on_rooms(b, tr_only=False, band=0.03):
     return L
 
 
-def plaster_estimate(rooms_j, op, st, walls_tot, P, conc_geom=None):
+GLAZING_FOOTPRINT_TOL = 0.30   # m: full-height glazing counts on the facade only this close to the rooms footprint edge
+
+
+def plaster_estimate(rooms_j, op, st, walls_tot, P, conc_geom=None, footprint=None):
     """PRELIMINARY internal plaster (room faces) + ceilings + external facade estimate."""
     from rooms import INDOOR_CEILING
     Hp = P.H_p
@@ -350,7 +377,31 @@ def plaster_estimate(rooms_j, op, st, walls_tot, P, conc_geom=None):
     walls_int = faces + strip_door + strip_open + strip_win + strip_asm
     ceil = rooms_j["totals"]["ceiling_area"]
     # external: outer outline of the facade minus full-height glazing (curtain wall, curved corners)
-    full_glz = sum(w["width"] for w in op["windows"] if ("curtain" in w["kind"] or w["shape"] == "arc"))
+    # only glazing ON the building outline (F11 drew a stair eye on WIN; any glazing line far from
+    # the rooms footprint edge is not facade) - the distance is taken from the item's end chord
+    glz = [w for w in op["windows"] if ("curtain" in w["kind"] or w["shape"] == "arc")]
+    off_fp = []
+    if footprint is not None and not footprint.is_empty:
+        from shapely.geometry import LineString, Point
+        edge = footprint.boundary
+        keep = []
+        for w in glz:
+            try:
+                if w["shape"] == "arc":     # curved corner: nearest point of the arc itself (both senses)
+                    cx, cy = w["center"]
+                    (ax, ay), (bx, by) = w["ends"]
+                    rad = math.hypot(ax - cx, ay - cy)
+                    a0, a1 = math.atan2(ay - cy, ax - cx), math.atan2(by - cy, bx - cx)
+                    sw = (a1 - a0) % (2 * math.pi)
+                    d = min(Point(cx + rad * math.cos(a0 + sg * t / 24), cy + rad * math.sin(a0 + sg * t / 24)).distance(edge)
+                            for sg, span in ((1, sw), (-1, 2 * math.pi - sw)) for t in [i * span for i in range(25)])
+                else:
+                    d = LineString(w["ends"]).distance(edge)
+            except Exception:
+                d = 0.0
+            (keep if d <= GLAZING_FOOTPRINT_TOL else off_fp).append(w)
+        glz = keep
+    full_glz = sum(w["width"] for w in glz)
     outline = rooms_j["totals"]["gross_outline_perimeter"]
     ext_open = win_w * P.win_h + asm_w * P.door_h
     ext_area = max(0.0, outline - full_glz) * P.H_f - ext_open
@@ -376,6 +427,7 @@ def plaster_estimate(rooms_j, op, st, walls_tot, P, conc_geom=None):
         "internal_total_m2": _r(walls_int + ceil, 2),
         "masonry_windows_width_m": _r(win_w, 3), "assemblies_width_m": _r(asm_w, 3),
         "external": {"outline_m": _r(outline, 2), "full_height_glazing_m": _r(full_glz, 2),
+                     "glazing_off_footprint": [{"id": w.get("id"), "kind": w["kind"], "width": w["width"]} for w in off_fp],
                      "facade_windows_m": _r(win_w + asm_w, 2), "H_f": P.H_f,
                      "area_m2": _r(ext_area, 2)},
         "not_included": {
@@ -441,7 +493,7 @@ def merge_floor(b, P: Params):
     on_tr = sorted({o["wall"] for o in ov if o["tr_only"] and o["overlap_frac"] >= 0.3} - set(on_concrete))
     mas = masonry_estimate(walls, P, exclude_ids=on_concrete)
     mas_if_tr = masonry_estimate(walls, P, exclude_ids=set(on_concrete) | set(on_tr))
-    pla = plaster_estimate(R, O, S, W["totals"], P, conc_geom=concrete_faces_on_rooms(b))
+    pla = plaster_estimate(R, O, S, W["totals"], P, conc_geom=concrete_faces_on_rooms(b), footprint=b.get("footprint"))
 
     # ---- cross-checks between readers
     wop = Counter()
@@ -478,7 +530,10 @@ def merge_floor(b, P: Params):
                               "openings_py_width": _r(sum(o["width"] for o in O["openings"]), 3),
                               "walls_py": wop["opening"], "walls_py_width": _r(wopw["opening"], 3)},
         "footprint_m2": {"rooms_gross_floor_area": R["totals"]["gross_floor_area"],
-                         "structure_face_env": fe.get("footprint_area")},
+                         "structure_face_env": fe.get("footprint_area"),
+                         **({"try_outline_area": sum(t["area_m2"] for t in b["try_outline"]),
+                             "try_outline_perimeter": sum(t["perimeter_m"] for t in b["try_outline"])}
+                            if b.get("try_outline") else {})},
         "concrete": {"structure_elements": len(elements),
                      "structure_model_space": sum(1 for e in elements if not e.get("only_in_tr_block")),
                      "structure_tr_only": sum(1 for e in elements if e.get("only_in_tr_block")),
@@ -514,6 +569,38 @@ def merge_floor(b, P: Params):
             conf.append({"type": "tr_element_free_standing", "item": e["id"], "element": e["id"],
                          "detail": f"ETABS 'tr' element {e['id']} {e['size_txt']} has no wall around it",
                          "detail_ar": f"عنصر بلوك tr {e['id']} {e['size_txt']} قائم بلا حوائط حوله (عمود حر؟)"})
+    # readers disagree: doors / windows / door-less openings / all gaps (count, or width > 0.05 m)
+    for key, lab, a_n, a_w, b_n, b_w in (
+            ("doors", "الأبواب", cc["doors"]["openings_py_in_masonry"], cc["doors"]["openings_py_width"],
+             cc["doors"]["walls_py_door_gaps"], cc["doors"]["walls_py_door_width"]),
+            ("doorless_openings", "الفتحات بلا باب", cc["doorless_openings"]["openings_py"], cc["doorless_openings"]["openings_py_width"],
+             cc["doorless_openings"]["walls_py"], cc["doorless_openings"]["walls_py_width"]),
+            ("all_masonry_gaps", "كل الفتحات في المباني", cc["all_masonry_gaps"]["openings_py"], cc["all_masonry_gaps"]["openings_py_width"],
+             cc["all_masonry_gaps"]["walls_py"], cc["all_masonry_gaps"]["walls_py_width"])):
+        if key == "doors" and cc["all_masonry_gaps"]["openings_py"] == cc["all_masonry_gaps"]["walls_py"] and asm:
+            continue      # door+glass assemblies are bridged as 'door' or 'window' in walls.py - the totals agree
+        if a_n != b_n:
+            conf.append({"type": "cross_check_mismatch", "item": key, "element": "-",
+                         "detail": f"{key}: openings.py {a_n} ({a_w} m) vs walls.py {b_n} ({b_w} m)",
+                         "detail_ar": f"{lab}: openings.py {a_n} ({a_w} م) مقابل walls.py {b_n} ({b_w} م) — راجع الفرق"})
+    for key, lab in (("doors_not_two_sided", "أبواب لا تقع بين فراغين"), ("windows_unassigned", "شبابيك غير منسوبة لغرفة")):
+        n = len(rooms_chk.get(key, []))
+        if n:
+            conf.append({"type": "cross_check_mismatch", "item": key, "element": "-",
+                         "detail": f"rooms.py {key}: {n}", "detail_ar": f"rooms.py: {lab} = {n}"})
+    pp = W["totals"].get("planter_parapet|ALL")
+    if pp:
+        conf.append({"type": "planter_parapet", "item": f"{pp['n']} دروة", "element": "-",
+                     "detail": f"planter parapets (MASS line pairs) {pp['length_gross']} m - masonry or concrete? height? (not in masonry)",
+                     "detail_ar": f"دروات أحواض الزرع (أزواج خطوط MASS) {pp['length_gross']} م"
+                                  + (f" (منها 0.25: {W['totals']['planter_parapet|0.25']['length_gross']} م"
+                                     f"، ورفيعة ≤ 0.12 تكرر زجاج الدور الأسفل: {W['totals']['planter_parapet|thin']['length_gross']} م)"
+                                     if 'planter_parapet|thin' in W['totals'] and 'planter_parapet|0.25' in W['totals'] else "")
+                                  + " — مباني أم خرسانة؟ الارتفاع؟ (غير محسوبة في المباني)"})
+    for g in pla["external"].get("glazing_off_footprint", []):
+        conf.append({"type": "glazing_off_footprint", "item": g["id"], "element": "-",
+                     "detail": f"full-height glazing {g['id']} ({g['width']} m) is not on the facade line -> not deducted",
+                     "detail_ar": f"زجاج كامل الارتفاع {g['id']} ({g['width']} م) ليس على خط الواجهة — لم يُخصم من الواجهات"})
     nc_w = [w for w in walls if w["needs_check"]]
     nc_r = rooms_chk.get("rooms_flagged", [])
     conf.append({"type": "needs_check_counts", "item": "-", "element": "-",
@@ -645,6 +732,10 @@ def render_plan(b, plan, out_png, dpi=130, zoom=None):
         if w["needs_check"]:
             ax.add_patch(MPoly(list(rect.buffer(0.05, join_style=2).exterior.coords), closed=True, fill=False,
                                ec="#ff00ff", lw=0.6, zorder=7))
+    # F09-F11 planter parapets (MASS pairs, not masonry): olive with a magenta edge
+    for pp in b["walls"].get("planter_parapets", []):
+        rect = Dir(pp["angle"]).rect(pp["_t"][0], pp["_t"][1], *pp["_band"])
+        ax.add_patch(MPoly(list(rect.exterior.coords), closed=True, fc="#556b2f", ec="#ff00ff", lw=0.4, alpha=0.9, zorder=4))
     O = b["openings"]
     # doors
     for d in O["doors"]:
@@ -704,6 +795,8 @@ def render_plan(b, plan, out_png, dpi=130, zoom=None):
            Line2D([0], [0], color="#0077bb", lw=3, label="حائط ستائري / زجاج منحني"),
            Line2D([0], [0], color="#ff7f0e", lw=3, label="فتحة بلا باب"),
            Patch(fc="none", ec="#ff00ff", label="حائط needs_check")]
+    if b["walls"].get("planter_parapets"):
+        hs.append(Patch(fc="#556b2f", ec="#ff00ff", label="دروة أحواض زرع (خارج المباني)"))
     from rooms import CATEGORY_AR
     hs += [Patch(fc=CAT_COLORS[c], alpha=0.5, label=CATEGORY_AR.get(c, c)) for c in CAT_COLORS if c in cats_present]
     ax.legend(handles=hs, loc="upper left", bbox_to_anchor=(1.01, 1.0), fontsize=7, framealpha=0.95, ncol=1)
@@ -855,8 +948,11 @@ def write_workbook(plans, P: Params, out_xlsx):
     for f in ("0.12", "0.25"):
         sh.line([f"صافي حوائط {FAMILY_AR[f]} م"] + row_vals(lambda p, f=f: _get(p, "walls", "totals", f"{f}|ALL", "length_net", default=0.0)))
     sh.line(["صافي حوائط بسماكات أخرى م"] + row_vals(lambda p: round(sum(v["length_net"] for k, v in p["walls"]["totals"].items()
-                                                                       if k.endswith("|ALL") and not k.startswith(("ALL", "0.12", "0.25"))), 2)))
+                                                                       if k.endswith("|ALL") and not k.startswith(("ALL", "0.12", "0.25", "planter_parapet"))), 2)))
     sh.line(["حوائط تحتاج مراجعة (needs_check)"] + row_vals(lambda p: p["walls"]["needs_check"]), fmt="0", warn=True)
+    if any("planter_parapet|ALL" in p["walls"]["totals"] for p in plans):
+        sh.line(["دروات أحواض الزرع م (خطوط MASS — خارج المباني، تحتاج قرار)"]
+                + row_vals(lambda p: _get(p, "walls", "totals", "planter_parapet|ALL", "length_gross", default=0.0)), warn=True)
     sh.section("الأبواب والشبابيك والفتحات", nc)
     sh.line(["عدد الأبواب"] + row_vals(lambda p: p["openings"]["summary"]["doors"]["count"]), fmt="0")
     sh.line(["مجموع عروض الأبواب م"] + row_vals(lambda p: p["openings"]["summary"]["doors"]["total_width"]))
@@ -910,6 +1006,14 @@ def write_workbook(plans, P: Params, out_xlsx):
                     fmt="0" if metric == "n" else "0.00", total=True)
         sh.line(["كل الحوائط"] + row_vals(lambda p: _get(p, "walls", "totals", "ALL|ALL", metric, default=0)),
                 fmt="0" if metric == "n" else "0.00", total=True)
+        if any("planter_parapet|ALL" in p["walls"]["totals"] for p in plans):
+            sh.line(["دروات أحواض الزرع (خطوط MASS، F09–F11) — غير محسوبة في المباني"]
+                    + row_vals(lambda p: _get(p, "walls", "totals", "planter_parapet|ALL", metric, default=0)),
+                    fmt="0" if metric == "n" else "0.00", warn=True)
+            for key, lab in (("planter_parapet|0.25", "  منها دروات 0.25"),
+                             ("planter_parapet|thin", "  منها خطوط رفيعة ≤ 0.12 (تكرار زجاج الدور الأسفل: بردورة/درابزين زجاج/حافة بلاطة؟)")):
+                sh.line([lab] + row_vals(lambda p, key=key: _get(p, "walls", "totals", key, metric, default=0)),
+                        fmt="0" if metric == "n" else "0.00", warn=True)
         sh.blank()
 
     # ---------------- 3. doors & windows
@@ -1083,7 +1187,8 @@ def write_workbook(plans, P: Params, out_xlsx):
     sh.header(["الدور", "النوع", "العنصر", "الخرسانة", "التفاصيل"])
     TYPE_AR = {"wall_on_concrete": "حائط على خرسانة", "wall_on_tr_element": "حائط على عنصر tr",
                "opening_is_tr_column": "فتحة = عمود tr", "tr_element_free_standing": "عنصر tr قائم وحده",
-               "needs_check_counts": "عدد المراجعات"}
+               "needs_check_counts": "عدد المراجعات", "cross_check_mismatch": "عدم تطابق بين القرّاء",
+               "planter_parapet": "دروة أحواض زرع", "glazing_off_footprint": "زجاج بعيد عن الواجهة"}
     for p in plans:
         for c in p["conflicts"]:
             sh.line([p["floor"], TYPE_AR.get(c["type"], c["type"]), c["item"], c["element"], c["detail_ar"]],
@@ -1106,7 +1211,9 @@ def write_workbook(plans, P: Params, out_xlsx):
                 warn=ca["openings_py"] != ca["walls_py"])
         fp = cc["footprint_m2"]
         sh.line([p["floor"], "مطابقة البصمة", "-", "-",
-                 f"rooms.py {fp['rooms_gross_floor_area']} م² (بدون الزعانف الخارجية الرفيعة) — structure.py {fp['structure_face_env']} م²"])
+                 f"rooms.py {fp['rooms_gross_floor_area']} م² (بدون الزعانف الخارجية الرفيعة) — structure.py {fp['structure_face_env']} م²"
+                 + (f" — خط الواجهة على طبقة try {fp['try_outline_area']:.2f} م² (محيط {fp['try_outline_perimeter']:.2f} م)"
+                    if fp.get("try_outline_area") else "")])
 
     # ---------------- 10. assumptions & unknowns
     sh = Sheet(wb, "الافتراضات والمجاهيل", [60, 18, 70])

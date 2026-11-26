@@ -67,8 +67,9 @@ LAYER_AXIS = ("X", "x1")
 LAYER_COLUMNS = ("Etabs-col", "COL")
 
 # On F09-F11 the 'try' layer ALSO holds two big closed polylines that are NOT shafts:
-# the floor outline (slab edge around the planters; 598.65 / 565.98 / 541.38 m2 on
-# F09 / F10 / F11 - the building steps back as it rises) and the plot boundary
+# the FACADE line of the floor (the outer face of the glazing / facade walls; the
+# planters and their MASS parapets lie OUTSIDE it - the building steps back as it
+# rises, see read_plan.try_outline_area for the bulge-aware areas) and the plot boundary
 # (2028.08 m2, the same polygon as the MASS property line on F02-F08).  Shaft boxes
 # are <= ~2 m; anything spanning more than this is an outline, never a shaft.
 TRY_OUTLINE_MIN_SPAN = 6.0  # m

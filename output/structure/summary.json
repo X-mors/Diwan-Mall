@@ -1,0 +1,1956 @@
+{
+ "F02": {
+  "elements_by_kind": {
+   "round_column": 2,
+   "column": 10,
+   "shear_wall": 11,
+   "column_xbox": 2,
+   "core": 1
+  },
+  "totals_by_kind": {
+   "column": {
+    "n": 5,
+    "area": 3.06,
+    "perimeter": 18.0,
+    "exposed_perimeter": 15.36,
+    "exposed_interior": 13.94,
+    "exposed_exterior": 1.42,
+    "exposed_lift_shaft": 0.0
+   },
+   "column (tr block only)": {
+    "n": 5,
+    "area": 3.006,
+    "perimeter": 16.982,
+    "exposed_perimeter": 14.19,
+    "exposed_interior": 13.15,
+    "exposed_exterior": 1.04,
+    "exposed_lift_shaft": 0.0
+   },
+   "column_xbox": {
+    "n": 2,
+    "area": 0.324,
+    "perimeter": 3.224,
+    "exposed_perimeter": 2.42,
+    "exposed_interior": 2.42,
+    "exposed_exterior": 0.0,
+    "exposed_lift_shaft": 0.0
+   },
+   "core": {
+    "n": 1,
+    "area": 2.796,
+    "perimeter": 19.24,
+    "exposed_perimeter": 17.7,
+    "exposed_interior": 9.76,
+    "exposed_exterior": 0.0,
+    "exposed_lift_shaft": 7.94
+   },
+   "round_column": {
+    "n": 2,
+    "area": 0.68,
+    "perimeter": 4.084,
+    "exposed_perimeter": 3.41,
+    "exposed_interior": 3.33,
+    "exposed_exterior": 0.08,
+    "exposed_lift_shaft": 0.0
+   },
+   "shear_wall": {
+    "n": 9,
+    "area": 12.76,
+    "perimeter": 71.0,
+    "exposed_perimeter": 65.2,
+    "exposed_interior": 60.36,
+    "exposed_exterior": 4.84,
+    "exposed_lift_shaft": 0.0
+   },
+   "shear_wall (tr block only)": {
+    "n": 2,
+    "area": 1.88,
+    "perimeter": 12.708,
+    "exposed_perimeter": 11.57,
+    "exposed_interior": 9.27,
+    "exposed_exterior": 2.3,
+    "exposed_lift_shaft": 0.0
+   }
+  },
+  "plaster_perimeter_all": 109.81,
+  "plaster_perimeter_model_space_only": 87.39,
+  "exterior_perimeter_all": 9.68,
+  "exterior_perimeter_model_space_only": 6.34,
+  "lift_shaft_perimeter": 7.94,
+  "exposed_perimeter_gross_all": 127.43,
+  "exposed_perimeter_gross_model_space_only": 101.67,
+  "shafts": 14,
+  "shaft_area": 7.413,
+  "shafts_confirmed": 12,
+  "shaft_area_confirmed": 5.604,
+  "shafts_uncertain": 2,
+  "shaft_area_uncertain": 1.809,
+  "shafts_uncertain_ids": [
+   "SH08 1.00 x 0.40 (shaft (X, DASH only))",
+   "SH12 0.92 x 1.52 (shaft (X, DASH only))"
+  ],
+  "boxes_without_x": [],
+  "boxes_without_x_confirmed_elsewhere": [],
+  "posts_at_curtain_wall": 3,
+  "stray_hatched_try": [],
+  "door_heads": {
+   "doors": 40,
+   "with_2": 23,
+   "with_1": 11,
+   "with_0": 6,
+   "with_3plus": 0
+  },
+  "W_duplicated_len": 1.14,
+  "stairs": 2,
+  "lift_cars": 2,
+  "x_axes": "ا ب ج د ه و ز ح ط",
+  "y_axes": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15",
+  "dims": 241,
+  "dims_by_class": {
+   "axis_chain": 44,
+   "facade_chain": 52,
+   "facade_step": 68,
+   "interior": 63,
+   "other (end not on any line)": 7,
+   "overall": 5,
+   "wall_thickness": 2
+  },
+  "dash": {
+   "door_head": {
+    "n": 57,
+    "len": 52.7
+   },
+   "lift_core_divider": {
+    "n": 1,
+    "len": 2.26
+   },
+   "on_structure_face": {
+    "n": 1,
+    "len": 0.9
+   },
+   "shaft_cross": {
+    "n": 28,
+    "len": 31.3
+   },
+   "shaft_outline": {
+    "n": 4,
+    "len": 2.82
+   },
+   "stair_flight_above_cut": {
+    "n": 48,
+    "len": 52.7
+   },
+   "window_head": {
+    "n": 12,
+    "len": 25.38
+   }
+  }
+ },
+ "F03": {
+  "elements_by_kind": {
+   "column": 10,
+   "shear_wall": 11,
+   "column_xbox": 2,
+   "core": 1
+  },
+  "totals_by_kind": {
+   "column": {
+    "n": 5,
+    "area": 3.06,
+    "perimeter": 18.0,
+    "exposed_perimeter": 15.12,
+    "exposed_interior": 13.7,
+    "exposed_exterior": 1.42,
+    "exposed_lift_shaft": 0.0
+   },
+   "column (tr block only)": {
+    "n": 5,
+    "area": 3.006,
+    "perimeter": 16.982,
+    "exposed_perimeter": 14.66,
+    "exposed_interior": 13.7,
+    "exposed_exterior": 0.96,
+    "exposed_lift_shaft": 0.0
+   },
+   "column_xbox": {
+    "n": 2,
+    "area": 0.324,
+    "perimeter": 3.224,
+    "exposed_perimeter": 2.42,
+    "exposed_interior": 2.42,
+    "exposed_exterior": 0.0,
+    "exposed_lift_shaft": 0.0
+   },
+   "core": {
+    "n": 1,
+    "area": 2.796,
+    "perimeter": 19.24,
+    "exposed_perimeter": 17.7,
+    "exposed_interior": 9.76,
+    "exposed_exterior": 0.0,
+    "exposed_lift_shaft": 7.94
+   },
+   "shear_wall": {
+    "n": 9,
+    "area": 12.76,
+    "perimeter": 71.0,
+    "exposed_perimeter": 65.12,
+    "exposed_interior": 60.54,
+    "exposed_exterior": 4.58,
+    "exposed_lift_shaft": 0.0
+   },
+   "shear_wall (tr block only)": {
+    "n": 2,
+    "area": 1.88,
+    "perimeter": 12.708,
+    "exposed_perimeter": 11.57,
+    "exposed_interior": 9.27,
+    "exposed_exterior": 2.3,
+    "exposed_lift_shaft": 0.0
+   }
+  },
+  "plaster_perimeter_all": 106.97,
+  "plaster_perimeter_model_space_only": 84.0,
+  "exterior_perimeter_all": 9.26,
+  "exterior_perimeter_model_space_only": 6.0,
+  "lift_shaft_perimeter": 7.94,
+  "exposed_perimeter_gross_all": 124.17,
+  "exposed_perimeter_gross_model_space_only": 97.94,
+  "shafts": 15,
+  "shaft_area": 8.031,
+  "shafts_confirmed": 12,
+  "shaft_area_confirmed": 5.604,
+  "shafts_uncertain": 3,
+  "shaft_area_uncertain": 2.427,
+  "shafts_uncertain_ids": [
+   "SH05 1.03 x 0.60 (shaft? (1 DASH diagonal, no try box))",
+   "SH08 1.00 x 0.40 (shaft (X, DASH only))",
+   "SH12 0.92 x 1.52 (shaft (X, DASH only))"
+  ],
+  "boxes_without_x": [],
+  "boxes_without_x_confirmed_elsewhere": [],
+  "posts_at_curtain_wall": 3,
+  "stray_hatched_try": [],
+  "door_heads": {
+   "doors": 37,
+   "with_2": 23,
+   "with_1": 11,
+   "with_0": 3,
+   "with_3plus": 0
+  },
+  "W_duplicated_len": 5.02,
+  "stairs": 2,
+  "lift_cars": 2,
+  "x_axes": "ا ب ج د ه و ز ح ط",
+  "y_axes": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15",
+  "dims": 231,
+  "dims_by_class": {
+   "axis_chain": 44,
+   "facade_chain": 52,
+   "facade_step": 68,
+   "interior": 57,
+   "other (end not on any line)": 5,
+   "overall": 5
+  },
+  "dash": {
+   "door_head": {
+    "n": 57,
+    "len": 52.7
+   },
+   "lift_core_divider": {
+    "n": 1,
+    "len": 2.26
+   },
+   "on_structure_face": {
+    "n": 1,
+    "len": 0.9
+   },
+   "shaft_cross": {
+    "n": 29,
+    "len": 32.49
+   },
+   "shaft_outline": {
+    "n": 4,
+    "len": 2.82
+   },
+   "stair_flight_above_cut": {
+    "n": 48,
+    "len": 52.7
+   },
+   "window_head": {
+    "n": 12,
+    "len": 25.38
+   }
+  }
+ },
+ "F04": {
+  "elements_by_kind": {
+   "column": 10,
+   "shear_wall": 11,
+   "column_xbox": 2,
+   "core": 1
+  },
+  "totals_by_kind": {
+   "column": {
+    "n": 5,
+    "area": 3.06,
+    "perimeter": 18.0,
+    "exposed_perimeter": 15.12,
+    "exposed_interior": 13.7,
+    "exposed_exterior": 1.42,
+    "exposed_lift_shaft": 0.0
+   },
+   "column (tr block only)": {
+    "n": 5,
+    "area": 3.006,
+    "perimeter": 16.982,
+    "exposed_perimeter": 15.13,
+    "exposed_interior": 14.17,
+    "exposed_exterior": 0.96,
+    "exposed_lift_shaft": 0.0
+   },
+   "column_xbox": {
+    "n": 2,
+    "area": 0.324,
+    "perimeter": 3.224,
+    "exposed_perimeter": 2.42,
+    "exposed_interior": 2.42,
+    "exposed_exterior": 0.0,
+    "exposed_lift_shaft": 0.0
+   },
+   "core": {
+    "n": 1,
+    "area": 2.796,
+    "perimeter": 19.24,
+    "exposed_perimeter": 17.7,
+    "exposed_interior": 9.76,
+    "exposed_exterior": 0.0,
+    "exposed_lift_shaft": 7.94
+   },
+   "shear_wall": {
+    "n": 9,
+    "area": 12.76,
+    "perimeter": 71.0,
+    "exposed_perimeter": 64.84,
+    "exposed_interior": 60.26,
+    "exposed_exterior": 4.58,
+    "exposed_lift_shaft": 0.0
+   },
+   "shear_wall (tr block only)": {
+    "n": 2,
+    "area": 1.88,
+    "perimeter": 12.708,
+    "exposed_perimeter": 11.57,
+    "exposed_interior": 9.27,
+    "exposed_exterior": 2.3,
+    "exposed_lift_shaft": 0.0
+   }
+  },
+  "plaster_perimeter_all": 107.16,
+  "plaster_perimeter_model_space_only": 83.72,
+  "exterior_perimeter_all": 9.26,
+  "exterior_perimeter_model_space_only": 6.0,
+  "lift_shaft_perimeter": 7.94,
+  "exposed_perimeter_gross_all": 124.36,
+  "exposed_perimeter_gross_model_space_only": 97.66,
+  "shafts": 15,
+  "shaft_area": 8.031,
+  "shafts_confirmed": 12,
+  "shaft_area_confirmed": 5.604,
+  "shafts_uncertain": 3,
+  "shaft_area_uncertain": 2.427,
+  "shafts_uncertain_ids": [
+   "SH05 1.03 x 0.60 (shaft? (1 DASH diagonal, no try box))",
+   "SH08 1.00 x 0.40 (shaft (X, DASH only))",
+   "SH12 0.92 x 1.52 (shaft (X, DASH only))"
+  ],
+  "boxes_without_x": [],
+  "boxes_without_x_confirmed_elsewhere": [],
+  "posts_at_curtain_wall": 3,
+  "stray_hatched_try": [],
+  "door_heads": {
+   "doors": 37,
+   "with_2": 24,
+   "with_1": 11,
+   "with_0": 2,
+   "with_3plus": 0
+  },
+  "W_duplicated_len": 14.43,
+  "stairs": 2,
+  "lift_cars": 2,
+  "x_axes": "ا ب ج د ه و ز ح ط",
+  "y_axes": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15",
+  "dims": 232,
+  "dims_by_class": {
+   "axis_chain": 44,
+   "facade_chain": 52,
+   "facade_step": 68,
+   "interior": 60,
+   "other (end not on any line)": 3,
+   "overall": 5
+  },
+  "dash": {
+   "door_head": {
+    "n": 59,
+    "len": 54.3
+   },
+   "lift_core_divider": {
+    "n": 1,
+    "len": 2.26
+   },
+   "shaft_cross": {
+    "n": 29,
+    "len": 32.49
+   },
+   "shaft_outline": {
+    "n": 4,
+    "len": 2.82
+   },
+   "stair_flight_above_cut": {
+    "n": 48,
+    "len": 52.7
+   },
+   "window_head": {
+    "n": 12,
+    "len": 25.38
+   }
+  }
+ },
+ "F05": {
+  "elements_by_kind": {
+   "column": 10,
+   "shear_wall": 11,
+   "column_xbox": 2,
+   "core": 1
+  },
+  "totals_by_kind": {
+   "column": {
+    "n": 5,
+    "area": 3.06,
+    "perimeter": 18.0,
+    "exposed_perimeter": 15.12,
+    "exposed_interior": 13.7,
+    "exposed_exterior": 1.42,
+    "exposed_lift_shaft": 0.0
+   },
+   "column (tr block only)": {
+    "n": 5,
+    "area": 3.006,
+    "perimeter": 16.982,
+    "exposed_perimeter": 14.93,
+    "exposed_interior": 13.97,
+    "exposed_exterior": 0.96,
+    "exposed_lift_shaft": 0.0
+   },
+   "column_xbox": {
+    "n": 2,
+    "area": 0.324,
+    "perimeter": 3.224,
+    "exposed_perimeter": 2.42,
+    "exposed_interior": 2.42,
+    "exposed_exterior": 0.0,
+    "exposed_lift_shaft": 0.0
+   },
+   "core": {
+    "n": 1,
+    "area": 2.796,
+    "perimeter": 19.24,
+    "exposed_perimeter": 17.7,
+    "exposed_interior": 9.76,
+    "exposed_exterior": 0.0,
+    "exposed_lift_shaft": 7.94
+   },
+   "shear_wall": {
+    "n": 9,
+    "area": 12.76,
+    "perimeter": 71.0,
+    "exposed_perimeter": 64.84,
+    "exposed_interior": 60.26,
+    "exposed_exterior": 4.58,
+    "exposed_lift_shaft": 0.0
+   },
+   "shear_wall (tr block only)": {
+    "n": 2,
+    "area": 1.88,
+    "perimeter": 12.708,
+    "exposed_perimeter": 11.72,
+    "exposed_interior": 9.41,
+    "exposed_exterior": 2.3,
+    "exposed_lift_shaft": 0.0
+   }
+  },
+  "plaster_perimeter_all": 107.1,
+  "plaster_perimeter_model_space_only": 83.72,
+  "exterior_perimeter_all": 9.26,
+  "exterior_perimeter_model_space_only": 6.0,
+  "lift_shaft_perimeter": 7.94,
+  "exposed_perimeter_gross_all": 124.31,
+  "exposed_perimeter_gross_model_space_only": 97.66,
+  "shafts": 15,
+  "shaft_area": 8.031,
+  "shafts_confirmed": 12,
+  "shaft_area_confirmed": 5.604,
+  "shafts_uncertain": 3,
+  "shaft_area_uncertain": 2.427,
+  "shafts_uncertain_ids": [
+   "SH05 1.03 x 0.60 (shaft? (1 DASH diagonal, no try box))",
+   "SH08 1.00 x 0.40 (shaft (X, DASH only))",
+   "SH12 0.92 x 1.52 (shaft (X, DASH only))"
+  ],
+  "boxes_without_x": [],
+  "boxes_without_x_confirmed_elsewhere": [],
+  "posts_at_curtain_wall": 3,
+  "stray_hatched_try": [],
+  "door_heads": {
+   "doors": 36,
+   "with_2": 25,
+   "with_1": 8,
+   "with_0": 3,
+   "with_3plus": 0
+  },
+  "W_duplicated_len": 5.73,
+  "stairs": 2,
+  "lift_cars": 2,
+  "x_axes": "ا ب ج د ه و ز ح ط",
+  "y_axes": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15",
+  "dims": 239,
+  "dims_by_class": {
+   "axis_chain": 44,
+   "facade_chain": 52,
+   "facade_step": 68,
+   "interior": 62,
+   "other (end not on any line)": 8,
+   "overall": 5
+  },
+  "dash": {
+   "door_head": {
+    "n": 58,
+    "len": 53.8
+   },
+   "lift_core_divider": {
+    "n": 1,
+    "len": 2.26
+   },
+   "on_structure_face": {
+    "n": 2,
+    "len": 1.8
+   },
+   "other": {
+    "n": 1,
+    "len": 0.05
+   },
+   "shaft_cross": {
+    "n": 29,
+    "len": 32.49
+   },
+   "shaft_outline": {
+    "n": 4,
+    "len": 2.82
+   },
+   "stair_flight_above_cut": {
+    "n": 48,
+    "len": 52.7
+   },
+   "window_head": {
+    "n": 12,
+    "len": 25.38
+   }
+  }
+ },
+ "F06": {
+  "elements_by_kind": {
+   "column": 10,
+   "shear_wall": 11,
+   "column_xbox": 2,
+   "core": 1
+  },
+  "totals_by_kind": {
+   "column": {
+    "n": 5,
+    "area": 3.06,
+    "perimeter": 18.0,
+    "exposed_perimeter": 15.12,
+    "exposed_interior": 13.7,
+    "exposed_exterior": 1.42,
+    "exposed_lift_shaft": 0.0
+   },
+   "column (tr block only)": {
+    "n": 5,
+    "area": 3.006,
+    "perimeter": 16.982,
+    "exposed_perimeter": 14.38,
+    "exposed_interior": 13.42,
+    "exposed_exterior": 0.96,
+    "exposed_lift_shaft": 0.0
+   },
+   "column_xbox": {
+    "n": 2,
+    "area": 0.324,
+    "perimeter": 3.224,
+    "exposed_perimeter": 2.42,
+    "exposed_interior": 2.42,
+    "exposed_exterior": 0.0,
+    "exposed_lift_shaft": 0.0
+   },
+   "core": {
+    "n": 1,
+    "area": 2.796,
+    "perimeter": 19.24,
+    "exposed_perimeter": 17.7,
+    "exposed_interior": 9.76,
+    "exposed_exterior": 0.0,
+    "exposed_lift_shaft": 7.94
+   },
+   "shear_wall": {
+    "n": 9,
+    "area": 12.76,
+    "perimeter": 71.0,
+    "exposed_perimeter": 64.84,
+    "exposed_interior": 60.26,
+    "exposed_exterior": 4.58,
+    "exposed_lift_shaft": 0.0
+   },
+   "shear_wall (tr block only)": {
+    "n": 2,
+    "area": 1.88,
+    "perimeter": 12.708,
+    "exposed_perimeter": 11.57,
+    "exposed_interior": 9.27,
+    "exposed_exterior": 2.3,
+    "exposed_lift_shaft": 0.0
+   }
+  },
+  "plaster_perimeter_all": 106.41,
+  "plaster_perimeter_model_space_only": 83.72,
+  "exterior_perimeter_all": 9.26,
+  "exterior_perimeter_model_space_only": 6.0,
+  "lift_shaft_perimeter": 7.94,
+  "exposed_perimeter_gross_all": 123.61,
+  "exposed_perimeter_gross_model_space_only": 97.66,
+  "shafts": 15,
+  "shaft_area": 8.031,
+  "shafts_confirmed": 12,
+  "shaft_area_confirmed": 5.604,
+  "shafts_uncertain": 3,
+  "shaft_area_uncertain": 2.427,
+  "shafts_uncertain_ids": [
+   "SH05 1.03 x 0.60 (shaft? (1 DASH diagonal, no try box))",
+   "SH08 1.00 x 0.40 (shaft (X, DASH only))",
+   "SH12 0.92 x 1.52 (shaft (X, DASH only))"
+  ],
+  "boxes_without_x": [],
+  "boxes_without_x_confirmed_elsewhere": [],
+  "posts_at_curtain_wall": 3,
+  "stray_hatched_try": [],
+  "door_heads": {
+   "doors": 36,
+   "with_2": 23,
+   "with_1": 11,
+   "with_0": 2,
+   "with_3plus": 0
+  },
+  "W_duplicated_len": 4.93,
+  "stairs": 2,
+  "lift_cars": 2,
+  "x_axes": "ا ب ج د ه و ز ح ط",
+  "y_axes": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15",
+  "dims": 237,
+  "dims_by_class": {
+   "axis_chain": 44,
+   "facade_chain": 52,
+   "facade_step": 68,
+   "interior": 58,
+   "other (end not on any line)": 10,
+   "overall": 5
+  },
+  "dash": {
+   "door_head": {
+    "n": 57,
+    "len": 52.7
+   },
+   "lift_core_divider": {
+    "n": 1,
+    "len": 2.26
+   },
+   "on_structure_face": {
+    "n": 2,
+    "len": 1.8
+   },
+   "shaft_cross": {
+    "n": 29,
+    "len": 32.49
+   },
+   "shaft_outline": {
+    "n": 4,
+    "len": 2.82
+   },
+   "stair_flight_above_cut": {
+    "n": 48,
+    "len": 52.7
+   },
+   "window_head": {
+    "n": 12,
+    "len": 25.38
+   }
+  }
+ },
+ "F07": {
+  "elements_by_kind": {
+   "column": 10,
+   "shear_wall": 11,
+   "column_xbox": 2,
+   "core": 1
+  },
+  "totals_by_kind": {
+   "column": {
+    "n": 5,
+    "area": 3.06,
+    "perimeter": 18.0,
+    "exposed_perimeter": 15.12,
+    "exposed_interior": 13.7,
+    "exposed_exterior": 1.42,
+    "exposed_lift_shaft": 0.0
+   },
+   "column (tr block only)": {
+    "n": 5,
+    "area": 3.006,
+    "perimeter": 16.982,
+    "exposed_perimeter": 14.66,
+    "exposed_interior": 13.7,
+    "exposed_exterior": 0.96,
+    "exposed_lift_shaft": 0.0
+   },
+   "column_xbox": {
+    "n": 2,
+    "area": 0.324,
+    "perimeter": 3.224,
+    "exposed_perimeter": 2.42,
+    "exposed_interior": 2.42,
+    "exposed_exterior": 0.0,
+    "exposed_lift_shaft": 0.0
+   },
+   "core": {
+    "n": 1,
+    "area": 2.796,
+    "perimeter": 19.24,
+    "exposed_perimeter": 17.7,
+    "exposed_interior": 9.76,
+    "exposed_exterior": 0.0,
+    "exposed_lift_shaft": 7.94
+   },
+   "shear_wall": {
+    "n": 9,
+    "area": 12.76,
+    "perimeter": 71.0,
+    "exposed_perimeter": 64.84,
+    "exposed_interior": 60.26,
+    "exposed_exterior": 4.58,
+    "exposed_lift_shaft": 0.0
+   },
+   "shear_wall (tr block only)": {
+    "n": 2,
+    "area": 1.88,
+    "perimeter": 12.708,
+    "exposed_perimeter": 11.57,
+    "exposed_interior": 9.27,
+    "exposed_exterior": 2.3,
+    "exposed_lift_shaft": 0.0
+   }
+  },
+  "plaster_perimeter_all": 106.69,
+  "plaster_perimeter_model_space_only": 83.72,
+  "exterior_perimeter_all": 9.26,
+  "exterior_perimeter_model_space_only": 6.0,
+  "lift_shaft_perimeter": 7.94,
+  "exposed_perimeter_gross_all": 123.89,
+  "exposed_perimeter_gross_model_space_only": 97.66,
+  "shafts": 15,
+  "shaft_area": 8.031,
+  "shafts_confirmed": 12,
+  "shaft_area_confirmed": 5.604,
+  "shafts_uncertain": 3,
+  "shaft_area_uncertain": 2.427,
+  "shafts_uncertain_ids": [
+   "SH05 1.03 x 0.60 (shaft? (1 DASH diagonal, no try box))",
+   "SH08 1.00 x 0.40 (shaft (X, DASH only))",
+   "SH12 0.92 x 1.52 (shaft (X, DASH only))"
+  ],
+  "boxes_without_x": [],
+  "boxes_without_x_confirmed_elsewhere": [],
+  "posts_at_curtain_wall": 3,
+  "stray_hatched_try": [],
+  "door_heads": {
+   "doors": 38,
+   "with_2": 25,
+   "with_1": 11,
+   "with_0": 2,
+   "with_3plus": 0
+  },
+  "W_duplicated_len": 14.53,
+  "stairs": 2,
+  "lift_cars": 2,
+  "x_axes": "ا ب ج د ه و ز ح ط",
+  "y_axes": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15",
+  "dims": 238,
+  "dims_by_class": {
+   "axis_chain": 44,
+   "facade_chain": 52,
+   "facade_step": 68,
+   "interior": 59,
+   "other (end not on any line)": 10,
+   "overall": 5
+  },
+  "dash": {
+   "door_head": {
+    "n": 61,
+    "len": 55.9
+   },
+   "lift_core_divider": {
+    "n": 1,
+    "len": 2.26
+   },
+   "shaft_cross": {
+    "n": 29,
+    "len": 32.49
+   },
+   "shaft_outline": {
+    "n": 4,
+    "len": 2.82
+   },
+   "stair_flight_above_cut": {
+    "n": 48,
+    "len": 52.7
+   },
+   "window_head": {
+    "n": 12,
+    "len": 25.38
+   }
+  }
+ },
+ "F08": {
+  "elements_by_kind": {
+   "column": 10,
+   "shear_wall": 11,
+   "column_xbox": 2,
+   "core": 1
+  },
+  "totals_by_kind": {
+   "column": {
+    "n": 5,
+    "area": 3.06,
+    "perimeter": 18.0,
+    "exposed_perimeter": 15.12,
+    "exposed_interior": 13.7,
+    "exposed_exterior": 1.42,
+    "exposed_lift_shaft": 0.0
+   },
+   "column (tr block only)": {
+    "n": 5,
+    "area": 3.006,
+    "perimeter": 16.982,
+    "exposed_perimeter": 14.93,
+    "exposed_interior": 13.97,
+    "exposed_exterior": 0.96,
+    "exposed_lift_shaft": 0.0
+   },
+   "column_xbox": {
+    "n": 2,
+    "area": 0.324,
+    "perimeter": 3.224,
+    "exposed_perimeter": 2.42,
+    "exposed_interior": 2.42,
+    "exposed_exterior": 0.0,
+    "exposed_lift_shaft": 0.0
+   },
+   "core": {
+    "n": 1,
+    "area": 2.796,
+    "perimeter": 19.24,
+    "exposed_perimeter": 17.7,
+    "exposed_interior": 9.76,
+    "exposed_exterior": 0.0,
+    "exposed_lift_shaft": 7.94
+   },
+   "shear_wall": {
+    "n": 9,
+    "area": 12.76,
+    "perimeter": 71.0,
+    "exposed_perimeter": 64.84,
+    "exposed_interior": 60.26,
+    "exposed_exterior": 4.58,
+    "exposed_lift_shaft": 0.0
+   },
+   "shear_wall (tr block only)": {
+    "n": 2,
+    "area": 1.88,
+    "perimeter": 12.708,
+    "exposed_perimeter": 11.71,
+    "exposed_interior": 9.41,
+    "exposed_exterior": 2.3,
+    "exposed_lift_shaft": 0.0
+   }
+  },
+  "plaster_perimeter_all": 107.1,
+  "plaster_perimeter_model_space_only": 83.72,
+  "exterior_perimeter_all": 9.26,
+  "exterior_perimeter_model_space_only": 6.0,
+  "lift_shaft_perimeter": 7.94,
+  "exposed_perimeter_gross_all": 124.3,
+  "exposed_perimeter_gross_model_space_only": 97.66,
+  "shafts": 15,
+  "shaft_area": 8.031,
+  "shafts_confirmed": 12,
+  "shaft_area_confirmed": 5.604,
+  "shafts_uncertain": 3,
+  "shaft_area_uncertain": 2.427,
+  "shafts_uncertain_ids": [
+   "SH05 1.03 x 0.60 (shaft? (1 DASH diagonal, no try box))",
+   "SH08 1.00 x 0.40 (shaft (X, DASH only))",
+   "SH12 0.92 x 1.52 (shaft (X, DASH only))"
+  ],
+  "boxes_without_x": [],
+  "boxes_without_x_confirmed_elsewhere": [],
+  "posts_at_curtain_wall": 3,
+  "stray_hatched_try": [],
+  "door_heads": {
+   "doors": 36,
+   "with_2": 23,
+   "with_1": 11,
+   "with_0": 2,
+   "with_3plus": 0
+  },
+  "W_duplicated_len": 13.43,
+  "stairs": 2,
+  "lift_cars": 2,
+  "x_axes": "ا ب ج د ه و ز ح ط",
+  "y_axes": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15",
+  "dims": 239,
+  "dims_by_class": {
+   "axis_chain": 44,
+   "facade_chain": 52,
+   "facade_step": 68,
+   "interior": 56,
+   "other (end not on any line)": 14,
+   "overall": 5
+  },
+  "dash": {
+   "door_head": {
+    "n": 57,
+    "len": 52.7
+   },
+   "lift_core_divider": {
+    "n": 1,
+    "len": 2.26
+   },
+   "on_structure_face": {
+    "n": 1,
+    "len": 0.9
+   },
+   "shaft_cross": {
+    "n": 29,
+    "len": 32.49
+   },
+   "shaft_outline": {
+    "n": 4,
+    "len": 2.82
+   },
+   "stair_flight_above_cut": {
+    "n": 48,
+    "len": 52.7
+   },
+   "window_head": {
+    "n": 12,
+    "len": 25.38
+   }
+  }
+ },
+ "F09": {
+  "elements_by_kind": {
+   "column": 11,
+   "shear_wall": 11,
+   "column_xbox": 2,
+   "core": 1
+  },
+  "totals_by_kind": {
+   "column": {
+    "n": 6,
+    "area": 3.66,
+    "perimeter": 21.4,
+    "exposed_perimeter": 18.06,
+    "exposed_interior": 16.64,
+    "exposed_exterior": 1.42,
+    "exposed_lift_shaft": 0.0
+   },
+   "column (tr block only)": {
+    "n": 5,
+    "area": 3.006,
+    "perimeter": 16.982,
+    "exposed_perimeter": 16.98,
+    "exposed_interior": 13.68,
+    "exposed_exterior": 3.3,
+    "exposed_lift_shaft": 0.0
+   },
+   "column_xbox": {
+    "n": 2,
+    "area": 0.324,
+    "perimeter": 3.224,
+    "exposed_perimeter": 2.42,
+    "exposed_interior": 2.42,
+    "exposed_exterior": 0.0,
+    "exposed_lift_shaft": 0.0
+   },
+   "core": {
+    "n": 1,
+    "area": 2.796,
+    "perimeter": 19.24,
+    "exposed_perimeter": 17.56,
+    "exposed_interior": 9.62,
+    "exposed_exterior": 0.0,
+    "exposed_lift_shaft": 7.94
+   },
+   "shear_wall": {
+    "n": 9,
+    "area": 12.76,
+    "perimeter": 71.0,
+    "exposed_perimeter": 65.28,
+    "exposed_interior": 59.86,
+    "exposed_exterior": 5.42,
+    "exposed_lift_shaft": 0.0
+   },
+   "shear_wall (tr block only)": {
+    "n": 2,
+    "area": 1.88,
+    "perimeter": 12.708,
+    "exposed_perimeter": 11.94,
+    "exposed_interior": 9.64,
+    "exposed_exterior": 2.3,
+    "exposed_lift_shaft": 0.0
+   }
+  },
+  "plaster_perimeter_all": 109.44,
+  "plaster_perimeter_model_space_only": 86.12,
+  "exterior_perimeter_all": 12.44,
+  "exterior_perimeter_model_space_only": 6.84,
+  "lift_shaft_perimeter": 7.94,
+  "exposed_perimeter_gross_all": 129.82,
+  "exposed_perimeter_gross_model_space_only": 100.9,
+  "shafts": 9,
+  "shaft_area": 5.941,
+  "shafts_confirmed": 7,
+  "shaft_area_confirmed": 4.132,
+  "shafts_uncertain": 2,
+  "shaft_area_uncertain": 1.809,
+  "shafts_uncertain_ids": [
+   "SH08 1.00 x 0.40 (shaft (X, DASH only))",
+   "SH12 0.92 x 1.52 (shaft (X, DASH only))"
+  ],
+  "boxes_without_x": [
+   "SH14",
+   "SH18"
+  ],
+  "boxes_without_x_confirmed_elsewhere": [
+   "SH14",
+   "SH18"
+  ],
+  "posts_at_curtain_wall": 3,
+  "stray_hatched_try": [],
+  "door_heads": {
+   "doors": 30,
+   "with_2": 27,
+   "with_1": 1,
+   "with_0": 2,
+   "with_3plus": 0
+  },
+  "W_duplicated_len": 3.21,
+  "stairs": 2,
+  "lift_cars": 2,
+  "x_axes": "ا ب ج د ه و ز ح ط",
+  "y_axes": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15",
+  "dims": 113,
+  "dims_by_class": {
+   "axis_chain": 44,
+   "facade_chain": 2,
+   "interior": 47,
+   "other (end not on any line)": 18,
+   "overall": 2
+  },
+  "dash": {
+   "door_head": {
+    "n": 55,
+    "len": 51.6
+   },
+   "lift_core_divider": {
+    "n": 1,
+    "len": 2.26
+   },
+   "shaft_cross": {
+    "n": 14,
+    "len": 17.79
+   },
+   "shaft_outline": {
+    "n": 4,
+    "len": 2.82
+   },
+   "stair_flight_above_cut": {
+    "n": 48,
+    "len": 52.7
+   }
+  }
+ },
+ "F10": {
+  "elements_by_kind": {
+   "column": 11,
+   "shear_wall": 11,
+   "column_xbox": 2,
+   "core": 1
+  },
+  "totals_by_kind": {
+   "column": {
+    "n": 6,
+    "area": 3.66,
+    "perimeter": 21.4,
+    "exposed_perimeter": 18.18,
+    "exposed_interior": 16.26,
+    "exposed_exterior": 1.92,
+    "exposed_lift_shaft": 0.0
+   },
+   "column (tr block only)": {
+    "n": 5,
+    "area": 3.006,
+    "perimeter": 16.982,
+    "exposed_perimeter": 16.98,
+    "exposed_interior": 12.96,
+    "exposed_exterior": 4.02,
+    "exposed_lift_shaft": 0.0
+   },
+   "column_xbox": {
+    "n": 2,
+    "area": 0.324,
+    "perimeter": 3.224,
+    "exposed_perimeter": 2.42,
+    "exposed_interior": 2.42,
+    "exposed_exterior": 0.0,
+    "exposed_lift_shaft": 0.0
+   },
+   "core": {
+    "n": 1,
+    "area": 2.796,
+    "perimeter": 19.24,
+    "exposed_perimeter": 17.56,
+    "exposed_interior": 9.62,
+    "exposed_exterior": 0.0,
+    "exposed_lift_shaft": 7.94
+   },
+   "shear_wall": {
+    "n": 9,
+    "area": 12.76,
+    "perimeter": 71.0,
+    "exposed_perimeter": 66.22,
+    "exposed_interior": 59.4,
+    "exposed_exterior": 6.82,
+    "exposed_lift_shaft": 0.0
+   },
+   "shear_wall (tr block only)": {
+    "n": 2,
+    "area": 1.88,
+    "perimeter": 12.708,
+    "exposed_perimeter": 11.96,
+    "exposed_interior": 9.21,
+    "exposed_exterior": 2.75,
+    "exposed_lift_shaft": 0.0
+   }
+  },
+  "plaster_perimeter_all": 107.45,
+  "plaster_perimeter_model_space_only": 85.28,
+  "exterior_perimeter_all": 15.51,
+  "exterior_perimeter_model_space_only": 8.74,
+  "lift_shaft_perimeter": 7.94,
+  "exposed_perimeter_gross_all": 130.9,
+  "exposed_perimeter_gross_model_space_only": 101.96,
+  "shafts": 9,
+  "shaft_area": 5.941,
+  "shafts_confirmed": 7,
+  "shaft_area_confirmed": 4.132,
+  "shafts_uncertain": 2,
+  "shaft_area_uncertain": 1.809,
+  "shafts_uncertain_ids": [
+   "SH08 1.00 x 0.40 (shaft (X, DASH only))",
+   "SH12 0.92 x 1.52 (shaft (X, DASH only))"
+  ],
+  "boxes_without_x": [
+   "SH14",
+   "SH18"
+  ],
+  "boxes_without_x_confirmed_elsewhere": [
+   "SH14",
+   "SH18"
+  ],
+  "posts_at_curtain_wall": 3,
+  "stray_hatched_try": [
+   "SH20",
+   "SH21"
+  ],
+  "door_heads": {
+   "doors": 31,
+   "with_2": 27,
+   "with_1": 1,
+   "with_0": 3,
+   "with_3plus": 0
+  },
+  "W_duplicated_len": 1.75,
+  "stairs": 2,
+  "lift_cars": 2,
+  "x_axes": "ا ب ج د ه و ز ح ط",
+  "y_axes": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15",
+  "dims": 106,
+  "dims_by_class": {
+   "axis_chain": 44,
+   "interior": 50,
+   "other (end not on any line)": 10,
+   "overall": 2
+  },
+  "dash": {
+   "door_head": {
+    "n": 55,
+    "len": 51.6
+   },
+   "lift_core_divider": {
+    "n": 1,
+    "len": 2.26
+   },
+   "shaft_cross": {
+    "n": 14,
+    "len": 17.79
+   },
+   "shaft_outline": {
+    "n": 4,
+    "len": 2.82
+   },
+   "stair_flight_above_cut": {
+    "n": 48,
+    "len": 52.7
+   }
+  }
+ },
+ "F11": {
+  "elements_by_kind": {
+   "column": 11,
+   "shear_wall": 11,
+   "column_xbox": 2,
+   "core": 1
+  },
+  "totals_by_kind": {
+   "column": {
+    "n": 6,
+    "area": 3.66,
+    "perimeter": 21.4,
+    "exposed_perimeter": 18.18,
+    "exposed_interior": 14.86,
+    "exposed_exterior": 3.32,
+    "exposed_lift_shaft": 0.0
+   },
+   "column (tr block only)": {
+    "n": 5,
+    "area": 3.006,
+    "perimeter": 16.982,
+    "exposed_perimeter": 16.98,
+    "exposed_interior": 11.06,
+    "exposed_exterior": 5.93,
+    "exposed_lift_shaft": 0.0
+   },
+   "column_xbox": {
+    "n": 2,
+    "area": 0.324,
+    "perimeter": 3.224,
+    "exposed_perimeter": 2.42,
+    "exposed_interior": 2.42,
+    "exposed_exterior": 0.0,
+    "exposed_lift_shaft": 0.0
+   },
+   "core": {
+    "n": 1,
+    "area": 2.796,
+    "perimeter": 19.24,
+    "exposed_perimeter": 17.56,
+    "exposed_interior": 9.62,
+    "exposed_exterior": 0.0,
+    "exposed_lift_shaft": 7.94
+   },
+   "shear_wall": {
+    "n": 9,
+    "area": 12.76,
+    "perimeter": 71.0,
+    "exposed_perimeter": 65.82,
+    "exposed_interior": 56.78,
+    "exposed_exterior": 9.04,
+    "exposed_lift_shaft": 0.0
+   },
+   "shear_wall (tr block only)": {
+    "n": 2,
+    "area": 1.88,
+    "perimeter": 12.708,
+    "exposed_perimeter": 12.07,
+    "exposed_interior": 8.72,
+    "exposed_exterior": 3.35,
+    "exposed_lift_shaft": 0.0
+   }
+  },
+  "plaster_perimeter_all": 101.04,
+  "plaster_perimeter_model_space_only": 81.26,
+  "exterior_perimeter_all": 21.64,
+  "exterior_perimeter_model_space_only": 12.36,
+  "lift_shaft_perimeter": 7.94,
+  "exposed_perimeter_gross_all": 130.61,
+  "exposed_perimeter_gross_model_space_only": 101.56,
+  "shafts": 7,
+  "shaft_area": 5.461,
+  "shafts_confirmed": 5,
+  "shaft_area_confirmed": 3.652,
+  "shafts_uncertain": 2,
+  "shaft_area_uncertain": 1.809,
+  "shafts_uncertain_ids": [
+   "SH08 1.00 x 0.40 (shaft (X, DASH only))",
+   "SH12 0.92 x 1.52 (shaft (X, DASH only))"
+  ],
+  "boxes_without_x": [
+   "SH14"
+  ],
+  "boxes_without_x_confirmed_elsewhere": [
+   "SH14"
+  ],
+  "posts_at_curtain_wall": 3,
+  "stray_hatched_try": [],
+  "door_heads": {
+   "doors": 30,
+   "with_2": 25,
+   "with_1": 3,
+   "with_0": 2,
+   "with_3plus": 0
+  },
+  "W_duplicated_len": 4.75,
+  "stairs": 2,
+  "lift_cars": 2,
+  "x_axes": "ا ب ج د ه و ز ح ط",
+  "y_axes": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15",
+  "dims": 118,
+  "dims_by_class": {
+   "axis_chain": 44,
+   "facade_chain": 1,
+   "interior": 54,
+   "other (end not on any line)": 16,
+   "overall": 2,
+   "wall_thickness": 1
+  },
+  "dash": {
+   "door_head": {
+    "n": 53,
+    "len": 49.6
+   },
+   "lift_core_divider": {
+    "n": 1,
+    "len": 2.26
+   },
+   "shaft_cross": {
+    "n": 12,
+    "len": 16.35
+   },
+   "shaft_outline": {
+    "n": 4,
+    "len": 2.82
+   },
+   "stair_flight_above_cut": {
+    "n": 49,
+    "len": 53.21
+   }
+  }
+ },
+ "canonical_shafts": [
+  {
+   "bbox": [
+    5.22,
+    35.04,
+    5.62,
+    35.64
+   ],
+   "kind": "shaft (X)",
+   "size_txt": "0.40 x 0.60",
+   "area": 0.24,
+   "perimeter": 2.0,
+   "dash_diagonals": 2,
+   "grid_ref": "و-1.44 / 14-1.83",
+   "floors": [
+    "F02",
+    "F03",
+    "F04",
+    "F05",
+    "F06",
+    "F07",
+    "F08"
+   ],
+   "kinds": {
+    "shaft (X)": 7
+   },
+   "id": "SH01"
+  },
+  {
+   "bbox": [
+    5.1,
+    34.92,
+    5.74,
+    35.76
+   ],
+   "kind": "shaft enclosure (box around 0.40 x 0.60)",
+   "size_txt": "0.64 x 0.84",
+   "area": 0.538,
+   "perimeter": 2.96,
+   "dash_diagonals": 2,
+   "grid_ref": "و-1.44 / 14-1.83",
+   "floors": [
+    "F05",
+    "F06",
+    "F07",
+    "F08"
+   ],
+   "kinds": {
+    "shaft enclosure (box around 0.40 x 0.60)": 4
+   },
+   "id": "SH02"
+  },
+  {
+   "bbox": [
+    9.86,
+    34.93,
+    10.26,
+    35.53
+   ],
+   "kind": "shaft (X)",
+   "size_txt": "0.40 x 0.60",
+   "area": 0.24,
+   "perimeter": 2.0,
+   "dash_diagonals": 2,
+   "grid_ref": "د+0.31 / 14-1.94",
+   "floors": [
+    "F02",
+    "F03",
+    "F04",
+    "F05",
+    "F06",
+    "F07",
+    "F08"
+   ],
+   "kinds": {
+    "shaft (X)": 7
+   },
+   "id": "SH03"
+  },
+  {
+   "bbox": [
+    10.06,
+    31.6,
+    10.46,
+    32.2
+   ],
+   "kind": "shaft (X)",
+   "size_txt": "0.40 x 0.60",
+   "area": 0.24,
+   "perimeter": 2.0,
+   "dash_diagonals": 2,
+   "grid_ref": "د+0.51 / 13-0.82",
+   "floors": [
+    "F02",
+    "F03",
+    "F04",
+    "F05",
+    "F06",
+    "F07",
+    "F08",
+    "F09",
+    "F10",
+    "F11"
+   ],
+   "kinds": {
+    "shaft (X)": 10
+   },
+   "id": "SH04"
+  },
+  {
+   "bbox": [
+    13.505,
+    29.0,
+    14.535,
+    29.6
+   ],
+   "kind": "shaft? (1 DASH diagonal, no try box)",
+   "size_txt": "1.03 x 0.60",
+   "area": 0.618,
+   "perimeter": 3.26,
+   "dash_diagonals": 1,
+   "grid_ref": "ج-0.38 / 12+0.03",
+   "floors": [
+    "F03",
+    "F04",
+    "F05",
+    "F06",
+    "F07",
+    "F08"
+   ],
+   "kinds": {
+    "shaft? (1 DASH diagonal, no try box)": 6
+   },
+   "id": "SH05"
+  },
+  {
+   "bbox": [
+    5.22,
+    28.64,
+    5.62,
+    29.24
+   ],
+   "kind": "shaft (X)",
+   "size_txt": "0.40 x 0.60",
+   "area": 0.24,
+   "perimeter": 2.0,
+   "dash_diagonals": 2,
+   "grid_ref": "و-1.44 / 12-0.33",
+   "floors": [
+    "F02",
+    "F03",
+    "F04",
+    "F05",
+    "F06",
+    "F07",
+    "F08",
+    "F09",
+    "F10"
+   ],
+   "kinds": {
+    "shaft (X)": 9
+   },
+   "id": "SH06"
+  },
+  {
+   "bbox": [
+    -0.13,
+    25.53,
+    0.47,
+    25.78
+   ],
+   "kind": "post_at_curtain_wall (hatched)",
+   "size_txt": "0.60 x 0.25",
+   "area": 0.15,
+   "perimeter": 1.7,
+   "dash_diagonals": 0,
+   "grid_ref": "ح-0.84 / 11-0.52",
+   "floors": [
+    "F02",
+    "F03",
+    "F04",
+    "F05",
+    "F06",
+    "F07",
+    "F08",
+    "F09",
+    "F10",
+    "F11"
+   ],
+   "kinds": {
+    "post_at_curtain_wall (hatched)": 10
+   },
+   "id": "SH07"
+  },
+  {
+   "bbox": [
+    17.609,
+    23.896,
+    18.614,
+    24.3
+   ],
+   "kind": "shaft (X, DASH only)",
+   "size_txt": "1.00 x 0.40",
+   "area": 0.406,
+   "perimeter": 2.817,
+   "dash_diagonals": 2,
+   "grid_ref": "ا+0.71 / 10-0.72",
+   "floors": [
+    "F02",
+    "F03",
+    "F04",
+    "F05",
+    "F06",
+    "F07",
+    "F08",
+    "F09",
+    "F10",
+    "F11"
+   ],
+   "kinds": {
+    "shaft (X, DASH only)": 10
+   },
+   "id": "SH08"
+  },
+  {
+   "bbox": [
+    12.38,
+    22.6,
+    12.78,
+    23.63
+   ],
+   "kind": "shaft (X)",
+   "size_txt": "0.40 x 1.03",
+   "area": 0.412,
+   "perimeter": 2.86,
+   "dash_diagonals": 2,
+   "grid_ref": "ج-1.82 / 9+0.89",
+   "floors": [
+    "F02",
+    "F03",
+    "F04",
+    "F05",
+    "F06",
+    "F07",
+    "F08",
+    "F09",
+    "F10",
+    "F11"
+   ],
+   "kinds": {
+    "shaft (X)": 10
+   },
+   "id": "SH09"
+  },
+  {
+   "bbox": [
+    5.22,
+    21.95,
+    6.935,
+    22.55
+   ],
+   "kind": "shaft (X)",
+   "size_txt": "1.72 x 0.60",
+   "area": 1.029,
+   "perimeter": 4.63,
+   "dash_diagonals": 2,
+   "grid_ref": "و-0.78 / 9+0.03",
+   "floors": [
+    "F02",
+    "F03",
+    "F04",
+    "F05",
+    "F06",
+    "F07",
+    "F08",
+    "F09",
+    "F10",
+    "F11"
+   ],
+   "kinds": {
+    "shaft (X)": 10
+   },
+   "id": "SH10"
+  },
+  {
+   "bbox": [
+    0.005,
+    18.754,
+    0.555,
+    19.054
+   ],
+   "kind": "post_at_curtain_wall (hatched)",
+   "size_txt": "0.55 x 0.30",
+   "area": 0.165,
+   "perimeter": 1.7,
+   "dash_diagonals": 0,
+   "grid_ref": "ح-0.72 / 8-0.02",
+   "floors": [
+    "F02",
+    "F03",
+    "F04",
+    "F05",
+    "F06",
+    "F07",
+    "F08",
+    "F09",
+    "F10",
+    "F11"
+   ],
+   "kinds": {
+    "post_at_curtain_wall (hatched)": 10
+   },
+   "id": "SH11"
+  },
+  {
+   "bbox": [
+    14.933,
+    17.397,
+    15.854,
+    18.922
+   ],
+   "kind": "shaft (X, DASH only)",
+   "size_txt": "0.92 x 1.52",
+   "area": 1.403,
+   "perimeter": 4.89,
+   "dash_diagonals": 2,
+   "grid_ref": "ج+0.99 / 8-0.76",
+   "floors": [
+    "F02",
+    "F03",
+    "F04",
+    "F05",
+    "F06",
+    "F07",
+    "F08",
+    "F09",
+    "F10",
+    "F11"
+   ],
+   "kinds": {
+    "shaft (X, DASH only)": 10
+   },
+   "id": "SH12"
+  },
+  {
+   "bbox": [
+    -0.0,
+    15.58,
+    0.6,
+    15.83
+   ],
+   "kind": "post_at_curtain_wall (hatched)",
+   "size_txt": "0.60 x 0.25",
+   "area": 0.15,
+   "perimeter": 1.7,
+   "dash_diagonals": 0,
+   "grid_ref": "ح-0.71 / 7-0.17",
+   "floors": [
+    "F02",
+    "F03",
+    "F04",
+    "F05",
+    "F06",
+    "F07",
+    "F08",
+    "F09",
+    "F10",
+    "F11"
+   ],
+   "kinds": {
+    "post_at_curtain_wall (hatched)": 10
+   },
+   "id": "SH13"
+  },
+  {
+   "bbox": [
+    5.22,
+    15.34,
+    6.935,
+    15.94
+   ],
+   "kind": "shaft (X)",
+   "size_txt": "1.72 x 0.60",
+   "area": 1.029,
+   "perimeter": 4.63,
+   "dash_diagonals": 2,
+   "grid_ref": "و-0.78 / 7-0.23",
+   "floors": [
+    "F02",
+    "F03",
+    "F04",
+    "F05",
+    "F06",
+    "F07",
+    "F08",
+    "F09",
+    "F10",
+    "F11"
+   ],
+   "kinds": {
+    "shaft (X)": 7,
+    "box (no X)": 3
+   },
+   "id": "SH14"
+  },
+  {
+   "bbox": [
+    10.157,
+    11.69,
+    10.557,
+    12.84
+   ],
+   "kind": "shaft (X)",
+   "size_txt": "0.40 x 1.15",
+   "area": 0.46,
+   "perimeter": 3.1,
+   "dash_diagonals": 2,
+   "grid_ref": "د+0.60 / 6-0.46",
+   "floors": [
+    "F02",
+    "F03",
+    "F04",
+    "F05",
+    "F06",
+    "F07",
+    "F08"
+   ],
+   "kinds": {
+    "shaft (X)": 7
+   },
+   "id": "SH15"
+  },
+  {
+   "bbox": [
+    5.365,
+    8.815,
+    6.935,
+    9.415
+   ],
+   "kind": "shaft (X)",
+   "size_txt": "1.57 x 0.60",
+   "area": 0.942,
+   "perimeter": 4.34,
+   "dash_diagonals": 2,
+   "grid_ref": "و-0.70 / 5-0.76",
+   "floors": [
+    "F02",
+    "F03",
+    "F04",
+    "F05",
+    "F06",
+    "F07",
+    "F08",
+    "F09",
+    "F10",
+    "F11"
+   ],
+   "kinds": {
+    "shaft (X)": 10
+   },
+   "id": "SH16"
+  },
+  {
+   "bbox": [
+    10.157,
+    5.41,
+    10.557,
+    6.14
+   ],
+   "kind": "shaft (X)",
+   "size_txt": "0.40 x 0.73",
+   "area": 0.292,
+   "perimeter": 2.26,
+   "dash_diagonals": 2,
+   "grid_ref": "د+0.60 / 4-0.40",
+   "floors": [
+    "F02",
+    "F03",
+    "F04",
+    "F05",
+    "F06",
+    "F07",
+    "F08"
+   ],
+   "kinds": {
+    "shaft (X)": 7
+   },
+   "id": "SH17"
+  },
+  {
+   "bbox": [
+    9.075,
+    2.93,
+    9.475,
+    3.53
+   ],
+   "kind": "shaft (X)",
+   "size_txt": "0.40 x 0.60",
+   "area": 0.24,
+   "perimeter": 2.0,
+   "dash_diagonals": 2,
+   "grid_ref": "د-0.48 / 3+0.61",
+   "floors": [
+    "F02",
+    "F03",
+    "F04",
+    "F05",
+    "F06",
+    "F07",
+    "F08",
+    "F09",
+    "F10"
+   ],
+   "kinds": {
+    "shaft (X)": 7,
+    "box (no X)": 2
+   },
+   "id": "SH18"
+  },
+  {
+   "bbox": [
+    4.905,
+    2.35,
+    5.305,
+    2.95
+   ],
+   "kind": "shaft (X)",
+   "size_txt": "0.40 x 0.60",
+   "area": 0.24,
+   "perimeter": 2.0,
+   "dash_diagonals": 2,
+   "grid_ref": "ز+1.70 / 3+0.03",
+   "floors": [
+    "F02",
+    "F03",
+    "F04",
+    "F05",
+    "F06",
+    "F07",
+    "F08"
+   ],
+   "kinds": {
+    "shaft (X)": 7
+   },
+   "id": "SH19"
+  },
+  {
+   "bbox": [
+    -0.13,
+    0.515,
+    0.219,
+    1.33
+   ],
+   "kind": "stray hatched try object",
+   "size_txt": "0.35 x 0.82",
+   "area": 0.198,
+   "perimeter": 2.084,
+   "dash_diagonals": 0,
+   "grid_ref": "ط-1.29 / 2+0.15",
+   "floors": [
+    "F10"
+   ],
+   "kinds": {
+    "stray hatched try object": 1
+   },
+   "id": "SH20"
+  },
+  {
+   "bbox": [
+    2.205,
+    -1.82,
+    3.02,
+    -1.471
+   ],
+   "kind": "stray hatched try object",
+   "size_txt": "0.82 x 0.35",
+   "area": 0.198,
+   "perimeter": 2.084,
+   "dash_diagonals": 0,
+   "grid_ref": "ح-0.62 / 1-0.52",
+   "floors": [
+    "F10"
+   ],
+   "kinds": {
+    "stray hatched try object": 1
+   },
+   "id": "SH21"
+  }
+ ]
+}

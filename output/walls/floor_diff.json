@@ -1,0 +1,4363 @@
+{
+ "F02": {
+  "vs": "F03",
+  "only_on_this_floor_len": 16.54,
+  "only_on_ref_len": 22.0,
+  "only_on_this_floor": [
+   {
+    "id": "W1",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.04,
+    "x1": 3.53,
+    "y1": 38.171,
+    "x2": 3.53,
+    "y2": 39.215
+   },
+   {
+    "id": "W2",
+    "thickness": 0.57,
+    "kind": "exterior",
+    "missing_len": 0.63,
+    "x1": 3.47,
+    "y1": 39.735,
+    "x2": 4.1,
+    "y2": 39.735
+   },
+   {
+    "id": "W12",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 0.35,
+    "x1": 12.63,
+    "y1": 38.575,
+    "x2": 16.555,
+    "y2": 38.575
+   },
+   {
+    "id": "W13",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 16.205,
+    "y1": 38.76,
+    "x2": 16.505,
+    "y2": 38.76
+   },
+   {
+    "id": "W15",
+    "thickness": 0.45,
+    "kind": "interior",
+    "missing_len": 1.24,
+    "x1": 8.479,
+    "y1": 37.608,
+    "x2": 8.479,
+    "y2": 38.85
+   },
+   {
+    "id": "W17",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 0.46,
+    "y1": 35.22,
+    "x2": 0.46,
+    "y2": 35.52
+   },
+   {
+    "id": "W21",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.2,
+    "x1": 2.197,
+    "y1": 35.586,
+    "x2": 5.04,
+    "y2": 35.586
+   },
+   {
+    "id": "W25",
+    "thickness": 0.3,
+    "kind": "interior",
+    "missing_len": 1.5,
+    "x1": 8.404,
+    "y1": 35.351,
+    "x2": 8.404,
+    "y2": 36.851
+   },
+   {
+    "id": "W29",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 0.645,
+    "y1": 32.26,
+    "x2": 0.645,
+    "y2": 35.52
+   },
+   {
+    "id": "W55",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.77,
+    "x1": 5.16,
+    "y1": 30.94,
+    "x2": 6.935,
+    "y2": 30.94
+   },
+   {
+    "id": "W60",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.64,
+    "x1": 5.16,
+    "y1": 29.299,
+    "x2": 5.16,
+    "y2": 30.94
+   },
+   {
+    "id": "W66",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 0.42,
+    "x1": 0.645,
+    "y1": 25.656,
+    "x2": 0.645,
+    "y2": 32.26
+   },
+   {
+    "id": "W82",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 0.46,
+    "y1": 25.783,
+    "x2": 0.46,
+    "y2": 26.08
+   },
+   {
+    "id": "W151",
+    "thickness": 0.5,
+    "kind": "interior",
+    "missing_len": 1.49,
+    "x1": 9.205,
+    "y1": 11.99,
+    "x2": 9.205,
+    "y2": 13.484
+   },
+   {
+    "id": "W153",
+    "thickness": 0.582,
+    "kind": "interior",
+    "missing_len": 0.91,
+    "x1": 9.746,
+    "y1": 12.05,
+    "x2": 9.746,
+    "y2": 12.96
+   },
+   {
+    "id": "W215",
+    "thickness": 0.6,
+    "kind": "exterior",
+    "missing_len": 0.34,
+    "x1": 0.47,
+    "y1": 2.065,
+    "x2": 0.47,
+    "y2": 2.41
+   },
+   {
+    "id": "W216",
+    "thickness": 0.57,
+    "kind": "exterior",
+    "missing_len": 1.01,
+    "x1": 0.47,
+    "y1": 2.065,
+    "x2": 1.476,
+    "y2": 2.065
+   },
+   {
+    "id": "W219",
+    "thickness": 0.35,
+    "kind": "interior",
+    "missing_len": 1.2,
+    "x1": 9.13,
+    "y1": 0.715,
+    "x2": 9.13,
+    "y2": 1.918
+   },
+   {
+    "id": "W220",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.05,
+    "x1": 3.53,
+    "y1": -1.22,
+    "x2": 3.53,
+    "y2": -0.17
+   },
+   {
+    "id": "W227",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 0.25,
+    "x1": 4.1,
+    "y1": -1.045,
+    "x2": 13.305,
+    "y2": -1.045
+   },
+   {
+    "id": "W229",
+    "thickness": 0.127,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 13.055,
+    "y1": -1.234,
+    "x2": 13.355,
+    "y2": -1.234
+   }
+  ],
+  "only_on_ref": [
+   {
+    "id": "W15",
+    "thickness": 0.37,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 0.585,
+    "y1": 35.22,
+    "x2": 0.585,
+    "y2": 35.52
+   },
+   {
+    "id": "W24",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 2.74,
+    "x1": 8.314,
+    "y1": 34.14,
+    "x2": 8.314,
+    "y2": 38.85
+   },
+   {
+    "id": "W60",
+    "thickness": 0.25,
+    "kind": "shaft",
+    "missing_len": 0.72,
+    "x1": 13.38,
+    "y1": 29.0,
+    "x2": 13.38,
+    "y2": 29.725
+   },
+   {
+    "id": "W61",
+    "thickness": 0.25,
+    "kind": "shaft",
+    "missing_len": 1.28,
+    "x1": 13.38,
+    "y1": 29.725,
+    "x2": 14.66,
+    "y2": 29.725
+   },
+   {
+    "id": "W62",
+    "thickness": 0.25,
+    "kind": "shaft",
+    "missing_len": 0.72,
+    "x1": 14.66,
+    "y1": 29.0,
+    "x2": 14.66,
+    "y2": 29.725
+   },
+   {
+    "id": "W65",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.92,
+    "x1": 0.77,
+    "y1": 28.94,
+    "x2": 1.69,
+    "y2": 28.94
+   },
+   {
+    "id": "W66",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.41,
+    "x1": 3.69,
+    "y1": 28.94,
+    "x2": 5.1,
+    "y2": 28.94
+   },
+   {
+    "id": "W86",
+    "thickness": 0.37,
+    "kind": "exterior",
+    "missing_len": 0.42,
+    "x1": 0.585,
+    "y1": 25.657,
+    "x2": 0.585,
+    "y2": 26.08
+   },
+   {
+    "id": "W87",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 6.17,
+    "x1": 0.77,
+    "y1": 25.59,
+    "x2": 6.935,
+    "y2": 25.59
+   },
+   {
+    "id": "W96",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.56,
+    "x1": 5.16,
+    "y1": 22.61,
+    "x2": 5.16,
+    "y2": 24.171
+   },
+   {
+    "id": "W97",
+    "thickness": 0.122,
+    "kind": "interior",
+    "missing_len": 1.77,
+    "x1": 5.16,
+    "y1": 24.171,
+    "x2": 6.935,
+    "y2": 24.171
+   },
+   {
+    "id": "W153",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.49,
+    "x1": 9.015,
+    "y1": 11.99,
+    "x2": 9.015,
+    "y2": 15.475
+   },
+   {
+    "id": "W220",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.2,
+    "x1": 9.015,
+    "y1": -0.92,
+    "x2": 9.015,
+    "y2": 2.87
+   },
+   {
+    "id": "W221",
+    "thickness": 0.38,
+    "kind": "exterior",
+    "missing_len": 1.05,
+    "x1": 3.66,
+    "y1": -1.22,
+    "x2": 3.66,
+    "y2": -0.17
+   },
+   {
+    "id": "W229",
+    "thickness": 0.378,
+    "kind": "exterior",
+    "missing_len": 0.25,
+    "x1": 13.055,
+    "y1": -1.109,
+    "x2": 13.305,
+    "y2": -1.109
+   }
+  ]
+ },
+ "F04": {
+  "vs": "F03",
+  "only_on_this_floor_len": 8.54,
+  "only_on_ref_len": 8.64,
+  "only_on_this_floor": [
+   {
+    "id": "W51",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.77,
+    "x1": 5.16,
+    "y1": 30.94,
+    "x2": 6.935,
+    "y2": 30.94
+   },
+   {
+    "id": "W56",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.28,
+    "x1": 10.52,
+    "y1": 30.26,
+    "x2": 10.52,
+    "y2": 31.54
+   },
+   {
+    "id": "W59",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.64,
+    "x1": 5.16,
+    "y1": 29.299,
+    "x2": 5.16,
+    "y2": 30.94
+   },
+   {
+    "id": "W63",
+    "thickness": 0.121,
+    "kind": "interior",
+    "missing_len": 1.45,
+    "x1": 9.075,
+    "y1": 30.26,
+    "x2": 10.52,
+    "y2": 30.26
+   },
+   {
+    "id": "W160",
+    "thickness": 0.5,
+    "kind": "interior",
+    "missing_len": 1.49,
+    "x1": 9.205,
+    "y1": 11.99,
+    "x2": 9.205,
+    "y2": 13.484
+   },
+   {
+    "id": "W162",
+    "thickness": 0.582,
+    "kind": "interior",
+    "missing_len": 0.91,
+    "x1": 9.746,
+    "y1": 12.05,
+    "x2": 9.746,
+    "y2": 12.96
+   }
+  ],
+  "only_on_ref": [
+   {
+    "id": "W143",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.59,
+    "x1": 5.16,
+    "y1": 13.685,
+    "x2": 5.16,
+    "y2": 15.28
+   },
+   {
+    "id": "W151",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.77,
+    "x1": 5.16,
+    "y1": 13.685,
+    "x2": 6.935,
+    "y2": 13.685
+   },
+   {
+    "id": "W153",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.49,
+    "x1": 9.015,
+    "y1": 11.99,
+    "x2": 9.015,
+    "y2": 15.475
+   },
+   {
+    "id": "W220",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 3.79,
+    "x1": 9.015,
+    "y1": -0.92,
+    "x2": 9.015,
+    "y2": 2.87
+   }
+  ]
+ },
+ "F05": {
+  "vs": "F03",
+  "only_on_this_floor_len": 8.89,
+  "only_on_ref_len": 11.59,
+  "only_on_this_floor": [
+   {
+    "id": "W1",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 1.11,
+    "x1": 3.53,
+    "y1": 38.104,
+    "x2": 3.53,
+    "y2": 39.215
+   },
+   {
+    "id": "W22",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.29,
+    "x1": 5.68,
+    "y1": 36.544,
+    "x2": 5.68,
+    "y2": 36.83
+   },
+   {
+    "id": "W50",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.77,
+    "x1": 5.16,
+    "y1": 30.94,
+    "x2": 6.935,
+    "y2": 30.94
+   },
+   {
+    "id": "W55",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.28,
+    "x1": 10.52,
+    "y1": 30.26,
+    "x2": 10.52,
+    "y2": 31.54
+   },
+   {
+    "id": "W59",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.64,
+    "x1": 5.16,
+    "y1": 29.299,
+    "x2": 5.16,
+    "y2": 30.94
+   },
+   {
+    "id": "W63",
+    "thickness": 0.121,
+    "kind": "interior",
+    "missing_len": 1.45,
+    "x1": 9.075,
+    "y1": 30.26,
+    "x2": 10.52,
+    "y2": 30.26
+   },
+   {
+    "id": "W220",
+    "thickness": 0.6,
+    "kind": "exterior",
+    "missing_len": 0.34,
+    "x1": 0.47,
+    "y1": 2.065,
+    "x2": 0.47,
+    "y2": 2.41
+   },
+   {
+    "id": "W221",
+    "thickness": 0.57,
+    "kind": "exterior",
+    "missing_len": 1.01,
+    "x1": 0.47,
+    "y1": 2.065,
+    "x2": 1.476,
+    "y2": 2.065
+   }
+  ],
+  "only_on_ref": [
+   {
+    "id": "W27",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 5.06,
+    "x1": 11.44,
+    "y1": 35.587,
+    "x2": 16.555,
+    "y2": 35.587
+   },
+   {
+    "id": "W28",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.4,
+    "x1": 5.16,
+    "y1": 33.58,
+    "x2": 5.16,
+    "y2": 34.982
+   },
+   {
+    "id": "W44",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.77,
+    "x1": 5.16,
+    "y1": 33.58,
+    "x2": 6.935,
+    "y2": 33.58
+   },
+   {
+    "id": "W143",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.59,
+    "x1": 5.16,
+    "y1": 13.685,
+    "x2": 5.16,
+    "y2": 15.28
+   },
+   {
+    "id": "W151",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.77,
+    "x1": 5.16,
+    "y1": 13.685,
+    "x2": 6.935,
+    "y2": 13.685
+   }
+  ]
+ },
+ "F06": {
+  "vs": "F03",
+  "only_on_this_floor_len": 9.55,
+  "only_on_ref_len": 6.69,
+  "only_on_this_floor": [
+   {
+    "id": "W1",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 1.11,
+    "x1": 3.53,
+    "y1": 38.104,
+    "x2": 3.53,
+    "y2": 39.215
+   },
+   {
+    "id": "W18",
+    "thickness": 0.504,
+    "kind": "exterior",
+    "missing_len": 0.35,
+    "x1": 0.47,
+    "y1": 35.898,
+    "x2": 1.52,
+    "y2": 35.898
+   },
+   {
+    "id": "W19",
+    "thickness": 0.119,
+    "kind": "interior",
+    "missing_len": 0.31,
+    "x1": 2.152,
+    "y1": 35.586,
+    "x2": 5.16,
+    "y2": 35.586
+   },
+   {
+    "id": "W22",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.29,
+    "x1": 5.68,
+    "y1": 36.544,
+    "x2": 5.68,
+    "y2": 36.83
+   },
+   {
+    "id": "W53",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.77,
+    "x1": 5.16,
+    "y1": 30.94,
+    "x2": 6.935,
+    "y2": 30.94
+   },
+   {
+    "id": "W58",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.28,
+    "x1": 10.52,
+    "y1": 30.26,
+    "x2": 10.52,
+    "y2": 31.54
+   },
+   {
+    "id": "W61",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.64,
+    "x1": 5.16,
+    "y1": 29.299,
+    "x2": 5.16,
+    "y2": 30.94
+   },
+   {
+    "id": "W65",
+    "thickness": 0.121,
+    "kind": "interior",
+    "missing_len": 1.45,
+    "x1": 9.075,
+    "y1": 30.26,
+    "x2": 10.52,
+    "y2": 30.26
+   },
+   {
+    "id": "W219",
+    "thickness": 0.6,
+    "kind": "exterior",
+    "missing_len": 0.34,
+    "x1": 0.47,
+    "y1": 2.065,
+    "x2": 0.47,
+    "y2": 2.41
+   },
+   {
+    "id": "W220",
+    "thickness": 0.57,
+    "kind": "exterior",
+    "missing_len": 1.01,
+    "x1": 0.47,
+    "y1": 2.065,
+    "x2": 1.476,
+    "y2": 2.065
+   }
+  ],
+  "only_on_ref": [
+   {
+    "id": "W96",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.56,
+    "x1": 5.16,
+    "y1": 22.61,
+    "x2": 5.16,
+    "y2": 24.171
+   },
+   {
+    "id": "W97",
+    "thickness": 0.122,
+    "kind": "interior",
+    "missing_len": 1.77,
+    "x1": 5.16,
+    "y1": 24.171,
+    "x2": 6.935,
+    "y2": 24.171
+   },
+   {
+    "id": "W143",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.59,
+    "x1": 5.16,
+    "y1": 13.685,
+    "x2": 5.16,
+    "y2": 15.28
+   },
+   {
+    "id": "W151",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.77,
+    "x1": 5.16,
+    "y1": 13.685,
+    "x2": 6.935,
+    "y2": 13.685
+   }
+  ]
+ },
+ "F07": {
+  "vs": "F03",
+  "only_on_this_floor_len": 7.02,
+  "only_on_ref_len": 6.43,
+  "only_on_this_floor": [
+   {
+    "id": "W1",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 0.88,
+    "x1": 3.53,
+    "y1": 38.104,
+    "x2": 3.53,
+    "y2": 38.98
+   },
+   {
+    "id": "W50",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.77,
+    "x1": 5.16,
+    "y1": 30.94,
+    "x2": 6.935,
+    "y2": 30.94
+   },
+   {
+    "id": "W55",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.28,
+    "x1": 10.52,
+    "y1": 30.26,
+    "x2": 10.52,
+    "y2": 31.54
+   },
+   {
+    "id": "W58",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.64,
+    "x1": 5.16,
+    "y1": 29.299,
+    "x2": 5.16,
+    "y2": 30.94
+   },
+   {
+    "id": "W62",
+    "thickness": 0.121,
+    "kind": "interior",
+    "missing_len": 1.45,
+    "x1": 9.075,
+    "y1": 30.26,
+    "x2": 10.52,
+    "y2": 30.26
+   }
+  ],
+  "only_on_ref": [
+   {
+    "id": "W1",
+    "thickness": 0.47,
+    "kind": "exterior",
+    "missing_len": 0.51,
+    "x1": 3.59,
+    "y1": 39.215,
+    "x2": 4.1,
+    "y2": 39.215
+   },
+   {
+    "id": "W2",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 1.52,
+    "x1": 4.1,
+    "y1": 39.04,
+    "x2": 5.62,
+    "y2": 39.04
+   },
+   {
+    "id": "W199",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.61,
+    "x1": 9.015,
+    "y1": 3.59,
+    "x2": 9.015,
+    "y2": 4.2
+   },
+   {
+    "id": "W220",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 3.79,
+    "x1": 9.015,
+    "y1": -0.92,
+    "x2": 9.015,
+    "y2": 2.87
+   }
+  ]
+ },
+ "F08": {
+  "vs": "F03",
+  "only_on_this_floor_len": 5.87,
+  "only_on_ref_len": 11.52,
+  "only_on_this_floor": [
+   {
+    "id": "W1",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 1.11,
+    "x1": 3.53,
+    "y1": 38.104,
+    "x2": 3.53,
+    "y2": 39.215
+   },
+   {
+    "id": "W51",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.77,
+    "x1": 5.16,
+    "y1": 30.94,
+    "x2": 6.935,
+    "y2": 30.94
+   },
+   {
+    "id": "W57",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.64,
+    "x1": 5.16,
+    "y1": 29.299,
+    "x2": 5.16,
+    "y2": 30.94
+   },
+   {
+    "id": "W214",
+    "thickness": 0.6,
+    "kind": "exterior",
+    "missing_len": 0.34,
+    "x1": 0.47,
+    "y1": 2.065,
+    "x2": 0.47,
+    "y2": 2.41
+   },
+   {
+    "id": "W215",
+    "thickness": 0.57,
+    "kind": "exterior",
+    "missing_len": 1.01,
+    "x1": 0.47,
+    "y1": 2.065,
+    "x2": 1.476,
+    "y2": 2.065
+   }
+  ],
+  "only_on_ref": [
+   {
+    "id": "W13",
+    "thickness": 0.4,
+    "kind": "exterior",
+    "missing_len": 2.03,
+    "x1": 16.555,
+    "y1": 35.587,
+    "x2": 16.555,
+    "y2": 38.45
+   },
+   {
+    "id": "W27",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 5.12,
+    "x1": 11.44,
+    "y1": 35.587,
+    "x2": 16.555,
+    "y2": 35.587
+   },
+   {
+    "id": "W41",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 0.21,
+    "x1": 16.63,
+    "y1": 32.26,
+    "x2": 16.63,
+    "y2": 35.53
+   },
+   {
+    "id": "W79",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.67,
+    "x1": 5.16,
+    "y1": 26.91,
+    "x2": 5.16,
+    "y2": 28.58
+   },
+   {
+    "id": "W80",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.77,
+    "x1": 5.16,
+    "y1": 26.91,
+    "x2": 6.935,
+    "y2": 26.91
+   },
+   {
+    "id": "W215",
+    "thickness": 0.121,
+    "kind": "shaft",
+    "missing_len": 0.72,
+    "x1": 9.536,
+    "y1": 2.87,
+    "x2": 9.536,
+    "y2": 3.59
+   }
+  ]
+ },
+ "F09": {
+  "vs": "F03",
+  "only_on_this_floor_len": 18.1,
+  "only_on_ref_len": 116.32,
+  "only_on_this_floor": [
+   {
+    "id": "W1",
+    "thickness": 0.101,
+    "kind": "interior",
+    "missing_len": 4.31,
+    "x1": 8.424,
+    "y1": 34.14,
+    "x2": 8.424,
+    "y2": 38.45
+   },
+   {
+    "id": "W2",
+    "thickness": 0.4,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 16.555,
+    "y1": 35.284,
+    "x2": 16.555,
+    "y2": 36.284
+   },
+   {
+    "id": "W13",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.77,
+    "x1": 5.16,
+    "y1": 30.94,
+    "x2": 6.935,
+    "y2": 30.94
+   },
+   {
+    "id": "W18",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.64,
+    "x1": 5.16,
+    "y1": 29.3,
+    "x2": 5.16,
+    "y2": 30.94
+   },
+   {
+    "id": "W41",
+    "thickness": 0.253,
+    "kind": "exterior",
+    "missing_len": 0.59,
+    "x1": -0.13,
+    "y1": 25.656,
+    "x2": 1.17,
+    "y2": 25.656
+   },
+   {
+    "id": "W83",
+    "thickness": 0.25,
+    "kind": "interior",
+    "missing_len": 1.32,
+    "x1": 9.015,
+    "y1": 18.525,
+    "x2": 10.34,
+    "y2": 18.525
+   },
+   {
+    "id": "W103",
+    "thickness": 0.291,
+    "kind": "exterior",
+    "missing_len": 0.21,
+    "x1": 14.957,
+    "y1": 15.268,
+    "x2": 14.957,
+    "y2": 15.475
+   },
+   {
+    "id": "W108",
+    "thickness": 0.4,
+    "kind": "stair_lift",
+    "missing_len": 0.52,
+    "x1": 3.9,
+    "y1": 12.48,
+    "x2": 4.42,
+    "y2": 12.48
+   },
+   {
+    "id": "W110",
+    "thickness": 0.5,
+    "kind": "interior",
+    "missing_len": 0.29,
+    "x1": 9.205,
+    "y1": 11.99,
+    "x2": 9.205,
+    "y2": 12.284
+   },
+   {
+    "id": "W111",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.64,
+    "x1": 9.205,
+    "y1": 11.99,
+    "x2": 14.853,
+    "y2": 11.99
+   },
+   {
+    "id": "W121",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 5.63,
+    "x1": 9.075,
+    "y1": 8.875,
+    "x2": 14.703,
+    "y2": 8.875
+   },
+   {
+    "id": "W125",
+    "thickness": 0.408,
+    "kind": "interior",
+    "missing_len": 0.24,
+    "x1": 1.09,
+    "y1": 5.976,
+    "x2": 1.33,
+    "y2": 5.976
+   },
+   {
+    "id": "W128",
+    "thickness": 0.122,
+    "kind": "interior",
+    "missing_len": 0.64,
+    "x1": 9.455,
+    "y1": 5.711,
+    "x2": 13.305,
+    "y2": 5.711
+   }
+  ],
+  "only_on_ref": [
+   {
+    "id": "W1",
+    "thickness": 0.47,
+    "kind": "exterior",
+    "missing_len": 0.51,
+    "x1": 3.59,
+    "y1": 39.215,
+    "x2": 4.1,
+    "y2": 39.215
+   },
+   {
+    "id": "W2",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 1.52,
+    "x1": 4.1,
+    "y1": 39.04,
+    "x2": 5.62,
+    "y2": 39.04
+   },
+   {
+    "id": "W3",
+    "thickness": 0.123,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 5.904,
+    "y1": 39.161,
+    "x2": 6.204,
+    "y2": 39.161
+   },
+   {
+    "id": "W4",
+    "thickness": 0.123,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 8.504,
+    "y1": 39.161,
+    "x2": 8.804,
+    "y2": 39.161
+   },
+   {
+    "id": "W5",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 7.01,
+    "x1": 5.62,
+    "y1": 38.975,
+    "x2": 12.63,
+    "y2": 38.975
+   },
+   {
+    "id": "W6",
+    "thickness": 0.123,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 9.605,
+    "y1": 39.161,
+    "x2": 9.905,
+    "y2": 39.161
+   },
+   {
+    "id": "W7",
+    "thickness": 0.123,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 12.205,
+    "y1": 39.161,
+    "x2": 12.505,
+    "y2": 39.161
+   },
+   {
+    "id": "W8",
+    "thickness": 0.25,
+    "kind": "interior",
+    "missing_len": 0.4,
+    "x1": 12.63,
+    "y1": 38.575,
+    "x2": 12.63,
+    "y2": 38.975
+   },
+   {
+    "id": "W9",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 13.605,
+    "y1": 38.76,
+    "x2": 13.905,
+    "y2": 38.76
+   },
+   {
+    "id": "W10",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 3.58,
+    "x1": 12.63,
+    "y1": 38.575,
+    "x2": 16.205,
+    "y2": 38.575
+   },
+   {
+    "id": "W13",
+    "thickness": 0.4,
+    "kind": "exterior",
+    "missing_len": 2.17,
+    "x1": 16.555,
+    "y1": 35.587,
+    "x2": 16.555,
+    "y2": 38.45
+   },
+   {
+    "id": "W14",
+    "thickness": 0.6,
+    "kind": "exterior",
+    "missing_len": 0.38,
+    "x1": 0.47,
+    "y1": 35.52,
+    "x2": 0.47,
+    "y2": 35.898
+   },
+   {
+    "id": "W15",
+    "thickness": 0.37,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 0.585,
+    "y1": 35.22,
+    "x2": 0.585,
+    "y2": 35.52
+   },
+   {
+    "id": "W16",
+    "thickness": 0.503,
+    "kind": "exterior",
+    "missing_len": 0.7,
+    "x1": 0.47,
+    "y1": 35.898,
+    "x2": 1.17,
+    "y2": 35.898
+   },
+   {
+    "id": "W18",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 2.7,
+    "x1": 2.398,
+    "y1": 35.587,
+    "x2": 5.1,
+    "y2": 35.587
+   },
+   {
+    "id": "W19",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.6,
+    "x1": 5.16,
+    "y1": 34.982,
+    "x2": 5.16,
+    "y2": 35.587
+   },
+   {
+    "id": "W22",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.23,
+    "x1": 5.68,
+    "y1": 35.405,
+    "x2": 5.68,
+    "y2": 35.64
+   },
+   {
+    "id": "W23",
+    "thickness": 0.13,
+    "kind": "interior",
+    "missing_len": 1.25,
+    "x1": 5.74,
+    "y1": 35.405,
+    "x2": 6.995,
+    "y2": 35.405
+   },
+   {
+    "id": "W24",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 4.71,
+    "x1": 8.314,
+    "y1": 34.14,
+    "x2": 8.314,
+    "y2": 38.85
+   },
+   {
+    "id": "W25",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.52,
+    "x1": 9.8,
+    "y1": 35.587,
+    "x2": 10.32,
+    "y2": 35.587
+   },
+   {
+    "id": "W26",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.12,
+    "x1": 10.32,
+    "y1": 35.587,
+    "x2": 11.44,
+    "y2": 35.587
+   },
+   {
+    "id": "W27",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 5.12,
+    "x1": 11.44,
+    "y1": 35.587,
+    "x2": 16.555,
+    "y2": 35.587
+   },
+   {
+    "id": "W28",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.4,
+    "x1": 5.16,
+    "y1": 33.58,
+    "x2": 5.16,
+    "y2": 34.982
+   },
+   {
+    "id": "W29",
+    "thickness": 0.116,
+    "kind": "shaft",
+    "missing_len": 0.46,
+    "x1": 5.22,
+    "y1": 34.982,
+    "x2": 5.68,
+    "y2": 34.982
+   },
+   {
+    "id": "W30",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.42,
+    "x1": 5.68,
+    "y1": 34.982,
+    "x2": 5.68,
+    "y2": 35.405
+   },
+   {
+    "id": "W32",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.32,
+    "x1": 6.995,
+    "y1": 34.08,
+    "x2": 6.995,
+    "y2": 35.405
+   },
+   {
+    "id": "W36",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.79,
+    "x1": 9.8,
+    "y1": 34.08,
+    "x2": 9.8,
+    "y2": 34.867
+   },
+   {
+    "id": "W37",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.72,
+    "x1": 9.8,
+    "y1": 34.867,
+    "x2": 9.8,
+    "y2": 35.587
+   },
+   {
+    "id": "W38",
+    "thickness": 0.114,
+    "kind": "shaft",
+    "missing_len": 0.46,
+    "x1": 9.86,
+    "y1": 34.867,
+    "x2": 10.32,
+    "y2": 34.867
+   },
+   {
+    "id": "W39",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.66,
+    "x1": 10.32,
+    "y1": 34.867,
+    "x2": 10.32,
+    "y2": 35.527
+   },
+   {
+    "id": "W40",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.95,
+    "x1": 11.44,
+    "y1": 33.58,
+    "x2": 11.44,
+    "y2": 35.527
+   },
+   {
+    "id": "W41",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 0.25,
+    "x1": 16.63,
+    "y1": 32.26,
+    "x2": 16.63,
+    "y2": 35.53
+   },
+   {
+    "id": "W42",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 2.96,
+    "x1": 0.645,
+    "y1": 32.26,
+    "x2": 0.645,
+    "y2": 35.22
+   },
+   {
+    "id": "W43",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.4,
+    "x1": 0.77,
+    "y1": 32.26,
+    "x2": 6.935,
+    "y2": 32.26
+   },
+   {
+    "id": "W44",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.77,
+    "x1": 5.16,
+    "y1": 33.58,
+    "x2": 6.935,
+    "y2": 33.58
+   },
+   {
+    "id": "W50",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.58,
+    "x1": 9.86,
+    "y1": 33.58,
+    "x2": 11.44,
+    "y2": 33.58
+   },
+   {
+    "id": "W52",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 0.46,
+    "y1": 32.08,
+    "x2": 0.46,
+    "y2": 32.38
+   },
+   {
+    "id": "W56",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 3.32,
+    "x1": 0.645,
+    "y1": 28.94,
+    "x2": 0.645,
+    "y2": 32.26
+   },
+   {
+    "id": "W60",
+    "thickness": 0.25,
+    "kind": "shaft",
+    "missing_len": 0.72,
+    "x1": 13.38,
+    "y1": 29.0,
+    "x2": 13.38,
+    "y2": 29.725
+   },
+   {
+    "id": "W61",
+    "thickness": 0.25,
+    "kind": "shaft",
+    "missing_len": 1.28,
+    "x1": 13.38,
+    "y1": 29.725,
+    "x2": 14.66,
+    "y2": 29.725
+   },
+   {
+    "id": "W62",
+    "thickness": 0.25,
+    "kind": "shaft",
+    "missing_len": 0.72,
+    "x1": 14.66,
+    "y1": 29.0,
+    "x2": 14.66,
+    "y2": 29.725
+   },
+   {
+    "id": "W64",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 0.46,
+    "y1": 28.93,
+    "x2": 0.46,
+    "y2": 29.23
+   },
+   {
+    "id": "W65",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.4,
+    "x1": 0.77,
+    "y1": 28.94,
+    "x2": 1.69,
+    "y2": 28.94
+   },
+   {
+    "id": "W78",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 2.86,
+    "x1": 0.645,
+    "y1": 26.08,
+    "x2": 0.645,
+    "y2": 28.94
+   },
+   {
+    "id": "W86",
+    "thickness": 0.37,
+    "kind": "exterior",
+    "missing_len": 0.42,
+    "x1": 0.585,
+    "y1": 25.657,
+    "x2": 0.585,
+    "y2": 26.08
+   },
+   {
+    "id": "W87",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.4,
+    "x1": 0.77,
+    "y1": 25.59,
+    "x2": 6.935,
+    "y2": 25.59
+   },
+   {
+    "id": "W115",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.61,
+    "x1": 5.16,
+    "y1": 20.195,
+    "x2": 5.16,
+    "y2": 21.804
+   },
+   {
+    "id": "W123",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.77,
+    "x1": 5.16,
+    "y1": 20.195,
+    "x2": 6.935,
+    "y2": 20.195
+   },
+   {
+    "id": "W131",
+    "thickness": 0.125,
+    "kind": "interior",
+    "missing_len": 1.32,
+    "x1": 9.015,
+    "y1": 18.463,
+    "x2": 10.34,
+    "y2": 18.463
+   },
+   {
+    "id": "W153",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.49,
+    "x1": 9.015,
+    "y1": 11.99,
+    "x2": 9.015,
+    "y2": 15.475
+   },
+   {
+    "id": "W154",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.52,
+    "x1": 10.097,
+    "y1": 12.9,
+    "x2": 10.617,
+    "y2": 12.9
+   },
+   {
+    "id": "W156",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 0.46,
+    "y1": 11.73,
+    "x2": 0.46,
+    "y2": 12.03
+   },
+   {
+    "id": "W158",
+    "thickness": 0.12,
+    "kind": "stair_lift",
+    "missing_len": 0.52,
+    "x1": 3.9,
+    "y1": 12.34,
+    "x2": 6.935,
+    "y2": 12.34
+   },
+   {
+    "id": "W160",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.36,
+    "x1": 10.097,
+    "y1": 11.63,
+    "x2": 10.097,
+    "y2": 11.99
+   },
+   {
+    "id": "W161",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.91,
+    "x1": 10.097,
+    "y1": 11.99,
+    "x2": 10.097,
+    "y2": 12.9
+   },
+   {
+    "id": "W162",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.52,
+    "x1": 10.097,
+    "y1": 11.63,
+    "x2": 10.617,
+    "y2": 11.63
+   },
+   {
+    "id": "W163",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.36,
+    "x1": 10.617,
+    "y1": 11.63,
+    "x2": 10.617,
+    "y2": 11.99
+   },
+   {
+    "id": "W164",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.91,
+    "x1": 10.617,
+    "y1": 11.99,
+    "x2": 10.617,
+    "y2": 12.9
+   },
+   {
+    "id": "W166",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 2.81,
+    "x1": 0.645,
+    "y1": 9.475,
+    "x2": 0.645,
+    "y2": 12.28
+   },
+   {
+    "id": "W170",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 0.46,
+    "y1": 9.01,
+    "x2": 0.46,
+    "y2": 9.31
+   },
+   {
+    "id": "W171",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.48,
+    "x1": 0.77,
+    "y1": 9.475,
+    "x2": 1.69,
+    "y2": 9.475
+   },
+   {
+    "id": "W176",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 5.63,
+    "x1": 9.075,
+    "y1": 9.025,
+    "x2": 14.703,
+    "y2": 9.025
+   },
+   {
+    "id": "W178",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 3.64,
+    "x1": 0.645,
+    "y1": 5.837,
+    "x2": 0.645,
+    "y2": 9.475
+   },
+   {
+    "id": "W182",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 0.46,
+    "y1": 5.86,
+    "x2": 0.46,
+    "y2": 6.16
+   },
+   {
+    "id": "W183",
+    "thickness": 0.127,
+    "kind": "interior",
+    "missing_len": 0.56,
+    "x1": 0.77,
+    "y1": 5.837,
+    "x2": 2.505,
+    "y2": 5.837
+   },
+   {
+    "id": "W186",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.36,
+    "x1": 10.097,
+    "y1": 5.35,
+    "x2": 10.097,
+    "y2": 5.712
+   },
+   {
+    "id": "W187",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.49,
+    "x1": 10.097,
+    "y1": 5.712,
+    "x2": 10.097,
+    "y2": 6.2
+   },
+   {
+    "id": "W188",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.52,
+    "x1": 10.097,
+    "y1": 5.35,
+    "x2": 10.617,
+    "y2": 5.35
+   },
+   {
+    "id": "W189",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.52,
+    "x1": 10.097,
+    "y1": 6.2,
+    "x2": 10.617,
+    "y2": 6.2
+   },
+   {
+    "id": "W190",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.36,
+    "x1": 10.617,
+    "y1": 5.35,
+    "x2": 10.617,
+    "y2": 5.712
+   },
+   {
+    "id": "W191",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.49,
+    "x1": 10.617,
+    "y1": 5.712,
+    "x2": 10.617,
+    "y2": 6.2
+   },
+   {
+    "id": "W194",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 3.43,
+    "x1": 0.645,
+    "y1": 2.41,
+    "x2": 0.645,
+    "y2": 5.837
+   },
+   {
+    "id": "W195",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.3,
+    "x1": 6.695,
+    "y1": 4.2,
+    "x2": 6.995,
+    "y2": 4.2
+   },
+   {
+    "id": "W202",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 0.46,
+    "y1": 2.71,
+    "x2": 0.46,
+    "y2": 3.01
+   },
+   {
+    "id": "W204",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 3.2,
+    "x1": 1.645,
+    "y1": 2.29,
+    "x2": 4.845,
+    "y2": 2.29
+   },
+   {
+    "id": "W205",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.66,
+    "x1": 4.845,
+    "y1": 2.35,
+    "x2": 4.845,
+    "y2": 3.008
+   },
+   {
+    "id": "W206",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.46,
+    "x1": 4.845,
+    "y1": 2.29,
+    "x2": 5.305,
+    "y2": 2.29
+   },
+   {
+    "id": "W207",
+    "thickness": 0.115,
+    "kind": "shaft",
+    "missing_len": 0.52,
+    "x1": 4.845,
+    "y1": 3.008,
+    "x2": 5.365,
+    "y2": 3.008
+   },
+   {
+    "id": "W208",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.66,
+    "x1": 5.365,
+    "y1": 2.29,
+    "x2": 5.365,
+    "y2": 2.95
+   },
+   {
+    "id": "W209",
+    "thickness": 0.115,
+    "kind": "interior",
+    "missing_len": 1.33,
+    "x1": 5.365,
+    "y1": 3.008,
+    "x2": 6.695,
+    "y2": 3.008
+   },
+   {
+    "id": "W210",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.19,
+    "x1": 6.695,
+    "y1": 3.008,
+    "x2": 6.695,
+    "y2": 4.2
+   },
+   {
+    "id": "W211",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 2.1,
+    "x1": 7.655,
+    "y1": 2.04,
+    "x2": 7.655,
+    "y2": 4.14
+   },
+   {
+    "id": "W218",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.25,
+    "x1": 5.365,
+    "y1": 2.04,
+    "x2": 5.365,
+    "y2": 2.29
+   },
+   {
+    "id": "W219",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 2.29,
+    "x1": 5.365,
+    "y1": 2.04,
+    "x2": 7.655,
+    "y2": 2.04
+   },
+   {
+    "id": "W220",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.44,
+    "x1": 9.015,
+    "y1": -0.92,
+    "x2": 9.015,
+    "y2": 2.87
+   },
+   {
+    "id": "W221",
+    "thickness": 0.38,
+    "kind": "exterior",
+    "missing_len": 1.05,
+    "x1": 3.66,
+    "y1": -1.22,
+    "x2": 3.66,
+    "y2": -0.17
+   },
+   {
+    "id": "W222",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 0.36,
+    "x1": 13.48,
+    "y1": -0.845,
+    "x2": 13.48,
+    "y2": 0.0
+   },
+   {
+    "id": "W223",
+    "thickness": 0.6,
+    "kind": "exterior",
+    "missing_len": 0.44,
+    "x1": 3.66,
+    "y1": -1.22,
+    "x2": 4.1,
+    "y2": -1.22
+   },
+   {
+    "id": "W225",
+    "thickness": 0.127,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 4.35,
+    "y1": -1.234,
+    "x2": 4.65,
+    "y2": -1.234
+   },
+   {
+    "id": "W226",
+    "thickness": 0.127,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 7.25,
+    "y1": -1.234,
+    "x2": 7.55,
+    "y2": -1.234
+   },
+   {
+    "id": "W227",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 8.96,
+    "x1": 4.1,
+    "y1": -1.045,
+    "x2": 13.055,
+    "y2": -1.045
+   },
+   {
+    "id": "W228",
+    "thickness": 0.127,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 10.15,
+    "y1": -1.234,
+    "x2": 10.45,
+    "y2": -1.234
+   },
+   {
+    "id": "W229",
+    "thickness": 0.378,
+    "kind": "exterior",
+    "missing_len": 0.25,
+    "x1": 13.055,
+    "y1": -1.109,
+    "x2": 13.305,
+    "y2": -1.109
+   }
+  ]
+ },
+ "F10": {
+  "vs": "F03",
+  "only_on_this_floor_len": 19.66,
+  "only_on_ref_len": 122.18,
+  "only_on_this_floor": [
+   {
+    "id": "W1",
+    "thickness": 0.4,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 16.555,
+    "y1": 35.284,
+    "x2": 16.555,
+    "y2": 36.284
+   },
+   {
+    "id": "W11",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.77,
+    "x1": 5.16,
+    "y1": 30.94,
+    "x2": 6.935,
+    "y2": 30.94
+   },
+   {
+    "id": "W16",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.64,
+    "x1": 5.16,
+    "y1": 29.3,
+    "x2": 5.16,
+    "y2": 30.94
+   },
+   {
+    "id": "W29",
+    "thickness": 0.4,
+    "kind": "stair_lift",
+    "missing_len": 1.07,
+    "x1": 9.155,
+    "y1": 27.8,
+    "x2": 9.155,
+    "y2": 28.875
+   },
+   {
+    "id": "W38",
+    "thickness": 0.252,
+    "kind": "exterior",
+    "missing_len": 1.19,
+    "x1": -0.13,
+    "y1": 25.656,
+    "x2": 1.775,
+    "y2": 25.656
+   },
+   {
+    "id": "W79",
+    "thickness": 0.25,
+    "kind": "interior",
+    "missing_len": 1.32,
+    "x1": 9.015,
+    "y1": 18.525,
+    "x2": 10.34,
+    "y2": 18.525
+   },
+   {
+    "id": "W81",
+    "thickness": 0.4,
+    "kind": "interior",
+    "missing_len": 1.67,
+    "x1": 13.203,
+    "y1": 18.45,
+    "x2": 14.874,
+    "y2": 18.45
+   },
+   {
+    "id": "W101",
+    "thickness": 0.291,
+    "kind": "exterior",
+    "missing_len": 0.21,
+    "x1": 14.957,
+    "y1": 15.268,
+    "x2": 14.957,
+    "y2": 15.475
+   },
+   {
+    "id": "W107",
+    "thickness": 0.5,
+    "kind": "interior",
+    "missing_len": 0.29,
+    "x1": 9.205,
+    "y1": 11.99,
+    "x2": 9.205,
+    "y2": 12.284
+   },
+   {
+    "id": "W108",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.64,
+    "x1": 9.205,
+    "y1": 11.99,
+    "x2": 14.853,
+    "y2": 11.99
+   },
+   {
+    "id": "W116",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 5.63,
+    "x1": 9.075,
+    "y1": 8.875,
+    "x2": 14.703,
+    "y2": 8.875
+   },
+   {
+    "id": "W122",
+    "thickness": 0.121,
+    "kind": "interior",
+    "missing_len": 0.64,
+    "x1": 9.455,
+    "y1": 5.711,
+    "x2": 13.305,
+    "y2": 5.711
+   },
+   {
+    "id": "W129",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.33,
+    "x1": 6.995,
+    "y1": 2.87,
+    "x2": 6.995,
+    "y2": 4.2
+   },
+   {
+    "id": "W130",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.96,
+    "x1": 6.995,
+    "y1": 2.87,
+    "x2": 8.955,
+    "y2": 2.87
+   }
+  ],
+  "only_on_ref": [
+   {
+    "id": "W1",
+    "thickness": 0.47,
+    "kind": "exterior",
+    "missing_len": 0.51,
+    "x1": 3.59,
+    "y1": 39.215,
+    "x2": 4.1,
+    "y2": 39.215
+   },
+   {
+    "id": "W2",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 1.52,
+    "x1": 4.1,
+    "y1": 39.04,
+    "x2": 5.62,
+    "y2": 39.04
+   },
+   {
+    "id": "W3",
+    "thickness": 0.123,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 5.904,
+    "y1": 39.161,
+    "x2": 6.204,
+    "y2": 39.161
+   },
+   {
+    "id": "W4",
+    "thickness": 0.123,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 8.504,
+    "y1": 39.161,
+    "x2": 8.804,
+    "y2": 39.161
+   },
+   {
+    "id": "W5",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 7.01,
+    "x1": 5.62,
+    "y1": 38.975,
+    "x2": 12.63,
+    "y2": 38.975
+   },
+   {
+    "id": "W6",
+    "thickness": 0.123,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 9.605,
+    "y1": 39.161,
+    "x2": 9.905,
+    "y2": 39.161
+   },
+   {
+    "id": "W7",
+    "thickness": 0.123,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 12.205,
+    "y1": 39.161,
+    "x2": 12.505,
+    "y2": 39.161
+   },
+   {
+    "id": "W8",
+    "thickness": 0.25,
+    "kind": "interior",
+    "missing_len": 0.4,
+    "x1": 12.63,
+    "y1": 38.575,
+    "x2": 12.63,
+    "y2": 38.975
+   },
+   {
+    "id": "W9",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 13.605,
+    "y1": 38.76,
+    "x2": 13.905,
+    "y2": 38.76
+   },
+   {
+    "id": "W10",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 3.58,
+    "x1": 12.63,
+    "y1": 38.575,
+    "x2": 16.205,
+    "y2": 38.575
+   },
+   {
+    "id": "W13",
+    "thickness": 0.4,
+    "kind": "exterior",
+    "missing_len": 2.17,
+    "x1": 16.555,
+    "y1": 35.587,
+    "x2": 16.555,
+    "y2": 38.45
+   },
+   {
+    "id": "W14",
+    "thickness": 0.6,
+    "kind": "exterior",
+    "missing_len": 0.38,
+    "x1": 0.47,
+    "y1": 35.52,
+    "x2": 0.47,
+    "y2": 35.898
+   },
+   {
+    "id": "W15",
+    "thickness": 0.37,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 0.585,
+    "y1": 35.22,
+    "x2": 0.585,
+    "y2": 35.52
+   },
+   {
+    "id": "W16",
+    "thickness": 0.503,
+    "kind": "exterior",
+    "missing_len": 0.7,
+    "x1": 0.47,
+    "y1": 35.898,
+    "x2": 1.17,
+    "y2": 35.898
+   },
+   {
+    "id": "W18",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 2.7,
+    "x1": 2.398,
+    "y1": 35.587,
+    "x2": 5.1,
+    "y2": 35.587
+   },
+   {
+    "id": "W19",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.6,
+    "x1": 5.16,
+    "y1": 34.982,
+    "x2": 5.16,
+    "y2": 35.587
+   },
+   {
+    "id": "W22",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.23,
+    "x1": 5.68,
+    "y1": 35.405,
+    "x2": 5.68,
+    "y2": 35.64
+   },
+   {
+    "id": "W23",
+    "thickness": 0.13,
+    "kind": "interior",
+    "missing_len": 1.25,
+    "x1": 5.74,
+    "y1": 35.405,
+    "x2": 6.995,
+    "y2": 35.405
+   },
+   {
+    "id": "W24",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 4.71,
+    "x1": 8.314,
+    "y1": 34.14,
+    "x2": 8.314,
+    "y2": 38.85
+   },
+   {
+    "id": "W25",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.52,
+    "x1": 9.8,
+    "y1": 35.587,
+    "x2": 10.32,
+    "y2": 35.587
+   },
+   {
+    "id": "W26",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.12,
+    "x1": 10.32,
+    "y1": 35.587,
+    "x2": 11.44,
+    "y2": 35.587
+   },
+   {
+    "id": "W27",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 5.12,
+    "x1": 11.44,
+    "y1": 35.587,
+    "x2": 16.555,
+    "y2": 35.587
+   },
+   {
+    "id": "W28",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.4,
+    "x1": 5.16,
+    "y1": 33.58,
+    "x2": 5.16,
+    "y2": 34.982
+   },
+   {
+    "id": "W29",
+    "thickness": 0.116,
+    "kind": "shaft",
+    "missing_len": 0.46,
+    "x1": 5.22,
+    "y1": 34.982,
+    "x2": 5.68,
+    "y2": 34.982
+   },
+   {
+    "id": "W30",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.42,
+    "x1": 5.68,
+    "y1": 34.982,
+    "x2": 5.68,
+    "y2": 35.405
+   },
+   {
+    "id": "W32",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.32,
+    "x1": 6.995,
+    "y1": 34.08,
+    "x2": 6.995,
+    "y2": 35.405
+   },
+   {
+    "id": "W36",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.79,
+    "x1": 9.8,
+    "y1": 34.08,
+    "x2": 9.8,
+    "y2": 34.867
+   },
+   {
+    "id": "W37",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.72,
+    "x1": 9.8,
+    "y1": 34.867,
+    "x2": 9.8,
+    "y2": 35.587
+   },
+   {
+    "id": "W38",
+    "thickness": 0.114,
+    "kind": "shaft",
+    "missing_len": 0.46,
+    "x1": 9.86,
+    "y1": 34.867,
+    "x2": 10.32,
+    "y2": 34.867
+   },
+   {
+    "id": "W39",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.66,
+    "x1": 10.32,
+    "y1": 34.867,
+    "x2": 10.32,
+    "y2": 35.527
+   },
+   {
+    "id": "W40",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.95,
+    "x1": 11.44,
+    "y1": 33.58,
+    "x2": 11.44,
+    "y2": 35.527
+   },
+   {
+    "id": "W41",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 0.25,
+    "x1": 16.63,
+    "y1": 32.26,
+    "x2": 16.63,
+    "y2": 35.53
+   },
+   {
+    "id": "W42",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 2.96,
+    "x1": 0.645,
+    "y1": 32.26,
+    "x2": 0.645,
+    "y2": 35.22
+   },
+   {
+    "id": "W43",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.0,
+    "x1": 0.77,
+    "y1": 32.26,
+    "x2": 6.935,
+    "y2": 32.26
+   },
+   {
+    "id": "W44",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.77,
+    "x1": 5.16,
+    "y1": 33.58,
+    "x2": 6.935,
+    "y2": 33.58
+   },
+   {
+    "id": "W50",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.58,
+    "x1": 9.86,
+    "y1": 33.58,
+    "x2": 11.44,
+    "y2": 33.58
+   },
+   {
+    "id": "W52",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 0.46,
+    "y1": 32.08,
+    "x2": 0.46,
+    "y2": 32.38
+   },
+   {
+    "id": "W56",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 3.32,
+    "x1": 0.645,
+    "y1": 28.94,
+    "x2": 0.645,
+    "y2": 32.26
+   },
+   {
+    "id": "W60",
+    "thickness": 0.25,
+    "kind": "shaft",
+    "missing_len": 0.72,
+    "x1": 13.38,
+    "y1": 29.0,
+    "x2": 13.38,
+    "y2": 29.725
+   },
+   {
+    "id": "W61",
+    "thickness": 0.25,
+    "kind": "shaft",
+    "missing_len": 1.28,
+    "x1": 13.38,
+    "y1": 29.725,
+    "x2": 14.66,
+    "y2": 29.725
+   },
+   {
+    "id": "W62",
+    "thickness": 0.25,
+    "kind": "shaft",
+    "missing_len": 0.72,
+    "x1": 14.66,
+    "y1": 29.0,
+    "x2": 14.66,
+    "y2": 29.725
+   },
+   {
+    "id": "W64",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 0.46,
+    "y1": 28.93,
+    "x2": 0.46,
+    "y2": 29.23
+   },
+   {
+    "id": "W65",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.92,
+    "x1": 0.77,
+    "y1": 28.94,
+    "x2": 1.69,
+    "y2": 28.94
+   },
+   {
+    "id": "W74",
+    "thickness": 0.45,
+    "kind": "stair_lift",
+    "missing_len": 1.07,
+    "x1": 9.18,
+    "y1": 27.8,
+    "x2": 9.18,
+    "y2": 28.875
+   },
+   {
+    "id": "W78",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 2.86,
+    "x1": 0.645,
+    "y1": 26.08,
+    "x2": 0.645,
+    "y2": 28.94
+   },
+   {
+    "id": "W86",
+    "thickness": 0.37,
+    "kind": "exterior",
+    "missing_len": 0.42,
+    "x1": 0.585,
+    "y1": 25.657,
+    "x2": 0.585,
+    "y2": 26.08
+   },
+   {
+    "id": "W87",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.0,
+    "x1": 0.77,
+    "y1": 25.59,
+    "x2": 6.935,
+    "y2": 25.59
+   },
+   {
+    "id": "W115",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.61,
+    "x1": 5.16,
+    "y1": 20.195,
+    "x2": 5.16,
+    "y2": 21.804
+   },
+   {
+    "id": "W123",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.77,
+    "x1": 5.16,
+    "y1": 20.195,
+    "x2": 6.935,
+    "y2": 20.195
+   },
+   {
+    "id": "W131",
+    "thickness": 0.125,
+    "kind": "interior",
+    "missing_len": 1.32,
+    "x1": 9.015,
+    "y1": 18.463,
+    "x2": 10.34,
+    "y2": 18.463
+   },
+   {
+    "id": "W132",
+    "thickness": 0.25,
+    "kind": "interior",
+    "missing_len": 1.67,
+    "x1": 12.913,
+    "y1": 18.525,
+    "x2": 14.874,
+    "y2": 18.525
+   },
+   {
+    "id": "W153",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.49,
+    "x1": 9.015,
+    "y1": 11.99,
+    "x2": 9.015,
+    "y2": 15.475
+   },
+   {
+    "id": "W154",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.52,
+    "x1": 10.097,
+    "y1": 12.9,
+    "x2": 10.617,
+    "y2": 12.9
+   },
+   {
+    "id": "W156",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 0.46,
+    "y1": 11.73,
+    "x2": 0.46,
+    "y2": 12.03
+   },
+   {
+    "id": "W160",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.36,
+    "x1": 10.097,
+    "y1": 11.63,
+    "x2": 10.097,
+    "y2": 11.99
+   },
+   {
+    "id": "W161",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.91,
+    "x1": 10.097,
+    "y1": 11.99,
+    "x2": 10.097,
+    "y2": 12.9
+   },
+   {
+    "id": "W162",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.52,
+    "x1": 10.097,
+    "y1": 11.63,
+    "x2": 10.617,
+    "y2": 11.63
+   },
+   {
+    "id": "W163",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.36,
+    "x1": 10.617,
+    "y1": 11.63,
+    "x2": 10.617,
+    "y2": 11.99
+   },
+   {
+    "id": "W164",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.91,
+    "x1": 10.617,
+    "y1": 11.99,
+    "x2": 10.617,
+    "y2": 12.9
+   },
+   {
+    "id": "W166",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 2.81,
+    "x1": 0.645,
+    "y1": 9.475,
+    "x2": 0.645,
+    "y2": 12.28
+   },
+   {
+    "id": "W170",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 0.46,
+    "y1": 9.01,
+    "x2": 0.46,
+    "y2": 9.31
+   },
+   {
+    "id": "W171",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.92,
+    "x1": 0.77,
+    "y1": 9.475,
+    "x2": 1.69,
+    "y2": 9.475
+   },
+   {
+    "id": "W176",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 5.63,
+    "x1": 9.075,
+    "y1": 9.025,
+    "x2": 14.703,
+    "y2": 9.025
+   },
+   {
+    "id": "W178",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 3.64,
+    "x1": 0.645,
+    "y1": 5.837,
+    "x2": 0.645,
+    "y2": 9.475
+   },
+   {
+    "id": "W182",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 0.46,
+    "y1": 5.86,
+    "x2": 0.46,
+    "y2": 6.16
+   },
+   {
+    "id": "W183",
+    "thickness": 0.127,
+    "kind": "interior",
+    "missing_len": 1.0,
+    "x1": 0.77,
+    "y1": 5.837,
+    "x2": 2.505,
+    "y2": 5.837
+   },
+   {
+    "id": "W186",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.36,
+    "x1": 10.097,
+    "y1": 5.35,
+    "x2": 10.097,
+    "y2": 5.712
+   },
+   {
+    "id": "W187",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.49,
+    "x1": 10.097,
+    "y1": 5.712,
+    "x2": 10.097,
+    "y2": 6.2
+   },
+   {
+    "id": "W188",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.52,
+    "x1": 10.097,
+    "y1": 5.35,
+    "x2": 10.617,
+    "y2": 5.35
+   },
+   {
+    "id": "W189",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.52,
+    "x1": 10.097,
+    "y1": 6.2,
+    "x2": 10.617,
+    "y2": 6.2
+   },
+   {
+    "id": "W190",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.36,
+    "x1": 10.617,
+    "y1": 5.35,
+    "x2": 10.617,
+    "y2": 5.712
+   },
+   {
+    "id": "W191",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.49,
+    "x1": 10.617,
+    "y1": 5.712,
+    "x2": 10.617,
+    "y2": 6.2
+   },
+   {
+    "id": "W194",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 3.43,
+    "x1": 0.645,
+    "y1": 2.41,
+    "x2": 0.645,
+    "y2": 5.837
+   },
+   {
+    "id": "W195",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.3,
+    "x1": 6.695,
+    "y1": 4.2,
+    "x2": 6.995,
+    "y2": 4.2
+   },
+   {
+    "id": "W202",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 0.46,
+    "y1": 2.71,
+    "x2": 0.46,
+    "y2": 3.01
+   },
+   {
+    "id": "W204",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 3.2,
+    "x1": 1.645,
+    "y1": 2.29,
+    "x2": 4.845,
+    "y2": 2.29
+   },
+   {
+    "id": "W205",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.66,
+    "x1": 4.845,
+    "y1": 2.35,
+    "x2": 4.845,
+    "y2": 3.008
+   },
+   {
+    "id": "W206",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.46,
+    "x1": 4.845,
+    "y1": 2.29,
+    "x2": 5.305,
+    "y2": 2.29
+   },
+   {
+    "id": "W207",
+    "thickness": 0.115,
+    "kind": "shaft",
+    "missing_len": 0.52,
+    "x1": 4.845,
+    "y1": 3.008,
+    "x2": 5.365,
+    "y2": 3.008
+   },
+   {
+    "id": "W208",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.66,
+    "x1": 5.365,
+    "y1": 2.29,
+    "x2": 5.365,
+    "y2": 2.95
+   },
+   {
+    "id": "W209",
+    "thickness": 0.115,
+    "kind": "interior",
+    "missing_len": 1.33,
+    "x1": 5.365,
+    "y1": 3.008,
+    "x2": 6.695,
+    "y2": 3.008
+   },
+   {
+    "id": "W210",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.19,
+    "x1": 6.695,
+    "y1": 3.008,
+    "x2": 6.695,
+    "y2": 4.2
+   },
+   {
+    "id": "W211",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 2.1,
+    "x1": 7.655,
+    "y1": 2.04,
+    "x2": 7.655,
+    "y2": 4.14
+   },
+   {
+    "id": "W218",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.25,
+    "x1": 5.365,
+    "y1": 2.04,
+    "x2": 5.365,
+    "y2": 2.29
+   },
+   {
+    "id": "W219",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 2.29,
+    "x1": 5.365,
+    "y1": 2.04,
+    "x2": 7.655,
+    "y2": 2.04
+   },
+   {
+    "id": "W220",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.0,
+    "x1": 9.015,
+    "y1": -0.92,
+    "x2": 9.015,
+    "y2": 2.87
+   },
+   {
+    "id": "W221",
+    "thickness": 0.38,
+    "kind": "exterior",
+    "missing_len": 1.05,
+    "x1": 3.66,
+    "y1": -1.22,
+    "x2": 3.66,
+    "y2": -0.17
+   },
+   {
+    "id": "W222",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 0.84,
+    "x1": 13.48,
+    "y1": -0.845,
+    "x2": 13.48,
+    "y2": 0.0
+   },
+   {
+    "id": "W223",
+    "thickness": 0.6,
+    "kind": "exterior",
+    "missing_len": 0.44,
+    "x1": 3.66,
+    "y1": -1.22,
+    "x2": 4.1,
+    "y2": -1.22
+   },
+   {
+    "id": "W225",
+    "thickness": 0.127,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 4.35,
+    "y1": -1.234,
+    "x2": 4.65,
+    "y2": -1.234
+   },
+   {
+    "id": "W226",
+    "thickness": 0.127,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 7.25,
+    "y1": -1.234,
+    "x2": 7.55,
+    "y2": -1.234
+   },
+   {
+    "id": "W227",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 8.96,
+    "x1": 4.1,
+    "y1": -1.045,
+    "x2": 13.055,
+    "y2": -1.045
+   },
+   {
+    "id": "W228",
+    "thickness": 0.127,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 10.15,
+    "y1": -1.234,
+    "x2": 10.45,
+    "y2": -1.234
+   },
+   {
+    "id": "W229",
+    "thickness": 0.378,
+    "kind": "exterior",
+    "missing_len": 0.25,
+    "x1": 13.055,
+    "y1": -1.109,
+    "x2": 13.305,
+    "y2": -1.109
+   }
+  ]
+ },
+ "F11": {
+  "vs": "F03",
+  "only_on_this_floor_len": 23.55,
+  "only_on_ref_len": 132.24,
+  "only_on_this_floor": [
+   {
+    "id": "W1",
+    "thickness": 0.101,
+    "kind": "interior",
+    "missing_len": 3.19,
+    "x1": 8.424,
+    "y1": 34.14,
+    "x2": 8.424,
+    "y2": 37.33
+   },
+   {
+    "id": "W2",
+    "thickness": 0.4,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 16.555,
+    "y1": 35.284,
+    "x2": 16.555,
+    "y2": 36.284
+   },
+   {
+    "id": "W16",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.28,
+    "x1": 10.52,
+    "y1": 30.26,
+    "x2": 10.52,
+    "y2": 31.54
+   },
+   {
+    "id": "W20",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.45,
+    "x1": 9.075,
+    "y1": 30.26,
+    "x2": 10.52,
+    "y2": 30.26
+   },
+   {
+    "id": "W22",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.64,
+    "x1": 3.69,
+    "y1": 28.94,
+    "x2": 6.935,
+    "y2": 28.94
+   },
+   {
+    "id": "W23",
+    "thickness": 0.4,
+    "kind": "stair_lift",
+    "missing_len": 1.07,
+    "x1": 9.155,
+    "y1": 27.8,
+    "x2": 9.155,
+    "y2": 28.875
+   },
+   {
+    "id": "W30",
+    "thickness": 0.252,
+    "kind": "exterior",
+    "missing_len": 1.89,
+    "x1": -0.13,
+    "y1": 25.656,
+    "x2": 2.47,
+    "y2": 25.656
+   },
+   {
+    "id": "W74",
+    "thickness": 0.25,
+    "kind": "interior",
+    "missing_len": 1.32,
+    "x1": 9.015,
+    "y1": 18.525,
+    "x2": 10.34,
+    "y2": 18.525
+   },
+   {
+    "id": "W76",
+    "thickness": 0.4,
+    "kind": "interior",
+    "missing_len": 1.67,
+    "x1": 13.203,
+    "y1": 18.45,
+    "x2": 14.874,
+    "y2": 18.45
+   },
+   {
+    "id": "W96",
+    "thickness": 0.291,
+    "kind": "exterior",
+    "missing_len": 0.21,
+    "x1": 14.957,
+    "y1": 15.268,
+    "x2": 14.957,
+    "y2": 15.475
+   },
+   {
+    "id": "W101",
+    "thickness": 0.4,
+    "kind": "stair_lift",
+    "missing_len": 0.52,
+    "x1": 3.9,
+    "y1": 12.48,
+    "x2": 4.42,
+    "y2": 12.48
+   },
+   {
+    "id": "W103",
+    "thickness": 0.5,
+    "kind": "interior",
+    "missing_len": 0.29,
+    "x1": 9.205,
+    "y1": 11.99,
+    "x2": 9.205,
+    "y2": 12.284
+   },
+   {
+    "id": "W104",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.64,
+    "x1": 9.205,
+    "y1": 11.99,
+    "x2": 14.853,
+    "y2": 11.99
+   },
+   {
+    "id": "W105",
+    "thickness": 0.12,
+    "kind": "stair_lift",
+    "missing_len": 2.81,
+    "x1": 6.975,
+    "y1": 9.535,
+    "x2": 6.975,
+    "y2": 12.34
+   },
+   {
+    "id": "W112",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 5.63,
+    "x1": 9.075,
+    "y1": 8.875,
+    "x2": 14.703,
+    "y2": 8.875
+   },
+   {
+    "id": "W118",
+    "thickness": 0.122,
+    "kind": "interior",
+    "missing_len": 0.64,
+    "x1": 9.455,
+    "y1": 5.711,
+    "x2": 13.305,
+    "y2": 5.711
+   }
+  ],
+  "only_on_ref": [
+   {
+    "id": "W1",
+    "thickness": 0.47,
+    "kind": "exterior",
+    "missing_len": 0.51,
+    "x1": 3.59,
+    "y1": 39.215,
+    "x2": 4.1,
+    "y2": 39.215
+   },
+   {
+    "id": "W2",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 1.52,
+    "x1": 4.1,
+    "y1": 39.04,
+    "x2": 5.62,
+    "y2": 39.04
+   },
+   {
+    "id": "W3",
+    "thickness": 0.123,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 5.904,
+    "y1": 39.161,
+    "x2": 6.204,
+    "y2": 39.161
+   },
+   {
+    "id": "W4",
+    "thickness": 0.123,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 8.504,
+    "y1": 39.161,
+    "x2": 8.804,
+    "y2": 39.161
+   },
+   {
+    "id": "W5",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 7.01,
+    "x1": 5.62,
+    "y1": 38.975,
+    "x2": 12.63,
+    "y2": 38.975
+   },
+   {
+    "id": "W6",
+    "thickness": 0.123,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 9.605,
+    "y1": 39.161,
+    "x2": 9.905,
+    "y2": 39.161
+   },
+   {
+    "id": "W7",
+    "thickness": 0.123,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 12.205,
+    "y1": 39.161,
+    "x2": 12.505,
+    "y2": 39.161
+   },
+   {
+    "id": "W8",
+    "thickness": 0.25,
+    "kind": "interior",
+    "missing_len": 0.4,
+    "x1": 12.63,
+    "y1": 38.575,
+    "x2": 12.63,
+    "y2": 38.975
+   },
+   {
+    "id": "W9",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 13.605,
+    "y1": 38.76,
+    "x2": 13.905,
+    "y2": 38.76
+   },
+   {
+    "id": "W10",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 3.58,
+    "x1": 12.63,
+    "y1": 38.575,
+    "x2": 16.205,
+    "y2": 38.575
+   },
+   {
+    "id": "W13",
+    "thickness": 0.4,
+    "kind": "exterior",
+    "missing_len": 2.17,
+    "x1": 16.555,
+    "y1": 35.587,
+    "x2": 16.555,
+    "y2": 38.45
+   },
+   {
+    "id": "W14",
+    "thickness": 0.6,
+    "kind": "exterior",
+    "missing_len": 0.38,
+    "x1": 0.47,
+    "y1": 35.52,
+    "x2": 0.47,
+    "y2": 35.898
+   },
+   {
+    "id": "W15",
+    "thickness": 0.37,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 0.585,
+    "y1": 35.22,
+    "x2": 0.585,
+    "y2": 35.52
+   },
+   {
+    "id": "W16",
+    "thickness": 0.503,
+    "kind": "exterior",
+    "missing_len": 0.7,
+    "x1": 0.47,
+    "y1": 35.898,
+    "x2": 1.17,
+    "y2": 35.898
+   },
+   {
+    "id": "W18",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 2.7,
+    "x1": 2.398,
+    "y1": 35.587,
+    "x2": 5.1,
+    "y2": 35.587
+   },
+   {
+    "id": "W19",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.6,
+    "x1": 5.16,
+    "y1": 34.982,
+    "x2": 5.16,
+    "y2": 35.587
+   },
+   {
+    "id": "W22",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.23,
+    "x1": 5.68,
+    "y1": 35.405,
+    "x2": 5.68,
+    "y2": 35.64
+   },
+   {
+    "id": "W23",
+    "thickness": 0.13,
+    "kind": "interior",
+    "missing_len": 1.25,
+    "x1": 5.74,
+    "y1": 35.405,
+    "x2": 6.995,
+    "y2": 35.405
+   },
+   {
+    "id": "W24",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 4.71,
+    "x1": 8.314,
+    "y1": 34.14,
+    "x2": 8.314,
+    "y2": 38.85
+   },
+   {
+    "id": "W25",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.52,
+    "x1": 9.8,
+    "y1": 35.587,
+    "x2": 10.32,
+    "y2": 35.587
+   },
+   {
+    "id": "W26",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.12,
+    "x1": 10.32,
+    "y1": 35.587,
+    "x2": 11.44,
+    "y2": 35.587
+   },
+   {
+    "id": "W27",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 5.12,
+    "x1": 11.44,
+    "y1": 35.587,
+    "x2": 16.555,
+    "y2": 35.587
+   },
+   {
+    "id": "W28",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.4,
+    "x1": 5.16,
+    "y1": 33.58,
+    "x2": 5.16,
+    "y2": 34.982
+   },
+   {
+    "id": "W29",
+    "thickness": 0.116,
+    "kind": "shaft",
+    "missing_len": 0.46,
+    "x1": 5.22,
+    "y1": 34.982,
+    "x2": 5.68,
+    "y2": 34.982
+   },
+   {
+    "id": "W30",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.42,
+    "x1": 5.68,
+    "y1": 34.982,
+    "x2": 5.68,
+    "y2": 35.405
+   },
+   {
+    "id": "W32",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.32,
+    "x1": 6.995,
+    "y1": 34.08,
+    "x2": 6.995,
+    "y2": 35.405
+   },
+   {
+    "id": "W36",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.79,
+    "x1": 9.8,
+    "y1": 34.08,
+    "x2": 9.8,
+    "y2": 34.867
+   },
+   {
+    "id": "W37",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.72,
+    "x1": 9.8,
+    "y1": 34.867,
+    "x2": 9.8,
+    "y2": 35.587
+   },
+   {
+    "id": "W38",
+    "thickness": 0.114,
+    "kind": "shaft",
+    "missing_len": 0.46,
+    "x1": 9.86,
+    "y1": 34.867,
+    "x2": 10.32,
+    "y2": 34.867
+   },
+   {
+    "id": "W39",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.66,
+    "x1": 10.32,
+    "y1": 34.867,
+    "x2": 10.32,
+    "y2": 35.527
+   },
+   {
+    "id": "W40",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.95,
+    "x1": 11.44,
+    "y1": 33.58,
+    "x2": 11.44,
+    "y2": 35.527
+   },
+   {
+    "id": "W41",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 0.25,
+    "x1": 16.63,
+    "y1": 32.26,
+    "x2": 16.63,
+    "y2": 35.53
+   },
+   {
+    "id": "W42",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 2.96,
+    "x1": 0.645,
+    "y1": 32.26,
+    "x2": 0.645,
+    "y2": 35.22
+   },
+   {
+    "id": "W43",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.62,
+    "x1": 0.77,
+    "y1": 32.26,
+    "x2": 6.935,
+    "y2": 32.26
+   },
+   {
+    "id": "W44",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.77,
+    "x1": 5.16,
+    "y1": 33.58,
+    "x2": 6.935,
+    "y2": 33.58
+   },
+   {
+    "id": "W50",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.58,
+    "x1": 9.86,
+    "y1": 33.58,
+    "x2": 11.44,
+    "y2": 33.58
+   },
+   {
+    "id": "W52",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 0.46,
+    "y1": 32.08,
+    "x2": 0.46,
+    "y2": 32.38
+   },
+   {
+    "id": "W56",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 3.32,
+    "x1": 0.645,
+    "y1": 28.94,
+    "x2": 0.645,
+    "y2": 32.26
+   },
+   {
+    "id": "W57",
+    "thickness": 0.122,
+    "kind": "shaft",
+    "missing_len": 0.52,
+    "x1": 5.16,
+    "y1": 29.299,
+    "x2": 5.68,
+    "y2": 29.299
+   },
+   {
+    "id": "W60",
+    "thickness": 0.25,
+    "kind": "shaft",
+    "missing_len": 0.72,
+    "x1": 13.38,
+    "y1": 29.0,
+    "x2": 13.38,
+    "y2": 29.725
+   },
+   {
+    "id": "W61",
+    "thickness": 0.25,
+    "kind": "shaft",
+    "missing_len": 1.28,
+    "x1": 13.38,
+    "y1": 29.725,
+    "x2": 14.66,
+    "y2": 29.725
+   },
+   {
+    "id": "W62",
+    "thickness": 0.25,
+    "kind": "shaft",
+    "missing_len": 0.72,
+    "x1": 14.66,
+    "y1": 29.0,
+    "x2": 14.66,
+    "y2": 29.725
+   },
+   {
+    "id": "W64",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 0.46,
+    "y1": 28.93,
+    "x2": 0.46,
+    "y2": 29.23
+   },
+   {
+    "id": "W65",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.92,
+    "x1": 0.77,
+    "y1": 28.94,
+    "x2": 1.69,
+    "y2": 28.94
+   },
+   {
+    "id": "W67",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.36,
+    "x1": 5.16,
+    "y1": 28.58,
+    "x2": 5.16,
+    "y2": 28.94
+   },
+   {
+    "id": "W68",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.36,
+    "x1": 5.16,
+    "y1": 28.94,
+    "x2": 5.16,
+    "y2": 29.299
+   },
+   {
+    "id": "W69",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.46,
+    "x1": 5.22,
+    "y1": 28.58,
+    "x2": 5.68,
+    "y2": 28.58
+   },
+   {
+    "id": "W70",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.36,
+    "x1": 5.68,
+    "y1": 28.58,
+    "x2": 5.68,
+    "y2": 28.94
+   },
+   {
+    "id": "W71",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.36,
+    "x1": 5.68,
+    "y1": 28.94,
+    "x2": 5.68,
+    "y2": 29.299
+   },
+   {
+    "id": "W74",
+    "thickness": 0.45,
+    "kind": "stair_lift",
+    "missing_len": 1.07,
+    "x1": 9.18,
+    "y1": 27.8,
+    "x2": 9.18,
+    "y2": 28.875
+   },
+   {
+    "id": "W78",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 2.86,
+    "x1": 0.645,
+    "y1": 26.08,
+    "x2": 0.645,
+    "y2": 28.94
+   },
+   {
+    "id": "W79",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.67,
+    "x1": 5.16,
+    "y1": 26.91,
+    "x2": 5.16,
+    "y2": 28.58
+   },
+   {
+    "id": "W80",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.77,
+    "x1": 5.16,
+    "y1": 26.91,
+    "x2": 6.935,
+    "y2": 26.91
+   },
+   {
+    "id": "W86",
+    "thickness": 0.37,
+    "kind": "exterior",
+    "missing_len": 0.42,
+    "x1": 0.585,
+    "y1": 25.657,
+    "x2": 0.585,
+    "y2": 26.08
+   },
+   {
+    "id": "W87",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.7,
+    "x1": 0.77,
+    "y1": 25.59,
+    "x2": 6.935,
+    "y2": 25.59
+   },
+   {
+    "id": "W131",
+    "thickness": 0.125,
+    "kind": "interior",
+    "missing_len": 1.32,
+    "x1": 9.015,
+    "y1": 18.463,
+    "x2": 10.34,
+    "y2": 18.463
+   },
+   {
+    "id": "W132",
+    "thickness": 0.25,
+    "kind": "interior",
+    "missing_len": 1.67,
+    "x1": 12.913,
+    "y1": 18.525,
+    "x2": 14.874,
+    "y2": 18.525
+   },
+   {
+    "id": "W153",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.49,
+    "x1": 9.015,
+    "y1": 11.99,
+    "x2": 9.015,
+    "y2": 15.475
+   },
+   {
+    "id": "W154",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.52,
+    "x1": 10.097,
+    "y1": 12.9,
+    "x2": 10.617,
+    "y2": 12.9
+   },
+   {
+    "id": "W156",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 0.46,
+    "y1": 11.73,
+    "x2": 0.46,
+    "y2": 12.03
+   },
+   {
+    "id": "W158",
+    "thickness": 0.12,
+    "kind": "stair_lift",
+    "missing_len": 0.52,
+    "x1": 3.9,
+    "y1": 12.34,
+    "x2": 6.935,
+    "y2": 12.34
+   },
+   {
+    "id": "W160",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.36,
+    "x1": 10.097,
+    "y1": 11.63,
+    "x2": 10.097,
+    "y2": 11.99
+   },
+   {
+    "id": "W161",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.91,
+    "x1": 10.097,
+    "y1": 11.99,
+    "x2": 10.097,
+    "y2": 12.9
+   },
+   {
+    "id": "W162",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.52,
+    "x1": 10.097,
+    "y1": 11.63,
+    "x2": 10.617,
+    "y2": 11.63
+   },
+   {
+    "id": "W163",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.36,
+    "x1": 10.617,
+    "y1": 11.63,
+    "x2": 10.617,
+    "y2": 11.99
+   },
+   {
+    "id": "W164",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.91,
+    "x1": 10.617,
+    "y1": 11.99,
+    "x2": 10.617,
+    "y2": 12.9
+   },
+   {
+    "id": "W166",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 2.81,
+    "x1": 0.645,
+    "y1": 9.475,
+    "x2": 0.645,
+    "y2": 12.28
+   },
+   {
+    "id": "W167",
+    "thickness": 0.12,
+    "kind": "stair_lift",
+    "missing_len": 2.86,
+    "x1": 6.995,
+    "y1": 9.475,
+    "x2": 6.995,
+    "y2": 12.34
+   },
+   {
+    "id": "W170",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 0.46,
+    "y1": 9.01,
+    "x2": 0.46,
+    "y2": 9.31
+   },
+   {
+    "id": "W171",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.92,
+    "x1": 0.77,
+    "y1": 9.475,
+    "x2": 1.69,
+    "y2": 9.475
+   },
+   {
+    "id": "W176",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 5.63,
+    "x1": 9.075,
+    "y1": 9.025,
+    "x2": 14.703,
+    "y2": 9.025
+   },
+   {
+    "id": "W178",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 3.64,
+    "x1": 0.645,
+    "y1": 5.837,
+    "x2": 0.645,
+    "y2": 9.475
+   },
+   {
+    "id": "W182",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 0.46,
+    "y1": 5.86,
+    "x2": 0.46,
+    "y2": 6.16
+   },
+   {
+    "id": "W183",
+    "thickness": 0.127,
+    "kind": "interior",
+    "missing_len": 1.6,
+    "x1": 0.77,
+    "y1": 5.837,
+    "x2": 2.505,
+    "y2": 5.837
+   },
+   {
+    "id": "W186",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.36,
+    "x1": 10.097,
+    "y1": 5.35,
+    "x2": 10.097,
+    "y2": 5.712
+   },
+   {
+    "id": "W187",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.49,
+    "x1": 10.097,
+    "y1": 5.712,
+    "x2": 10.097,
+    "y2": 6.2
+   },
+   {
+    "id": "W188",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.52,
+    "x1": 10.097,
+    "y1": 5.35,
+    "x2": 10.617,
+    "y2": 5.35
+   },
+   {
+    "id": "W189",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.52,
+    "x1": 10.097,
+    "y1": 6.2,
+    "x2": 10.617,
+    "y2": 6.2
+   },
+   {
+    "id": "W190",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.36,
+    "x1": 10.617,
+    "y1": 5.35,
+    "x2": 10.617,
+    "y2": 5.712
+   },
+   {
+    "id": "W191",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.49,
+    "x1": 10.617,
+    "y1": 5.712,
+    "x2": 10.617,
+    "y2": 6.2
+   },
+   {
+    "id": "W194",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 3.43,
+    "x1": 0.645,
+    "y1": 2.41,
+    "x2": 0.645,
+    "y2": 5.837
+   },
+   {
+    "id": "W195",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.3,
+    "x1": 6.695,
+    "y1": 4.2,
+    "x2": 6.995,
+    "y2": 4.2
+   },
+   {
+    "id": "W202",
+    "thickness": 0.12,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 0.46,
+    "y1": 2.71,
+    "x2": 0.46,
+    "y2": 3.01
+   },
+   {
+    "id": "W204",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 3.2,
+    "x1": 1.645,
+    "y1": 2.29,
+    "x2": 4.845,
+    "y2": 2.29
+   },
+   {
+    "id": "W205",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.66,
+    "x1": 4.845,
+    "y1": 2.35,
+    "x2": 4.845,
+    "y2": 3.008
+   },
+   {
+    "id": "W206",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.46,
+    "x1": 4.845,
+    "y1": 2.29,
+    "x2": 5.305,
+    "y2": 2.29
+   },
+   {
+    "id": "W207",
+    "thickness": 0.115,
+    "kind": "shaft",
+    "missing_len": 0.52,
+    "x1": 4.845,
+    "y1": 3.008,
+    "x2": 5.365,
+    "y2": 3.008
+   },
+   {
+    "id": "W208",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.66,
+    "x1": 5.365,
+    "y1": 2.29,
+    "x2": 5.365,
+    "y2": 2.95
+   },
+   {
+    "id": "W209",
+    "thickness": 0.115,
+    "kind": "interior",
+    "missing_len": 1.33,
+    "x1": 5.365,
+    "y1": 3.008,
+    "x2": 6.695,
+    "y2": 3.008
+   },
+   {
+    "id": "W210",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.19,
+    "x1": 6.695,
+    "y1": 3.008,
+    "x2": 6.695,
+    "y2": 4.2
+   },
+   {
+    "id": "W211",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 2.1,
+    "x1": 7.655,
+    "y1": 2.04,
+    "x2": 7.655,
+    "y2": 4.14
+   },
+   {
+    "id": "W213",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.46,
+    "x1": 9.075,
+    "y1": 2.87,
+    "x2": 9.536,
+    "y2": 2.87
+   },
+   {
+    "id": "W214",
+    "thickness": 0.12,
+    "kind": "shaft",
+    "missing_len": 0.46,
+    "x1": 9.075,
+    "y1": 3.59,
+    "x2": 9.536,
+    "y2": 3.59
+   },
+   {
+    "id": "W215",
+    "thickness": 0.121,
+    "kind": "shaft",
+    "missing_len": 0.72,
+    "x1": 9.536,
+    "y1": 2.87,
+    "x2": 9.536,
+    "y2": 3.59
+   },
+   {
+    "id": "W218",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 0.25,
+    "x1": 5.365,
+    "y1": 2.04,
+    "x2": 5.365,
+    "y2": 2.29
+   },
+   {
+    "id": "W219",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 2.29,
+    "x1": 5.365,
+    "y1": 2.04,
+    "x2": 7.655,
+    "y2": 2.04
+   },
+   {
+    "id": "W220",
+    "thickness": 0.12,
+    "kind": "interior",
+    "missing_len": 1.64,
+    "x1": 9.015,
+    "y1": -0.92,
+    "x2": 9.015,
+    "y2": 2.87
+   },
+   {
+    "id": "W221",
+    "thickness": 0.38,
+    "kind": "exterior",
+    "missing_len": 1.05,
+    "x1": 3.66,
+    "y1": -1.22,
+    "x2": 3.66,
+    "y2": -0.17
+   },
+   {
+    "id": "W222",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 0.84,
+    "x1": 13.48,
+    "y1": -0.845,
+    "x2": 13.48,
+    "y2": 0.0
+   },
+   {
+    "id": "W223",
+    "thickness": 0.6,
+    "kind": "exterior",
+    "missing_len": 0.44,
+    "x1": 3.66,
+    "y1": -1.22,
+    "x2": 4.1,
+    "y2": -1.22
+   },
+   {
+    "id": "W225",
+    "thickness": 0.127,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 4.35,
+    "y1": -1.234,
+    "x2": 4.65,
+    "y2": -1.234
+   },
+   {
+    "id": "W226",
+    "thickness": 0.127,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 7.25,
+    "y1": -1.234,
+    "x2": 7.55,
+    "y2": -1.234
+   },
+   {
+    "id": "W227",
+    "thickness": 0.25,
+    "kind": "exterior",
+    "missing_len": 8.96,
+    "x1": 4.1,
+    "y1": -1.045,
+    "x2": 13.055,
+    "y2": -1.045
+   },
+   {
+    "id": "W228",
+    "thickness": 0.127,
+    "kind": "exterior",
+    "missing_len": 0.3,
+    "x1": 10.15,
+    "y1": -1.234,
+    "x2": 10.45,
+    "y2": -1.234
+   },
+   {
+    "id": "W229",
+    "thickness": 0.378,
+    "kind": "exterior",
+    "missing_len": 0.25,
+    "x1": 13.055,
+    "y1": -1.109,
+    "x2": 13.305,
+    "y2": -1.109
+   }
+  ]
+ }
+}
