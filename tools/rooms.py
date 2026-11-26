@@ -2,7 +2,7 @@
 """
 rooms — قارئ الفراغات/الغرف (مساحات الأرضيات والأسقف + محيط المحارة) لمساقط الديوان.
 
-Builds the CLOSED ROOM POLYGONS of every floor (F02..F08) in the shared LOCAL frame of
+Builds the CLOSED ROOM POLYGONS of every floor (F02..F11) in the shared LOCAL frame of
 diwan_common (rotation removed, structural-column corner = (0,0), metres) and names them.
 
 METHOD (face extraction, robust to the drafting):
@@ -10,11 +10,19 @@ METHOD (face extraction, robust to the drafting):
        wall      W lines/polylines, stray caps on layer 0, MASS lines (lift-front wall,
                  terrace parapets; MASS lines inside a stair = the stair well, ignored)
        glazing   WIN, CONTINUOUS only (DASHED WIN = projection/cladding lines, ignored);
-                 leaf lines/arcs of block-less glazed doors (F02) are dropped
+                 leaf lines/arcs of block-less glazed doors (F02) are dropped; WIN lines inside
+                 a stair hull = the stair eye / break line drawn on WIN (F11), ignored like MASS;
+                 a MASS line 3-16 cm beside a parallel WIN line over >= 80 % of its length is
+                 the other frame line of that glass drawn on the wrong layer (F09) -> glazing
        column    Etabs-col / COL polygons (LWPOLYLINE + HATCH, de-duplicated) = solid
-       solid_try hatched `try` boxes (ANSI31 masonry fins at the west curtain wall)
-       shaft     un-hatched `try` boxes (their outline; the inside becomes a shaft face)
-       slab_edge MASS LWPOLYLINE with >= 20 vertices (F02 terrace / planter slab edge)
+       solid_try hatched `try` boxes (ANSI31 masonry fins at the west curtain wall); a try
+                 HATCH with no matching LWPOLYLINE (F09-F11 post at the office 7/8 partition) too
+       shaft     un-hatched `try` boxes (their outline; the inside becomes a shaft face); a W
+                 stub inside a box with a free end is a stray line, dropped (F09 SH06)
+       slab_edge MASS LWPOLYLINE with >= 20 vertices (F02 terrace / planter slab edge); F09-F11
+                 try floor outline only where no W / WIN lies within 0.15 m AND it runs through
+                 what is open to the outside without it (it never cuts an indoor room short of
+                 its curved glass; on F09-F11 it ends up changing nothing)
        door      quad between the two jambs of every door (tools/openings.py), so a
                  door gap closes the room on the wall face
        opening   rectangle across the wall of every door-less opening (openings.py:
@@ -22,7 +30,8 @@ METHOD (face extraction, robust to the drafting):
        extension a W face line whose end touches nothing is extended straight on to
                  the first obstacle within 1.5 m (partition drawn short of the facade /
                  glazing / the deleted round element at the NW and SW corners); every
-                 extension is logged and drawn (magenta) for review
+                 extension is logged and drawn (magenta) for review; an end inside a try
+                 shaft box is never extended
      Not boundaries: ST (stair treads), PR (handrails, lift cars), DASH (overhead lines),
      FUR, DIM, X, W hatches (AR-CONC = planter soil fill on F02).
   2. Faces: every primitive is buffered by EPS = 1.5 cm (closes drafting gaps <= 3 cm),
@@ -43,7 +52,9 @@ METHOD (face extraction, robust to the drafting):
      corridor (ممر), lobby (بهو المصعد), service (IT room, FTR room, DAS/GSM, electric
      room), terrace (تراس سماوي), planter (زرع), stair, lift, shaft.  'المصاعد الادارية
      فقط' is a sign (note), not a name.  open_air = terrace / planter (no ceiling, outside
-     plaster) - present on F02 only.
+     plaster) - F02 and F09-F11.  Corridor + lift lobby drawn as one space are split by the
+     continuation of the corridor wall face; an extra 'ممر' label standing in the lobby
+     (F10/F11) is dropped for the split when the rest gives a corridor-shaped part (flagged).
   4. Per room: area (net, inside the wall faces), perimeter (all rings) and its breakdown
      by what bounds it (wall / column / glazing / door / opening / shaft / slab_edge /
      extension ...) = the base of the plaster takeoff; doors / windows / openings ids on
@@ -54,7 +65,7 @@ METHOD (face extraction, robust to the drafting):
      thin external fins excluded), open-air area, flags.
 
 CLI (default = all floors):
-    python tools/rooms.py                      # F02..F08 -> output/rooms/F0x.json + PNGs
+    python tools/rooms.py                      # F02..F11 -> output/rooms/F<nn>.json + PNGs
     python tools/rooms.py 3 5 --no-png
     python tools/rooms.py 3 --zoom 0 25 10 40  # extra zoomed review PNG (local metres)
 API:
@@ -73,6 +84,7 @@ API:
                         boundary_by_kind_open_air{}, footprint_bbox}
     res["checks"]  -> labels_unplaced, office_numbers, offices_missing, duplicate_names, rooms_flagged,
                         extensions, corridor_lobby_splits, doors_not_two_sided, windows_unassigned,
+                        win_inside_stair_skipped, windows_in_stair_ignored,
                         dims_ok / dims_jog / dims_mismatch, ...
     res["_footprint"], res["_P"] (tagged boundary primitives), res["_wall_bodies"]  (not in the JSON)
   Units: m / m2 in the LOCAL frame.  Perimeter = inner wall-face length (holes included), the base
@@ -97,7 +109,7 @@ from diwan_common import OUT_DIR, STOREY_HEIGHT, all_floors, floor_entities, flo
 from ezdxf import path as ezpath  # noqa: E402
 import shapely  # noqa: E402
 from shapely.geometry import LineString, MultiPolygon, Point, Polygon, box  # noqa: E402
-from shapely.ops import polylabel, unary_union  # noqa: E402
+from shapely.ops import linemerge, polylabel, unary_union  # noqa: E402
 from shapely.strtree import STRtree  # noqa: E402
 
 ROOM_OUT = OUT_DIR / "rooms"
@@ -331,9 +343,11 @@ EPS = 0.015            # m: half-width of the line buffers (closes drafting gaps
 MAX_EXT = 1.5          # m: longest extension of a dangling wall face to its first obstacle
 MIN_FACE = 0.02        # m2: smaller free faces are drafting noise
 LABEL_SNAP = 1.2       # m: a label outside every face goes to the nearest face within this
+SNAP_FAR = 0.5         # m: an open-air face named by a label snapped from farther than this is flagged
 SEG_STEP = 0.025       # m: boundary sampling step for the perimeter breakdown
 KIND_PRIORITY = ["door", "opening", "glazing", "column", "solid_try", "shaft", "slab_edge", "mass",
                  "wall", "extension", "virtual"]
+GLASS_OVER_OUTLINE = 0.12  # m: a face sample on the try outline with glazing this close counts as glazing
 
 
 def _unit(v):
@@ -375,12 +389,62 @@ def stair_hulls(g):
     return out
 
 
+FRAME_GAP = (0.03, 0.16)   # m: a MASS line this far from a parallel WIN line = glazing frame line
+FRAME_COVER = 0.80         # share of the MASS line that must run beside the WIN line
+OUTLINE_CLEAR = 0.15       # m: the try floor outline is dropped wherever W / WIN lies this close
+
+
+def _segments(pts):
+    return [(a, b) for a, b in zip(pts, pts[1:]) if _dist(a, b) > 1e-6]
+
+
+def _frame_cover(seg, win_segs, gap=FRAME_GAP, ang_tol=0.02):
+    """Length share of segment `seg` that runs parallel to a WIN segment at a distance
+    within `gap` (projected overlap; union over all WIN segments)."""
+    (a, b) = seg
+    L = _dist(a, b)
+    if L < 1e-6:
+        return 0.0
+    u = ((b[0] - a[0]) / L, (b[1] - a[1]) / L)
+    n = (-u[1], u[0])
+    ivs = []
+    for (c, d) in win_segs:
+        Lw = _dist(c, d)
+        if Lw < 1e-6:
+            continue
+        w = ((d[0] - c[0]) / Lw, (d[1] - c[1]) / Lw)
+        if abs(u[0] * w[1] - u[1] * w[0]) > ang_tol:
+            continue                                       # not parallel
+        off = abs((c[0] - a[0]) * n[0] + (c[1] - a[1]) * n[1])
+        if not (gap[0] <= off <= gap[1]):
+            continue
+        t0 = (c[0] - a[0]) * u[0] + (c[1] - a[1]) * u[1]
+        t1 = (d[0] - a[0]) * u[0] + (d[1] - a[1]) * u[1]
+        lo, hi = max(0.0, min(t0, t1)), min(L, max(t0, t1))
+        if hi > lo:
+            ivs.append((lo, hi))
+    if not ivs:
+        return 0.0
+    ivs.sort()
+    tot, cur = 0.0, list(ivs[0])
+    for lo, hi in ivs[1:]:
+        if lo <= cur[1]:
+            cur[1] = max(cur[1], hi)
+        else:
+            tot += cur[1] - cur[0]
+            cur = [lo, hi]
+    tot += cur[1] - cur[0]
+    return tot / L
+
+
 def build_primitives(g, op):
     """Tagged boundary geometry: list of (shapely geom, kind, ref)."""
     P = []
     leaves = [(tuple(d["hinge"]), d["leaf_r"]) for d in op.get("doors", [])
               if d.get("source") != "block" and d.get("hinge") and d.get("leaf_r")]
     skipped = []
+    # stair hulls: MASS and WIN lines inside a stair are its eye / break line, not boundaries
+    hulls = [h.buffer(0.05) for h in stair_hulls(g)]
     # open door leaves (hinge -> leaf tip) : W lines lying on one are a leaf drawn on W, not a wall
     leaf_zones = []
     for d in op.get("doors", []):
@@ -396,11 +460,19 @@ def build_primitives(g, op):
         P.append((ln, "wall", "W:" + r["handle"]))
     for r in g["zero"]:
         P.append((LineString(r["pts"]), "wall", "0:" + r["handle"]))
+    win_used = []
     for r in g["win"]:
         if _is_leaf(r["pts"], leaves):
             skipped.append("WIN:" + r["handle"] + " (door leaf)")
             continue
-        P.append((LineString(r["pts"]), "glazing", "WIN:" + r["handle"]))
+        ln = LineString(r["pts"])
+        if any(h.contains(ln) for h in hulls):
+            # F11: the stair eye (void between the flights) and the break line are drawn on WIN
+            # (on MASS on F09/F10 and F02-F08) - not glazing, not a boundary
+            skipped.append(f"WIN:{r['handle']} (inside a stair: stair eye / break line drawn on WIN)")
+            continue
+        win_used.append(r)
+        P.append((ln, "glazing", "WIN:" + r["handle"]))
     seen = []
     for r in g["cols"]:
         pg = _poly(r["pts"])
@@ -409,7 +481,8 @@ def build_primitives(g, op):
             continue
         seen.append(pg)
         P.append((pg, "column", r.get("layer", "col") + ":" + r["handle"]))
-    hatched = [_poly(r["pts"]) for r in g["try_polys"] if "(hatch)" in r.get("layer", "")]
+    hatched = [(_poly(r["pts"]), r) for r in g["try_polys"] if "(hatch)" in r.get("layer", "")]
+    lw_try = [_poly(r["pts"]) for r in g["try_polys"] if "(hatch)" not in r.get("layer", "")]
     seen = set()
     for r in g["try_polys"]:
         if "(hatch)" in r.get("layer", ""):
@@ -419,12 +492,27 @@ def build_primitives(g, op):
         if key in seen:
             continue
         seen.add(key)
-        if any(h.intersection(pg).area > 0.8 * pg.area for h in hatched):
+        if any(h.intersection(pg).area > 0.8 * pg.area for h, _ in hatched):
             P.append((pg, "solid_try", "try:" + r["handle"]))          # hatched fin box (solid)
         else:
             P.append((LineString(pg.exterior.coords), "shaft", "try:" + r["handle"]))  # inside = shaft
+    # F09-F11: a hatched try box with NO matching LWPOLYLINE (the curtain-wall post at the office
+    # 7/8 partition) is still a solid post; a hatched box far from any wall / glass is stray
+    near_lines = unary_union([p[0] for p in P if p[1] in ("wall", "glazing")]) if P else None
+    for h, r in hatched:
+        if h.area < 0.005 or any(h.intersection(q).area > 0.8 * h.area for q in lw_try):
+            continue
+        key = tuple(round(v, 2) for v in h.bounds)
+        if key in seen:
+            continue
+        seen.add(key)
+        if near_lines is not None and h.distance(near_lines) <= 0.30:
+            P.append((h, "solid_try", "try-hatch:" + r["handle"]))
+        else:
+            skipped.append(f"try-hatch:{r['handle']} (hatched try box with no polyline, away from every wall / "
+                           f"glass: stray object)")
     # MASS: slab edge (F02 terraces/planters), lift-front wall, parapets; not the stair well
-    hulls = [h.buffer(0.05) for h in stair_hulls(g)]
+    win_segs = [s for r in win_used for s in _segments(r["pts"])]
     for r in g["mass"]:
         xs = [p[0] for p in r["pts"]]
         ys = [p[1] for p in r["pts"]]
@@ -436,16 +524,41 @@ def build_primitives(g, op):
             continue
         if r["type"] == "LWPOLYLINE" and len(r["pts"]) >= 20:
             P.append((ln, "slab_edge", "MASS:" + r["handle"]))
+            continue
+        # a MASS line running 3-16 cm beside a continuous WIN line over >= 80 % of its length is
+        # the other line of a glazing frame drawn on the wrong layer (F09 west glass, office 10)
+        segs = _segments(r["pts"])
+        kinds = ["glazing" if _frame_cover(s, win_segs) >= FRAME_COVER else "mass" for s in segs]
+        if segs and "glazing" in kinds:
+            if all(k == "glazing" for k in kinds):
+                P.append((ln, "glazing", "MASS(glazing frame):" + r["handle"]))
+            else:
+                for s, k in zip(segs, kinds):
+                    P.append((LineString(s), k, ("MASS(glazing frame):" if k == "glazing" else "MASS:") + r["handle"]))
+            skipped.append(f"MASS:{r['handle']} -> glazing (frame line drawn on MASS beside a WIN line)")
         else:
             P.append((ln, "mass", "MASS:" + r["handle"]))
-    # F09-F11: the floor outline on 'try' = slab edge round the planters (plot boundary skipped)
+    # F09-F11: the floor outline on 'try' runs on the facade / glass line (the planters lie OUTSIDE
+    # it, behind a MASS parapet).  It is added last and dropped wherever a W / WIN line lies within
+    # OUTLINE_CLEAR, so it never cuts an indoor room short of the (curved) glass; what is left only
+    # closes the open-air planter ends (plot boundary skipped)
+    clear = unary_union([p[0] for p in P if p[1] in ("wall", "glazing")]).buffer(OUTLINE_CLEAR)
     for r in g.get("try_outlines", []):
         xs = [p[0] for p in r["pts"]]
         ys = [p[1] for p in r["pts"]]
         if max(xs) - min(xs) > 30 or max(ys) - min(ys) > 50:
             continue                                   # site / plot boundary
         pts = list(r["pts"]) + [r["pts"][0]]
-        P.append((LineString(pts), "slab_edge", "try-outline:" + r["handle"]))
+        ring = LineString(pts)
+        rest = ring.difference(clear)
+        if rest.geom_type == "MultiLineString":
+            rest = linemerge(rest)
+        parts = [q for q in (rest.geoms if hasattr(rest, "geoms") else [rest])
+                 if q.geom_type == "LineString" and q.length >= 0.02]
+        for q in parts:
+            P.append((q, "slab_edge", "try-outline:" + r["handle"]))
+        skipped.append(f"try-outline:{r['handle']} kept {sum(q.length for q in parts):.2f} of {ring.length:.2f} m "
+                       f"(dropped where W / WIN lies within {OUTLINE_CLEAR} m)")
     # doors (block or raw) -> closing quad between the two jambs
     for d in op.get("doors", []):
         ja, jb = d.get("jamb_a"), d.get("jamb_b")
@@ -466,11 +579,76 @@ def build_primitives(g, op):
     return P, skipped
 
 
+def stray_shaft_stubs(P, touch=0.012):
+    """Indices of W lines lying inside an un-hatched try shaft box with an end that touches
+    nothing inside the box (F09 SH06: W 4B35, a 0.16 m stub left in the shaft) - a stray line,
+    not a wall; it would cut the shaft face into wall-body slivers.  A closed inner box drawn
+    on W inside the try box (F05/F07) touches at both ends and is kept."""
+    boxes = [Polygon(g_.coords) for g_, k_, _ in P
+             if k_ == "shaft" and g_.geom_type == "LineString" and len(g_.coords) >= 4]
+    if not boxes:
+        return []
+    geoms = [p[0] for p in P]
+    tree = STRtree(geoms)
+    out = []
+    for idx, (geom, kind, ref) in enumerate(P):
+        if kind != "wall" or geom.geom_type != "LineString":
+            continue
+        bx = next((b for b in boxes if b.buffer(0.01).contains(geom)), None)
+        if bx is None:
+            continue
+        inner = bx.buffer(-0.01)
+        for end in (geom.coords[0], geom.coords[-1]):
+            pt = Point(end)
+            if inner.is_empty or not inner.contains(pt):
+                continue
+            if not [j for j in tree.query(pt.buffer(touch)) if j != idx and geoms[j].distance(pt) <= touch]:
+                out.append(idx)
+                break
+    return out
+
+
+def outline_open_air_only(P, skipped):
+    """F09-F11: keep the (already clipped) try floor-outline pieces only where they run through
+    what is OPEN TO THE OUTSIDE without them (they then close an open-air planter); a piece that
+    runs through a closed face of the plan without the outline would only cut that face (an
+    office short of the curved glass: F11 office 11 SW corner) and is dropped."""
+    idx = [i for i, p in enumerate(P) if str(p[2]).startswith("try-outline:")]
+    if not idx:
+        return P
+    P0 = [p for i, p in enumerate(P) if i not in set(idx)]
+    e0 = dangling_extensions(P0)
+    P0x = P0 + [(LineString([tuple(e["from"]), tuple(e["to"])]), "extension", e["wall"]) for e in e0]
+    _, _, f0 = free_faces(P0x, box(*BUILDING_WIN))
+    U = unary_union(f0) if f0 else None
+    out = list(P0)
+    kept = dropped = 0.0
+    for i in idx:
+        geom, kind, ref = P[i]
+        rest = geom.difference(U) if U is not None else geom
+        if rest.geom_type == "MultiLineString":
+            rest = linemerge(rest)
+        parts = [q for q in (rest.geoms if hasattr(rest, "geoms") else [rest])
+                 if q.geom_type == "LineString" and q.length >= 0.02]
+        out.extend((q, kind, ref) for q in parts)
+        kept += sum(q.length for q in parts)
+        dropped += geom.length - sum(q.length for q in parts)
+    if dropped > 0.005:
+        skipped.append(f"try-outline: {dropped:.2f} m more dropped where it runs inside a closed face (it would cut "
+                       f"that space short of its glass); {kept:.2f} m kept (open-air side)")
+    return out
+
+
 def dangling_extensions(P, max_ext=MAX_EXT, touch=0.012, ray_tol=0.016, min_seg=0.10):
     """Wall-face lines (W) whose end touches nothing are extended straight on to the
     first obstacle within max_ext (a partition drawn short of the facade / glazing)."""
     geoms = [p[0] for p in P]
     tree = STRtree(geoms)
+    # inside of the un-hatched try shaft boxes: a W stub ending in there is a stray line in the
+    # shaft (F09 SH06), extending it would split the shaft
+    shaft_in = [Polygon(g_.coords).buffer(-0.01) for g_, k_, _ in P
+                if k_ == "shaft" and g_.geom_type == "LineString" and len(g_.coords) >= 4]
+    shaft_in = [q for q in shaft_in if not q.is_empty]
     out = []
     for idx, (geom, kind, ref) in enumerate(P):
         if kind != "wall" or geom.geom_type != "LineString":
@@ -482,6 +660,8 @@ def dangling_extensions(P, max_ext=MAX_EXT, touch=0.012, ray_tol=0.016, min_seg=
             if _dist(end, prev) < min_seg:
                 continue                      # too short to give a reliable direction
             pt = Point(end)
+            if any(q.contains(pt) for q in shaft_in):
+                continue                      # dangling end inside a shaft box: not extended
             near = [j for j in tree.query(pt.buffer(touch)) if j != idx and geoms[j].distance(pt) <= touch]
             if near:
                 continue
@@ -712,7 +892,7 @@ def _label_center(t):
 def name_room(labels):
     """(name, category, flags) from the labels found inside one space."""
     flags = []
-    labels = [l for l in labels if not l.get("note")]
+    labels = [l for l in labels if not l.get("note") and not l.get("misplaced")]
     if not labels:
         return None, None, flags
     txts = [l["text"] for l in labels]
@@ -831,6 +1011,12 @@ def boundary_breakdown(poly, P, tree):
             key = (round(d, 3), prio.get(kind, 99))
             if d <= 0.035 and (best is None or key < best[0]):
                 best = (key, kind, ref)
+        if best is not None and best[1] == "slab_edge" and str(best[2]).startswith("try-outline:"):
+            # the try floor outline drawn a few cm inside the glass: the face is the glazing
+            gl = [P[j] for j in tree.query(pt.buffer(GLASS_OVER_OUTLINE))
+                  if P[j][1] == "glazing" and P[j][0].distance(pt) <= GLASS_OVER_OUTLINE]
+            if gl:
+                best = (best[0], "glazing", gl[0][2])
         if best is None:
             out["unresolved"] += dl
         else:
@@ -952,6 +1138,24 @@ def analyze_floor(floor, use_cache=True, refresh_openings=False):
     op, op_src = load_openings(fl, refresh=refresh_openings)
 
     P, skipped = build_primitives(g, op)
+    stubs = stray_shaft_stubs(P)
+    for i in sorted(stubs, reverse=True):
+        skipped.append(f"{P[i][2]} (stray stub inside a try shaft box, free end: not a wall)")
+        del P[i]
+    P = outline_open_air_only(P, skipped)
+    # F09-F11: the floor outline on 'try' (bulge-aware: flattened with ezdxf.path) - used to flag
+    # open-air faces that lie inside it (planters lie outside the outline)
+    outline_poly = None
+    for r in g.get("try_outlines", []):
+        xs = [p[0] for p in r["pts"]]
+        ys = [p[1] for p in r["pts"]]
+        if max(xs) - min(xs) <= 30 and max(ys) - min(ys) <= 50 and len(r["pts"]) >= 3:
+            q = _poly(r["pts"])
+            outline_poly = q if outline_poly is None else outline_poly.union(q)
+    hulls = [h.buffer(0.05) for h in stair_hulls(g)]
+    win_in_stair = [s_.split(" ")[0] for s_ in skipped if "inside a stair: stair eye" in s_]
+    P_ref_geom = {"WIN:" + r["handle"]: LineString(r["pts"]) for r in g["win"]
+                  if "WIN:" + r["handle"] in win_in_stair}
     exts = dangling_extensions(P)
     for e in exts:
         P.append((LineString([tuple(e["from"]), tuple(e["to"])]), "extension", e["wall"]))
@@ -1051,6 +1255,7 @@ def analyze_floor(floor, use_cache=True, refresh_openings=False):
         txt = [l["text"] for l in rec["labels"] if not l["note"]]
         cats = {label_category(t) for t in txt}
         lab_t = {t["handle"]: t for t in g["texts"]}
+        dropped = []
         if {"corridor", "lobby"} <= cats:
             unlabelled_corridor = False
             keep = [l for l in rec["labels"] if label_category(l["text"]) == "corridor"]
@@ -1058,6 +1263,26 @@ def analyze_floor(floor, use_cache=True, refresh_openings=False):
             keep_pts = [Point(_label_center(lab_t[l["handle"]])) for l in keep]
             oth_pts = [Point(l["x"], l["y"]) for l in oth] + [Point(_label_center(lab_t[l["handle"]])) for l in oth]
             res_split = split_by_wall_continuation(rec["poly"], keep_pts, oth_pts)
+            if not res_split and len(keep) >= 2:
+                # F10/F11: an extra 'ممر' label stands in the lobby (in front of the stair / service
+                # doors).  Retry without one (then two) corridor labels: accepted only when the kept
+                # part is a corridor-shaped strip and every dropped label falls in the lobby part
+                from itertools import combinations
+                for k_drop in (1, 2):
+                    if res_split or len(keep) - k_drop < 1:
+                        break
+                    for drop in combinations(range(len(keep)), k_drop):
+                        kp = [p for i, p in enumerate(keep_pts) if i not in drop]
+                        rs = split_by_wall_continuation(rec["poly"], kp, oth_pts)
+                        if not rs:
+                            continue
+                        pk_, po_, ch_ = rs
+                        dpts = [keep_pts[i] for i in drop]
+                        if corridor_like(pk_, ch_) and all(po_.buffer(1e-4).contains(p) for p in dpts):
+                            if res_split is None or ch_.length < res_split[2].length:
+                                res_split, dropped = rs, [keep[i] for i in drop]
+                    if res_split:
+                        keep = [l for l in keep if l not in dropped]
         elif cats == {"lobby"} and rec["area"] > 50.0:
             # F02: the corridor carries no label; the lobby label sits at the corridor mouth
             unlabelled_corridor = True
@@ -1075,6 +1300,8 @@ def analyze_floor(floor, use_cache=True, refresh_openings=False):
             continue
         pk, po, chord = res_split
         F.remove(rec)
+        for l in dropped:
+            l["misplaced"] = "corridor label inside the lobby part (extra / left-over label) - not used for the name"
         for part, labs in ((pk, keep), (po, [l for l in rec["labels"] if l not in keep])):
             nr = dict(rec)
             fl_ = [f"split_virtual: separated from the {'lobby' if labs is keep else 'corridor'} by a "
@@ -1082,11 +1309,18 @@ def analyze_floor(floor, use_cache=True, refresh_openings=False):
             if labs is keep and unlabelled_corridor:
                 fl_.append("corridor_unlabelled: no 'ممر' label on this floor; named corridor from its shape")
                 nr["force_name"] = ("ممر", "corridor")
+            if labs is not keep and dropped:
+                fl_.append("label_in_lobby: " + ", ".join(f"'{l['text']}' {l['handle']} ({l['x']:.2f}, {l['y']:.2f})"
+                                                          for l in dropped)
+                           + " lies in the lobby part - the corridor/lobby split ignores it")
             nr.update(poly=part, area=part.area, labels=list(labs), r_in=inscribed_radius(part), flags=fl_)
             F.append(nr)
         P.append((chord, "virtual", "split:" + rec["labels"][0]["handle"]))
         splits.append({"chord": _r([list(c) for c in chord.coords]), "length": round(chord.length, 3),
                        "areas": [round(pk.area, 3), round(po.area, 3)]})
+        if dropped:
+            splits[-1]["labels_ignored"] = [{"text": l["text"], "handle": l["handle"], "x": l["x"], "y": l["y"]}
+                                            for l in dropped]
     if splits:
         tree = STRtree([p[0] for p in P])
 
@@ -1143,10 +1377,28 @@ def analyze_floor(floor, use_cache=True, refresh_openings=False):
                          f"space as wall body - check the drawing there")
         if any(l.get("snapped") for l in rec["labels"] if not l["note"]):
             flags.append("label_outside: label snapped from outside the polygon")
+        if cat in OPEN_AIR:
+            far = [l for l in rec["labels"] if not l["note"] and (l.get("snapped") or 0.0) > SNAP_FAR]
+            if far:
+                own = [l for l in rec["labels"] if not l["note"] and (l.get("snapped") or 0.0) <= SNAP_FAR]
+                flags.append(("label_snapped_far: " if own else "only_label_snapped_far: ")
+                             + ", ".join(f"'{l['text']}' {l['handle']} from {l['snapped']:.2f} m" for l in far)
+                             + (" (left over from another floor?)" if own else
+                                " - the only label lies far outside: is this really a " + cat + "?"))
+            if outline_poly is not None and f.intersection(outline_poly).area > 0.5 * f.area:
+                flags.append(f"open_air_inside_outline: {f.area:.2f} m2 lies INSIDE the try floor outline (slab "
+                             f"edge); planters lie outside it - a strip between glass and parapet, not a {cat}?")
         rooms.append({"rec": rec, "name": name, "category": cat, "flags": flags, "n_cars": n_cars})
 
     # ---------------- geometry metrics
-    windows = op.get("windows", [])
+    # windows (openings.py) lying wholly inside a stair = the stair eye drawn on WIN (F11), not glazing
+    windows, windows_in_stair = [], []
+    for w in op.get("windows", []):
+        ends = w.get("ends") or []
+        if len(ends) >= 2 and any(h.contains(LineString([tuple(p) for p in ends])) for h in hulls):
+            windows_in_stair.append(w["id"])
+        else:
+            windows.append(w)
     out_rooms = []
     for k, r in enumerate(sorted(rooms, key=lambda r: (CAT_ORDER.index(r["category"]) if r["category"] in CAT_ORDER else 99,
                                                         -r["rec"]["poly"].centroid.y, r["rec"]["poly"].centroid.x))):
@@ -1169,6 +1421,15 @@ def analyze_floor(floor, use_cache=True, refresh_openings=False):
             "bbox": _r(list(f.bounds)), "inscribed_r": round(r["rec"]["r_in"], 3),
         }
         item["windows"], wpart = windows_on(f, windows)
+        if cat == "stair" and win_in_stair and any(h.intersects(f) for h in hulls):
+            hh = [h for h in hulls if h.intersects(f)]
+            mine = [x for x in win_in_stair if any(h.contains(P_ref_geom[x]) for h in hh)] if P_ref_geom else []
+            if mine:
+                item["flags"].append(f"stair_eye_on_WIN: {len(mine)} WIN line(s) inside this stair ({', '.join(mine)}) "
+                                     f"= the stair eye / break line drawn on WIN - ignored (not glazing, not a boundary)")
+            wis = [x for x in windows_in_stair if any(h.intersects(f) for h in hh)]
+            if wis:
+                item["windows_in_stair_ignored"] = wis
         if wpart:
             item["windows_partial_m"] = wpart
         if r["n_cars"]:
@@ -1257,6 +1518,8 @@ def analyze_floor(floor, use_cache=True, refresh_openings=False):
         "corridor_lobby_splits": splits,
         "closed_pockets_as_solid": pockets,
         "primitives_skipped": skipped,
+        "win_inside_stair_skipped": win_in_stair,
+        "windows_in_stair_ignored": windows_in_stair,
         "wall_bodies": {"n": len(wall_bodies) + len(slivers),
                         "area": round(sum(w["area"] for w in wall_bodies) + sum(x.area for x in slivers), 3)},
         "outside_pieces": len(outside),
@@ -1465,7 +1728,7 @@ def run(floors=None, png=True, zoom=None, use_cache=True, refresh_openings=False
 
 def main():
     ap = argparse.ArgumentParser(description="Rooms / spaces reader for the Diwan plans (default: all floors)")
-    ap.add_argument("floors", nargs="*", type=int, help="floor numbers (2..8); default all")
+    ap.add_argument("floors", nargs="*", type=int, help="floor numbers (2..11); default all")
     ap.add_argument("--no-png", action="store_true")
     ap.add_argument("--zoom", nargs=4, type=float, metavar=("X0", "Y0", "X1", "Y1"),
                     help="extra zoomed PNG (local metres)")

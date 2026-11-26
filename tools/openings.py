@@ -2,7 +2,7 @@
 """
 openings — قارئ الأبواب والشبابيك والفتحات (خصومات المباني والمحارة) لمساقط الديوان.
 
-Reads every floor (F02..F08) of the Diwan plans and returns, in the shared LOCAL
+Reads every floor (F02..F11) of the Diwan plans and returns, in the shared LOCAL
 frame of diwan_common (rotation removed, structural-column corner = (0,0), metres):
 
   DOORS     * every INSERT of a door block  D<w>W<t>  (D10W12 = 1.00 m door in a
@@ -11,7 +11,8 @@ frame of diwan_common (rotation removed, structural-column corner = (0,0), metre
               length = wall thickness, and the leaf ARC) and pushed through the
               insert's full matrix (rotation, mirror xscale=-1, scale) -> jambs,
               measured width, hinge, swing side, axis.  Doors are inserted on layer
-              W *or* PR (same blocks; layer is irrelevant).
+              W *or* PR (same blocks; layer is irrelevant) - read on ANY layer (F10 has
+              one D80W12 on DIM, checks.doors_on_other_layers).
             * doors drawn WITHOUT a block (F02 terrace doors, glazed, layer WIN): an
               ARC r 0.6-1.4 m (not concentric with another arc) with a leaf LINE
               through its hinge, or whose hinge sits on a glazing end and whose
@@ -24,13 +25,22 @@ frame of diwan_common (rotation removed, structural-column corner = (0,0), metre
               any architect DIM matching it (none do: interior DIMs are room widths).
   WINDOWS   layer WIN, linetype CONTINUOUS only (DASHED WIN lines = projection /
             cladding edge lines, reported separately, never glazing):
+            * WIN inside a stair zone (buffered hull of the ST lines) = stair eye / break
+              line drawn on WIN (F11) -> skipped, checks.win_in_stair_skipped;
+            * two WIN lines 0.02-0.06 m apart = ONE glazing line drawn double (F11
+              curtain-wall frames) -> merged before pairing;
             * pairs of parallel lines 0.05-0.35 m apart -> one window unit in a wall
-              (width = length along the wall, depth = frame line spacing);
-            * long pairs not bounded by masonry -> glazed facade / curtain wall;
-            * concentric ARC pairs -> curved corner glazing (arc length + chord);
+              (width = length along the wall, depth = frame line spacing); two lone lines
+              up to 0.40 apart that both start on one W cap = glazing return (F11 NE);
+            * long pairs not bounded by masonry, or glazing between two concrete
+              elements (no W jamb) -> glazed facade / curtain wall;
+            * concentric ARC pairs -> curved corner glazing (union of the sweeps of both
+              radii x mid radius + chord; flagged when the radii differ > 10 deg);
             * glazing touching a door jamb -> fixed glazing beside a door (F02);
             * units < 0.30 m -> frame pieces (jambs/mullions), kept apart;
-            * single unpaired lines/arcs -> single-line glazing (flagged).
+            * single unpaired lines/arcs -> single-line glazing (flagged, NOT deducted:
+              summary.unresolved_glazing), whatever their length;
+            * duplicate glazing items (same line +-0.10, > 80 % overlap) -> one.
             Masonry gap + host-wall thickness by the same ray cast; architect facade
             DIM chains (layer DIM) are matched to window ends as a cross-check.
             Plans carry NO sill / head heights (no text, no tags) -> open question.
@@ -48,9 +58,10 @@ frame of diwan_common (rotation removed, structural-column corner = (0,0), metre
             1.35 = 0.15 + door 1.00 + 0.20).  The masonry deduction is the assembly's
             masonry gap; its members carry 'in_assembly'.
   MASONRY   summary.masonry_deduction_widths = what is really cut out of block walls,
-            by type and host wall thickness ('door|0.12', 'window|0.25', ...): no
-            curtain wall, no curved corner glazing, no glazed corner doors (they sit in
-            glazing, not in masonry), assemblies counted once at their masonry gap.
+            by type and host wall thickness ('door|0.12', 'window|0.25', ...): only
+            MASONRY_WINDOW_KINDS windows - no curtain wall, no curved corner glazing, no
+            unpaired single-line glazing, no glazed corner doors (they sit in glazing,
+            not in masonry), assemblies counted once at their masonry gap.
   CHECKS    door_width_totals (block / clear W gap / smaller face-line gap = what a
             surveyor snapping to W line ends gets), door_gap_vs_block (+ face_gaps),
             windows_dim_projection (facade DIM showing a projection, e.g. 0.786 for a
@@ -64,7 +75,7 @@ Not doors / windows (checked on all floors, see docs/findings/openings.md):
   random-named X blocks = axis bubbles, PR raw lines = stair handrails + lift cars.
 
 CLI (default = all floors):
-    python tools/openings.py                 # F02..F08 -> output/openings/F0x.json + PNGs
+    python tools/openings.py                 # F02..F11 -> output/openings/Fxx.json + PNGs
     python tools/openings.py 3 5 --no-png
 API:
     from openings import analyze_floor, deduction_table
@@ -92,18 +103,33 @@ from pathlib import Path
 from ezdxf import path as ezpath
 from ezdxf.math import Vec3
 from shapely.geometry import LineString, Point, Polygon
+from shapely.ops import unary_union
 from shapely.strtree import STRtree
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from diwan_common import OUT_DIR, all_floors, floor_entities, floor_texts, get_floor, is_try_outline  # noqa: E402
 
 OUT = OUT_DIR / "openings"
+# bump when the extraction / classification changes (read_plan's cache key also hashes this
+# file's source, so a bump only documents the change)
+#   2 = F09-F11 fixes: WIN inside stair zones skipped, WIN twin lines (0.02-0.06 apart) merged,
+#       corner-return pairs up to 0.40 on a common masonry cap, glazing between concrete = curtain
+#       wall, duplicate glazing dropped, door blocks read on ANY layer, curved glazing = union of
+#       both radii, unpaired single-line glazing kept out of the masonry deductions
+READER_VERSION = 2
 DOOR_RE = re.compile(r"^D(\d+)W(\d+)$", re.I)
 WALL_LAYERS = ("W",)
 OBSTACLE_POLY_LAYERS = ("Etabs-col", "COL", "try")
 BUILDING_WINDOW = (-4.0, -4.0, 24.0, 44.0)   # local box that contains the building + terraces
 LEGACY_F03 = {"doors": 37, "door_width": 34.23}  # user's own AutoCAD dims, Sept 2026
 MAX_SEG = 30.0                                    # longer W/WIN pieces = sheet frame, not building
+STAIR_ZONE_BUFFER = 0.20     # m around the convex hull of each ST-line cluster (stair zone)
+TWIN_GAP = (0.02, 0.06)      # WIN lines this far apart = ONE glazing line drawn double (F11 frames)
+CORNER_RETURN_MAX = 0.40     # lone WIN lines up to this far apart pair when both end on one W cap
+# window kinds that really cut a MASONRY wall (deduction_table / masonry_deduction_widths)
+MASONRY_WINDOW_KINDS = ("window in masonry opening", "window (gap != glazing, check)",
+                        "fixed glazing beside a door (same opening)")
+UNRESOLVED_KIND = "single-line glazing (unpaired)"
 
 # ----------------------------------------------------------------------------- vectors
 def _sub(a, b): return (a[0] - b[0], a[1] - b[1])
@@ -151,6 +177,26 @@ def _flatten(e, dist=0.01):
     return [pts] if len(pts) >= 2 else []
 
 
+def _stair_zones(fl, buffer=STAIR_ZONE_BUFFER):
+    """One zone per stair: convex hull of each cluster of ST lines (>= 4 lines, clustered by a
+    0.6 m buffer, as walls._stair_hulls), buffered by `buffer`.  LOCAL frame."""
+    L = fl.to_local
+    st = []
+    for e in floor_entities(fl, layers=("ST",), types="LINE LWPOLYLINE POLYLINE"):
+        for poly in _flatten(e):
+            lp = [L(*p) for p in poly]
+            st.extend(LineString([a, b]) for a, b in zip(lp, lp[1:]) if 1e-4 < _len(_sub(b, a)) < MAX_SEG)
+    if not st:
+        return []
+    blobs = unary_union([ln.buffer(0.6) for ln in st])
+    out = []
+    for bl in getattr(blobs, "geoms", [blobs]):
+        members = [ln for ln in st if bl.contains(ln.centroid)]
+        if len(members) >= 4:
+            out.append(unary_union(members).convex_hull.buffer(buffer))
+    return out
+
+
 # ----------------------------------------------------------------------------- floor geometry
 class FloorGeom:
     """All primitives needed for openings, in LOCAL coordinates."""
@@ -165,16 +211,39 @@ class FloorGeom:
         self.raw_arcs = []           # [dict] ARCs on WIN/W/PR (local)
         self.raw_lines = {"WIN": [], "W": [], "PR": []}
         self.dash_segs = []
+        self.mass_segs = []          # [(p,q)] MASS lines (only used to anchor curved-glazing ends)
         self.polys = []              # [(Polygon, layer)] columns / shafts
-        self.door_inserts = []
+        # door blocks D<w>W<t> on ANY layer: the insertion layer means nothing (W / PR on F02-F11,
+        # and F10 has one D80W12 inserted on DIM, handle 44B0)
+        self.door_inserts = [e for e in floor_entities(fl, types="INSERT") if DOOR_RE.match(e.dxf.name)]
         self.other_inserts = []
+        # stair zones (buffered convex hull of each ST-line cluster): WIN drawn inside one is the
+        # stair eye / break line (F11 draws them on WIN, F02-F10 on MASS) - never glazing
+        self.stair_zones = _stair_zones(fl)
+        self.win_in_stair = []       # skipped WIN entities (reported in checks)
+        for e in floor_entities(fl, layers=("MASS",), types="LINE LWPOLYLINE"):
+            for poly in _flatten(e):
+                lp = [L(*p) for p in poly]
+                self.mass_segs.extend((a, b) for a, b in zip(lp, lp[1:]) if 1e-4 < _len(_sub(b, a)) < MAX_SEG)
         for e in floor_entities(fl, layers=("W", "0", "WIN", "PR", "DASH") + OBSTACLE_POLY_LAYERS):
             lay, t = e.dxf.layer, e.dxftype()
             if t == "INSERT":
-                (self.door_inserts if DOOR_RE.match(e.dxf.name) else self.other_inserts).append(e)
+                if not DOOR_RE.match(e.dxf.name):
+                    self.other_inserts.append(e)
                 continue
             if t in ("TEXT", "MTEXT", "HATCH", "DIMENSION"):
                 continue
+            if lay == "WIN" and self.stair_zones:
+                pts = [L(*p) for poly in _flatten(e) for p in poly]
+                if pts and any(z.covers(LineString(pts) if len(pts) >= 2 else Point(pts[0]))
+                               for z in self.stair_zones):
+                    xs, ys = [p[0] for p in pts], [p[1] for p in pts]
+                    self.win_in_stair.append({
+                        "handle": e.dxf.handle, "type": t, "dashed": _is_dashed(e, doc),
+                        "closed": bool(getattr(e, "closed", False)) if t == "LWPOLYLINE" else None,
+                        "bbox": _r([min(xs), min(ys), max(xs), max(ys)]),
+                        "reason": "WIN inside a stair zone (stair eye / break line), not glazing"})
+                    continue
             if lay in OBSTACLE_POLY_LAYERS:
                 if t == "LWPOLYLINE":
                     pts = [L(p[0], p[1]) for p in e.get_points("xy")]
@@ -735,7 +804,70 @@ def read_doors(fl, G):
 
 
 # ----------------------------------------------------------------------------- windows
-def _pair_lines(lines, dmin=0.05, dmax=0.35, min_ov=0.5):
+def _parallel_overlap(a, b):
+    """(perpendicular offset, overlap length along a, len a, len b) of two segments, or None
+    when they are not parallel."""
+    a0, a1 = a
+    b0, b1 = b
+    ua = _unit(_sub(a1, a0))
+    ub = _unit(_sub(b1, b0))
+    if abs(_cross(ua, ub)) > 0.02:
+        return None
+    La, Lb = _len(_sub(a1, a0)), _len(_sub(b1, b0))
+    off = abs(_cross(ua, _sub(b0, a0)))
+    s0, s1 = sorted((_dot(_sub(b0, a0), ua), _dot(_sub(b1, a0), ua)))
+    return off, min(La, s1) - max(0.0, s0), La, Lb
+
+
+def _merge_twins(lines, gmin=TWIN_GAP[0], gmax=TWIN_GAP[1], min_ov=0.8):
+    """WIN lines that are parallel, gmin..gmax apart and overlap > min_ov of the shorter one are
+    ONE glazing line drawn double (F11 curtain-wall frames: 0.04 apart, e.g. 483D/483F x=2.37/2.41).
+    Returns (merged_lines, meta): each merged line = mid offset, UNION of the spans; meta[i] =
+    {'members': [original lines], 'twin_gap': gap or 0.0}."""
+    n = len(lines)
+    parent = list(range(n))
+
+    def find(i):
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+    for i in range(n):
+        for j in range(i + 1, n):
+            po = _parallel_overlap(lines[i], lines[j])
+            if po is None:
+                continue
+            off, ov, La, Lb = po
+            if gmin <= off <= gmax and ov > min_ov * min(La, Lb):
+                parent[find(i)] = find(j)
+    groups = defaultdict(list)
+    for i in range(n):
+        groups[find(i)].append(i)
+    out, meta = [], []
+    for root, g in groups.items():
+        if len(g) == 1:
+            out.append(lines[g[0]])
+            meta.append({"members": [lines[g[0]]], "twin_gap": 0.0})
+            continue
+        segs = [lines[i] for i in g]
+        L0 = max(segs, key=lambda s: _len(_sub(s[1], s[0])))
+        u = _unit(_sub(L0[1], L0[0]))
+        nn = _perp(u)
+        o = L0[0]
+        ss = [_dot(_sub(p, o), u) for s in segs for p in s]
+        oo = [_dot(_sub(p, o), nn) for s in segs for p in s]
+        om = (min(oo) + max(oo)) / 2
+        p = _add(_add(o, _mul(u, min(ss))), _mul(nn, om))
+        q = _add(_add(o, _mul(u, max(ss))), _mul(nn, om))
+        out.append((p, q))
+        meta.append({"members": segs, "twin_gap": max(oo) - min(oo)})
+    return out, meta
+
+
+def _pair_lines(lines, dmin=0.05, dmax=0.35, min_ov=0.5, wide_ok=None, wide_max=CORNER_RETURN_MAX):
+    """Union-find of parallel WIN lines dmin..dmax apart overlapping > min_ov of the shorter.
+    wide_ok(i, j): optional second chance for two LONE lines dmax..wide_max apart (corner return
+    of a curtain wall spanning a 0.40 wall: F11 46FB/46FC, both ending on the W cap y=36.284)."""
     n = len(lines)
     parent = list(range(n))
 
@@ -745,40 +877,142 @@ def _pair_lines(lines, dmin=0.05, dmax=0.35, min_ov=0.5):
             i = parent[i]
         return i
     partner = defaultdict(list)
+    wide = []
     for i in range(n):
-        a0, a1 = lines[i]
-        ua = _unit(_sub(a1, a0))
-        La = _len(_sub(a1, a0))
         for j in range(i + 1, n):
-            b0, b1 = lines[j]
-            ub = _unit(_sub(b1, b0))
-            if abs(_cross(ua, ub)) > 0.02:
+            po = _parallel_overlap(lines[i], lines[j])
+            if po is None:
                 continue
-            off = abs(_cross(ua, _sub(b0, a0)))
-            if not (dmin <= off <= dmax):
-                continue
-            s0, s1 = sorted((_dot(_sub(b0, a0), ua), _dot(_sub(b1, a0), ua)))
-            ov = min(La, s1) - max(0.0, s0)
-            Lb = _len(_sub(b1, b0))
+            off, ov, La, Lb = po
             if ov <= min_ov * min(La, Lb):
                 continue
-            partner[i].append((j, off))
-            partner[j].append((i, off))
-            parent[find(i)] = find(j)
+            if dmin <= off <= dmax:
+                partner[i].append((j, off))
+                partner[j].append((i, off))
+                parent[find(i)] = find(j)
+            elif wide_ok is not None and dmax < off <= wide_max:
+                wide.append((i, j, off))
+    wide_pairs = []
+    for i, j, off in wide:
+        if partner[i] or partner[j] or not wide_ok(i, j):
+            continue
+        partner[i].append((j, off))
+        partner[j].append((i, off))
+        parent[find(i)] = find(j)
+        wide_pairs.append((i, j, off))
     groups = defaultdict(list)
     for i in range(n):
         groups[find(i)].append(i)
-    return list(groups.values()), partner
+    return list(groups.values()), partner, wide_pairs
+
+
+def _common_cap(G, a, b, tol=0.01):
+    """The short W/0 segment (0.05-0.45 m, across the lines) on which an end of line a AND an end
+    of line b both lie (= the masonry cap the glazing return starts from), or None."""
+    ua = _unit(_sub(a[1], a[0]))
+    for p, q, _ in G.wall_segs:
+        v = _sub(q, p)
+        Lc = _len(v)
+        if not (0.05 <= Lc <= 0.45) or abs(_dot(_unit(v), ua)) > 0.1:
+            continue
+        cap = LineString([p, q])
+        if any(cap.distance(Point(e)) < tol for e in a) and any(cap.distance(Point(e)) < tol for e in b):
+            return (p, q)
+    return None
+
+
+def _ang(c, p):
+    return math.degrees(math.atan2(p[1] - c[1], p[0] - c[0])) % 360.0
+
+
+def _arc_iv(c, a):
+    """CCW angular interval of a raw arc about centre c (LOCAL frame, mirror-safe: the direction
+    is the one passing through the arc's mid point).  Returns (start_deg, span_deg, p_start, p_end)."""
+    t0, t1, tm = _ang(c, a["p0"]), _ang(c, a["p1"]), _ang(c, a["pm"])
+    span = (t1 - t0) % 360.0
+    if (tm - t0) % 360.0 > span:
+        return t1, (t0 - t1) % 360.0, a["p1"], a["p0"]
+    return t0, span, a["p0"], a["p1"]
+
+
+def _arc_union(ivs, tol=1e-6):
+    """Union of angular intervals on a circle.  ivs = [(start, span, anchored_start, anchored_end)].
+    An extreme end of a merged component that is DANGLING (touches no other element: e.g. F10 NW
+    inner arc 44FF overshooting 25 deg past the frame return) is pulled back to the extreme
+    ANCHORED end of the same side when the other radius has one.  Returns (total_sweep, comps,
+    trimmed) where comps = [(start, end)] in degrees (start may be shifted by the cut angle)."""
+    if not ivs:
+        return 0.0, [], []
+    ends = [(s + sp) % 360.0 for s, sp, *_ in ivs]
+
+    def covered(t):
+        return any(1e-6 < ((t - s) % 360.0) < sp - 1e-6 for s, sp, *_ in ivs)
+    cut = next((e for e in ends if not covered((e + 1e-3) % 360.0)), 0.0)
+    items = sorted((((s - cut) % 360.0), ((s - cut) % 360.0) + sp, aa, ab) for s, sp, aa, ab in ivs)
+    comps = []
+    for s, e, aa, ab in items:
+        if comps and s <= comps[-1]["e"] + tol:
+            comps[-1]["e"] = max(comps[-1]["e"], e)
+            comps[-1]["m"].append((s, e, aa, ab))
+        else:
+            comps.append({"s": s, "e": e, "m": [(s, e, aa, ab)]})
+    total, out, trimmed = 0.0, [], []
+    for cp in comps:
+        m = cp["m"]
+        lo = min(m, key=lambda x: x[0])
+        hi = max(m, key=lambda x: x[1])
+        s, e = lo[0], hi[1]
+        if not lo[2]:
+            anch = [x[0] for x in m if x[2]]
+            if anch:
+                trimmed.append({"side": "start", "from_deg": _r((s + cut) % 360, 1), "to_deg": _r((min(anch) + cut) % 360, 1)})
+                s = min(anch)
+        if not hi[3]:
+            anch = [x[1] for x in m if x[3]]
+            if anch:
+                trimmed.append({"side": "end", "from_deg": _r((e + cut) % 360, 1), "to_deg": _r((max(anch) + cut) % 360, 1)})
+                e = max(anch)
+        total += max(0.0, e - s)
+        out.append(((s + cut) % 360.0, (e + cut) % 360.0))
+    return total, out, trimmed
+
+
+def _touch_tree(G):
+    """STRtree of every line an arc end may legitimately stop on (W / 0, WIN, MASS, column /
+    shaft outlines) + the other WIN arcs' end points."""
+    geoms = [LineString([a, b]) for a, b, _ in G.wall_segs]
+    geoms += [LineString([a, b]) for a, b in G.win_lines + G.win_dashed + G.mass_segs]
+    for pg, _ in G.polys:
+        if pg.geom_type == "Polygon":
+            geoms.append(pg.exterior)
+    return STRtree(geoms) if geoms else None
+
+
+def _anchored(tree, p, arc, arcs, tol=0.01):
+    P = Point(p)
+    if tree is not None and len(tree.query(P.buffer(tol), predicate="intersects")):
+        return True
+    return any(b is not arc and min(_len(_sub(b["p0"], p)), _len(_sub(b["p1"], p))) < tol for b in arcs)
 
 
 def read_windows(fl, G):
     wins = []
     used = getattr(G, "used_leaf_lines", set())
-    lines = [s for s in G.win_lines
-             if (round(s[0][0], 3), round(s[0][1], 3), round(s[1][0], 3), round(s[1][1], 3)) not in used]
-    groups, _ = _pair_lines(lines)
+    raw = [s for s in G.win_lines
+           if (round(s[0][0], 3), round(s[0][1], 3), round(s[1][0], 3), round(s[1][1], 3)) not in used]
+    # (1) a frame drawn as two WIN lines 2-6 cm apart (F11 curtain walls) = ONE glazing line
+    lines, meta = _merge_twins(raw)
+    G.win_twins = [{"merged": _r(list(ln)), "twin_gap": _r(mt["twin_gap"]), "members": _r(mt["members"])}
+                   for ln, mt in zip(lines, meta) if len(mt["members"]) > 1]
+    # (2) pair parallel lines 0.05-0.35 apart; two LONE lines up to 0.40 apart that both start on
+    #     the same short W cap = the glazing return across a 0.40 wall end (F11 NE corner)
+    groups, _, wide = _pair_lines(lines, wide_ok=lambda i, j: _common_cap(G, lines[i], lines[j]) is not None)
+    G.win_corner_returns = [{"lines": _r([list(lines[i]), list(lines[j])]), "spacing": _r(off),
+                             "cap": _r(list(_common_cap(G, lines[i], lines[j])))} for i, j, off in wide]
     for g in groups:
         segs = [lines[i] for i in g]
+        members = [s for i in g for s in meta[i]["members"]]
+        twin_gap = max(meta[i]["twin_gap"] for i in g)
         L0 = max(segs, key=lambda s: _len(_sub(s[1], s[0])))
         u = _unit(_sub(L0[1], L0[0]))
         if u[0] < -1e-9 or (abs(u[0]) < 1e-9 and u[1] < 0):
@@ -786,7 +1020,7 @@ def read_windows(fl, G):
         n = _perp(u)
         o = L0[0]
         projs = [_dot(_sub(p, o), u) for s in segs for p in s]
-        offs = [_dot(_sub(p, o), n) for s in segs for p in s]
+        offs = [_dot(_sub(p, o), n) for s in members for p in s]
         u_lo, u_hi = min(projs), max(projs)
         # glazing width = span COMMON to all lines of the unit (one frame line is often
         # drawn a few cm longer into the jamb, e.g. F03 east 2.419 vs 2.35 -> 2.35 = DIM)
@@ -800,10 +1034,16 @@ def read_windows(fl, G):
         width = hi - lo
         c = _mid(e1, e2)
         depth = omax - omin
-        paired = len(g) >= 2
+        paired = len(g) >= 2 or twin_gap > 0       # a twin line IS a two-line frame
         host = measure_host(G, c, u, width, max(depth, 0.05), extra=1.0,
                             face_band=max(depth / 2 - 0.005, 0.01))
         gap = host.get("gap")
+        # no W jamb on either side: the glazing spans between concrete (column / core / shaft),
+        # e.g. F11 stair hall west glazing x=2.14 between the column at y 9.54 and the concrete wall
+        # at 12.28 (whose face is ALSO drawn on W, so the ray reports 'wall' there): both glazing
+        # ends sit on a concrete outline, or both rays stop on concrete
+        concrete_both = (host.get("bound_minus") in ("column", "shaft") and host.get("bound_plus") in ("column", "shaft")) \
+            or all(any(pg.distance(Point(e)) < 0.03 for pg, _ in G.polys) for e in (e1, e2))
         door_adj = None
         for d in getattr(G, "_doors", []):
             if "jamb_a" not in d:
@@ -811,30 +1051,67 @@ def read_windows(fl, G):
             for jm in (_mid(*d["jamb_a"]), _mid(*d["jamb_b"])):
                 if min(_len(_sub(jm, e1)), _len(_sub(jm, e2))) < 0.15 and abs(_cross(u, d["_u"])) < 0.05:
                     door_adj = d["id"]
+        note = None
         if width < 0.30:
             kind = "frame piece (jamb/mullion, not a window)"
+        elif not paired:
+            # a lone line is never promoted to a curtain wall by its length alone
+            kind = UNRESOLVED_KIND
         elif width >= 4.0:
             kind = "glazed facade / curtain wall"
         elif door_adj:
             kind = "fixed glazing beside a door (same opening)"
-        elif not paired:
-            kind = "single-line glazing (unpaired)"
         elif gap is not None and abs(gap - width) <= 0.10:
-            kind = "window in masonry opening"
+            if concrete_both:
+                kind = "glazed facade / curtain wall"
+                note = "glazing between concrete elements (no masonry jamb on either side)"
+            else:
+                kind = "window in masonry opening"
         elif gap is not None and gap < width + 1.5:
             kind = "window (gap != glazing, check)"
         else:
             kind = "glazed facade / curtain wall"
         dm = G.dim_match(e1, e2)
-        wins.append({"kind": kind, "shape": "straight", "center": _r(c), "axis_deg": _r(_axis_angle(u), 2),
-                     "width": _r(width), "span_all_lines": _r(u_hi - u_lo), "frame_depth": _r(depth), "n_lines": len(g),
-                     "ends": _r([e1, e2]), "host": host, "host_line": host_line(c, u, width),
-                     "dim_check": dm[0] if dm else None,
-                     "adjoins_door": door_adj,
-                     "rooms": [x for x in (G.room_on_side(c, n), G.room_on_side(c, _mul(n, -1))) if x],
-                     "_u": u, "_n": n, "_c": c})
+        rec = {"kind": kind, "shape": "straight", "center": _r(c), "axis_deg": _r(_axis_angle(u), 2),
+               "width": _r(width), "span_all_lines": _r(u_hi - u_lo), "frame_depth": _r(depth),
+               "n_lines": len(members),
+               "ends": _r([e1, e2]), "host": host, "host_line": host_line(c, u, width),
+               "dim_check": dm[0] if dm else None,
+               "adjoins_door": door_adj,
+               "rooms": [x for x in (G.room_on_side(c, n), G.room_on_side(c, _mul(n, -1))) if x],
+               "_u": u, "_n": n, "_c": c}
+        if twin_gap > 0:
+            rec["twin_lines_merged"] = {"gap": _r(twin_gap),
+                                        "note": "frame drawn as two WIN lines a few cm apart = ONE glazing line"}
+        if any(i in (a, b) for a, b, _ in wide for i in g):
+            rec["corner_return"] = "lone WIN lines 0.35-0.40 apart paired: both end on the same W cap"
+        if note:
+            rec["note"] = note
+        wins.append(rec)
+    # (3) duplicates: two glazing items on (almost) the same line covering the same span -> keep
+    #     the one with more lines / the longer one (safety net after the twin merge)
+    G.win_duplicates = []
+    st = [w for w in wins if w["width"] >= 0.30]
+    drop = set()
+    for i, a in enumerate(st):
+        for b in st[i + 1:]:
+            if id(a) in drop or id(b) in drop or abs(_cross(a["_u"], b["_u"])) > 0.02:
+                continue
+            if abs(_cross(a["_u"], _sub(b["_c"], a["_c"]))) >= 0.10:
+                continue
+            sa = sorted(_dot(_sub(p, a["_c"]), a["_u"]) for p in a["ends"])
+            sb = sorted(_dot(_sub(p, a["_c"]), a["_u"]) for p in b["ends"])
+            ov = min(sa[1], sb[1]) - max(sa[0], sb[0])
+            if ov <= 0.8 * min(a["width"], b["width"]):
+                continue
+            keep, lose = sorted((a, b), key=lambda w: (w["n_lines"], w["width"]), reverse=True)
+            drop.add(id(lose))
+            G.win_duplicates.append({"dropped": {k: lose[k] for k in ("kind", "center", "width", "n_lines")},
+                                     "kept": {k: keep[k] for k in ("kind", "center", "width", "n_lines")}})
+    wins = [w for w in wins if id(w) not in drop]
     # arcs: concentric pairs = curved glazing
     arcs = [a for a in G.raw_arcs if a["layer"] == "WIN" and not a["dashed"]]
+    ttree = _touch_tree(G) if arcs else None
     used_a = set()
     for i, a in enumerate(arcs):
         if i in used_a:
@@ -849,20 +1126,36 @@ def read_windows(fl, G):
             continue   # single arcs: doors (handled) or single-line glazing below
         for k in grp:
             used_a.add(k)
-        # sweep from the arcs of the smaller radius (pieces may be split by a door gap)
+        c = a["center"]
         rin = [arcs[k] for k in grp if abs(arcs[k]["r"] - rs[0]) < 1e-3]
-        sweep = sum(a2["span"] for a2 in rin)
+        rout = [arcs[k] for k in grp if abs(arcs[k]["r"] - rs[-1]) < 1e-3]
+        # sweep = UNION of the angular intervals of BOTH radii (pieces may be split by a door gap,
+        # and on F09 the inner line is cut where the planter walls meet it while the outer runs
+        # through); a dangling extreme end is pulled back to the anchored end of the other radius
+        ivs = []
+        for a2 in [arcs[k] for k in grp]:
+            s0, sp, ps, pe = _arc_iv(c, a2)
+            ivs.append((s0, sp, _anchored(ttree, ps, a2, arcs), _anchored(ttree, pe, a2, arcs)))
+        sweep, comps, trimmed = _arc_union(ivs)
+        sw_in = _arc_union([(*_arc_iv(c, a2)[:2], True, True) for a2 in rin])[0]
+        sw_out = _arc_union([(*_arc_iv(c, a2)[:2], True, True) for a2 in rout])[0]
         rm = (rs[0] + rs[-1]) / 2
         chord_pts = [p for a2 in rin for p in (a2["p0"], a2["p1"])]
         far = max(((p, q) for p in chord_pts for q in chord_pts), key=lambda pq: _len(_sub(pq[0], pq[1])))
-        c = a["center"]
-        wins.append({"kind": "curved glazing (corner)", "shape": "arc", "center": _r(c), "radius_mid": _r(rm),
-                     "sweep_deg": _r(sweep, 1), "width": _r(math.radians(sweep) * rm),
-                     "chord": _r(_len(_sub(far[0], far[1]))), "frame_depth": _r(rs[-1] - rs[0]),
-                     "n_lines": len(grp), "pieces": len(rin), "ends": _r(list(far)),
-                     "host": None, "dim_check": None,
-                     "rooms": [x for x in [G.room_on_side(c, _unit(_sub(c, rin[0]["pm"])), reach=-rm + 0.3)] if x],
-                     "_c": c})
+        rec = {"kind": "curved glazing (corner)", "shape": "arc", "center": _r(c), "radius_mid": _r(rm),
+               "sweep_deg": _r(sweep, 1), "width": _r(math.radians(sweep) * rm),
+               "sweep_inner_deg": _r(sw_in, 1), "sweep_outer_deg": _r(sw_out, 1),
+               "chord": _r(_len(_sub(far[0], far[1]))), "frame_depth": _r(rs[-1] - rs[0]),
+               "n_lines": len(grp), "pieces": len(rin), "ends": _r(list(far)),
+               "host": None, "dim_check": None,
+               "rooms": [x for x in [G.room_on_side(c, _unit(_sub(c, rin[0]["pm"])), reach=-rm + 0.3)] if x],
+               "_c": c}
+        if trimmed:
+            rec["sweep_trimmed"] = trimmed
+        if abs(sw_in - sw_out) > 10.0:
+            rec["flags"] = [f"inner / outer sweeps differ by {abs(sw_in - sw_out):.1f} deg "
+                            f"(inner {sw_in:.1f}, outer {sw_out:.1f}, used {sweep:.1f}) - check the corner"]
+        wins.append(rec)
     for i, a in enumerate(arcs):
         if i in used_a or (0.6 <= a["r"] <= 1.4 and any(_len(_sub(d, a["center"])) < 0.02 for d in G._door_hinges)):
             continue
@@ -1348,6 +1641,22 @@ def analyze_floor(floor):
         "dims_along_solid_wall": G.dims_along_solid_wall(_anchor_points(G, doors)),
         "other_inserts": sorted({f'{e.dxf.layer}:{e.dxf.name}' for e in G.other_inserts}),
         "wall_gaps_explained": n_expl,
+        # door blocks inserted on a layer other than W / PR (read anyway: the layer means nothing)
+        "doors_on_other_layers": [{"id": d["id"], "block": d.get("block"), "layer": d.get("layer"),
+                                   "handle": d.get("handle")}
+                                  for d in doors if d.get("block") and d.get("layer") not in ("W", "PR")],
+        # WIN entities skipped because they lie inside a stair zone (eye / break line on WIN, F11)
+        "win_in_stair_skipped": G.win_in_stair,
+        # WIN frames drawn as two lines 2-6 cm apart, merged into one glazing line (F11)
+        "win_twin_lines_merged": getattr(G, "win_twins", []),
+        # lone WIN lines 0.35-0.40 apart paired because both start on the same W cap
+        "win_corner_return_pairs": getattr(G, "win_corner_returns", []),
+        "glazing_duplicates_dropped": getattr(G, "win_duplicates", []),
+        "curved_glazing_sweep_mismatch": [
+            {"id": w["id"], "sweep_used": w["sweep_deg"], "inner": w.get("sweep_inner_deg"),
+             "outer": w.get("sweep_outer_deg"), "trimmed": w.get("sweep_trimmed")}
+            for w in windows if w.get("flags")],
+        "unresolved_glazing": [w["id"] for w in windows if w["kind"] == UNRESOLVED_KIND],
     }
     # door widths three ways: block (nominal, jamb-to-jamb), clear gap between the W lines
     # (narrowest of both faces), and the smaller FACE-LINE gap (= snapping to W line ends)
@@ -1363,7 +1672,7 @@ def analyze_floor(floor):
     checks["door_width_totals"] = {"block": _r(sum(bw)), "clear_gap_W": _r(sum(hg)),
                                    "min_face_line_gap": _r(sum(fg))}
     res = {"floor": fl.label, "floor_no": fl.floor_no, "name_ar": fl.name_ar, "level": fl.level,
-           "file": fl.file.name, "sheet_index": fl.sheet_index, "units": "m",
+           "file": fl.file.name, "sheet_index": fl.sheet_index, "units": "m", "reader_version": READER_VERSION,
            "frame": "LOCAL (diwan_common.Floor.to_local: -10 deg, structural-column corner = 0,0)",
            "doors": doors, "windows": windows, "openings": openings, "opening_candidates": candidates,
            "window_frame_pieces": frame_pieces, "assemblies": assemblies,
@@ -1381,6 +1690,12 @@ def analyze_floor(floor):
         b["count"] += 1
         b["width"] = _r(b["width"] + (r["width"] or 0.0))
     res["summary"]["masonry_deduction_widths"] = dict(sorted(md.items()))
+    # unpaired single-line glazing is NOT deducted from masonry: kept apart for review
+    unr = [w for w in windows if w["kind"] == UNRESOLVED_KIND]
+    res["summary"]["unresolved_glazing"] = {
+        "count": len(unr), "total_width": _r(sum(w["width"] for w in unr)), "ids": [w["id"] for w in unr],
+        "note": "single WIN lines with no parallel partner: not deducted from masonry, not counted as "
+                "full-height glazing - review on the drawing"}
     if fl.floor_no == 3:
         res["checks"]["legacy_f03_user_dims"] = LEGACY_F03
     res["_G"] = G
@@ -1395,12 +1710,16 @@ DEFAULT_HEIGHTS = {"door": 2.30, "window": None, "opening": None}
 
 
 def deduction_table(res, door_h=DEFAULT_HEIGHTS["door"], window_h=DEFAULT_HEIGHTS["window"],
-                    opening_h=DEFAULT_HEIGHTS["opening"], include_curtain_wall=False):
+                    opening_h=DEFAULT_HEIGHTS["opening"], include_curtain_wall=False,
+                    include_unresolved=False):
     """Rows {id, type, kind, width, height, area, wall_t} for masonry/plaster deductions.
-    height/area are None where no height was given.  Curtain-wall glazing and curved
-    corner glazing (no masonry there at all) are skipped unless include_curtain_wall=True.
-    Members of a glazed door ASSEMBLY are replaced by ONE row = the masonry gap of the
-    assembly (height = door_h: assumption, to confirm)."""
+    height/area are None where no height was given.  Only windows that really cut a masonry
+    wall are deducted (MASONRY_WINDOW_KINDS).  Curtain-wall glazing and curved corner glazing
+    (no masonry there at all) are added only with include_curtain_wall=True; unpaired
+    single-line glazing (unresolved: may be a drafting line, a duplicate or a curtain-wall
+    return) only with include_unresolved=True, as type 'unresolved glazing' - see
+    summary.unresolved_glazing.  Members of a glazed door ASSEMBLY are replaced by ONE row =
+    the masonry gap of the assembly (height = door_h: assumption, to confirm)."""
     rows = []
 
     def row(it, typ, h, t):
@@ -1417,10 +1736,15 @@ def deduction_table(res, door_h=DEFAULT_HEIGHTS["door"], window_h=DEFAULT_HEIGHT
     for w in res["windows"]:
         if w.get("in_assembly"):
             continue
-        if ("curtain" in w["kind"] or w["shape"] == "arc") and not include_curtain_wall:
-            continue
         h = w.get("host") or {}
-        row(w, "window", window_h, h.get("wall_t_minus") or h.get("wall_t_plus"))
+        t = h.get("wall_t_minus") or h.get("wall_t_plus")
+        if w["kind"] in MASONRY_WINDOW_KINDS:
+            row(w, "window", window_h, t)
+        elif w["kind"] == UNRESOLVED_KIND:
+            if include_unresolved:
+                row(w, "unresolved glazing", window_h, t)
+        elif include_curtain_wall:
+            row(w, "window", window_h, t)
     for a in res.get("assemblies", []):
         h = a.get("host") or {}
         row(a, "assembly", door_h, h.get("wall_t_minus") or h.get("wall_t_plus"))
@@ -1619,7 +1943,7 @@ def run(floors=None, png=True, tiles=True):
 
 def main():
     ap = argparse.ArgumentParser(description="Doors / windows / openings reader (Diwan plans)")
-    ap.add_argument("floors", nargs="*", type=int, help="floor numbers (default: all 2..8)")
+    ap.add_argument("floors", nargs="*", type=int, help="floor numbers (default: all, F02..F11)")
     ap.add_argument("--no-png", action="store_true")
     ap.add_argument("--no-tiles", action="store_true", help="only the whole-floor PNG")
     a = ap.parse_args()
