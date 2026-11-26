@@ -1,0 +1,232 @@
+[
+ {
+  "type": "launched"
+ },
+ {
+  "type": "started",
+  "key": "v2:8d3ab4a33382e50d113134e1f5fe1bbd57b5ccd4b79152938599c358c127028d",
+  "agentId": "abb8bc9feb1fc30ca",
+  "label": "verify:walls+openings F09-11",
+  "phase": "Verify"
+ },
+ {
+  "type": "started",
+  "key": "v2:bd49e69520ff7aa0613364d5eac79cc242eb4dbdd528e1e7ab3a3e5a7bf37238",
+  "agentId": "a921d84b05e9d7759",
+  "label": "verify:rooms+structure F09-11",
+  "phase": "Verify"
+ },
+ {
+  "type": "result",
+  "key": "v2:8d3ab4a33382e50d113134e1f5fe1bbd57b5ccd4b79152938599c358c127028d",
+  "agentId": "abb8bc9feb1fc30ca",
+  "result": {
+   "verdict": "fix",
+   "defects": [
+    {
+     "severity": "major",
+     "tool": "tools/openings.py",
+     "floor": "F11",
+     "description": "On F11 both stair 'eyes' (the void rectangle between the stair flights) and the north stair's break line are drawn on layer WIN instead of MASS. read_windows reads them as glazing. The result is 7 false 'glazed facade / curtain wall' items (9.41 m) inside the two stair halls and 2 false 'single-line glazing' items (1.525 m), and the 0.914 one gets a host wall of 0.354.",
+     "evidence": "Raw F11: WIN LWPOLYLINE 4707 (10.31,27.00)-(13.31,27.65) and 4708 (10.43,27.12)-(13.19,27.53), plus break line 4744 (10.92,27.12)->(12.14,25.90). WIN LINEs 4746-474D form two rectangles: (3.135-5.835, 10.635-11.18) and (3.255-5.715, 10.755-11.06). F09 has the identical geometry on MASS (handles 4BC4, 4BC5, 4C01) and F08 the same (39B8/39B9). openings.py F11 output: W10 0.41, W11 2.76, W12 0.41, W14 2.76, W24 0.305, W25 2.46 and W26 0.305 are all 'glazed facade / curtain wall'; W13 0.611 and W16 0.914 (wall_t 0.354) are 'single-line glazing'. read_plan counts all curtain/arc items as full-height glazing, which gives F11 full_height_glazing_m = 85.25 against 66.19 on F09 and 68.53 on F10, even though F11 is the smallest floor. The same WIN rectangles also become boundaries in rooms.py: F11 north stair is 12.65 m2 against 14.62 on F09 and 14.66 on F10, a drop of 1.95 = 3.00 x 0.65 eye.",
+     "suggested_fix": "In openings.FloorGeom / read_windows, drop WIN entities that lie inside a stair zone: use the convex hull of each ST-line cluster (like walls._stair_hulls), buffered by 0.2 m, and skip any WIN line or polyline completely inside it. In particular, a closed WIN rectangle with no masonry and nothing outside it is a stair eye, not glazing. Add the same filter where walls.py builds its _blockers and where rooms.py builds its WIN boundary set. Also list 'WIN inside a stair' in the checks."
+    },
+    {
+     "severity": "major",
+     "tool": "tools/openings.py",
+     "floor": "F11",
+     "description": "F11 draws much of its glazing as two WIN lines only 0.04 m apart. _pair_lines needs at least dmin=0.05, so the two lines never pair. A lone line 4 m or longer then becomes a 'curtain wall' because the width>=4.0 test runs before the `not paired` test, and its twin pairs with a tiny 0.136 m stub to make a second curtain wall. Each such facade is counted twice. Shorter twins become two 'single-line glazing' items. Together with the stair-eye defect, the F11 facade estimate is about 43% too low.",
+     "evidence": "F11 west facade: WIN 483D x=2.370 (y 3.534-9.139) and 483F x=2.410 (y 3.558-9.139) are 0.04 apart. They become W29 'glazed facade' 5.58 (n_lines=1, frame_depth 0) plus W30 'glazed facade' 5.65 (n_lines=2, paired with stub 4841 at x=2.53, length 0.136). F11 south facade: WIN 47E5 y=0.680 (8.132 m) and 47E6 y=0.720 (7.957 m) become W33 8.177 (paired with stub 47E7) plus W34 7.957 (n=1). F11 stair west glazing: WIN 483E x=2.12 and 4840 x=2.16 (2.741 m each) become W22 and W23, two 'single-line glazing' items. Arithmetic: removing the stair eyes (9.41) and one of each duplicate pair (5.58 + 7.957) takes full-height glazing from 85.25 m to about 62.3 m (about 65.7 m once the stair glass is counted once). Facade area becomes about (122.53 - 65.7) x 3.2 - 36.8 = about 145 m2, against the reported 82.52 m2.",
+     "suggested_fix": "Before _pair_lines, merge WIN lines that are parallel, less than 0.05 m apart and overlap by more than 80% into a single glazing line, so a 0.04 double line counts once. In read_windows, test `not paired` before `width >= 4.0`, and only call a lone line a curtain wall when no parallel twin lies within 0.06 m. Finally, deduplicate glazing items whose spans overlap by more than 80% and whose offsets differ by less than 0.10 m."
+    },
+    {
+     "severity": "major",
+     "tool": "tools/openings.py",
+     "floor": "F10",
+     "description": "A door block inserted on layer DIM is ignored. FloorGeom collects INSERTs only from layers W, 0, WIN, PR, DASH, Etabs-col, COL and try. As a result, F10 reports 30 doors = 28.00 m when it has 31 doors = 28.80 m (D80W12 x 9, not 8), and the same doorway appears as a false door-less 'opening'. READING_GUIDE §6/§12 says the insertion layer has no meaning, and walls.py already reads door blocks on any layer.",
+     "evidence": "Raw F10 INSERT D80W12, handle 44B0, layer DIM, local insert (7.175, 2.81), rotation 0. It is the door of the small unnamed bathroom (x 7.0-9.0, y 2.87-4.2). walls.py: diagnostics doors_blocks = 31, and W134 holds this door as 'D80W12' 0.80. openings.py: 30 doors and F10-O03 'opening (no door/window)' 0.80 at (7.175..7.975, 2.87). Cross-check walls_py_door_gaps = 32 against openings_py = 30. masonry_deduction_widths shows opening|0.12 0.8.",
+     "suggested_fix": "In FloorGeom.__init__, collect door blocks from `floor_entities(fl, types='INSERT')` on any layer, the way walls.extract does: `self.door_inserts = [e for e in floor_entities(fl, types='INSERT') if DOOR_RE.match(e.dxf.name)]`. Keep the layer-filtered loop for the other geometry only. Then rerun read_plan: F10 doors become 31 = 28.80 and O03 disappears."
+    },
+    {
+     "severity": "major",
+     "tool": "tools/walls.py",
+     "floor": "F09",
+     "description": "The planter parapet walls are missed completely. On F09 each planter is closed on its outer side by a 0.25 m band drawn as two MASS lines, with end returns. walls.py reads only layer W, so these walls produce no record, no needs_check flag and no conflict. The planter body (the AR-CONC hatch on W) is treated as 'concrete'. The guide's open question 18 (are planters masonry or concrete?) therefore has no quantity behind it, while the reported F09 0.25 exterior masonry is only 18.98 m net.",
+     "evidence": "Raw F09 parallel MASS pairs 0.25 apart: south 4D92/4D94 at y -1.520/-1.270, 9.64 m, with end returns 4E1B/4DD2 at x 13.605/13.355 and 4E65/4E69 at x 3.47. West upper 4E04/4E06 at x 0.17/0.42, 10.12 m. West lower 4E10/4E12, 10.25 m. North 4E0A/4E0B at y 39.45/39.20, 8.79 m, and 4C82/4C83 at y 38.82/38.57, 4.0 m. Plus returns of 0.98 x 4 and 0.38: about 48 m in total, all hugging the AR-CONC hatches 4D93, 4E05, 4E11 and 4BAC. F08 has nothing at y -1.52, so this is new geometry. A scan finds no W line on any planter edge. On F10 and F11 the planter edges are 0.08-0.12 MASS pairs instead (for example 4393/4396 at y 38.53 and 47CD/47D1 at y 37.93), probably a balustrade or curb.",
+     "suggested_fix": "Add a reader for MASS lines on F09-F11 (or any floor with W-layer AR-CONC planters): pair MASS lines 0.08-0.30 m apart that run along a planter hatch's outer edge or along the try floor outline. Emit them as records of kind 'planter_parapet' with needs_check=True and their thickness. Keep them out of the masonry totals by default, but give them their own row in summary.xlsx and in conflicts ('planter parapet: masonry or concrete? height?')."
+    },
+    {
+     "severity": "minor",
+     "tool": "tools/walls.py",
+     "floor": "F09, F10",
+     "description": "walls.py writes two overlapping records for one wall and one door (the D10W12 beside shear wall SW06 on the corridor line x=7.00). On F09/F10 the west face line has a 0.12 m break at y 20.135-20.255, left over from the bathroom wall that F08 had there. classify_gap ends the run at that break. Both resulting runs are then bridged down to SW06 by bridge_to_concrete, so the door and about 1.08 m of gross length are counted twice. walls.py's own overlap_check finds the overlap, but nothing acts on it.",
+     "evidence": "F09 W73 runs (7.00,19.05)-(7.00,21.89), gross 2.84, with door 1.201 'to_concrete'. F09 W80 runs (7.00,19.05)-(7.00,20.14), gross 1.08 / net 0.10, with door 0.976: one door, two records. overlap_check pairs W73/W80 with 0.1297 m2. Diagnostics: doors_matched 31 against 30 blocks. Cross-checks: walls_py_door_gaps 31 against 30 (F10: W69/W76, 32 against 31 blocks). Raw F09 W lines: 4B80 x=6.935 (20.030-20.135), 4B81 x=6.935 (20.255-22.080), 4B78 x=7.055 continuous. F08 has the same two pieces but also the T-wall 3DA1/3DA3 at y 20.135/20.255, giving a single record W124. Masonry impact: about +1.0 m2 per floor, plus a phantom door gap.",
+     "suggested_fix": "In classify_gap: when only one face is interrupted, by 0.15 m or less, the other face covers the gap, nothing abuts and no W line runs inside, return 'contiguous' (a drafting remnant). In bridge_to_concrete: reject the bridge when any piece rectangle of another run on the same line (centre-line within thk/2) intersects G at all, instead of the current >10% area test. Also turn the overlap_check pairs and doors_matched != doors_blocks into read_plan conflicts."
+    },
+    {
+     "severity": "minor",
+     "tool": "tools/walls.py",
+     "floor": "F11",
+     "description": "Two D10W12 door gaps are missed on F11. In each case the 0.12 x 0.12 stub beyond the far jamb is read only in the crossing (horizontal) direction: detect_caps removes its short vertical sides, so the vertical run has no piece beyond the door and the gap is never bridged. walls reports 28 door gaps for 30 door blocks, and the gross length is about 2.2 m short.",
+     "evidence": "F11-D05 D10W12 at (9.015, 29.62), between office 1 and the corridor. Its stub became W23 (8.96,29.06)-(9.07,29.06), a horizontal piece 0.12 thick and 0.12 long, and the vertical line has only W19 (30.12-30.26) and W13. F09 reads the same door inside W21 (9.02, 29.00-32.26), gross 3.26. F11-D24 D10W12 at (6.995, 13.02): its stub became W105 (6.93,12.46)-(7.04,12.46), 0.128 thick and 0.10 long ('tiny fragment'), leaving only W101 (13.52-13.69). F09 has W112 (7.00, 12.34-13.69) with a 1.0 door. Before conflict resolution, the only pieces at the stubs are horizontal bands 29.000-29.120 and 12.400-12.528; no vertical piece exists. Diagnostics: doors_matched 28, doors_blocks 30.",
+     "suggested_fix": "Add a fallback pass for unmatched door blocks: for each D..W.. block with no 'door' gap, find the run on the door axis whose thickness is within 0.03 of the block's wall value and whose end lies within 0.05 m of a jamb. Extend its gross over the door width and on to the next perpendicular wall face (the stub), and record a 'door' gap. Also, in detect_caps, do not treat a short segment as a cap when its far side coincides with a door-block jamb line."
+    },
+    {
+     "severity": "minor",
+     "tool": "tools/walls.py",
+     "floor": "F09, F10",
+     "description": "In concrete_polys, the planter AR-CONC hatches go into CU, so bridge_to_concrete treats a planter edge as a concrete jamb. At the NE corner, the masonry of the 0.40 facade (W1) ends at a W cap at y=36.284. The curtain-wall return glazing above it is nevertheless bridged as a 'window in masonry' up to the planter hatch. This adds 1.94 / 1.34 m of gross length with a phantom 1.0 m sill strip, and contradicts openings.py, which correctly calls the same glazing 'glazed facade' (curtain wall).",
+     "evidence": "F09 W1 runs (16.555,35.284)-(16.555,38.22): 0.40 exterior, gross 2.94 / net 1.00, window 1.937 'to_concrete'. Its end 38.22 is the edge of planter hatch 4BAC (3.72,38.09)-(16.76,39.20); there is no Etabs-col element there. Raw: W cap 4B94 (16.76→16.36, 36.28) closes the masonry, and above it there are only WIN lines (x 16.38 / 16.63, 36.28-38.14). openings F09-W04 is 'glazed facade / curtain wall' 1.856. walls_py_window_gaps 12 = 20.757 against openings 11 = 18.40. F10 W1: window 1.337 bridged to planter 4229 at 37.62. On F11 the same corner is not bridged (W2 1.00). Masonry impact: +1.94 m2 (F09) and +1.34 m2 (F10).",
+     "suggested_fix": "Let bridge_to_concrete (and the 'column' test in classify_gap) use structural concrete only: CU_struct = unary_union of ctx.conc entries whose src does not start with 'W-hatch'. Keep the planters in ctx.PU for the outside/exterior classification only. Also refuse a bridge when the run end at t_end is jamb-capped AND no W face continues beyond the gap."
+    },
+    {
+     "severity": "minor",
+     "tool": "tools/openings.py",
+     "floor": "F11 (policy affects all)",
+     "description": "deduction_table / summary.masonry_deduction_widths treat every window that is not a curtain wall or an arc as a MASONRY deduction, including 'single-line glazing (unpaired)'. On F11 the deduction table that feeds summary.xlsx therefore lists 6 phantom masonry windows (8.40 m): the stair break line, the doubled stair glass and the NE curtain-wall return. That return is two WIN lines 0.37 apart, just over dmax=0.35, so it is never paired.",
+     "evidence": "F11 masonry_deduction_widths: window|0.35 1 = 0.914 (W16, stair break line), window|0.40 1 = 0.656 (W03, WIN 46FC x=16.385, 36.284-36.94), window|? 4 = 6.829 (W04 0.736 from WIN 46FB x=16.755; W13 0.611; W22 2.741 and W23 2.741). 'window in masonry opening' remains 11 = 18.40, so only the deduction sheet is wrong, not masonry_estimate.",
+     "suggested_fix": "In deduction_table, deduct only kind in {'window in masonry opening', 'window (gap != glazing, check)'}. Report single-line glazing in a separate 'unresolved glazing' bucket. For corner returns, accept pairs up to 0.40 m apart when both lines end on the same masonry cap."
+    },
+    {
+     "severity": "minor",
+     "tool": "tools/openings.py",
+     "floor": "F09, F10",
+     "description": "The width of curved corner glazing is taken only from the smaller-radius arc pieces. On F09-F11 the inner and outer arcs cover different sweeps: the inner arc is split into pieces, and the ends differ. The reported arc glazing is therefore under- or over-stated by up to about 0.9 m per corner, and these arcs feed the full-height glazing in the facade estimate.",
+     "evidence": "F09 NW: inner WIN arcs 4E61 (18.4°), 4E62 (96.1°) and 4E63 (12.0°) total 126.5°, giving W05 = 4.438. The outer arc 4E64 is one continuous 147.8° (≈5.19 m at r_mid 2.01). F10 NW: inner 44FF 224.5° gives W05 = 7.877, but outer 4500 spans only 199.3° (≈7.0 m).",
+     "suggested_fix": "Compute the sweep as the union of the angular intervals of both radii (or the larger of the two continuous sweeps), times r_mid. Flag the corner when the inner and outer sweeps differ by more than 10°."
+    }
+   ],
+   "checks_passed": [
+    "Re-ran walls.read_walls and openings.analyze_floor on F08-F11 (scratch output/_verify_f09_11/readers.pkl). The totals match the reported numbers exactly: F09 148 / 239.53 / 187.19, F10 141 / 234.71 / 181.37, F11 129 / 224.40 / 177.11; doors 30 = 28.00; masonry windows 11/12/11 = 18.40 / 19.20 / 18.40.",
+    "Planter edges are not wrongly read as masonry: no W line lies on any planter edge apart from small stubs, and no wall record overlaps a planter hatch. Planter sides are classified 'out' through ctx.PU (for example F09 W42 0.25 exterior, office 6 / زرع).",
+    "F09 0.10 partition between offices 2 and 3: W2 (8.42, 34.14-38.45), thickness 0.101, 4.31 m, interior, from the W pair 4BB9/4E0F (x 8.374/8.475). It is correctly a T-branch stopping at the corridor wall face and ending at the curtain wall. F11 has W1 3.19 m. F10 correctly has no partition: W2 corridor wall (7.00-9.80) is continuous.",
+    "East facade masonry windows on F09-F11 (2.50 ×2, 2.35 ×3, 1.80, 1.35, 0.80 ×4/5) match F08 position for position. F10's extra 0.80 window W13 at (17.577, 18.07) is real: walls W90 has the window and F09/F11 have none.",
+    "The west curtain wall at x=0 (13.00 m) is the same as F08. The F09-F11 west, north and south facades are glazing (W09 9.37, W18 9.75, W02 7.505, W03 4.33, W24 8.885 on F09) and produce no masonry.",
+    "SE corner on F09 (W145 0.40 × 0.54, W146 0.25 × 1.57, W148 0.25 × 0.48) is the same reading as F08 (W215/W216/W223). The L-corner convention holds.",
+    "New column 0.5 × 1.2 at (8.96, 12.28) is cut correctly: corridor walls W119 and W106 stop at it. The 0.50 × 0.29 W-drawn stub W116 below it is flagged needs_check.",
+    "The two shafts deleted on F11, at (5.22-5.62, 28.64-29.24) and (9.08-9.48, 2.93-3.53), have no try box and no W lines, and correctly give no shaft walls (21 shaft records against 32 on F09).",
+    "The F10/F11 0.40 wall south of the accessible bathroom (W84/W77, faces at y 18.25 and 18.65, raw 42ED/445A) is a real drafting change from F09's 0.25 (W88) and is flagged needs_check.",
+    "Lift landing openings 2 × 1.25 and the stair door D90W25 are read the same as on F08 on all three floors. Door widths are block-exact (28.00), and openings.py door_gap_vs_block shows only ±0.02 differences.",
+    "The try floor and plot outlines are excluded from shafts in both readers (is_try_outline), and the try ANSI31 fins remain fins.",
+    "W-line coverage: unexplained W length is 21.1 / 20.5 / 21.5 m on F09 / F10 / F11, against 37.1 on F08. The largest unexplained pieces are the same lift-core lines as on F08 (4AFF/417C at y 18.4, 4B14 at y 22.3) and do not indicate a missed wall."
+   ]
+  },
+  "remoteControlDeviceReport": false,
+  "toolsUsed": [
+   "Bash",
+   "Read",
+   "StructuredOutput"
+  ],
+  "sessionId": "d3b44a19-989c-4f10-9b51-d237f635d5e6"
+ },
+ {
+  "type": "result",
+  "key": "v2:bd49e69520ff7aa0613364d5eac79cc242eb4dbdd528e1e7ab3a3e5a7bf37238",
+  "agentId": "a921d84b05e9d7759",
+  "result": {
+   "verdict": "fix",
+   "defects": [
+    {
+     "severity": "major",
+     "tool": "tools/rooms.py (+ structure.py stairs, openings.py)",
+     "floor": "F11",
+     "description": "On F11 the eyes of both stairs (the gap between the flights) are drawn on layer WIN, not MASS. rooms.py treats WIN as glazing, which is a boundary, so it cuts each eye out of its stair as a hole. In F09/F10 these same lines are on MASS and are skipped because they sit inside the stair hull. Results: F11 stair areas are too small, stair perimeters are too long, the eye outlines are counted as 'glazing' and as 'windows' on the stair rooms, and structure.analyze_stairs no longer finds the eye.",
+     "evidence": "WIN 4707/4708 (closed rectangles (10.305,27.00)-(13.305,27.65) and (10.425,27.12)-(13.185,27.53)) and the WIN break line 4744 in ST1. WIN LINEs 4746-474D ((3.135,10.635)-(5.835,11.18) plus the inner rectangle) in ST2. On F09 the identical geometry is MASS 4BC4/4BC5/4C01 and 4C03-4C0A, on F10 MASS 423F/4240/427C and 427E-4285. F11-R30: 12.646 m2, P=23.80, glazing 7.54 m (F10-R30: 14.664 m2, P=16.10). F11-R31: 11.570 m2, P=21.49. Re-running with WIN inside stair hulls skipped gives R30 14.664 / P 16.10 and R31 13.041 / P 15.00. F11 net_indoor goes 494.91 -> 498.54 and ceiling_area 483.03 -> 486.66 (-3.6 m2 now). The stair room windows lists show 'windows' F11-W10/W11/W12/W14 and W24/W25/W26. structure F11 ST1 and ST2 have eye: [] (F09/F10 list the 3.00x0.65 eye).",
+     "suggested_fix": "In rooms.build_primitives, apply the same test to WIN as to MASS: skip a WIN line when any(h.contains(ln) for h in stair_hulls(g)), record it in 'skipped' as an eye drawn on WIN, and add a flag. In structure.analyze_stairs, also read closed WIN polylines and lines inside the stair box as the eye. In openings.py, drop WIN pairs that fall inside a stair hull."
+    },
+    {
+     "severity": "major",
+     "tool": "tools/read_plan.py (plaster_estimate external) <- openings.py classification",
+     "floor": "F11",
+     "description": "The preliminary external facade area for F11 is far too low: 82.52 m2, against 139.32 for F09 and 130.68 for F10. full_height_glazing_m = 85.25 is inflated in three ways. (1) 9.41 m of stair-eye WIN rectangles are classified as 'glazed facade / curtain wall'. (2) On F11 the curtain-wall frame lines are only 4 cm apart. Two such pairs are not paired, so each line is counted on its own: W29/W30 at x=2.41/2.45 and W33/W34 at y=0.76/0.72, adding 13.6 m of glazing twice. (3) A real glazed stretch, W22/W23 at x=2.12/2.16 beside the south stair (2.74 m), is labelled 'single-line glazing (unpaired)' and left out of full_glz.",
+     "evidence": "F11 windows: W10 0.41, W11 2.76, W12 0.41, W14 2.76 (north stair eye), W24 0.305, W25 2.46, W26 0.305 (south stair eye), all 'glazed facade / curtain wall'. Also W29 5.58 and W30 5.65 at x 2.41/2.45, W33 8.177 and W34 7.957 at y 0.76/0.72. Formula: (122.53-85.25)*3.2 - 18.4*2.0 = 82.5. Without the eye lines and the duplicates, and counting W22: full_glz is about 64.97, giving (122.53-64.97)*3.2 - 36.8 = about 147.4 m2. So F11 external is understated by about 65 m2 (44%).",
+     "suggested_fix": "In plaster_estimate, count a glazing item in full_glz only if its segment lies within about 0.3 m of the exterior of rooms' footprint, which drops stair eyes. Merge or deduplicate parallel glazing lines spaced 0.03-0.06 m apart, so a frame is counted once. Count 'single-line glazing (unpaired)' that lies on the footprint outline as full-height glazing. In openings.py, lower the minimum spacing for a pair to 0.03 m for curtain-wall frames."
+    },
+    {
+     "severity": "major",
+     "tool": "tools/rooms.py (corridor/lobby split)",
+     "floor": "F10, F11",
+     "description": "F10 and F11 output the lobby and corridor as one 'corridor' (84.68/84.75 m2), and by_category has no lobby at all. The walls here are the same as F09. The split fails only because F10/F11 carry an extra 'ممر' (corridor) label inside the lobby, in the passage in front of the stair and service rooms. split_by_wall_continuation requires every corridor label to fall on the corridor side. READING_GUIDE section 11-ب wrongly reports the merge as a drawing difference ('بهو المصعد والممر فراغ واحد' in F10).",
+     "evidence": "F10 labels: 'ممر' 45BE (8.13,27.95), 45BF (8.14,11.10), plus 45C0 at (12.13,24.76), which lies in the lobby. F11: 4A82-4A85 at x 8.16-8.52, plus 4A86 at (14.70,23.23), in front of the IT/electric doors. Re-running the split with the label at x >= 9 excluded gives F10 57.879 + 26.805 and F11 57.948 + 26.804, both with chord (8.955,25.65)-(8.955,18.65). F09 gives 57.879 + 26.797 with the same 7.00 m chord.",
+     "suggested_fix": "When cats contains both corridor and lobby and the strict split returns None, retry with keep_pts limited to corridor labels that do not lie on the lobby-label side. For example, try dropping each corridor label in turn, accept the split when the kept part passes corridor_like(), and add the flag 'label ممر <handle> lies in the lobby part'. Also correct READING_GUIDE section 11-ب: the F10/F11 walls around the lobby are identical to F09."
+    },
+    {
+     "severity": "minor",
+     "tool": "tools/rooms.py (boundary kinds) -> read_plan plaster",
+     "floor": "F09",
+     "description": "On F09 the inner frame line of the west glazing beside office 10 and the south stair is drawn on MASS. rooms.py tags those room faces as 'mass', which read_plan counts as a solid face (SOLID_KINDS). So 6.27 m of glass facade gets internal plaster for the full height.",
+     "evidence": "WIN 4E15 x=1.090, y 2.53-12.28 (outer glass). WIN 4E13 x=1.170, y 2.78-5.78 (inner, office 11 only). MASS 4E14 x=1.170, y 6.18-12.28 (the inner frame line on the wrong layer). F09-R13 office 10 boundary: mass 3.235 m and no glazing, even though windows=['F09-W18']. F09-R32 stair: mass 2.745. F09-R16 office 11: mass 0.289. Plaster faces_by_kind on F09 shows 'mass' 6.27 inside solid 416.69, which is about +18.8 m2 of internal plaster at H_p=3.0.",
+     "suggested_fix": "In build_primitives, re-tag a MASS line as 'glazing' when a continuous WIN line runs parallel to it 0.03-0.16 m away over at least 80% of its length (a frame drawn on the wrong layer). Alternatively, in read_plan, leave 'mass' out of the solid faces where the room's windows include a curtain wall facing that face."
+    },
+    {
+     "severity": "minor",
+     "tool": "docs/READING_GUIDE.md section 11-ب + diwan_common.py comment (reference figures used for the gross-area check)",
+     "floor": "F09, F10, F11",
+     "description": "The quoted try floor-outline areas (598.65/565.98/541.38) are chord areas that ignore the two arc bulges of each polyline. The outline is also not 'the slab edge round the planters': it runs on the facade or glass line, and every planter lies outside it, bounded by a double MASS parapet. Compared against the true outline, rooms' gross_floor_area is consistent: 609.01 vs 604.2, 583.57 vs 578.1, 559.49 vs 553.8. The +0.8-1.0% comes from the outline being drawn on the inner glass line (west curtain wall at x=0.12 instead of the outer face at -0.03; north-east window strip at x 16.45 instead of 16.7; inside the curved glass on F10/F11).",
+     "evidence": "try 4E7A, 4517, 49AF: get_points('xy') area = 598.65/565.98/541.38. Bulge-aware area (ezpath and analytic, 2 bulges each) = 604.19/578.09/553.75. Planter area inside the outline: 0.000 (F09), 0.000 (F10), 0.96 (F11-R42 only). Planter outer edges are MASS 4E12 (x=0.42) with a second MASS line at x=0.18 (a 0.24 m parapet). rooms footprint minus outline: 4.92/5.60/7.03 m2. Outline minus rooms footprint: 0.08/0.07/1.27 m2.",
+     "suggested_fix": "Compute outline areas with ezpath.make_path(e) or get_points('xyb'). Correct the diwan_common comment and READING_GUIDE: the outline is the facade line, and planters plus parapet lie outside it. Add 'try_outline_area' (bulge-aware) to read_plan cross_checks.footprint_m2 so the comparison is automatic."
+    },
+    {
+     "severity": "minor",
+     "tool": "tools/rooms.py (try outline used as a boundary primitive)",
+     "floor": "F10, F11",
+     "description": "The try outline is added as a 'slab_edge' boundary everywhere. Where it is drafted inside the curved glazing (F10 SW corner, F11 NW and SW corners), it cuts the offices short of the glass. Their curved faces are reported as slab_edge instead of glazing, and a sliver becomes wall body. Separately, on F11 a 0.35 m strip beside the south stair (inside the outline) is called a planter only because a 'زرع' label left over from F10 (handle 4844) snaps to it. F10 and F11 also carry other stale 'زرع' labels at the F09/F10 positions.",
+     "evidence": "slab_edge on indoor rooms: F10-R15 office 11 2.676 m; F11-R01 office 3 3.377 m; F11-R16 office 11 4.312 m (total 7.69 m on F11). Removing the outline: office 3 30.393 -> 30.44, office 11 32.307 -> 32.399, and those faces become glazing (12.65 / 13.48 m). F11-R42 'زرع' 0.96 m2 [1.77,9.54,2.12,12.28], label 4844 at (1.659,11.628), identical to F10 label 44A7. Stale labels 482B/4843 at x=1.0 (F09 positions) snap 0.86 m into F11-R40/R41.",
+     "suggested_fix": "Do not use the try outline as a boundary primitive for indoor faces: use it only to delimit open-air planters, or add it last and drop it wherever W/WIN lies within 0.15 m. In boundary_breakdown, prefer glazing within 0.12 m over slab_edge. Flag planter faces whose only label is snapped from more than 0.5 m away, or that lie inside the outline."
+    },
+    {
+     "severity": "minor",
+     "tool": "tools/structure.py (element ids)",
+     "floor": "F09, F10, F11",
+     "description": "Element ids are assigned by sort order, so the new column renumbers everything after it on F09-F11. The docstring says ids are 'stable anyway', but C06-C11 now name different elements than on F02-F08. read_plan conflicts and the doc_tables ELEMENTS_TABLE (which aggregates exp[el['id']] across floors) would mix different elements under one id.",
+     "evidence": "F08 C06 = 0.40x0.90 at (14.703,8.63), but F09 C06 = new Etabs-col 4EB9 0.50x1.20 at (8.955-9.455, 12.284-13.484). F08 C09 (tr 1.20x0.60) = F09 C10, and F08 C10 (tr 0.50x1.00) = F09 C11. The read_plan conflict 'C10 1.20 x 0.60 has no wall' on F09 refers to F08's C09. Doc table row C06 '0.40 x 0.90' would receive F09-F11 exposed_interior 2.78.",
+     "suggested_fix": "Assign ids from a canonical F06 table by footprint IoU (as harmonize_shaft_ids does for shafts), give genuinely new elements the next free id (e.g. C12), and key doc_tables on those ids."
+    },
+    {
+     "severity": "minor",
+     "tool": "tools/structure.py (shafts) + tools/rooms.py",
+     "floor": "F09, F10, F11",
+     "description": "Shaft counts disagree between the tools. structure leaves try boxes without a DASH X ('box (no X)') out of both the confirmed and the uncertain counts. These include the 1.72x0.60 SH14, which is walled on every floor, and SH18. rooms counts them as shafts. Also on F09, a stray W stub inside shaft SH06 was extended across the box by dangling_extensions, splitting the shaft.",
+     "evidence": "F09/F10: rooms 8 shafts, 5.37/5.46 m2. structure: 5 confirmed (2.863 m2) + 2 uncertain, with boxes_without_x ['SH14','SH18'] (F11: ['SH14']). F08: 12 confirmed, 5.604 m2. F09-R35 shaft area 0.144 instead of 0.24 (box 4E7E (5.22,28.64)-(5.62,29.24)): W 4B35 (5.22,28.88)-(5.38,28.88) was extended 0.24 m to W 4D26. The same box on F10 gives 0.24.",
+     "suggested_fix": "Report 'box (no X)' as shafts_uncertain, or as confirmed when harmonize_shaft_ids shows the same box confirmed on other floors, so read_plan rows stay comparable. In rooms.dangling_extensions, do not extend a W stub whose end lies inside a try shaft polygon."
+    },
+    {
+     "severity": "minor",
+     "tool": "tools/structure.py analyze_shafts + tools/rooms.py build_primitives",
+     "floor": "F09, F10, F11",
+     "description": "On F09-F11 the curtain-wall post at the office 7/8 partition exists only as a try HATCH; its LWPOLYLINE is missing. structure builds boxes from LWPOLYLINEs only, and rooms uses hatches only as an overlap test, so both tools drop the post. F10 also has a stray hatched try object outside the building, south-west of the curved glass, which structure reports as a curtain-wall post.",
+     "evidence": "try HATCH 4EAF (F09), 454B (F10), 4A07 (F11) at (-0.045,18.754)-(0.555,19.054); no LWPOLYLINE there (F08 had 459E and 45F9). structure F09/F11 shaft list has SH07 and SH13 but not SH11. F10 SH20 'post_at_curtain_wall (hatched)' = try 4565/454A at (-0.13,0.515)-(0.219,1.33), outside the building. HATCH 4549 at (2.205,-1.82) is ignored.",
+     "suggested_fix": "Create a solid_try primitive or a box from every try HATCH that matches no LWPOLYLINE. Call an object 'post_at_curtain_wall' only if it lies within about 0.7 m of curtain-wall glazing and inside the footprint; otherwise report it as a 'stray hatched try object'."
+    },
+    {
+     "severity": "minor",
+     "tool": "tools/read_plan.py (cross_checks -> conflicts)",
+     "floor": "F09, F10, F11",
+     "description": "The cross-checks between readers no longer agree on F09-F11, but none of the mismatches is raised as a conflict, and READING_GUIDE section 14 still says the readers match on all floors.",
+     "evidence": "Doors: openings 30 vs walls door gaps 31 (F09), 32 (F10), 28 (F11). Windows in masonry: 11/12/11 vs walls window gaps 12/13/11. Door-less openings on F10: 3 vs 2 (the 0.80 opening F10-O03 to the unlabelled WC is not bridged). On F11, doors D05 (9.015,29.62) and D24 (6.995,13.02) have no masonry gap in walls.py. F11 windows_unassigned = ['F11-W04']. F09/F10 walls W1 has a 'window' gap of 1.937/1.337 m with no matching openings.py window. conflicts holds only tr items and needs_check_counts.",
+     "suggested_fix": "In merge_floor, append a conflict of type 'cross_check_mismatch' when doors, windows, door-less openings or all gaps differ in count or by more than 0.05 m in width, and when rooms doors_not_two_sided or windows_unassigned is non-zero. List the unmatched ids found by matching walls gap 'at' points to opening centres."
+    }
+   ],
+   "checks_passed": [
+    "Offices: all 16 labels placed on F09/F10/F11 (no unplaced labels, no missing numbers, no duplicates); F10 office 2+3 merge is genuine (no W lines at x 8.374/8.475 and no DIM ends there, while F09 4BB9/4E0F and F11 48EE/49A4 draw the 0.10 partition)",
+    "Spaces whose geometry is unchanged from F08 match it exactly on F09-F11: DAS/GSM 12.369, IT 3.178, electric 2.838, FTR 1.715, east WCs 7.722/2.319/5.224/2.628, lift 6.898, north stair 14.617 (F09), office 8 19.80, office 16 16.08 (F09), corridor 57.879 (F09)",
+    "Doors: every F09-F11 door lies between exactly two rooms (doors_not_two_sided empty); F10 unlabelled WC (2.299 m2) correctly named from the P block, with its door-less 0.80 opening F10-O03",
+    "New column 0.50x1.20 (Etabs-col 4EB9, 8.955-9.455 x 12.284-13.484) read as a model-space column; 16 Etabs-col + 2 COL = 18 model-space elements + 7 tr; SW06 now also a polyline (sources hatch+polyline)",
+    "Shafts absent on F09-F11 compared with F08 (SH01/02/03/05/15/17/19) really are absent from the try layer (raw dump), so these are not misses",
+    "try outline and plot boundary correctly excluded from shafts (is_try_outline), and stairs/lift are not classified as shafts",
+    "Planters are open_air (excluded from gross and ceiling), bounded by the inner MASS parapet line; 4/4/6 planter faces match the drawing (F11 west strips split by columns C04 and SW09 protruding into the planter)",
+    "Gross floor area matches structure FaceEnv (609.01/607.41, 583.57/582.13, 559.49/559.11) and the bulge-aware try outline within 0.8-1.0% (604.2/578.1/553.8)",
+    "F09 corridor/lobby split chord 7.00 m at x=8.955 matches F08 (57.879 + 26.797)",
+    "F09-F11 ceiling = net indoor - lift - shafts checks out arithmetically (e.g. F09 544.541 - 6.898 - 5.368 = 532.275)",
+    "Lift cars: 2 inside CORE01 on F09-F11; stairs: 2 with the same flights (11/11/3 and 10/10/2 treads, going 0.30, width 1.10)"
+   ]
+  },
+  "remoteControlDeviceReport": false,
+  "toolsUsed": [
+   "Bash",
+   "Read",
+   "StructuredOutput"
+  ],
+  "sessionId": "d3b44a19-989c-4f10-9b51-d237f635d5e6"
+ }
+]

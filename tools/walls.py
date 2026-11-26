@@ -91,6 +91,9 @@ GAP_MAX = 0.62         # m: thickest wall (0.60 shaft/duct bodies seen on F02)
 MAX_OPENING = 3.0      # m: longest gap bridged as an opening (gross length)
 UNCAPPED_OPENING_MAX = 1.6  # m: longest door-less gap bridged when its ends have no jamb line
 JUNCTION_MAX = 0.62    # m: longest gap bridged as a wall junction
+REMNANT_MAX = 0.15     # m: one-face break covered by the other face, nothing abutting = same wall
+PARAPET_GAP = (0.06, 0.30)   # m: thickness range of a MASS line pair read as a planter parapet / curb
+PARAPET_ONLY_WITH_OUTLINE = True  # read parapets only on floors with a `try` floor outline (F09-F11)
 BUILDING_WIN = (-4.0, -5.0, 25.0, 45.0)  # local window holding the plan
 
 DOOR_RE = re.compile(r"^D(\d+)W(\d+)$", re.I)
@@ -237,10 +240,28 @@ def extract(fl) -> dict:
             poly_cols.append(ph)
 
     # ---- shafts / ducts (X-crossed boxes) ----
+    g["try_outlines"] = []
     for e in floor_entities(fl, layers="try", types="LWPOLYLINE"):
         pts = [L(p[0], p[1]) for p in e.get_points("xy")]
         if len(pts) >= 3 and not is_try_outline(pts):   # F09-F11: floor/plot outlines on try
             g["shafts"].append({"pts": pts, "handle": e.dxf.handle})
+        elif len(pts) >= 3:
+            g["try_outlines"].append({"pts": pts, "handle": e.dxf.handle})
+
+    # ---- MASS lines (F09-F11: planter parapets / curbs drawn as line pairs; stair eyes,
+    #      lift-door frames and the property line also live here -> filtered in planter_parapets) ----
+    g["mass"] = []
+    for e in floor_entities(fl, layers="MASS", types="LINE LWPOLYLINE"):
+        if e.dxftype() == "LINE":
+            a = L(e.dxf.start.x, e.dxf.start.y)
+            b = L(e.dxf.end.x, e.dxf.end.y)
+            cand = [(a, b)]
+        else:
+            pts = [L(p[0], p[1]) for p in e.get_points("xy")]
+            cand = [(pts[i], pts[(i + 1) % len(pts)]) for i in range(len(pts) - 1 + (1 if e.closed else 0))]
+        for a, b in cand:
+            if _in_win(a) and _in_win(b) and math.hypot(b[0] - a[0], b[1] - a[1]) > 0.02:
+                g["mass"].append((a[0], a[1], b[0], b[1], e.dxf.handle, e.dxftype()))
 
     # ---- windows ----
     for e in floor_entities(fl, layers="WIN"):
@@ -351,7 +372,7 @@ def extract(fl) -> dict:
 
 def load_geometry(fl, use_cache=True) -> dict:
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
-    key = f"{fl.label}_{fl.file.stem}_{int(os.path.getmtime(fl.file))}_v8.pkl"
+    key = f"{fl.label}_{fl.file.stem}_{int(os.path.getmtime(fl.file))}_v9.pkl"   # v9: + MASS lines, try outlines
     p = CACHE_DIR / key
     if use_cache and p.exists():
         with open(p, "rb") as f:
@@ -861,6 +882,8 @@ class Ctx:
         lifts = [v["poly"] for v in voids if "PR" in v["src"]]
         planters = [c["poly"] for c in conc if str(c["src"]).startswith("W-hatch")]
         self.PU = unary_union(planters).buffer(0.01) if planters else None
+        struct = [c["poly"] for c in conc if not str(c["src"]).startswith("W-hatch")]
+        self.CUs = unary_union(struct) if struct else None   # structural concrete (no planters)
         self.LU = unary_union(lifts) if lifts else None
         self._tree = None
         self.stair_hulls = _stair_hulls(g)
@@ -993,6 +1016,11 @@ def classify_gap(ctx, p, q):
                 sides.add(D.td(c.x, c.y)[1] > (d0 + d1) / 2)
             if len(sides) == 2:
                 return "junction", {"abutters": len(ab), "cross": True}
+        # drafting remnant: ONE face has a short break (<= REMNANT_MAX), the other face runs
+        # straight across it, nothing abuts and no W line enters the band (F09/F10 x=6.935,
+        # y 20.135-20.255: the trace of a bathroom wall that F08 had there) -> one wall
+        if gap <= REMNANT_MAX and lo_cov != hi_cov and not ab and not _w_inside(ctx, R):
+            return "contiguous", {"remnant": True}
     if gap > MAX_OPENING or other:
         return "break", {"why": "too long" if gap > MAX_OPENING else "other wall inside gap"}
     aligned = (p.lo == q.lo and p.hi == q.hi
@@ -1096,19 +1124,21 @@ def bridge_to_concrete(ctx, runs):
     that side): extend the run's GROSS length over the opening up to the concrete face.  The
     concrete must span the wall band; the gap must be empty and hold a door block of the same wall
     thickness, glazing, or start at a jamb-capped wall end.  Returns the number of bridges."""
-    if ctx.CU is None:
+    CU = ctx.CUs          # STRUCTURAL concrete only: a planter hatch (AR-CONC on W) is no jamb
+    if CU is None:
         return 0
     n = 0
     for r in runs:
         D = r["D"]
         d0, d1 = r["d0"], r["d1"]
         thk = d1 - d0
+        cr = (d0 + d1) / 2
         for side in (0, 1):
             t_end = r["s"] if side == 0 else r["e"]
             sg = -1 if side == 0 else 1
             a, b = sorted((t_end, t_end + sg * MAX_OPENING))
             probe = D.rect(a, b, d0 + 0.25 * thk, d1 - 0.25 * thk)
-            hit = probe.intersection(ctx.CU)
+            hit = probe.intersection(CU)
             if hit.is_empty or hit.area < 1e-5:
                 continue
             ts = [t for t0, t1, _ in _t_ranges(hit, D) for t in (t0, t1)]
@@ -1120,15 +1150,27 @@ def bridge_to_concrete(ctx, runs):
                 continue
             # the concrete must close the whole band just beyond tc (a column face across the wall)
             strip = D.rect(min(tc, tc + sg * 0.03), max(tc, tc + sg * 0.03), d0, d1)
-            if strip.intersection(ctx.CU).area < 0.6 * strip.area:
+            if strip.intersection(CU).area < 0.6 * strip.area:
                 continue
             s, e = sorted((t_end, tc))
             G = D.rect(s, e, d0, d1)
             if ctx.VU is not None and G.intersection(ctx.VU).area > 0.2 * G.area:
                 continue
             own = {id(ctx.pieces[k]) for k in r["pieces"]}
-            if any(id(ctx.pieces[int(k)]) not in own and ctx.piece_rects[int(k)].intersection(G).area > 0.1 * G.area
-                   for k in ctx.piece_tree.query(G)):
+
+            def _blocks(k):
+                pk, pr = ctx.pieces[k], ctx.piece_rects[k]
+                if id(pk) in own:
+                    return False
+                ia = pr.intersection(G).area
+                if pk.di == r["di"] and abs((pk.d0 + pk.d1) / 2 - cr) <= thk / 2:
+                    return ia > 1e-6          # another run on the SAME line already covers part of G
+                return ia > 0.1 * G.area
+            if any(_blocks(int(k)) for k in ctx.piece_tree.query(G)):
+                continue
+            # ... or was already bridged over it (an earlier bridge on the same line)
+            if any(o is not r and o["di"] == r["di"] and abs((o["d0"] + o["d1"]) / 2 - cr) <= thk / 2
+                   and min(e, o["e"]) - max(s, o["s"]) > 0.01 for o in runs):
                 continue
             capped = _jamb_capped(ctx, D, t_end, d0, d1)
             kind, info = _gap_opening(ctx, D, s, e, d0, d1, excl=[ctx.pieces[k] for k in r["pieces"]],
@@ -1144,6 +1186,110 @@ def bridge_to_concrete(ctx, runs):
                 r["e"] = tc
             r.setdefault("concrete_jamb", []).append(side)
             n += 1
+    return n
+
+
+def door_fallback(ctx, runs, tol=0.06, stub_max=0.32):
+    """Door blocks D<w>W<t> that no run bridged (F11 D05 / D24): the 0.12 x 0.12 stub beyond the far
+    jamb is drawn with ONE face along the wall only, so it pairs in the crossing direction and the
+    wall run stops at the near jamb.  For each unmatched block find the run on the door axis (same
+    wall thickness +-0.03, insertion point in its band) that ends at one of the door's jambs; extend
+    its GROSS over the door width and on over a perpendicular stub piece lying inside the band
+    (the stub's own run is absorbed - no double count).  Something must close the far side (stub,
+    abutting wall or concrete).  Returns the number of doors recovered."""
+    matched = {gp.get("handle") for r in runs for gp in r["gaps"] if gp.get("handle")}
+    n = 0
+    for d in ctx.g["doors"]:
+        if d["handle"] in matched:
+            continue
+        best = None
+        for r in runs:
+            if r.get("absorbed"):
+                continue
+            D = r["D"]
+            d0, d1 = r["d0"], r["d1"]
+            thk = d1 - d0
+            if abs(thk - d["wall"]) > 0.03:
+                continue
+            ti, di_ = D.td(d["x"], d["y"])
+            if not (d0 - 0.03 <= di_ <= d1 + 0.03):
+                continue
+            w = d["width"]
+            for side in (0, 1):
+                t_end = r["s"] if side == 0 else r["e"]
+                sg = -1 if side == 0 else 1
+                far = t_end + sg * w
+                if min(abs(ti - t_end), abs(ti - far)) > tol:
+                    continue          # the insertion point sits on a jamb of its own opening
+                s, e = sorted((t_end, far))
+                bx = box(*d["bbox"])
+                ts = [D.td(x, y)[0] for x, y in bx.exterior.coords]
+                if min(max(ts), e) - max(min(ts), s) < 0.5 * w:
+                    continue
+                G = D.rect(s, e, d0, d1)
+                if ctx.CU is not None and G.intersection(ctx.CU).area > 0.2 * G.area:
+                    continue
+                if ctx.VU is not None and G.intersection(ctx.VU).area > 0.2 * G.area:
+                    continue
+                own = set(r["pieces"])
+                if any(int(k) not in own and ctx.piece_rects[int(k)].intersection(G).area > 0.05 * G.area
+                       for k in ctx.piece_tree.query(G)):
+                    continue
+                cand = (min(abs(ti - t_end), abs(ti - far)), id(r), r, side, far)
+                if best is None or cand[0] < best[0]:
+                    best = cand
+        if best is None:
+            continue
+        _, _, r, side, far = best
+        D = r["D"]
+        d0, d1 = r["d0"], r["d1"]
+        thk = d1 - d0
+        sg = -1 if side == 0 else 1
+        t_end = r["s"] if side == 0 else r["e"]
+        # the stub beyond the far jamb: perpendicular piece(s) lying inside the band
+        a, b = sorted((far, far + sg * stub_max))
+        probe = D.rect(a, b, d0 + 0.2 * thk, d1 - 0.2 * thk)
+        new_end, stub_runs = far, []
+        for k in ctx.piece_tree.query(probe):
+            k = int(k)
+            pk, pr = ctx.pieces[k], ctx.piece_rects[k]
+            if pk.di == r["di"] or k in r["pieces"] or pr.intersection(probe).area < 1e-5:
+                continue
+            tds = [D.td(x, y) for x, y in pr.exterior.coords]
+            dd = [q[1] for q in tds]
+            tt = [q[0] for q in tds]
+            if min(dd) < d0 - 0.03 or max(dd) > d1 + 0.03:
+                continue          # a crossing wall, not a stub inside this band
+            if min(tt) < a - 0.01 or max(tt) > b + 0.01:
+                continue
+            new_end = min(new_end, min(tt)) if sg < 0 else max(new_end, max(tt))
+            stub_runs += [o for o in runs if k in o["pieces"]]
+        closed = new_end != far
+        if not closed:
+            # a wall face / concrete right at the far jamb closes the door
+            q = D.rect(min(far, far + sg * 0.03), max(far, far + sg * 0.03), d0, d1)
+            closed = (any(ctx.pieces[int(k)].di != r["di"] and ctx.piece_rects[int(k)].intersection(q).area > 1e-6
+                          for k in ctx.piece_tree.query(q))
+                      or (ctx.CU is not None and q.intersection(ctx.CU).area > 0.3 * q.area))
+        if not closed:
+            continue
+        for o in stub_runs:
+            if o is not r and o["e"] - o["s"] <= stub_max + 0.01 and len(o["pieces"]) == 1:
+                o["absorbed"] = True
+        s, e = sorted((t_end, far))
+        gp = {"s": s, "e": e, "type": "door", "block": d["name"], "door_width": d["width"],
+              "handle": d["handle"], "fallback": True}
+        r["gaps"].append(gp)
+        r["openings"].append(gp)
+        if new_end != far:
+            r["solid"].append(tuple(sorted((far, new_end))))
+        if side == 0:
+            r["s"] = new_end
+        else:
+            r["e"] = new_end
+        r.setdefault("door_fallback", []).append(d["handle"])
+        matched.add(d["handle"])
+        n += 1
     return n
 
 
@@ -1513,10 +1659,13 @@ def detect(g, height=3.0):
     ctx = Ctx(g, dirs, pieces, faces, CU, VU, conc, voids, fins)
     runs = build_runs(ctx)
     n_bridges = bridge_to_concrete(ctx, runs)
+    n_door_fb = door_fallback(ctx, runs)
+    runs = [r for r in runs if not r.get("absorbed")]
     n_corners = extend_corners(ctx, runs)
     runs, n_cuts = split_at_junctions(ctx, runs)
     classify_runs(ctx, runs)
     return ctx, runs, {"n_corners": n_corners, "n_junction_cuts": n_cuts, "n_concrete_jamb_bridges": n_bridges,
+                       "n_door_fallback": n_door_fb,
                        **{k: round(v, 3) for k, v in log.items()}}
 
 
@@ -1554,6 +1703,10 @@ def wall_records(ctx, runs, height):
             reasons.append("bridged a door-less gap (no door block/window) - opening or missing door?")
         if any(gp.get("to_concrete") for gp in r["openings"]):
             notes.append("gross bridged an opening up to a column/core face (concrete jamb)")
+        if any(gp.get("fallback") for gp in r["openings"]):
+            notes.append("door block matched by the fallback pass (stub beyond the far jamb drawn with one face)")
+        if any(gp.get("remnant") for gp in r["gaps"]):
+            notes.append("one-face drafting break <= 0.15 m read through (other face continuous, nothing abuts)")
         if r.get("mixed"):
             reasons.append("one side is partly outside/void - classification mixed")
         if not r["sides"][0]["share"] and not r["sides"][1]["share"] and gross >= 0.10:
@@ -1578,7 +1731,8 @@ def wall_records(ctx, runs, height):
                           "at": [round(v, 3) for v in D.xy((gp["s"] + gp["e"]) / 2, c)],
                           **({"block": gp["block"]} if "block" in gp else {}),
                           **({"door_width": gp["door_width"]} if "door_width" in gp else {}),
-                          **({"to_concrete": True} if gp.get("to_concrete") else {})}
+                          **({"to_concrete": True} if gp.get("to_concrete") else {}),
+                          **({"fallback": True} if gp.get("fallback") else {})}
                          for gp in r["openings"]],
             "junctions": sum(1 for gp in r["gaps"] if gp["type"] == "junction"),
             "corner_ext": [round(v, 3) for v in r["ext"]],
@@ -1589,6 +1743,89 @@ def wall_records(ctx, runs, height):
         }
         recs.append(rec)
     return recs
+
+
+def planter_parapets(ctx, height):
+    """F09-F11: the planters outside the glazed facades are closed by low walls drawn as PAIRS of
+    MASS lines (0.25 apart on F09, 0.08-0.12 on F10/F11) along the planter AR-CONC hatches / the
+    `try` floor outline - never on W, so the masonry reader cannot see them.  Pair parallel MASS
+    lines PARAPET_GAP apart (consecutive faces only); keep the bands lying along a planter hatch or
+    the floor outline (this drops the stair eyes and the lift-door frames, also on MASS).  Length =
+    overlap of the two lines + half of the outer line's overhang at each end (centre-line corner,
+    capped 0.15).  Records are kind 'planter_parapet', always needs_check, and are NOT masonry
+    walls: they stay out of res['walls'] and the masonry totals (own key 'planter_parapet|ALL')."""
+    g = ctx.g
+    outlines = []
+    for o in g.get("try_outlines", []):
+        if all(_in_win(p) for p in o["pts"]):          # floor outline; the plot boundary is far bigger
+            p = _poly(o["pts"])
+            if p is not None:
+                outlines.append(p)
+    if PARAPET_ONLY_WITH_OUTLINE and not outlines:
+        return []
+    planters = [c["poly"] for c in ctx.conc if str(c["src"]).startswith("W-hatch")]
+    zones = [unary_union(planters).buffer(0.06)] if planters else []
+    zones += [unary_union([o.boundary for o in outlines]).buffer(0.06)] if outlines else []
+    if not zones:
+        return []
+    Z = unary_union(zones)
+    segs = [s for s in g.get("mass", []) if math.hypot(s[2] - s[0], s[3] - s[1]) >= 0.05]
+    out = []
+    for D, ss in cluster_directions(segs):
+        faces = build_faces(D, ss)
+        cells = pair_cells(faces, *PARAPET_GAP)
+        cells.sort(key=lambda c: (c["lo"], c["hi"], c["s"]))
+        pcs = []
+        for c in cells:
+            if pcs and pcs[-1]["lo"] == c["lo"] and pcs[-1]["hi"] == c["hi"] and abs(c["s"] - pcs[-1]["e"]) < 2e-3:
+                pcs[-1]["e"] = c["e"]
+            else:
+                pcs.append(dict(c))
+        for c in pcs:
+            s, e, d0, d1 = c["s"], c["e"], c["d0"], c["d1"]
+            if e - s < 0.10:
+                continue
+            R = D.rect(s, e, d0, d1)
+            if not R.intersects(Z):
+                continue
+
+            def overhang(t, sgn):
+                best = 0.0
+                for fi in (c["lo"], c["hi"]):
+                    for a, b in faces[fi]["ivs"]:
+                        if a - 0.003 <= t <= b + 0.003:
+                            best = max(best, (t - a) if sgn < 0 else (b - t))
+                return min(best, 0.30) / 2
+            ext0, ext1 = overhang(s, -1), overhang(e, +1)
+            s2, e2 = s - ext0, e + ext1
+            cm = (d0 + d1) / 2
+            p1, p2 = D.xy(s2, cm), D.xy(e2, cm)
+            L = e2 - s2
+            thk = d1 - d0
+            hs = sorted({h for fi in (c["lo"], c["hi"]) for h in faces[fi]["handles"]})
+            out.append({"x1": round(p1[0], 3), "y1": round(p1[1], 3), "x2": round(p2[0], 3), "y2": round(p2[1], 3),
+                        "angle": round(D.ang, 2), "thickness": round(thk, 3), "family": family(thk),
+                        "length_gross": round(L, 3), "length_net": round(L, 3), "openings_width": 0.0,
+                        "kind": "planter_parapet", "needs_check": True,
+                        "reason": "planter parapet / curb drawn as a pair of MASS lines (not on W): "
+                                  "masonry or concrete? height? - kept OUT of the masonry totals",
+                        "on_planter_hatch": bool(planters) and R.intersects(zones[0]),
+                        "mass_handles": hs, "corner_ext": [round(ext0, 3), round(ext1, 3)],
+                        "_band": [round(d0, 4), round(d1, 4)], "_t": [round(s2, 4), round(e2, 4)]})
+    return [{"id": f"P{i}", **p} for i, p in enumerate(_reading_order_recs(out), 1)]
+
+
+def _reading_order_recs(recs):
+    return sorted(recs, key=lambda w: (-round((w["y1"] + w["y2"]) / 2 / 1.5), (w["x1"] + w["x2"]) / 2))
+
+
+def parapet_totals(pars, height):
+    if not pars:
+        return {}
+    L = sum(p["length_gross"] for p in pars)
+    return {"planter_parapet|ALL": {"n": len(pars), "length_gross": round(L, 2), "length_net": round(L, 2),
+                                    "openings_width": 0.0, "area_gross_at_h": round(L * height, 2),
+                                    "area_net_at_h": round(L * height, 2)}}
 
 
 def totals(recs, height):
@@ -1894,6 +2131,14 @@ def render(res, ctx, out_png, zoom=None, dpi=110, show_ids=True):
             ax.text(mx, my, w["id"][1:], fontsize=(5.5 if not zoom else 8), ha="center", va="center",
                     color="black", zorder=7, clip_on=True,
                     bbox=dict(boxstyle="round,pad=0.12", fc="white", ec=col, lw=0.5, alpha=0.9))
+    for p in res.get("planter_parapets", []):
+        poly = Dir(p["angle"]).rect(p["_t"][0], p["_t"][1], *p["_band"])
+        ax.add_patch(MPoly(list(poly.exterior.coords), closed=True, fc="#556b2f", ec="#ff00ff", alpha=0.8,
+                           lw=0.5, zorder=4))
+        if show_ids:
+            ax.text((p["x1"] + p["x2"]) / 2, (p["y1"] + p["y2"]) / 2, p["id"], fontsize=(5 if not zoom else 7),
+                    ha="center", va="center", color="#556b2f", zorder=7, clip_on=True,
+                    bbox=dict(boxstyle="round,pad=0.1", fc="white", ec="#556b2f", lw=0.4, alpha=0.9))
     ax.set_aspect("equal")
     if zoom:
         ax.set_xlim(zoom[0], zoom[2])
@@ -1907,6 +2152,8 @@ def render(res, ctx, out_png, zoom=None, dpi=110, show_ids=True):
     handles += [Patch(fc="white", ec="#333", hatch=h, label=k) for k, h in KIND_HATCH.items()]
     if any(str(c["src"]).startswith("W-hatch") for c in ctx.conc):
         handles.append(Patch(fc="#c7e9c0", hatch="++", label="planter (AR-CONC hatch on W)"))
+    if res.get("planter_parapets"):
+        handles.append(Patch(fc="#556b2f", ec="#ff00ff", label="planter parapet (MASS pair, not masonry total)"))
     handles += [Patch(fc="#2ca02c", alpha=0.45, label="concrete (Etabs-col/COL)"),
                 Patch(fc="#ffbb78", label="shaft/void"),
                 Patch(fc="white", ec="#ff00ff", label="needs_check")]
@@ -1931,6 +2178,8 @@ def read_walls(floor, height=3.0, use_cache=True, with_ctx=False):
     g = load_geometry(fl, use_cache=use_cache)
     ctx, runs, diag = detect(g, height)
     recs = wall_records(ctx, runs, height)
+    pars = planter_parapets(ctx, height)
+    matched = {o.get("handle") for r in runs for o in r["openings"] if o.get("handle")}
     res = {
         "floor": fl.label, "floor_no": fl.floor_no, "name_ar": fl.name_ar, "level": fl.level,
         "source": {"file": fl.file.name, "sheet_index": fl.sheet_index},
@@ -1940,7 +2189,8 @@ def read_walls(floor, height=3.0, use_cache=True, with_ctx=False):
         "height_assumed": height,
         "storey_height": STOREY_HEIGHT,
         "walls": recs,
-        "totals": totals(recs, height),
+        "totals": {**totals(recs, height), **parapet_totals(pars, height)},
+        "planter_parapets": pars,
         "thickness_histogram_net": thickness_histogram(recs),
         "diagnostics": {**diag,
                         "w_segments_raw": len(g["wsegs"]), "w_segments_used": len(ctx.g["wsegs"]),
@@ -1953,6 +2203,10 @@ def read_walls(floor, height=3.0, use_cache=True, with_ctx=False):
                         "stair_zones": len(ctx.stair_hulls),
                         "doors_blocks": len(g["doors"]),
                         "doors_matched": sum(1 for w in recs for o in w["openings"] if o["type"] == "door"),
+                        "doors_unmatched": [{"handle": d["handle"], "block": d["name"],
+                                             "at": [round(d["x"], 3), round(d["y"], 3)]}
+                                            for d in g["doors"] if d["handle"] not in matched],
+                        "planter_parapets": len(pars),
                         },
     }
     res["openings_summary"] = openings_summary(recs)

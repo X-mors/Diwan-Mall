@@ -25,8 +25,8 @@ STRUCTURE  (concrete that is NOT masonry and whose faces get plaster)
   slivers such as the 4 mm spike on the hatch of tr column C01 -> 0.45 x 1.99).
   Polygons from all sources are de-duplicated (same footprint = one element, sources
   listed).  kind: column (long/short <= 5), shear_wall (> 5), core (non-rectangular),
-  column_xbox (COL), round_column (W arcs).  Each element: id (stable across floors,
-  sorted by position), bbox, size, area, perimeter, grid_ref (nearest axes), each face
+  column_xbox (COL), round_column (W arcs).  Each element: id (canonical F06 id, stable
+  across floors; id_source says how it was matched), bbox, size, area, perimeter, grid_ref (nearest axes), each face
   sampled every 2 cm 3 cm outside it: covered by an abutting wall (between two W lines
   running away from the face) / by concrete or a shaft / FREE; free samples classified
   by FaceEnv into
@@ -73,7 +73,19 @@ CLI (default = all floors):
     python tools/structure.py 3 5 --no-png --no-doc
     python tools/structure.py 3 --zoom 9 17 15 30     # extra zoomed PNG
     Running several floors gives every shaft box the same SHnn id on all floors
-    (harmonize_shaft_ids); structural element ids (Cnn/SWnn/CORE01/CXnn) are stable anyway.
+    (harmonize_shaft_ids; it also upgrades a try box drawn without X to 'confirmed' when the
+    same box has its X on another floor).  Structural element ids (Cnn/SWnn/CORE01/CXnn/RCnn)
+    come from the canonical F06 table by footprint IoU (assign_element_ids, ELEMENT_ID_VERSION
+    2, cached in output/structure/_canonical_elements.json): the same element has the same id
+    on every floor, elements not on F06 get the next free number (F02 RC01/RC02, the F09-F11
+    column 0.50x1.20 = C11).
+
+F09-F11 (Diwan_9th_to_11th_Floor.dxf): try floor/plot outlines skipped (is_try_outline);
+    try boxes without X -> shafts_uncertain (or confirmed via harmonize_shaft_ids); try
+    HATCHes with no LWPOLYLINE become boxes too (curtain-wall post at office 7/8); a hatched
+    try object is 'post_at_curtain_wall' only within 0.70 m of WIN glazing and inside the
+    footprint, else 'stray hatched try object' (F10: two, south-west / south of the plan);
+    F11 draws the stair eye on WIN -> WIN geometry strictly inside the flights = eye.
 API:
     from structure import analyze_floor, read_grid, grid_ref, run, render
     res = analyze_floor(3)                  # dict (JSON-able)
@@ -864,11 +876,7 @@ def analyze_structure(fl, D, grid, shaft_polys=(), rooms_res=None, openings_res=
         rec["_poly"] = P
         out.append(rec)
     out.sort(key=lambda r: (round(-r["centroid"][1], 1), round(r["centroid"][0], 1)))
-    pre = {"column": "C", "shear_wall": "SW", "core": "CORE", "column_xbox": "CX", "round_column": "RC"}
-    cnt = Counter()
-    for r in out:
-        cnt[r["kind"]] += 1
-        r["id"] = f"{pre[r['kind']]}{cnt[r['kind']]:02d}"
+    assign_element_ids(out, fl)
     # overlaps between elements (e.g. the F02 round column on the spot of tr column C02)
     for r in out:
         ov = []
@@ -885,6 +893,105 @@ def analyze_structure(fl, D, grid, shaft_polys=(), rooms_res=None, openings_res=
     for r in out:
         r.pop("_poly", None)
     return out, tr_info, env.info()
+
+
+ID_PREFIX = {"column": "C", "shear_wall": "SW", "core": "CORE", "column_xbox": "CX", "round_column": "RC"}
+CANON_FLOOR = 6            # the typical floor whose element numbering is the canonical id table
+ELEMENT_ID_VERSION = 2     # 2 = ids from the canonical F06 table by footprint IoU (1 = per-floor sort order)
+_CANON_ELEMS = {}
+
+
+def canonical_elements():
+    """Canonical element id table = F06's structural outlines numbered by position (north ->
+    south, then west -> east, per kind) - exactly the numbering F02..F08 always had.  Cached
+    per process.  [{id, kind, poly, bbox}]"""
+    if "els" in _CANON_ELEMS:
+        return _CANON_ELEMS["els"]
+    fl = get_floor(CANON_FLOOR)
+    st = Path(fl.file).stat()
+    key = {"version": ELEMENT_ID_VERSION, "floor": fl.label, "file": Path(fl.file).name,
+           "size": st.st_size, "mtime": int(st.st_mtime)}
+    cache = OUT / "_canonical_elements.json"
+    recs = None
+    try:     # loading F06's DXF costs ~20 s when only F09-F11 are run -> small cache file
+        js = json.loads(cache.read_text(encoding="utf-8"))
+        if js.get("key") == key:
+            recs = [{"id": r["id"], "kind": r["kind"], "poly": Polygon(r["outline"]),
+                     "centroid": r["centroid"], "bbox": r["bbox"]} for r in js["elements"]]
+    except Exception:
+        recs = None
+    if recs is None:
+        elems, _ = _collect_struct_polys(fl, FloorData(fl))
+        recs = []
+        for el in elems:
+            c = el["poly"].centroid
+            recs.append({"kind": _kind_of(el), "poly": el["poly"], "centroid": _r([c.x, c.y]),
+                         "bbox": _r(list(el["poly"].bounds))})
+        recs.sort(key=lambda r: (round(-r["centroid"][1], 1), round(r["centroid"][0], 1)))
+        cnt = Counter()
+        for r in recs:
+            cnt[r["kind"]] += 1
+            r["id"] = f"{ID_PREFIX[r['kind']]}{cnt[r['kind']]:02d}"
+        try:
+            OUT.mkdir(parents=True, exist_ok=True)
+            cache.write_text(json.dumps({"key": key, "elements": [
+                {"id": r["id"], "kind": r["kind"], "centroid": r["centroid"], "bbox": r["bbox"],
+                 "outline": [list(p) for p in r["poly"].exterior.coords]} for r in recs]},
+                ensure_ascii=False, indent=1), encoding="utf-8")
+        except Exception:
+            pass
+    _CANON_ELEMS["els"] = recs
+    return recs
+
+
+def assign_element_ids(out, fl=None, min_iou=0.5):
+    """Give every element the id of the canonical (F06) element with the same kind and the
+    best footprint IoU (> min_iou) -> the same concrete element has the same id on every
+    floor (F09-F11 add a 0.50x1.20 column: before v2 it renumbered C06..C11 there).
+    Elements with no canonical match (F02 round columns, the F09-F11 column) get the next
+    free number of their prefix, in position order.  `out` must already be position-sorted
+    and carry '_poly' and 'kind'."""
+    try:
+        canon = canonical_elements()
+    except Exception as ex:  # pragma: no cover - fall back to sort order
+        print("  (canonical F06 element table unavailable:", ex, ") -> ids by sort order")
+        canon = []
+    used = set()
+    pairs = []
+    for i, r in enumerate(out):
+        for c in canon:
+            if c["kind"] != r["kind"]:
+                continue
+            P, Q = r["_poly"], c["poly"]
+            if not P.intersects(Q):
+                continue
+            u = P.union(Q).area
+            iou = P.intersection(Q).area / u if u else 0.0
+            if iou > min_iou:
+                pairs.append((iou, i, c["id"]))
+    pairs.sort(reverse=True)
+    taken = {}
+    for iou, i, cid in pairs:
+        if i in taken or cid in used:
+            continue
+        taken[i] = (cid, iou)
+        used.add(cid)
+    nxt = Counter()
+    for c in canon:
+        p = ID_PREFIX[c["kind"]]
+        nxt[p] = max(nxt[p], int(c["id"][len(p):]))
+    for i, r in enumerate(out):
+        p = ID_PREFIX[r["kind"]]
+        if i in taken:
+            r["id"] = taken[i][0]
+            r["id_source"] = f"canonical F{CANON_FLOOR:02d} table (IoU {taken[i][1]:.2f})"
+        else:
+            nxt[p] += 1
+            r["id"] = f"{p}{nxt[p]:02d}"
+            r["id_source"] = f"not in F{CANON_FLOOR:02d} -> next free {p} number"
+            if canon:
+                r.setdefault("notes", []).append(f"not on the typical floor F{CANON_FLOOR:02d} (new element on this floor)")
+    return out
 
 
 def _core_thickness(P):
@@ -925,7 +1032,17 @@ def analyze_shafts(fl, D, grid):
     hatched = []
     for e in D.ents("try", "HATCH"):
         for pts in _hatch_polys(e, fl):
-            hatched.append(_clean_poly(pts))
+            hatched.append((_clean_poly(pts), e.dxf.handle))
+
+    def _iou(A, B):
+        u = A.union(B).area
+        return A.intersection(B).area / u if u else 0
+    # try HATCHes with no matching LWPOLYLINE (F09-F11: the curtain-wall post at the office
+    # 7/8 partition exists only as a hatch; F10: a stray hatched object south of the plan)
+    for H, h in hatched:
+        if H.area > 0.01 and not any(_iou(H, P) > 0.85 for P, _ in boxes):
+            boxes.append((H, f"try hatch only (no polyline) {h}"))
+    hatched = [H for H, _ in hatched]
     dash = D.segs.get("DASH", [])
     diag = [(a, b) for a, b in dash if _axis_kind(a, b, 2.0) == "d"]
     # DASH-only X boxes: diagonals grouped by (approximately) the same bbox
@@ -981,7 +1098,54 @@ def analyze_shafts(fl, D, grid):
     out.sort(key=lambda r: (round(-r["bbox"][1], 1), r["bbox"][0]))
     for i, r in enumerate(out, 1):
         r["id"] = f"SH{i:02d}"
+        r["status"] = _shaft_status(r["kind"])
     return out
+
+
+def _shaft_status(kind):
+    """confirmed = try box + 2 DASH diagonals; uncertain = 1 diagonal, DASH-only X, or a try
+    box WITHOUT any X (rooms.py counts those as shafts - e.g. the walled 1.72x0.60 box on
+    F09-F11; harmonize_shaft_ids upgrades it to confirmed when the same box has its X on
+    another floor); excluded = enclosure boxes, curtain-wall posts, stray hatched objects."""
+    if kind == "shaft (X)":
+        return "confirmed"
+    if kind.startswith("shaft enclosure"):
+        return "excluded"
+    if kind.startswith("shaft") or kind == "box (no X)":
+        return "uncertain"
+    return "excluded"
+
+
+POST_GLAZING_DIST = 0.70   # a hatched try object is a curtain-wall post only this close to WIN glazing
+
+
+def classify_hatched_try(shafts, D, footprint):
+    """Hatched try boxes (ANSI31): 'post_at_curtain_wall (hatched)' only when the box lies
+    within POST_GLAZING_DIST of curtain-wall glazing (WIN lines) AND its centre is inside
+    the building footprint; otherwise 'stray hatched try object' (F10: one outside the
+    curved south-west glass, one 1.5 m south of the plan)."""
+    W = [LineString(s) for s in D.segs.get("WIN", []) if math.dist(*s) > 1e-6]
+    G = unary_union(W) if W else None
+    for s in shafts:
+        if not s.get("hatched"):
+            continue
+        P = s["_P"]
+        dg = P.distance(G) if G is not None else float("inf")
+        inside = footprint is not None and footprint.buffer(0.02).contains(P.centroid)
+        s["dist_to_glazing"] = _r(dg) if dg != float("inf") else None
+        s["inside_footprint"] = bool(inside)
+        if dg <= POST_GLAZING_DIST and (inside or footprint is None):
+            s["kind"] = "post_at_curtain_wall (hatched)"
+        else:
+            s["kind"] = "stray hatched try object"
+            why = []
+            if dg > POST_GLAZING_DIST:
+                why.append(f"{dg:.2f} m from the nearest WIN glazing")
+            if not inside:
+                why.append("outside the building footprint")
+            s["note"] = "not a curtain-wall post: " + ", ".join(why) + " -> ask the architect"
+        s["status"] = "excluded"
+    return shafts
 
 
 # ----------------------------------------------------------------------------- stairs & lifts
@@ -1055,6 +1219,21 @@ def analyze_stairs(fl, D, grid):
         if mass_lines:
             mx = [p[0] for s in mass_lines for p in s]; my = [p[1] for s in mass_lines for p in s]
             eye.append({"bbox": _r([min(mx), min(my), max(mx), max(my)]), "from": "MASS lines"})
+        # F11: the stair eye is drawn on WIN (not MASS) -> WIN geometry strictly INSIDE the
+        # flights' extent is the eye, never glazing (facade windows lie on the stair walls)
+        B_in = box(*bb).buffer(-0.02)
+        for e in D.ents("WIN", "LWPOLYLINE"):
+            pts = _pts(e, fl)
+            if len(pts) >= 4 and (e.closed or math.dist(pts[0], pts[-1]) < 0.01) and all(B_in.contains(Point(p)) for p in pts):
+                P = Polygon(pts)
+                eye.append({"bbox": _r(list(P.bounds)), "size_txt": f"{P.bounds[2] - P.bounds[0]:.2f} x {P.bounds[3] - P.bounds[1]:.2f}",
+                            "from": f"WIN closed polyline {e.dxf.handle} (eye drawn on WIN)"})
+        win_lines = [s for s in D.segs.get("WIN", []) if B_in.contains(LineString(s))]
+        if win_lines:
+            wx = [p[0] for s in win_lines for p in s]; wy = [p[1] for s in win_lines for p in s]
+            eye.append({"bbox": _r([min(wx), min(wy), max(wx), max(wy)]),
+                        "size_txt": f"{max(wx) - min(wx):.2f} x {max(wy) - min(wy):.2f}",
+                        "from": f"WIN lines ({len(win_lines)} segments; eye drawn on WIN, not glazing)"})
         arrows = [e for e in D.ents("PR1", "INSERT") if B.contains(Point(fl.to_local(e.dxf.insert.x, e.dxf.insert.y)))]
         tags = [t for t in _texts(fl, D, ("TEXT-D",)) if B.buffer(0.6).contains(Point(t["local"])) and re.match(r"^\+\s*0+\.0+$", t["text"])]
         lps = [e for e in D.ents("W", "INSERT") if e.dxf.name == "LP" and B.buffer(0.6).contains(Point(fl.to_local(e.dxf.insert.x, e.dxf.insert.y)))]
@@ -1497,16 +1676,23 @@ def read_annotations(fl, D, grid):
 
 # ----------------------------------------------------------------------------- main analysis
 def shaft_summary(shafts):
-    """confirmed shafts (try box + >= 2 DASH diagonals) vs uncertain ones (1 diagonal, or a
-    DASH-only X without a try box); enclosure boxes, hatched posts and boxes without X excluded."""
-    conf = [s for s in shafts if s["kind"] == "shaft (X)"]
-    unc = [s for s in shafts if s["kind"].startswith("shaft") and s["kind"] != "shaft (X)"
-           and not s["kind"].startswith("shaft enclosure")]
+    """confirmed shafts (try box + >= 2 DASH diagonals, or a box without X whose X is drawn on
+    another floor - harmonize_shaft_ids) vs uncertain ones (1 diagonal, a DASH-only X without
+    a try box, or a try box without any X); enclosure boxes, hatched posts / stray hatched
+    try objects excluded.  Uses shaft['status'] (falls back to the kind)."""
+    def st(s):
+        return s.get("status") or _shaft_status(s["kind"])
+    conf = [s for s in shafts if st(s) == "confirmed"]
+    unc = [s for s in shafts if st(s) == "uncertain"]
     return {"shafts": len(conf) + len(unc), "shaft_area": _r(sum(s["area"] for s in conf + unc), 3),
             "shafts_confirmed": len(conf), "shaft_area_confirmed": _r(sum(s["area"] for s in conf), 3),
             "shafts_uncertain": len(unc), "shaft_area_uncertain": _r(sum(s["area"] for s in unc), 3),
             "shafts_uncertain_ids": [f"{s['id']} {s['size_txt']} ({s['kind']})" for s in unc],
-            "boxes_without_x": [s["id"] for s in shafts if s["kind"] == "box (no X)"]}
+            "boxes_without_x": [s["id"] for s in shafts if s["kind"] == "box (no X)"],
+            "boxes_without_x_confirmed_elsewhere": [s["id"] for s in shafts
+                                                    if s["kind"] == "box (no X)" and st(s) == "confirmed"],
+            "posts_at_curtain_wall": sum(1 for s in shafts if s["kind"].startswith("post_at_curtain_wall")),
+            "stray_hatched_try": [s["id"] for s in shafts if s["kind"] == "stray hatched try object"]}
 
 
 def door_head_stats(dash, openings_res):
@@ -1556,6 +1742,9 @@ def analyze_floor(floor, openings_res="auto", rooms_res="auto"):
     elements, tr_info, env_info = analyze_structure(
         fl, D, grid, [box(*sh["bbox"]) for sh in shafts if sh["kind"].startswith("shaft")],
         rooms_res=rooms_res, openings_res=openings_res)
+    fpo = env_info.get("footprint_outline")
+    fp_poly = Polygon(fpo).buffer(0) if fpo else (rooms_res or {}).get("_footprint")
+    classify_hatched_try(shafts, D, fp_poly)
     stairs = analyze_stairs(fl, D, grid)
     lifts = analyze_lifts(fl, D, grid, elements)
     dash = classify_dash(fl, D, openings_res, stairs, lifts, shafts, elements)
@@ -1861,7 +2050,13 @@ def harmonize_shaft_ids(allres):
             c = s.pop("_canon")
             s["id"] = c["id"]
             s["floors"] = c["floors"]
+            # a try box drawn without its X on this floor but WITH the X on another floor
+            if s["kind"] == "box (no X)" and c["kinds"].get("shaft (X)"):
+                s["status"] = "confirmed"
+                s["status_note"] = "no X on this floor; the same box has its DASH X on other floors"
         r["shafts"].sort(key=lambda s: s["id"])
+        if isinstance(r.get("summary"), dict):
+            r["summary"].update(shaft_summary(r["shafts"]))
     return canon
 
 
@@ -1908,7 +2103,19 @@ def doc_tables(allres, canon_shafts=None):
     """Markdown tables for docs/findings/structure_diff.md from the per-floor results."""
     B = {}
     labels = [r["floor"] for r in allres]
-    ref = next((r for r in allres if r["floor"] == "F06"), allres[0])
+    B["ELEMENTS_TABLE"] = _elements_table([r for r in allres if (r.get("floor_no") or 0) <= 8] or allres)
+    upper = [r for r in allres if (r.get("floor_no") or 0) >= 9]
+    if upper:
+        B["ELEMENTS_TABLE_F09_11"] = _elements_table(upper)
+    _per_floor_tables(B, allres, labels, canon_shafts)
+    return B
+
+
+def _elements_table(allres):
+    """One row per element id (ids are canonical -> the same element on every floor);
+    exposed perimeters as min-max over the given floors."""
+    labels = [r["floor"] for r in allres]
+    ref = next((r for r in allres if r["floor"] == f"F{CANON_FLOOR:02d}"), allres[0])
     # elements (identical on every floor -> one row each; exposed perimeter min-max over floors)
     exp = defaultdict(lambda: defaultdict(list))
     first = {}
@@ -1935,13 +2142,18 @@ def doc_tables(allres, canon_shafts=None):
         x0, y0, x1, y1 = el["bbox"]
         E = exp[el["id"]]
         src = _src_label(el)
+        if str(el.get("id_source", "")).startswith("not in"):
+            src += f" **(جديد — غير موجود في F{CANON_FLOOR:02d})**"
         if len(E["floors"]) < len(labels):
             src += " (" + ", ".join(E["floors"]) + " فقط)"
         L.append(f"| {el['id']} | {kind_ar[el['kind']]} | {el['size_txt']} | {x0:.3f}–{x1:.3f} | {y0:.3f}–{y1:.3f} | "
                  f"{el['grid_ref']} | {el['area']:.3f} | {el['perimeter']:.2f} | {el['covered_by_walls']:.2f} | "
                  f"{el['covered_by_concrete_or_shaft']:.2f} | **{rng(E['exposed_interior'])}** | {rng(E['exposed_exterior'])} | "
                  f"{rng(E['exposed_lift_shaft'])} | {el['outline_on_W']:.0%} | {src} |")
-    B["ELEMENTS_TABLE"] = "\n".join(L)
+    return "\n".join(L)
+
+
+def _per_floor_tables(B, allres, labels, canon_shafts):
     # per floor totals
     L = ["| الدور | أعمدة | حوائط قص | كور | أعمدة دائرية | مربعات COL | مساحة الخرسانة م² (بدون COL) | المحيط الكلي م | "
          "**محارة داخلية م (الكل)** | محارة داخلية (model space فقط، بدون tr) | على الواجهة/خارجي م (الكل / model space) | "
@@ -2026,11 +2238,10 @@ def doc_tables(allres, canon_shafts=None):
         for d in r["dims"]["dims"]:
             vc[d["text"]][d["class"]] += 1
     top = sorted(vc.items(), key=lambda kv: -sum(kv[1].values()))[:25]
-    H = ["| القيمة (م) | العدد في الأدوار السبعة | التصنيف |", "|---|---|---|"]
+    H = ["| القيمة (م) | العدد في كل الأدوار | التصنيف |", "|---|---|---|"]
     for v, c in top:
         H.append(f"| {v} | {sum(c.values())} | " + ", ".join(f"{k} {n}" for k, n in c.most_common()) + " |")
     B["DIMS_TABLE"] = "\n".join(L) + "\n\nأكثر 25 قيمة تكرارًا (كل الأدوار):\n\n" + "\n".join(H)
-    return B
 
 
 def run(floors=None, png=True, doc=True):
@@ -2061,7 +2272,7 @@ def run(floors=None, png=True, doc=True):
     if canon:
         summ["canonical_shafts"] = [{k: v for k, v in c.items()} for c in canon]
     (OUT / "summary.json").write_text(json.dumps(_jsonable(summ), ensure_ascii=False, indent=1), encoding="utf-8")
-    if doc and len(allres) == 7:
+    if doc and {f"F{n:02d}" for n in range(2, 9)} <= {r["floor"] for r in allres}:
         p = update_doc(doc_tables(allres, canon))
         if p:
             print("doc tables refreshed:", p)
