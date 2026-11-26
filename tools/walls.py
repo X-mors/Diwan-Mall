@@ -1124,24 +1124,16 @@ def bridge_to_concrete(ctx, runs):
     that side): extend the run's GROSS length over the opening up to the concrete face.  The
     concrete must span the wall band; the gap must be empty and hold a door block of the same wall
     thickness, glazing, or start at a jamb-capped wall end.  Returns the number of bridges."""
-    # STRUCTURAL concrete is a jamb for any opening; a planter hatch (AR-CONC on W, F09-F11) only
-    # closes a real window / door gap (F09/F10 east facade 0.40: glazing x=16.55 y 36.28-38.22 ends
-    # on the planter) - never a door-less "opening" (that was the double record beside SW06).
-    passes = [(ctx.CUs, None), (ctx.CU, ("window", "door"))] if ctx.CUs is not None else [(ctx.CU, ("window", "door"))]
-    if ctx.CU is None:
+    CU = ctx.CUs          # STRUCTURAL concrete only: a planter hatch (AR-CONC on W) is no jamb
+    if CU is None:
         return 0
     n = 0
     for r in runs:
-      for CU, only in passes:
-        if CU is None:
-            continue
         D = r["D"]
         d0, d1 = r["d0"], r["d1"]
         thk = d1 - d0
         cr = (d0 + d1) / 2
         for side in (0, 1):
-            if side in r.get("concrete_jamb", []):
-                continue
             t_end = r["s"] if side == 0 else r["e"]
             sg = -1 if side == 0 else 1
             a, b = sorted((t_end, t_end + sg * MAX_OPENING))
@@ -1183,7 +1175,7 @@ def bridge_to_concrete(ctx, runs):
             capped = _jamb_capped(ctx, D, t_end, d0, d1)
             kind, info = _gap_opening(ctx, D, s, e, d0, d1, excl=[ctx.pieces[k] for k in r["pieces"]],
                                       capped=(capped, capped), door_wall=thk)
-            if kind == "break" or (only and kind not in only):
+            if kind == "break":
                 continue
             gp = {"s": s, "e": e, "type": kind, "to_concrete": True, **info}
             r["gaps"].append(gp)
