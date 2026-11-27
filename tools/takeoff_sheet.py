@@ -49,6 +49,16 @@ def _load(n):
     return d
 
 
+def _note(r):
+    parts = []
+    if r.get("ded_concrete"):
+        parts.append(f"خُصم {r['ded_concrete'] / (r['height'] or 1):.2f} م طول داخل عمود/حائط خرساني بالإنشائي")
+    for o in r.get("openings_in_concrete") or []:
+        parts.append(f"{'شباك' if o['type'] == 'window' else 'باب' if o['type'] == 'door' else 'فتحة'} {o['width']:.2f} بالمعماري "
+                     "مكانه عمود بالإنشائي (لم يُخصم مرتين)")
+    return "؛ ".join(parts)
+
+
 def image(n, d, rows, out_png):
     import matplotlib
     matplotlib.use("Agg")
@@ -65,6 +75,20 @@ def image(n, d, rows, out_png):
     snap.arch_draw(ax, n, z, layers=["W", "WIN", "Etabs-col", "ST"], texts=False, lw=0.35)
     for ln in ax.get_lines():
         ln.set_alpha(0.35)
+    # structural columns / shear walls / cores of this floor (what was built): masonry is deducted inside them
+    try:
+        import str_slabs as ss
+        from matplotlib.patches import Polygon as MPoly
+        mh_meta = pre.get("masonry_heights") or {}
+        plan = ss.plan_for_ceiling(ss.read_structural(), n)
+        sdx, sdy = mh_meta.get("shift") or (0.0, 0.0)
+        for c in (plan or {}).get("columns", []):
+            g = c["_poly"]
+            for gg in getattr(g, "geoms", [g]):
+                xy = [(x - sdx, y - sdy) for x, y in gg.exterior.coords]
+                ax.add_patch(MPoly(xy, closed=True, fc="#9b59b6", ec="#6c3483", alpha=0.35, hatch="////", lw=0.6, zorder=7))
+    except Exception as e:  # structural not available -> plan without columns
+        print("structural columns not drawn:", e)
     ex = pre.get("masonry_excluded", {})
     exl = [(i, "on concrete") for i in ex.get("on_concrete", [])] + [(i, "on tr concrete") for i in ex.get("on_tr", [])] + \
           [(i, "lift front wall (later)") for i in ex.get("lift_front_later", [])]
@@ -104,6 +128,8 @@ def image(n, d, rows, out_png):
     hs = [Line2D([0], [0], color=FAM_COL.get(f, "#2ca02c"), lw=4, label=f"wall {f} m" if f != "other" else "non-standard")
           for f in fams]
     hs.append(Line2D([0], [0], color="#00bcd4", lw=1, ls=":", label="window opening"))
+    from matplotlib.patches import Patch
+    hs.append(Patch(fc="#9b59b6", ec="#6c3483", alpha=0.35, hatch="////", label="structural concrete (deducted from the wall)"))
     hs.append(Line2D([0], [0], color="#555555", lw=2.5, ls=(0, (2, 1.5)), label="NOT counted (concrete / lift front later)"))
     ax.legend(handles=hs, loc="upper left", bbox_to_anchor=(1.01, 1.0), fontsize=11, frameon=False)
     tot = sum(r["area_net"] for r in rows)
@@ -154,7 +180,7 @@ def workbook(n, d, rows, out_xlsx):
         vals = [r["no"], r["id"], float(r["family"]) if r["family"] != "other" else (r.get("thickness") or "غير قياسي"),
                 KIND_AR.get(r["kind"], r["kind"]), r["length_gross"], r["height"], None,
                 r["ded_door"], r["ded_window"], r["ded_opening"], r["ded_concrete"], None, ops,
-                "مباني بقرار المالك (ضلع C للمصعد)" if r["id"] == "LIFT-C" else ""]
+                "مباني بقرار المالك (ضلع C للمصعد)" if r["id"] == "LIFT-C" else _note(r)]
         for j, v in enumerate(vals, 1):
             c = ws.cell(rr, j, v)
             c.border = B

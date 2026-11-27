@@ -27,7 +27,8 @@ pitfalls, open questions). Findings per topic are in `docs/findings/`.
 - Shear walls were built 0.30 as in the structural (not 0.40); the Z between SW04/SW02 is a concrete core.
 - ETABS `tr`-block elements are real concrete (walls on them are not masonry); columns that exist only in the
   structural exist on site. `read_plan.py` therefore excludes walls on tr elements and deducts wall lengths inside
-  structural columns/cores (`Params.tr_concrete`, `Params.str_concrete`).
+  structural columns/cores (`Params.tr_concrete`, `Params.str_concrete`). 2026-11-27: a wall on a tr element is MASONRY minus
+  only the part inside the structural column (`Params.tr_partial`); arch openings drawn inside a structural column are not deducted again.
 - 2026-11-27: door 2.30, masonry door opening = drawn width + 5 cm; service windows 80x60, masonry opening +5 cm; other windows: sill 1.00 (masonry under) on floors 2 and 5 ONLY, void full height on every other floor (`Params.sill_floors`);
   facades = plaster + paint, no masonry/parapet under curtain walls; planters, planter parapets, F02 terraces and the
   decorative slab projections are OUT of the takeoff; partitions differing between floors are intentional.

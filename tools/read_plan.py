@@ -113,6 +113,7 @@ class Params:
     opening_h: float | None = None    # door-less openings (lift landings, 0.80 gap): None -> door_h
     plaster_h: float | None = None    # internal plaster height: None -> storey - slab (to the soffit)
     facade_h: float | None = None     # external face height per storey: None -> storey
+    tr_partial: bool = True           # owner 2026-11-27: wall on a tr element = masonry minus the part inside the column
     tr_concrete: bool = True          # ETABS 'tr'-block elements are real concrete (owner, 2026-11-26: all 7 are in the structural)
     str_concrete: bool = True         # deduct wall lengths running inside STRUCTURAL columns/cores missing or thinner in the
                                       # architectural plan (owner, 2026-11-26: the structural is what was built)
@@ -324,7 +325,11 @@ def masonry_estimate(walls, P, exclude_ids=(), HW=None, conc_len=None, rows=None
         g = w["length_gross"]
         H = HW[w["id"]]["H_mean"] if HW and w["id"] in HW else P.H_m
         ded = defaultdict(float)
+        skipped = []
         for o in w["openings"]:
+            if HW and o.get("at") and (conc_len or {}).get(w["id"]) and mh.in_concrete(HW, *o["at"]):
+                skipped.append(o)          # opening drawn where the structural has a column: already in ded_concrete
+                continue
             Ho = (mh.height_at(HW, *o["at"]) if HW and o.get("at") else None) or H
             ow = o["width"]
             if o["type"] == "window" and is_service_window(ow, P):
@@ -347,8 +352,11 @@ def masonry_estimate(walls, P, exclude_ids=(), HW=None, conc_len=None, rows=None
                          "ded_door": _r(ded["door"], 3), "ded_window": _r(ded["window"], 3),
                          "ded_opening": _r(ded["opening"], 3), "ded_concrete": _r(ded["concrete"], 3),
                          "area_net": _r(net_a, 3),
-                         "openings": [{"type": o["type"], "width": o["width"], "at": o.get("at")} for o in w["openings"]],
-                         "note": w.get("reason") if w["id"] == "LIFT-C" else None})
+                         "openings": [{"type": o["type"], "width": o["width"], "at": o.get("at")} for o in w["openings"]
+                                      if o not in skipped],
+                         "openings_in_concrete": [{"type": o["type"], "width": o["width"], "at": o.get("at")} for o in skipped],
+                         "note": (w.get("reason") if w["id"] == "LIFT-C" else
+                                  (f"{w.get('_tr_note')}" if w.get("_tr_note") else None))})
         for key in (f"{w['family']}|{w['kind']}", f"{w['family']}|ALL", f"ALL|{w['kind']}", "ALL|ALL"):
             a = agg[key]
             a["n"] += 1
@@ -659,7 +667,7 @@ def merge_floor(b, P: Params):
     elements = S["elements"]
     ov = wall_structure_overlaps(walls, elements)
     on_concrete = sorted({o["wall"] for o in ov if o["model_space"] and o["overlap_frac"] >= 0.5})
-    on_tr = sorted({o["wall"] for o in ov if o["tr_only"] and o["overlap_frac"] >= 0.3} - set(on_concrete))
+    on_tr_all = sorted({o["wall"] for o in ov if o["tr_only"] and o["overlap_frac"] >= 0.3} - set(on_concrete))
     HW = None
     if P.heights == "structural" and b.get("floor_no"):
         import masonry_heights as mh
@@ -670,6 +678,18 @@ def merge_floor(b, P: Params):
     if P.str_concrete and HW:
         import masonry_heights as mh
         conc_len = mh.concrete_overlap(HW, walls)
+    # walls on tr elements (owner 2026-11-27, F06 NE corner): the wall is masonry, only the part inside the structural
+    # column/shear wall is concrete -> deduct that length (conc_len) instead of dropping the whole wall.  A wall whose
+    # tr element is not found in the structural stays excluded.
+    tr_el = {o["wall"]: o["element"] for o in ov if o["tr_only"] and o["overlap_frac"] >= 0.3}
+    if P.tr_partial and conc_len:
+        glen = {w["id"]: w["length_gross"] for w in walls}
+        on_tr_partial = [i for i in on_tr_all if i in conc_len and glen[i] - conc_len[i] > 0.10]
+        on_tr = [i for i in on_tr_all if i not in on_tr_partial]      # (almost) all inside the concrete
+    else:
+        on_tr, on_tr_partial = on_tr_all, []
+    walls = [dict(w, _tr_note=f"على عنصر خرسانة {tr_el[w['id']]}: خُصم الجزء داخل العمود/الحائط الخرساني فقط")
+             if w["id"] in on_tr_partial else w for w in walls]
     # lift core (owner 2026-11-27): front wall under the beam out for now, long C leg = masonry
     lift_front, c_leg, lift_info = lift_core_rules(HW, walls, R["rooms"], P) if HW else ([], None, {})
     if not P.lift_front_out:
@@ -838,7 +858,7 @@ def merge_floor(b, P: Params):
             "status": "PRELIMINARY / تقديري — heights are assumptions, not read from the plans",
             "masonry": mas,
             "masonry_walls": mas_rows,
-            "masonry_excluded": {"on_concrete": on_concrete, "on_tr": on_tr if P.tr_concrete else [],
+            "masonry_excluded": {"on_concrete": on_concrete, "on_tr": on_tr if P.tr_concrete else [], "on_tr_partial_masonry": on_tr_partial,
                                  "lift_front_later": lift_front},
             "masonry_heights": ({**{k: v for k, v in HW["_meta"].items()},
                                  **__import__("masonry_heights").floor_summary(HW, [w for w in walls if w["id"] not in on_concrete]),

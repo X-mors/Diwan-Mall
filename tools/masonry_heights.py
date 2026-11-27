@@ -102,6 +102,20 @@ def height_at(HW, x, y, storey=STOREY):
     return _r(storey - d, 3)
 
 
+def in_concrete(HW, x, y, shrink=0.02):
+    """True when the architectural point (x, y) lies inside a STRUCTURAL column / shear wall / core of this floor
+    (an opening drawn there does not exist: the structural is what was built)."""
+    from shapely.geometry import Point
+    from shapely.ops import unary_union
+    plan = (HW or {}).get("_plan")
+    if plan is None:
+        return False
+    if "_conc_union" not in HW:
+        HW["_conc_union"] = unary_union([c["_poly"].buffer(-shrink) for c in plan["columns"]])
+    dx, dy = HW["_shift"]
+    return HW["_conc_union"].contains(Point(x + dx, y + dy))
+
+
 def concrete_overlap(HW, walls, shrink=0.02):
     """{wall id: centre-line length (m) inside the STRUCTURAL columns / shear walls / cores of this floor}.
     The structural is what was built (owner, 2026-11-26): shear walls 0.30 (not the 0.40 drawn), the Z core
