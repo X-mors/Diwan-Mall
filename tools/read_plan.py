@@ -106,6 +106,8 @@ class Params:
     plaster_ded_corridor: float = 0.50  # corridor (+ lift lobby): 10 cm bottom + 40 cm top (suspended ceiling, corridor only)
     lift_front_out: bool = True       # lift front wall under the 25x90 beam: masonry LATER, out of the takeoff now (owner)
     lift_c_leg_masonry: bool = True   # the long leg of the C lift core is MASONRY, not concrete (owner 2026-11-27)
+    lift_c_leg_beam: float = 0.90     # owner 2026-11-27 ("maybe a beam there"): the structural draws the leg as concrete, so no
+                                      # beam is drawn over it; assumed like the front beam k4 25x90 -> H 2.30.  0 = slab only (3.00)
     window_sill: float = 0.0          # owner 2026-11-27: NO masonry under the facade windows (opening = full masonry height)
     sill_floors: tuple = (2, 5)       # owner 2026-11-27: masonry UNDER the windows (sill 1.00) on floors 2 and 5 only
     sill_on_those: float = 1.00       # ... the sill there; every other floor: windows are void over the full height
@@ -699,6 +701,12 @@ def merge_floor(b, P: Params):
         import masonry_heights as mh
         HL = mh.wall_heights(b["floor_no"], [c_leg], elements)
         HW[c_leg["id"]] = HL[c_leg["id"]]
+        if P.lift_c_leg_beam:
+            hb = round(P.storey - P.lift_c_leg_beam, 3)
+            r = HW[c_leg["id"]]
+            HW[c_leg["id"]] = dict(r, H_mean=min(r["H_mean"], hb), H_min=min(r["H_min"], hb), H_max=min(r["H_max"], hb))
+            c_leg["reason"] += f"; height {hb:.2f} under an assumed beam 25x{P.lift_c_leg_beam * 100:.0f} (not drawn in the structural)"
+            lift_info["long_leg_beam_assumed"] = f"25x{P.lift_c_leg_beam * 100:.0f}"
         walls_m.append(c_leg)
         lift_info["long_leg_masonry_height"] = HL[c_leg["id"]]["H_mean"]
     excl = set(on_concrete) | (set(on_tr) if P.tr_concrete else set()) | set(lift_front)

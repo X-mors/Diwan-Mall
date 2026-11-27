@@ -30,6 +30,7 @@
   "plaster_ded_corridor": 0.5,
   "lift_front_out": true,
   "lift_c_leg_masonry": true,
+  "lift_c_leg_beam": 0.9,
   "window_sill": 1.0,
   "sill_floors": [
    2,
@@ -7646,9 +7647,9 @@
     "length_net": 3.6,
     "openings_width": 0.0,
     "needs_check": false,
-    "reason": "long leg of the C lift core: masonry per owner 2026-11-27 (structural shows concrete)",
+    "reason": "long leg of the C lift core: masonry per owner 2026-11-27 (structural shows concrete); height 2.30 under an assumed beam 25x90 (not drawn in the structural)",
     "openings": [],
-    "masonry_height": 3.0,
+    "masonry_height": 2.3,
     "masonry_height_runs": [
      [
       0.0,
@@ -15667,13 +15668,13 @@
     "n": 3,
     "length_gross": 5.26,
     "length_net": 5.26,
-    "area_gross": 15.54,
+    "area_gross": 13.02,
     "ded_door": 0.0,
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
     "length_in_str_concrete": 0.0,
-    "area_net": 15.54
+    "area_net": 13.02
    },
    "0.30|exterior": {
     "n": 1,
@@ -15703,13 +15704,13 @@
     "n": 1,
     "length_gross": 3.6,
     "length_net": 3.6,
-    "area_gross": 10.8,
+    "area_gross": 8.28,
     "ded_door": 0.0,
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
     "length_in_str_concrete": 0.0,
-    "area_net": 10.8
+    "area_net": 8.28
    },
    "0.40|ALL": {
     "n": 6,
@@ -15811,13 +15812,13 @@
     "n": 225,
     "length_gross": 326.86,
     "length_net": 247.56,
-    "area_gross": 955.1,
+    "area_gross": 952.58,
     "ded_door": 85.23,
     "ded_window": 79.74,
     "ded_opening": 0.0,
     "ded_concrete": 27.17,
     "length_in_str_concrete": 9.43,
-    "area_net": 762.96
+    "area_net": 760.44
    },
    "ALL|exterior": {
     "n": 59,
@@ -15859,13 +15860,13 @@
     "n": 7,
     "length_gross": 20.32,
     "length_net": 18.42,
-    "area_gross": 52.9,
+    "area_gross": 50.38,
     "ded_door": 4.6,
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 9.45,
     "length_in_str_concrete": 3.23,
-    "area_net": 38.85
+    "area_net": 36.33
    },
    "other|ALL": {
     "n": 11,
@@ -21164,16 +21165,16 @@
     "x2": 12.764,
     "y2": 22.377,
     "length_gross": 3.6,
-    "height": 3.0,
-    "area_gross": 10.8,
+    "height": 2.3,
+    "area_gross": 8.28,
     "ded_door": 0.0,
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 10.8,
+    "area_net": 8.28,
     "openings": [],
     "openings_in_concrete": [],
-    "note": "long leg of the C lift core: masonry per owner 2026-11-27 (structural shows concrete)"
+    "note": "long leg of the C lift core: masonry per owner 2026-11-27 (structural shows concrete); height 2.30 under an assumed beam 25x90 (not drawn in the structural)"
    }
   ],
   "masonry_excluded": {
@@ -21244,6 +21245,7 @@
    "front_walls_out": [
     "W109"
    ],
+   "long_leg_beam_assumed": "25x90",
    "long_leg_masonry_height": 3.0
   },
   "masonry_excluded_lift_front_later": [
@@ -21262,13 +21264,13 @@
     "n": 225,
     "length_gross": 326.86,
     "length_net": 247.56,
-    "area_gross": 955.1,
+    "area_gross": 952.58,
     "ded_door": 85.23,
     "ded_window": 79.74,
     "ded_opening": 0.0,
     "ded_concrete": 27.17,
     "length_in_str_concrete": 9.43,
-    "area_net": 762.96
+    "area_net": 760.44
    }
   },
   "masonry_if_tr_were_masonry": {
@@ -21276,13 +21278,13 @@
     "n": 231,
     "length_gross": 331.43,
     "length_net": 252.14,
-    "area_gross": 968.43,
+    "area_gross": 965.91,
     "ded_door": 85.23,
     "ded_window": 79.74,
     "ded_opening": 0.0,
     "ded_concrete": 40.36,
     "length_in_str_concrete": 13.95,
-    "area_net": 763.1
+    "area_net": 760.58
    }
   },
   "masonry_excluded_on_tr": [

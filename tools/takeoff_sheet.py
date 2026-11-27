@@ -82,8 +82,16 @@ def image(n, d, rows, out_png):
         mh_meta = pre.get("masonry_heights") or {}
         plan = ss.plan_for_ceiling(ss.read_structural(), n)
         sdx, sdy = mh_meta.get("shift") or (0.0, 0.0)
+        from shapely.geometry import LineString
+        leg = next((r for r in rows if r["id"] == "LIFT-C"), None)
+        leg_g = (LineString([(leg["x1"] + sdx, leg["y1"] + sdy), (leg["x2"] + sdx, leg["y2"] + sdy)])
+                 .buffer((leg["thickness"] or 0.3) / 2 + 0.02, cap_style=2) if leg else None)
         for c in (plan or {}).get("columns", []):
             g = c["_poly"]
+            if leg_g is not None and g.intersects(leg_g):
+                g = g.difference(leg_g)          # long C leg = masonry (owner): not shown as concrete
+                if g.is_empty:
+                    continue
             for gg in getattr(g, "geoms", [g]):
                 xy = [(x - sdx, y - sdy) for x, y in gg.exterior.coords]
                 ax.add_patch(MPoly(xy, closed=True, fc="#9b59b6", ec="#6c3483", alpha=0.35, hatch="////", lw=0.6, zorder=7))
@@ -180,7 +188,9 @@ def workbook(n, d, rows, out_xlsx):
         vals = [r["no"], r["id"], float(r["family"]) if r["family"] != "other" else (r.get("thickness") or "غير قياسي"),
                 KIND_AR.get(r["kind"], r["kind"]), r["length_gross"], r["height"], None,
                 r["ded_door"], r["ded_window"], r["ded_opening"], r["ded_concrete"], None, ops,
-                "مباني بقرار المالك (ضلع C للمصعد)" if r["id"] == "LIFT-C" else _note(r)]
+                ("مباني بقرار المالك (الضلع الطويل لحرف C حول المصعد)"
+                 + (f"؛ الارتفاع {r['height']:.2f} تحت كمرة 25×90 مفترضة (غير مرسومة بالإنشائي)" if r["height"] < 2.9 else ""))
+                if r["id"] == "LIFT-C" else _note(r)]
         for j, v in enumerate(vals, 1):
             c = ws.cell(rr, j, v)
             c.border = B
