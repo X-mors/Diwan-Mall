@@ -30,7 +30,7 @@
   "plaster_ded_corridor": 0.5,
   "lift_front_out": true,
   "lift_c_leg_masonry": true,
-  "window_sill": 1.0,
+  "window_sill": 0.0,
   "window_h": null,
   "opening_h": null,
   "plaster_h": null,
@@ -39,7 +39,7 @@
   "str_concrete": true,
   "heights": "structural",
   "masonry_height": 3.0,
-  "window_height_used": 2.0,
+  "window_height_used": 3.0,
   "opening_height_used": 2.3,
   "plaster_height_used": 3.0,
   "facade_height_used": 3.2
@@ -14020,11 +14020,11 @@
     "length_net": 46.67,
     "area_gross": 262.24,
     "ded_door": 2.19,
-    "ded_window": 82.67,
+    "ded_window": 123.78,
     "ded_opening": 0.0,
     "ded_concrete": 11.29,
     "length_in_str_concrete": 3.88,
-    "area_net": 166.1
+    "area_net": 124.99
    },
    "0.25|exterior": {
     "n": 27,
@@ -14032,11 +14032,11 @@
     "length_net": 32.0,
     "area_gross": 220.62,
     "ded_door": 0.0,
-    "ded_window": 82.67,
+    "ded_window": 123.78,
     "ded_opening": 0.0,
     "ded_concrete": 3.07,
     "length_in_str_concrete": 1.13,
-    "area_net": 134.88
+    "area_net": 93.77
    },
    "0.25|interior": {
     "n": 4,
@@ -14212,11 +14212,11 @@
     "length_net": 251.47,
     "area_gross": 967.71,
     "ded_door": 83.43,
-    "ded_window": 82.67,
+    "ded_window": 123.78,
     "ded_opening": 1.84,
     "ded_concrete": 20.85,
     "length_in_str_concrete": 7.21,
-    "area_net": 778.93
+    "area_net": 737.82
    },
    "ALL|exterior": {
     "n": 57,
@@ -14224,11 +14224,11 @@
     "length_net": 42.96,
     "area_gross": 252.15,
     "ded_door": 0.0,
-    "ded_window": 82.67,
+    "ded_window": 123.78,
     "ded_opening": 0.0,
     "ded_concrete": 3.07,
     "length_in_str_concrete": 1.13,
-    "area_net": 166.42
+    "area_net": 125.3
    },
    "ALL|interior": {
     "n": 99,
@@ -14409,18 +14409,26 @@
     "height": 2.85,
     "area_gross": 19.979,
     "ded_door": 0.0,
-    "ded_window": 6.882,
+    "ded_window": 10.602,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 13.097,
+    "area_net": 9.377,
     "openings": [
      {
       "type": "window",
-      "width": 1.92
+      "width": 1.92,
+      "at": [
+       7.414,
+       38.975
+      ]
      },
      {
       "type": "window",
-      "width": 1.8
+      "width": 1.8,
+      "at": [
+       11.055,
+       38.975
+      ]
      }
     ],
     "note": null
@@ -14518,14 +14526,18 @@
     "height": 2.85,
     "area_gross": 10.189,
     "ded_door": 0.0,
-    "ded_window": 3.33,
+    "ded_window": 5.13,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 6.859,
+    "area_net": 5.059,
     "openings": [
      {
       "type": "window",
-      "width": 1.8
+      "width": 1.8,
+      "at": [
+       15.055,
+       38.575
+      ]
      }
     ],
     "note": null
@@ -14670,7 +14682,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 0.925
+      "width": 0.925,
+      "at": [
+       4.467,
+       35.587
+      ]
      }
     ],
     "note": null
@@ -14855,7 +14871,11 @@
     "openings": [
      {
       "type": "opening",
-      "width": 0.8
+      "width": 0.8,
+      "at": [
+       13.3,
+       35.587
+      ]
      }
     ],
     "note": null
@@ -14980,7 +15000,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 1.0
+      "width": 1.0,
+      "at": [
+       7.634,
+       34.08
+      ]
      }
     ],
     "note": null
@@ -15005,7 +15029,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 1.0
+      "width": 1.0,
+      "at": [
+       8.994,
+       34.08
+      ]
      }
     ],
     "note": null
@@ -15143,14 +15171,18 @@
     "height": 2.97,
     "area_gross": 9.712,
     "ded_door": 0.0,
-    "ded_window": 5.0,
+    "ded_window": 7.5,
     "ded_opening": 0.0,
     "ded_concrete": 0.57,
-    "area_net": 4.142,
+    "area_net": 1.642,
     "openings": [
      {
       "type": "window",
-      "width": 2.5
+      "width": 2.5,
+      "at": [
+       16.63,
+       33.95
+      ]
      }
     ],
     "note": null
@@ -15168,14 +15200,18 @@
     "height": 2.982,
     "area_gross": 8.827,
     "ded_door": 0.0,
-    "ded_window": 4.7,
+    "ded_window": 7.05,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 4.127,
+    "area_net": 1.777,
     "openings": [
      {
       "type": "window",
-      "width": 2.35
+      "width": 2.35,
+      "at": [
+       0.645,
+       33.805
+      ]
      }
     ],
     "note": null
@@ -15220,7 +15256,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 0.8
+      "width": 0.8,
+      "at": [
+       5.74,
+       33.58
+      ]
      }
     ],
     "note": null
@@ -15245,7 +15285,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 1.0
+      "width": 1.0,
+      "at": [
+       6.995,
+       32.94
+      ]
      }
     ],
     "note": null
@@ -15290,7 +15334,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 1.0
+      "width": 1.0,
+      "at": [
+       9.8,
+       32.94
+      ]
      }
     ],
     "note": null
@@ -15355,7 +15403,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 0.8
+      "width": 0.8,
+      "at": [
+       10.86,
+       33.58
+      ]
      }
     ],
     "note": null
@@ -15473,14 +15525,18 @@
     "height": 2.923,
     "area_gross": 9.704,
     "ded_door": 0.0,
-    "ded_window": 4.7,
+    "ded_window": 7.05,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 5.004,
+    "area_net": 2.654,
     "openings": [
      {
       "type": "window",
-      "width": 2.35
+      "width": 2.35,
+      "at": [
+       0.645,
+       30.655
+      ]
      }
     ],
     "note": null
@@ -15525,7 +15581,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 1.06
+      "width": 1.06,
+      "at": [
+       6.995,
+       31.55
+      ]
      }
     ],
     "note": null
@@ -15550,7 +15610,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 1.078
+      "width": 1.078,
+      "at": [
+       9.015,
+       29.659
+      ]
      }
     ],
     "note": null
@@ -15628,14 +15692,18 @@
     "height": 2.926,
     "area_gross": 9.539,
     "ded_door": 0.0,
-    "ded_window": 5.0,
+    "ded_window": 7.5,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 4.539,
+    "area_net": 2.039,
     "openings": [
      {
       "type": "window",
-      "width": 2.5
+      "width": 2.5,
+      "at": [
+       16.63,
+       30.85
+      ]
      }
     ],
     "note": null
@@ -15913,14 +15981,18 @@
     "height": 2.926,
     "area_gross": 8.368,
     "ded_door": 0.0,
-    "ded_window": 4.7,
+    "ded_window": 7.05,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 3.668,
+    "area_net": 1.318,
     "openings": [
      {
       "type": "window",
-      "width": 2.35
+      "width": 2.35,
+      "at": [
+       0.645,
+       27.505
+      ]
      }
     ],
     "note": null
@@ -15965,7 +16037,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 0.8
+      "width": 0.8,
+      "at": [
+       5.74,
+       26.91
+      ]
      }
     ],
     "note": null
@@ -15990,7 +16066,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 1.0
+      "width": 1.0,
+      "at": [
+       6.995,
+       26.27
+      ]
      }
     ],
     "note": null
@@ -16035,11 +16115,19 @@
     "openings": [
      {
       "type": "window",
-      "width": 0.8
+      "width": 0.8,
+      "at": [
+       19.207,
+       26.37
+      ]
      },
      {
       "type": "window",
-      "width": 0.8
+      "width": 0.8,
+      "at": [
+       19.54,
+       28.139
+      ]
      }
     ],
     "note": null
@@ -16124,7 +16212,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 1.0
+      "width": 1.0,
+      "at": [
+       6.995,
+       24.91
+      ]
      }
     ],
     "note": null
@@ -16149,7 +16241,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 0.9
+      "width": 0.9,
+      "at": [
+       9.775,
+       25.776
+      ]
      }
     ],
     "note": null
@@ -16174,7 +16270,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 0.9
+      "width": 0.9,
+      "at": [
+       15.225,
+       25.842
+      ]
      }
     ],
     "note": null
@@ -16199,7 +16299,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 0.9
+      "width": 0.9,
+      "at": [
+       16.033,
+       24.99
+      ]
      }
     ],
     "note": null
@@ -16284,7 +16388,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 0.8
+      "width": 0.8,
+      "at": [
+       5.74,
+       24.171
+      ]
      }
     ],
     "note": null
@@ -16329,7 +16437,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 0.8
+      "width": 0.8,
+      "at": [
+       10.98,
+       23.69
+      ]
      }
     ],
     "note": null
@@ -16374,7 +16486,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 0.9
+      "width": 0.9,
+      "at": [
+       16.033,
+       23.73
+      ]
      }
     ],
     "note": null
@@ -16619,7 +16735,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 0.8
+      "width": 0.8,
+      "at": [
+       16.033,
+       22.52
+      ]
      }
     ],
     "note": null
@@ -16704,7 +16824,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 1.0
+      "width": 1.0,
+      "at": [
+       13.52,
+       21.46
+      ]
      }
     ],
     "note": null
@@ -16729,7 +16853,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 0.8
+      "width": 0.8,
+      "at": [
+       15.453,
+       21.46
+      ]
      }
     ],
     "note": null
@@ -16774,7 +16902,11 @@
     "openings": [
      {
       "type": "window",
-      "width": 0.8
+      "width": 0.8,
+      "at": [
+       17.974,
+       19.826
+      ]
      }
     ],
     "note": null
@@ -16819,7 +16951,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 0.8
+      "width": 0.8,
+      "at": [
+       5.74,
+       20.195
+      ]
      }
     ],
     "note": null
@@ -16844,7 +16980,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 0.976
+      "width": 0.976,
+      "at": [
+       6.995,
+       19.542
+      ]
      }
     ],
     "note": null
@@ -16949,7 +17089,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 0.8
+      "width": 0.8,
+      "at": [
+       16.613,
+       19.11
+      ]
      }
     ],
     "note": null
@@ -16974,7 +17118,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 0.984
+      "width": 0.984,
+      "at": [
+       6.995,
+       18.162
+      ]
      }
     ],
     "note": null
@@ -17099,7 +17247,11 @@
     "openings": [
      {
       "type": "window",
-      "width": 0.8
+      "width": 0.8,
+      "at": [
+       16.603,
+       17.275
+      ]
      }
     ],
     "note": null
@@ -17184,7 +17336,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 1.0
+      "width": 1.0,
+      "at": [
+       9.015,
+       16.155
+      ]
      }
     ],
     "note": null
@@ -17382,18 +17538,26 @@
     "height": 3.0,
     "area_gross": 15.48,
     "ded_door": 0.0,
-    "ded_window": 8.24,
+    "ded_window": 12.36,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 7.24,
+    "area_net": 3.12,
     "openings": [
      {
       "type": "window",
-      "width": 2.35
+      "width": 2.35,
+      "at": [
+       14.978,
+       13.695
+      ]
      },
      {
       "type": "window",
-      "width": 1.77
+      "width": 1.77,
+      "at": [
+       14.978,
+       16.15
+      ]
      }
     ],
     "note": null
@@ -17418,7 +17582,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 0.8
+      "width": 0.8,
+      "at": [
+       5.74,
+       13.685
+      ]
      }
     ],
     "note": null
@@ -17443,7 +17611,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 1.0
+      "width": 1.0,
+      "at": [
+       6.995,
+       13.02
+      ]
      }
     ],
     "note": null
@@ -17468,7 +17640,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 1.0
+      "width": 1.0,
+      "at": [
+       9.015,
+       14.795
+      ]
      }
     ],
     "note": null
@@ -17726,14 +17902,18 @@
     "height": 3.0,
     "area_gross": 8.415,
     "ded_door": 0.0,
-    "ded_window": 3.84,
+    "ded_window": 5.76,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 4.575,
+    "area_net": 2.655,
     "openings": [
      {
       "type": "window",
-      "width": 1.92
+      "width": 1.92,
+      "at": [
+       0.645,
+       10.52
+      ]
      }
     ],
     "note": null
@@ -17758,7 +17938,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 1.0
+      "width": 1.0,
+      "at": [
+       6.995,
+       10.155
+      ]
      }
     ],
     "note": null
@@ -17783,7 +17967,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 1.0
+      "width": 1.0,
+      "at": [
+       9.015,
+       9.705
+      ]
      }
     ],
     "note": null
@@ -17801,14 +17989,18 @@
     "height": 2.985,
     "area_gross": 7.343,
     "ded_door": 0.0,
-    "ded_window": 4.7,
+    "ded_window": 7.05,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 2.643,
+    "area_net": 0.293,
     "openings": [
      {
       "type": "window",
-      "width": 2.35
+      "width": 2.35,
+      "at": [
+       14.978,
+       10.705
+      ]
      }
     ],
     "note": null
@@ -17986,14 +18178,18 @@
     "height": 3.0,
     "area_gross": 10.914,
     "ded_door": 0.0,
-    "ded_window": 4.7,
+    "ded_window": 7.05,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 6.214,
+    "area_net": 3.864,
     "openings": [
      {
       "type": "window",
-      "width": 2.35
+      "width": 2.35,
+      "at": [
+       0.645,
+       7.585
+      ]
      }
     ],
     "note": null
@@ -18018,7 +18214,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 1.0
+      "width": 1.0,
+      "at": [
+       6.995,
+       6.24
+      ]
      }
     ],
     "note": null
@@ -18043,7 +18243,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 1.0
+      "width": 1.0,
+      "at": [
+       9.015,
+       8.345
+      ]
      }
     ],
     "note": null
@@ -18061,14 +18265,18 @@
     "height": 2.987,
     "area_gross": 8.534,
     "ded_door": 0.0,
-    "ded_window": 4.7,
+    "ded_window": 7.05,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 3.834,
+    "area_net": 1.484,
     "openings": [
      {
       "type": "window",
-      "width": 2.35
+      "width": 2.35,
+      "at": [
+       14.978,
+       7.325
+      ]
      }
     ],
     "note": null
@@ -18326,14 +18534,18 @@
     "height": 2.982,
     "area_gross": 10.219,
     "ded_door": 0.0,
-    "ded_window": 4.7,
+    "ded_window": 7.05,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 5.519,
+    "area_net": 3.169,
     "openings": [
      {
       "type": "window",
-      "width": 2.35
+      "width": 2.35,
+      "at": [
+       0.645,
+       4.435
+      ]
      }
     ],
     "note": null
@@ -18378,7 +18590,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 1.0
+      "width": 1.0,
+      "at": [
+       6.995,
+       4.88
+      ]
      }
     ],
     "note": null
@@ -18423,7 +18639,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 1.0
+      "width": 1.0,
+      "at": [
+       8.335,
+       4.2
+      ]
      }
     ],
     "note": null
@@ -18468,7 +18688,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 1.0
+      "width": 1.0,
+      "at": [
+       9.015,
+       5.03
+      ]
      }
     ],
     "note": null
@@ -18486,14 +18710,18 @@
     "height": 3.0,
     "area_gross": 8.322,
     "ded_door": 0.0,
-    "ded_window": 3.6,
+    "ded_window": 5.4,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 4.722,
+    "area_net": 2.922,
     "openings": [
      {
       "type": "window",
-      "width": 1.8
+      "width": 1.8,
+      "at": [
+       14.978,
+       4.25
+      ]
      }
     ],
     "note": null
@@ -18698,7 +18926,11 @@
     "openings": [
      {
       "type": "door",
-      "width": 0.8
+      "width": 0.8,
+      "at": [
+       7.655,
+       2.62
+      ]
      }
     ],
     "note": null
@@ -19016,22 +19248,34 @@
     "height": 2.85,
     "area_gross": 25.522,
     "ded_door": 0.0,
-    "ded_window": 11.664,
+    "ded_window": 17.969,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 13.857,
+    "area_net": 7.552,
     "openings": [
      {
       "type": "window",
-      "width": 2.1
+      "width": 2.1,
+      "at": [
+       5.95,
+       -1.045
+      ]
      },
      {
       "type": "window",
-      "width": 2.1
+      "width": 2.1,
+      "at": [
+       8.85,
+       -1.045
+      ]
      },
      {
       "type": "window",
-      "width": 2.105
+      "width": 2.105,
+      "at": [
+       11.753,
+       -1.045
+      ]
      }
     ],
     "note": null
@@ -19240,11 +19484,11 @@
     "length_net": 251.47,
     "area_gross": 967.71,
     "ded_door": 83.43,
-    "ded_window": 82.67,
+    "ded_window": 123.78,
     "ded_opening": 1.84,
     "ded_concrete": 20.85,
     "length_in_str_concrete": 7.21,
-    "area_net": 778.93
+    "area_net": 737.82
    }
   },
   "masonry_if_tr_were_masonry": {
@@ -19254,11 +19498,11 @@
     "length_net": 256.34,
     "area_gross": 985.35,
     "ded_door": 83.43,
-    "ded_window": 84.92,
+    "ded_window": 127.25,
     "ded_opening": 1.84,
     "ded_concrete": 36.0,
     "length_in_str_concrete": 12.43,
-    "area_net": 779.16
+    "area_net": 736.83
    }
   },
   "masonry_excluded_on_tr": [
@@ -19297,7 +19541,7 @@
      "floor_area_m2": 422.21,
      "mean_plaster_height": 2.87,
      "solid_faces_m": 372.99,
-     "walls_m2": 1137.21,
+     "walls_m2": 1093.32,
      "ceiling_m2": 0.0
     },
     "none": {
@@ -19338,11 +19582,11 @@
    "ceilings_not_plastered_m2": 543.75,
    "strip_above_doors_m2": 23.59,
    "strip_above_openings_m2": 1.33,
-   "strip_windows_m2": 47.57,
+   "strip_windows_m2": 3.68,
    "strip_above_assemblies_m2": 0.0,
-   "internal_walls_m2": 1278.06,
+   "internal_walls_m2": 1234.17,
    "ceilings_m2": 0.0,
-   "internal_total_m2": 1278.06,
+   "internal_total_m2": 1234.17,
    "masonry_windows_width_m": 44.992,
    "assemblies_width_m": 0.0,
    "external": {
@@ -19351,7 +19595,7 @@
     "glazing_off_footprint": [],
     "facade_windows_m": 44.99,
     "H_f": 3.2,
-    "area_m2": 261.18
+    "area_m2": 219.39
    },
    "not_included": {
     "lift_shaft_faces_m": 10.97,

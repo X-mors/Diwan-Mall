@@ -74,7 +74,25 @@ def image(n, d, rows, out_png):
             ax.plot([w["x1"], w["x2"]], [w["y1"], w["y2"]], color="#555555", lw=2.5, ls=(0, (2, 1.5)), zorder=5)
     for r in rows:
         col = FAM_COL.get(r["family"], "#2ca02c")
-        ax.plot([r["x1"], r["x2"]], [r["y1"], r["y2"]], color=col, lw=3.2, solid_capstyle="butt", zorder=6, alpha=0.85)
+        # draw only the masonry: cut the door / window / opening gaps out of the centre line
+        Lw = math.hypot(r["x2"] - r["x1"], r["y2"] - r["y1"]) or 1e-9
+        ux, uy = (r["x2"] - r["x1"]) / Lw, (r["y2"] - r["y1"]) / Lw
+        cuts = []
+        for o in r["openings"]:
+            if o.get("at"):
+                t = (o["at"][0] - r["x1"]) * ux + (o["at"][1] - r["y1"]) * uy
+                cuts.append((t - o["width"] / 2, t + o["width"] / 2, o["type"]))
+        t0 = 0.0
+        for a, b_, typ in sorted(cuts):
+            if a > t0:
+                ax.plot([r["x1"] + ux * t0, r["x1"] + ux * a], [r["y1"] + uy * t0, r["y1"] + uy * a], color=col, lw=3.2,
+                        solid_capstyle="butt", zorder=6, alpha=0.85)
+            ax.plot([r["x1"] + ux * max(a, 0), r["x1"] + ux * min(b_, Lw)], [r["y1"] + uy * max(a, 0), r["y1"] + uy * min(b_, Lw)],
+                    color="#00bcd4" if typ == "window" else "#ffffff", lw=1.0, ls=":", zorder=6)
+            t0 = max(t0, b_)
+        if t0 < Lw:
+            ax.plot([r["x1"] + ux * t0, r["x2"]], [r["y1"] + uy * t0, r["y2"]], color=col, lw=3.2, solid_capstyle="butt",
+                    zorder=6, alpha=0.85)
         mx, my = (r["x1"] + r["x2"]) / 2, (r["y1"] + r["y2"]) / 2
         L = math.hypot(r["x2"] - r["x1"], r["y2"] - r["y1"]) or 1
         nx, ny = -(r["y2"] - r["y1"]) / L, (r["x2"] - r["x1"]) / L
@@ -85,6 +103,7 @@ def image(n, d, rows, out_png):
     fams = sorted({r["family"] for r in rows}, key=lambda f: (f == "other", f))
     hs = [Line2D([0], [0], color=FAM_COL.get(f, "#2ca02c"), lw=4, label=f"wall {f} m" if f != "other" else "non-standard")
           for f in fams]
+    hs.append(Line2D([0], [0], color="#00bcd4", lw=1, ls=":", label="window (no masonry)"))
     hs.append(Line2D([0], [0], color="#555555", lw=2.5, ls=(0, (2, 1.5)), label="NOT counted (concrete / lift front later)"))
     ax.legend(handles=hs, loc="upper left", bbox_to_anchor=(1.01, 1.0), fontsize=11, frameon=False)
     tot = sum(r["area_net"] for r in rows)
@@ -112,7 +131,7 @@ def workbook(n, d, rows, out_xlsx):
     ws["A1"] = f"حصر مباني الدور {n} (منسوب {d['level']:+.2f}) — كل حائط برقمه على الصورة F{n:02d}_masonry.png"
     ws["A1"].font = Font(bold=True, size=13)
     ws["A2"] = ("الارتفاع = 3.20 − عمق الخرسانة فوق الحائط (بلاطة 0.20 ← 3.00، 0.35 ← 2.85، كمرة 70 ← 2.50، كمرة 90 ← 2.30)؛ "
-                "الأبواب 2.30 وعرض اللوحة + 5 سم؛ شبابيك الخدمات 85×65؛ باقي الشبابيك جلسة 1.00 لحد البلاطة؛ "
+                "الأبواب 2.30 وعرض اللوحة + 5 سم؛ شبابيك الخدمات 85×65؛ باقي الشبابيك بارتفاع المباني كامل (لا مباني تحتها)؛ "
                 "خصم الخرسانة = طول الحائط داخل أعمدة/حوائط قص الإنشائي × الارتفاع")
     ws["A2"].alignment = Alignment(wrap_text=True)
     ws.merge_cells("A2:N2")
