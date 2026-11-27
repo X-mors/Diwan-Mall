@@ -11,6 +11,7 @@
   ],
   "svc_extra": 0.05,
   "plaster_ded_room": 0.1,
+  "ceiling_plaster": false,
   "plaster_ded_corridor": 0.5,
   "lift_front_out": true,
   "lift_c_leg_masonry": true,
@@ -48,7 +49,7 @@
    "concrete_tr_only": 7,
    "concrete_interior_faces_m": 87.39,
    "masonry_net_m2_prelim": 760.18,
-   "plaster_internal_m2_prelim": 1661.46,
+   "plaster_internal_m2_prelim": 1238.82,
    "external_m2_prelim": 264.58,
    "conflicts": 9
   },
@@ -71,7 +72,7 @@
    "concrete_tr_only": 7,
    "concrete_interior_faces_m": 84.0,
    "masonry_net_m2_prelim": 778.93,
-   "plaster_internal_m2_prelim": 1700.28,
+   "plaster_internal_m2_prelim": 1278.06,
    "external_m2_prelim": 261.18,
    "conflicts": 7
   },
@@ -94,7 +95,7 @@
    "concrete_tr_only": 7,
    "concrete_interior_faces_m": 83.72,
    "masonry_net_m2_prelim": 775.63,
-   "plaster_internal_m2_prelim": 1667.54,
+   "plaster_internal_m2_prelim": 1248.44,
    "external_m2_prelim": 261.18,
    "conflicts": 9
   },
@@ -117,7 +118,7 @@
    "concrete_tr_only": 7,
    "concrete_interior_faces_m": 83.72,
    "masonry_net_m2_prelim": 774.13,
-   "plaster_internal_m2_prelim": 1679.47,
+   "plaster_internal_m2_prelim": 1256.48,
    "external_m2_prelim": 261.84,
    "conflicts": 12
   },
@@ -140,7 +141,7 @@
    "concrete_tr_only": 7,
    "concrete_interior_faces_m": 83.72,
    "masonry_net_m2_prelim": 785.31,
-   "plaster_internal_m2_prelim": 1708.86,
+   "plaster_internal_m2_prelim": 1286.67,
    "external_m2_prelim": 261.84,
    "conflicts": 10
   },
@@ -163,7 +164,7 @@
    "concrete_tr_only": 7,
    "concrete_interior_faces_m": 83.72,
    "masonry_net_m2_prelim": 780.8,
-   "plaster_internal_m2_prelim": 1665.08,
+   "plaster_internal_m2_prelim": 1248.36,
    "external_m2_prelim": 260.78,
    "conflicts": 7
   },
@@ -186,7 +187,7 @@
    "concrete_tr_only": 7,
    "concrete_interior_faces_m": 83.72,
    "masonry_net_m2_prelim": 775.43,
-   "plaster_internal_m2_prelim": 1686.38,
+   "plaster_internal_m2_prelim": 1262.47,
    "external_m2_prelim": 264.27,
    "conflicts": 9
   },
@@ -209,7 +210,7 @@
    "concrete_tr_only": 7,
    "concrete_interior_faces_m": 86.12,
    "masonry_net_m2_prelim": 570.68,
-   "plaster_internal_m2_prelim": 1460.3,
+   "plaster_internal_m2_prelim": 1041.8,
    "external_m2_prelim": 144.17,
    "conflicts": 11
   },
@@ -232,7 +233,7 @@
    "concrete_tr_only": 7,
    "concrete_interior_faces_m": 85.28,
    "masonry_net_m2_prelim": 555.47,
-   "plaster_internal_m2_prelim": 1387.5,
+   "plaster_internal_m2_prelim": 995.4,
    "external_m2_prelim": 138.94,
    "conflicts": 11
   },
@@ -255,7 +256,7 @@
    "concrete_tr_only": 7,
    "concrete_interior_faces_m": 81.26,
    "masonry_net_m2_prelim": 539.6,
-   "plaster_internal_m2_prelim": 1355.73,
+   "plaster_internal_m2_prelim": 981.73,
    "external_m2_prelim": 149.19,
    "conflicts": 11
   }

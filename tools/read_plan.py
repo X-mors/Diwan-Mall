@@ -102,6 +102,7 @@ class Params:
     svc_window: tuple = (0.80, 0.60)  # service windows 80 x 60 (owner 2026-11-27); drawn width 0.80
     svc_extra: float = 0.05           # ... their masonry opening is 5 cm larger (0.85 x 0.65)
     plaster_ded_room: float = 0.10    # internal plaster: offices / shops / rooms lose 10 cm at the bottom (owner 2026-11-27)
+    ceiling_plaster: bool = False     # owner 2026-11-27: NO plaster on ceilings (anywhere)
     plaster_ded_corridor: float = 0.50  # corridor (+ lift lobby): 10 cm bottom + 40 cm top (suspended ceiling, corridor only)
     lift_front_out: bool = True       # lift front wall under the 25x90 beam: masonry LATER, out of the takeoff now (owner)
     lift_c_leg_masonry: bool = True   # the long leg of the C lift core is MASONRY, not concrete (owner 2026-11-27)
@@ -459,7 +460,7 @@ def plaster_estimate(rooms_j, op, st, walls_tot, P, conc_geom=None, footprint=No
        wall face height per room = clear height under the slab at the room (3.20 - slab depth there; flat H_p
        without the structural) minus 10 cm at the bottom in offices / shops / rooms / stairs, minus 10 cm bottom
        + 40 cm top in the corridor and lift lobby (suspended ceiling there only); bathrooms: no internal plaster.
-       Ceilings: plastered in the 'room' group only (corridor = suspended ceiling, wc = no plaster).
+       Ceilings: NOT plastered (owner 2026-11-27); their area is reported as ceilings_not_plastered_m2.
        Openings: door 2.30 (plaster follows the drawn width), service windows 0.80 x 0.60, other windows from the
        sill to the window top (sill 1.00, up to the soffit) - still to be confirmed by the owner."""
     from rooms import INDOOR_CEILING
@@ -498,7 +499,7 @@ def plaster_estimate(rooms_j, op, st, walls_tot, P, conc_geom=None, footprint=No
                 top = P.window_sill + (P.window_h if P.window_h is not None else max(0.0, base - P.window_sill))
                 G["strip_win"] += w["width"] * (min(P.window_sill, Hp) + max(0.0, Hp - top))
         G["Hp_x_len"] += Hp * solid
-        if grp == "room":
+        if grp == "room" and P.ceiling_plaster:
             G["ceiling"] += r["area"]
     # lift front wall under the beam: out of the takeoff for now -> its lobby face is not plastered either
     gc = g["corridor"]
@@ -573,7 +574,7 @@ def plaster_estimate(rooms_j, op, st, walls_tot, P, conc_geom=None, footprint=No
         "faces_by_kind_m": {k: _r(v, 2) for k, v in sorted(bd.items())},
         "solid_faces_m": _r(solid, 2), "of_which_concrete_m": _r(col, 2),
         "wall_faces_m2": _r(faces, 2),
-        "ceilings_not_plastered_m2": _r(g["corridor"]["area"] + g["none"]["area"], 2),
+        "ceilings_not_plastered_m2": _r(sum(G["area"] for G in g.values()) - ceil, 2),
         "strip_above_doors_m2": _r(strip_door, 2), "strip_above_openings_m2": _r(strip_open, 2),
         "strip_windows_m2": _r(strip_win, 2), "strip_above_assemblies_m2": _r(strip_asm, 2),
         "internal_walls_m2": _r(walls_int, 2),
@@ -1354,7 +1355,7 @@ def write_workbook(plans, P: Params, out_xlsx):
         f"الباب {P.door_h:.2f} م (يُضاف شريط فوق الباب على الوجهين)، شبابيك الخدمات {P.svc_window[0]:.2f}×{P.svc_window[1]:.2f}، "
         f"باقي الشبابيك من جلسة {P.window_sill:.2f} م لحد البلاطة (لم تتأكد بعد). حائط واجهة المصعد تحت الكمرة خارج الحصر الآن (مباني ومحارة).",
         "الأوجه الداخلية من حدود الفراغات المسقوفة (rooms.py): حائط + عمود/كور + زعانف مهشّرة + امتدادات — كل وجه مرة في كل غرفة (الحائط الداخلي = وجهان).",
-        "الأسقف = مساحات المكاتب/المحلات/الغرف والسلالم فقط (الطرقة سقف معلق، الحمامات بلا محارة). لا تُحسب: الرجوعات (جوانب الفتحات)، أوجه بئر المصعد والشفتات، أوجه عناصر بلوك tr.",
+        "الأسقف: لا محارة للأسقف (المالك 2026-11-27). لا تُحسب أيضًا: الرجوعات (جوانب الفتحات)، أوجه بئر المصعد والشفتات، أوجه عناصر بلوك tr.",
         f"الخارجي = محارة ثم دهان (المالك 2026-11-27) = (محيط الوجه الخارجي − الزجاج كامل الارتفاع) × {P.H_f:.2f} م − الشبابيك؛ يشمل حواف البلاطات ولا يشمل الدروات."])
     sh.header(["البند"] + F + sumcol)
     nc = 1 + nF + len(sumcol)
@@ -1374,8 +1375,8 @@ def write_workbook(plans, P: Params, out_xlsx):
     sh.line(["شرائط فوق مجموعات باب+زجاج (F02) م²"] + row_vals(lambda p: pl(p, "strip_above_assemblies_m2")))
     sh.line(["محارة الحوائط والأعمدة الداخلية م²"] + row_vals(lambda p: pl(p, "internal_walls_m2")), total=True)
     sh.section("الأسقف", nc)
-    sh.line(["محارة الأسقف (مكاتب/غرف وسلالم) م²"] + row_vals(lambda p: pl(p, "ceilings_m2")), total=True)
-    sh.line(["أسقف بلا محارة (طرقة بسقف معلق + حمامات) م²"] + row_vals(lambda p: pl(p, "ceilings_not_plastered_m2")))
+    sh.line(["محارة الأسقف م² (المالك 2026-11-27: لا محارة للأسقف)"] + row_vals(lambda p: pl(p, "ceilings_m2")), total=True)
+    sh.line(["مساحة الأسقف بلا محارة (للعلم) م²"] + row_vals(lambda p: pl(p, "ceilings_not_plastered_m2")))
     sh.line(["إجمالي المحارة الداخلية (حوائط + أسقف) م²"] + row_vals(lambda p: pl(p, "internal_total_m2")), total=True)
     sh.section("الخارجي (محارة ثم دهان)", nc)
     sh.line(["محيط الوجه الخارجي م"] + row_vals(lambda p: pl(p, "external", "outline_m")))
@@ -1468,7 +1469,7 @@ def write_workbook(plans, P: Params, out_xlsx):
 OPEN_QUESTIONS = [   # still open after the owner's answers of 2026-11-27 (docs/owner_answers.md)
     ("الشبابيك العادية (غير شبابيك الخدمات 80×60): الجلسة كام وارتفاع الشباك لحد فين؟ وفتحتها في المباني أكبر 5 سم برضه؟", "خصم الشبابيك وشرائط المحارة"),
     ("محارة بئر المصعد والشفتات من الداخل: تتحسب ولا لا؟", "محارة"),
-    ("أسقف الحمامات والسلالم: عليها محارة؟ (الحالي: السلالم زي الغرف −10 سم وسقفها محارة، الحمامات بلا محارة خالص)", "محارة الأسقف"),
+    ("السلالم: محارتها زي الغرف −10 سم؟", "محارة السلالم"),
     ("الدور 8: الحائط الشمالي الشرقي مرسوم بخط واحد — سمكه زي الدور 6؟", "مباني الدور 8"),
     ("الخط القصير جوه مكتب 4 (كل الأدوار): قاطوع جزئي؟ حافة كمرة؟ خط تكسية؟", "مباني بسيطة"),
     ("المحور د: خط X عند x=9.755 أم 1.50 م شرقًا كما في سلسلة الأبعاد؟", "الإسناد للمحاور فقط"),

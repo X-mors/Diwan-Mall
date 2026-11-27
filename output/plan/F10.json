@@ -26,6 +26,7 @@
   ],
   "svc_extra": 0.05,
   "plaster_ded_room": 0.1,
+  "ceiling_plaster": false,
   "plaster_ded_corridor": 0.5,
   "lift_front_out": true,
   "lift_c_leg_masonry": true,
@@ -10855,7 +10856,7 @@
      "mean_plaster_height": 2.874,
      "solid_faces_m": 283.36,
      "walls_m2": 847.71,
-     "ceiling_m2": 392.09
+     "ceiling_m2": 0.0
     },
     "none": {
      "name_ar": "حمامات (لا محارة من الداخل)",
@@ -10893,14 +10894,14 @@
    "solid_faces_m": 397.87,
    "of_which_concrete_m": 84.35,
    "wall_faces_m2": 956.79,
-   "ceilings_not_plastered_m2": 116.0,
+   "ceilings_not_plastered_m2": 508.1,
    "strip_above_doors_m2": 19.23,
    "strip_above_openings_m2": 0.5,
    "strip_windows_m2": 18.88,
    "strip_above_assemblies_m2": 0.0,
    "internal_walls_m2": 995.4,
-   "ceilings_m2": 392.09,
-   "internal_total_m2": 1387.5,
+   "ceilings_m2": 0.0,
+   "internal_total_m2": 995.4,
    "masonry_windows_width_m": 19.2,
    "assemblies_width_m": 0.0,
    "external": {
