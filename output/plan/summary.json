@@ -16,6 +16,11 @@
   "lift_front_out": true,
   "lift_c_leg_masonry": true,
   "window_sill": 0.0,
+  "sill_floors": [
+   2,
+   5
+  ],
+  "sill_on_those": 1.0,
   "window_h": null,
   "opening_h": null,
   "plaster_h": null,
@@ -48,9 +53,9 @@
    "concrete_model_space": 19,
    "concrete_tr_only": 7,
    "concrete_interior_faces_m": 87.39,
-   "masonry_net_m2_prelim": 720.5,
-   "plaster_internal_m2_prelim": 1198.63,
-   "external_m2_prelim": 226.49,
+   "masonry_net_m2_prelim": 760.18,
+   "plaster_internal_m2_prelim": 1238.82,
+   "external_m2_prelim": 264.58,
    "conflicts": 9
   },
   "F03": {
@@ -117,9 +122,9 @@
    "concrete_model_space": 17,
    "concrete_tr_only": 7,
    "concrete_interior_faces_m": 83.72,
-   "masonry_net_m2_prelim": 732.9,
-   "plaster_internal_m2_prelim": 1212.59,
-   "external_m2_prelim": 220.04,
+   "masonry_net_m2_prelim": 774.13,
+   "plaster_internal_m2_prelim": 1256.48,
+   "external_m2_prelim": 261.84,
    "conflicts": 12
   },
   "F06": {

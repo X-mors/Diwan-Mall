@@ -103,7 +103,7 @@ def image(n, d, rows, out_png):
     fams = sorted({r["family"] for r in rows}, key=lambda f: (f == "other", f))
     hs = [Line2D([0], [0], color=FAM_COL.get(f, "#2ca02c"), lw=4, label=f"wall {f} m" if f != "other" else "non-standard")
           for f in fams]
-    hs.append(Line2D([0], [0], color="#00bcd4", lw=1, ls=":", label="window (no masonry)"))
+    hs.append(Line2D([0], [0], color="#00bcd4", lw=1, ls=":", label="window opening"))
     hs.append(Line2D([0], [0], color="#555555", lw=2.5, ls=(0, (2, 1.5)), label="NOT counted (concrete / lift front later)"))
     ax.legend(handles=hs, loc="upper left", bbox_to_anchor=(1.01, 1.0), fontsize=11, frameon=False)
     tot = sum(r["area_net"] for r in rows)
@@ -131,7 +131,7 @@ def workbook(n, d, rows, out_xlsx):
     ws["A1"] = f"حصر مباني الدور {n} (منسوب {d['level']:+.2f}) — كل حائط برقمه على الصورة F{n:02d}_masonry.png"
     ws["A1"].font = Font(bold=True, size=13)
     ws["A2"] = ("الارتفاع = 3.20 − عمق الخرسانة فوق الحائط (بلاطة 0.20 ← 3.00، 0.35 ← 2.85، كمرة 70 ← 2.50، كمرة 90 ← 2.30)؛ "
-                "الأبواب 2.30 وعرض اللوحة + 5 سم؛ شبابيك الخدمات 85×65؛ باقي الشبابيك بارتفاع المباني كامل (لا مباني تحتها)؛ "
+                "الأبواب 2.30 وعرض اللوحة + 5 سم؛ شبابيك الخدمات 85×65؛ " + ("باقي الشبابيك جلسة 1.00 (مباني تحت الشباك)؛ " if d["params"].get("window_sill") else "باقي الشبابيك فراغ بالارتفاع كله؛ ") +
                 "خصم الخرسانة = طول الحائط داخل أعمدة/حوائط قص الإنشائي × الارتفاع")
     ws["A2"].alignment = Alignment(wrap_text=True)
     ws.merge_cells("A2:N2")

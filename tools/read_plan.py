@@ -107,6 +107,8 @@ class Params:
     lift_front_out: bool = True       # lift front wall under the 25x90 beam: masonry LATER, out of the takeoff now (owner)
     lift_c_leg_masonry: bool = True   # the long leg of the C lift core is MASONRY, not concrete (owner 2026-11-27)
     window_sill: float = 0.0          # owner 2026-11-27: NO masonry under the facade windows (opening = full masonry height)
+    sill_floors: tuple = (2, 5)       # owner 2026-11-27: masonry UNDER the windows (sill 1.00) on floors 2 and 5 only
+    sill_on_those: float = 1.00       # ... the sill there; every other floor: windows are void over the full height
     window_h: float | None = None     # None -> window up to the masonry top (H_m - sill)
     opening_h: float | None = None    # door-less openings (lift landings, 0.80 gap): None -> door_h
     plaster_h: float | None = None    # internal plaster height: None -> storey - slab (to the soffit)
@@ -649,6 +651,9 @@ def _compact_element(e):
 
 
 def merge_floor(b, P: Params):
+    if b.get("floor_no") in P.sill_floors and P.window_sill == 0.0:
+        from dataclasses import replace
+        P = replace(P, window_sill=P.sill_on_those)
     W, O, R, S = b["walls"], b["openings"], b["rooms"], b["structure"]
     walls = W["walls"]
     elements = S["elements"]
@@ -1329,7 +1334,7 @@ def write_workbook(plans, P: Params, out_xlsx):
          f"ارتفاع المباني المستخدم = {P.H_m:.2f} م"),
         f"الباب: ارتفاع {P.door_h:.2f} م وفتحة المباني = عرض اللوحة + {P.door_extra_w * 100:.0f} سم؛ شبابيك الخدمات "
         f"{P.svc_window[0] * 100:.0f}×{P.svc_window[1] * 100:.0f} وفتحتها في المباني أكبر {P.svc_extra * 100:.0f} سم (المالك 2026-11-27)؛ "
-        f"باقي الشبابيك: جلسة = {P.window_sill:.2f} م (المالك: لا مباني تحت شبابيك الواجهة)؛ ارتفاع الشباك = "
+        f"باقي الشبابيك: جلسة {P.sill_on_those:.2f} م في الأدوار {", ".join(map(str, P.sill_floors))} فقط، وباقي الأدوار الشباك فراغ بالارتفاع كله (المالك)؛ ارتفاع الشباك = "
         + ("ارتفاع المباني عند الشباك − الجلسة؛ " if P.heights == "structural" and P.window_h is None else f"{P.win_h:.2f} م؛ ") +
         f"ارتفاع الفتحات بلا باب (فتحتا المصعد، فتحة 0.80) = {P.open_h:.2f} م",
         "المساحة = الطول الإجمالي (طول المحور عبر الفتحات) × ارتفاع المباني − Σ(عرض الفتحة × ارتفاعها)؛ عرض الفتحة كما قِيس في الحائط (walls.py).",
@@ -1337,7 +1342,7 @@ def write_workbook(plans, P: Params, out_xlsx):
         "البروز الديكوري للبلاطات، حائط واجهة المصعد تحت الكمرة 25×90 (مباني لاحقًا — خارج الحصر الآن). مضاف: الضلع الطويل لكور المصعد (حرف C) مباني وليس خرسانة. "
         "وغير مشمول أيضًا: الأعتاب/الكمرات فوق الفتحات، الحوائط الواقعة على خرسانة "
         "(خرسانة المسقط + عناصر بلوك tr المؤكدة)، وأجزاء الحوائط الداخلة في أعمدة/كور الإنشائي (حوائط القص 0.30 المنفذة، كور Z، الأعمدة غير المرسومة معماريًا).",
-        "شبابيك الواجهة تُخصم بارتفاع المباني كامل (المالك 2026-11-27: لا مباني تحتها)."])
+        "الشبابيك: جلسة 1.00 (مباني تحت الشباك) في الدورين 2 و5 فقط؛ باقي الأدوار الشباك فراغ بالارتفاع كله (المالك 2026-11-27)."])
     sh.header(["البند"] + F + sumcol)
     mfams = [f for f in FAMILY_ORDER if any(f"{f}|ALL" in p["preliminary"]["masonry"] for p in plans)]
     for f in mfams:
@@ -1366,7 +1371,7 @@ def write_workbook(plans, P: Params, out_xlsx):
         f"{P.plaster_ded_room * 100:.0f} سم أسفل في المكاتب/المحلات/الغرف والسلالم، و{P.plaster_ded_corridor * 100:.0f} سم في الطرقة وبهو المصعد "
         "(10 أسفل + 40 أعلى لوجود سقف معلق بالطرقة فقط). الحمامات: لا محارة من الداخل.",
         f"الباب {P.door_h:.2f} م (يُضاف شريط فوق الباب على الوجهين)، شبابيك الخدمات {P.svc_window[0]:.2f}×{P.svc_window[1]:.2f}، "
-        f"باقي الشبابيك بارتفاع المباني كامل (لا مباني تحتها، المالك 2026-11-27). حائط واجهة المصعد تحت الكمرة خارج الحصر الآن (مباني ومحارة).",
+        f"باقي الشبابيك: جلسة 1.00 في الدورين 2 و5 فقط، وباقي الأدوار فراغ بالارتفاع كله (المالك 2026-11-27). حائط واجهة المصعد تحت الكمرة خارج الحصر الآن (مباني ومحارة).",
         "الأوجه الداخلية من حدود الفراغات المسقوفة (rooms.py): حائط + عمود/كور + زعانف مهشّرة + امتدادات — كل وجه مرة في كل غرفة (الحائط الداخلي = وجهان).",
         "الأسقف: لا محارة للأسقف (المالك 2026-11-27). لا تُحسب أيضًا: الرجوعات (جوانب الفتحات)، أوجه بئر المصعد والشفتات، أوجه عناصر بلوك tr.",
         f"الخارجي = محارة ثم دهان (المالك 2026-11-27) = (محيط الوجه الخارجي − الزجاج كامل الارتفاع) × {P.H_f:.2f} م − الشبابيك؛ يشمل حواف البلاطات ولا يشمل الدروات."])
@@ -1460,7 +1465,7 @@ def write_workbook(plans, P: Params, out_xlsx):
             ("ارتفاع الباب", P.door_h, "المالك 2026-11-27: 2.30"),
             ("زيادة عرض فتحة الباب في المباني", P.door_extra_w, "المالك 2026-11-27: أعرض 5 سم من اللوحة"),
             ("شبابيك الخدمات", f"{P.svc_window[0]:.2f}×{P.svc_window[1]:.2f} (+{P.svc_extra:.2f})", "المالك 2026-11-27: 80×60 وفتحة المباني أكبر 5 سم"),
-            ("جلسة الشباك (باقي الشبابيك)", P.window_sill, "المالك 2026-11-27: لا مباني تحت شبابيك الواجهة"),
+            ("جلسة الشباك (باقي الشبابيك)", f"{P.sill_on_those:.2f} في الأدوار {P.sill_floors}، وصفر في الباقي", "المالك 2026-11-27"),
             ("ارتفاع الشباك", P.win_h if P.heights == "flat" or P.window_h is not None else "ارتفاع المباني عند الشباك − الجلسة",
              "افتراض: حتى أعلى المباني (بلا مباني فوق الشباك)"),
             ("ارتفاع الفتحات بلا باب", P.open_h, "مجهول (فتحتا المصعد 1.25 / فتحة 0.80)"),
