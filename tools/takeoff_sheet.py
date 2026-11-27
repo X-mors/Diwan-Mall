@@ -101,6 +101,7 @@ def image(n, d, rows, out_png):
         print("structural columns not drawn:", e)
     ex = pre.get("masonry_excluded", {})
     exl = [(i, "on concrete") for i in ex.get("on_concrete", [])] + [(i, "on tr concrete") for i in ex.get("on_tr", [])] + \
+          [(i, "inside structural concrete") for i in ex.get("in_structural_concrete", [])] + \
           [(i, "lift front wall (later)") for i in ex.get("lift_front_later", [])]
     for wid, _ in exl:
         w = recs.get(wid)
@@ -258,6 +259,7 @@ def workbook(n, d, rows, out_xlsx):
     row += 1
     recs = {w["id"]: w for w in d["walls"]["records"]}
     for key, lab in (("on_concrete", "على خرسانة المسقط"), ("on_tr", "على عنصر خرسانة tr"),
+                     ("in_structural_concrete", "داخل عمود/حائط قص/كور خرساني بالإنشائي (مثل الكور Z)"),
                      ("lift_front_later", "حائط واجهة المصعد تحت الكمرة — مباني لاحقًا (المالك)")):
         for wid in ex.get(key, []):
             w = recs.get(wid, {})

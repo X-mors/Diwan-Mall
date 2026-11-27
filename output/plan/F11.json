@@ -10086,16 +10086,16 @@
     "area_net": 13.92
    },
    "0.25|ALL": {
-    "n": 23,
-    "length_gross": 50.5,
-    "length_net": 30.78,
-    "area_gross": 142.23,
+    "n": 22,
+    "length_gross": 47.8,
+    "length_net": 28.08,
+    "area_gross": 134.15,
     "ded_door": 2.19,
     "ded_window": 49.07,
     "ded_opening": 0.0,
-    "ded_concrete": 10.77,
+    "ded_concrete": 2.68,
     "ded_shaft_door": 0.0,
-    "length_in_str_concrete": 3.72,
+    "length_in_str_concrete": 1.02,
     "area_net": 80.21
    },
    "0.25|exterior": {
@@ -10138,16 +10138,16 @@
     "area_net": 2.88
    },
    "0.25|stair_lift": {
-    "n": 3,
-    "length_gross": 9.3,
-    "length_net": 8.4,
-    "area_gross": 23.29,
+    "n": 2,
+    "length_gross": 6.6,
+    "length_net": 5.7,
+    "area_gross": 15.21,
     "ded_door": 2.19,
     "ded_window": 0.0,
     "ded_opening": 0.0,
-    "ded_concrete": 8.27,
+    "ded_concrete": 0.18,
     "ded_shaft_door": 0.0,
-    "length_in_str_concrete": 2.78,
+    "length_in_str_concrete": 0.08,
     "area_net": 12.84
    },
    "0.30|ALL": {
@@ -10268,16 +10268,16 @@
     "area_net": 0.88
    },
    "ALL|ALL": {
-    "n": 121,
-    "length_gross": 222.91,
-    "length_net": 176.05,
-    "area_gross": 651.07,
+    "n": 120,
+    "length_gross": 220.21,
+    "length_net": 173.36,
+    "area_gross": 642.98,
     "ded_door": 67.94,
     "ded_window": 49.07,
     "ded_opening": 0.0,
-    "ded_concrete": 12.6,
+    "ded_concrete": 4.52,
     "ded_shaft_door": 2.88,
-    "length_in_str_concrete": 4.4,
+    "length_in_str_concrete": 1.7,
     "area_net": 518.58
    },
    "ALL|exterior": {
@@ -10320,16 +10320,16 @@
     "area_net": 60.65
    },
    "ALL|stair_lift": {
-    "n": 8,
-    "length_gross": 20.38,
-    "length_net": 18.48,
-    "area_gross": 50.56,
+    "n": 7,
+    "length_gross": 17.68,
+    "length_net": 15.79,
+    "area_gross": 42.47,
     "ded_door": 4.6,
     "ded_window": 0.0,
     "ded_opening": 0.0,
-    "ded_concrete": 9.62,
+    "ded_concrete": 1.54,
     "ded_shaft_door": 0.0,
-    "length_in_str_concrete": 3.3,
+    "length_in_str_concrete": 0.6,
     "area_net": 36.34
    },
    "other|ALL": {
@@ -10996,29 +10996,6 @@
       ]
      }
     ],
-    "openings_in_concrete": [],
-    "note": null
-   },
-   {
-    "id": "W28",
-    "family": "0.25",
-    "kind": "stair_lift",
-    "thickness": 0.25,
-    "x1": 14.53,
-    "y1": 25.904,
-    "x2": 14.53,
-    "y2": 28.6,
-    "length_gross": 2.696,
-    "height": 3.0,
-    "area_gross": 8.088,
-    "ded_door": 0.0,
-    "ded_window": 0.0,
-    "ded_opening": 0.0,
-    "ded_concrete": 8.088,
-    "ded_shaft_door": 0.0,
-    "shaft_doors": [],
-    "area_net": 0.0,
-    "openings": [],
     "openings_in_concrete": [],
     "note": null
    },
@@ -13574,6 +13551,9 @@
     "W34"
    ],
    "on_tr_partial_masonry": [],
+   "in_structural_concrete": [
+    "W28"
+   ],
    "lift_front_later": [
     "W61"
    ]

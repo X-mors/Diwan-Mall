@@ -744,7 +744,11 @@ def merge_floor(b, P: Params):
             lift_info["long_leg_beam_assumed"] = f"25x{P.lift_c_leg_beam * 100:.0f}"
         walls_m.append(c_leg)
         lift_info["long_leg_masonry_height"] = HL[c_leg["id"]]["H_mean"]
-    excl = set(on_concrete) | (set(on_tr) if P.tr_concrete else set()) | set(lift_front)
+    # walls lying (almost) entirely inside a STRUCTURAL column / shear wall / core (e.g. the Z core, owner 2026-11-27):
+    # concrete, not masonry -> listed as excluded instead of a counted wall with net 0
+    in_str = sorted(w["id"] for w in walls if w["id"] in conc_len and w["length_gross"] - conc_len[w["id"]] <= 0.10
+                    and w["id"] not in set(on_concrete) | set(on_tr) | set(lift_front))
+    excl = set(on_concrete) | (set(on_tr) if P.tr_concrete else set()) | set(lift_front) | set(in_str)
     mas_rows = []
     sd_walls, sd_none = shaft_door_walls(R["rooms"], walls_m, excl, P) if P.shaft_door else ({}, [])
     mas = masonry_estimate(walls_m, P, exclude_ids=excl, HW=HW, conc_len=conc_len, rows=mas_rows, shaft_doors=sd_walls)
@@ -917,6 +921,7 @@ def merge_floor(b, P: Params):
                             "n_shafts": sum(1 for r in R["rooms"] if r.get("category") == "shaft"),
                             "by_wall": sd_walls, "no_masonry_wall": sd_none},
             "masonry_excluded": {"on_concrete": on_concrete, "on_tr": on_tr if P.tr_concrete else [], "on_tr_partial_masonry": on_tr_partial,
+                                 "in_structural_concrete": in_str,
                                  "lift_front_later": lift_front},
             "masonry_heights": ({**{k: v for k, v in HW["_meta"].items()},
                                  **__import__("masonry_heights").floor_summary(HW, [w for w in walls if w["id"] not in on_concrete]),
