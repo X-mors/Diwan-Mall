@@ -309,7 +309,7 @@ def is_service_window(width, P):
     return abs(width - P.svc_window[0]) <= 0.03
 
 
-def masonry_estimate(walls, P, exclude_ids=(), HW=None, conc_len=None):
+def masonry_estimate(walls, P, exclude_ids=(), HW=None, conc_len=None, rows=None):
     """PRELIMINARY masonry per family x kind: gross x H - sum(width x height) of the openings
     bridged in each wall record (widths = masonry gaps measured by walls.py).
     HW (masonry_heights.wall_heights) -> H per wall = 3.20 - concrete depth above its centre line
@@ -338,6 +338,15 @@ def masonry_estimate(walls, P, exclude_ids=(), HW=None, conc_len=None):
         ded["concrete"] = lc * H
         gross_a = g * H
         net_a = gross_a - sum(ded.values())
+        if rows is not None:
+            rows.append({"id": w["id"], "family": w["family"], "kind": w["kind"], "thickness": w.get("thickness"),
+                         "x1": w["x1"], "y1": w["y1"], "x2": w["x2"], "y2": w["y2"],
+                         "length_gross": _r(g, 3), "height": _r(H, 3), "area_gross": _r(gross_a, 3),
+                         "ded_door": _r(ded["door"], 3), "ded_window": _r(ded["window"], 3),
+                         "ded_opening": _r(ded["opening"], 3), "ded_concrete": _r(ded["concrete"], 3),
+                         "area_net": _r(net_a, 3),
+                         "openings": [{"type": o["type"], "width": o["width"]} for o in w["openings"]],
+                         "note": w.get("reason") if w["id"] == "LIFT-C" else None})
         for key in (f"{w['family']}|{w['kind']}", f"{w['family']}|ALL", f"ALL|{w['kind']}", "ALL|ALL"):
             a = agg[key]
             a["n"] += 1
@@ -668,7 +677,8 @@ def merge_floor(b, P: Params):
         walls_m.append(c_leg)
         lift_info["long_leg_masonry_height"] = HL[c_leg["id"]]["H_mean"]
     excl = set(on_concrete) | (set(on_tr) if P.tr_concrete else set()) | set(lift_front)
-    mas = masonry_estimate(walls_m, P, exclude_ids=excl, HW=HW, conc_len=conc_len)
+    mas_rows = []
+    mas = masonry_estimate(walls_m, P, exclude_ids=excl, HW=HW, conc_len=conc_len, rows=mas_rows)
     mas_if_tr = masonry_estimate(walls_m, P, exclude_ids=set(on_concrete) | set(on_tr) | set(lift_front), HW=HW, conc_len=conc_len)
     mas_tr_masonry = masonry_estimate(walls_m, P, exclude_ids=set(on_concrete) | set(lift_front), HW=HW, conc_len=conc_len)
     front_len = sum(w["length_net"] for w in walls if w["id"] in lift_front)
@@ -822,6 +832,9 @@ def merge_floor(b, P: Params):
         "preliminary": {
             "status": "PRELIMINARY / تقديري — heights are assumptions, not read from the plans",
             "masonry": mas,
+            "masonry_walls": mas_rows,
+            "masonry_excluded": {"on_concrete": on_concrete, "on_tr": on_tr if P.tr_concrete else [],
+                                 "lift_front_later": lift_front},
             "masonry_heights": ({**{k: v for k, v in HW["_meta"].items()},
                                  **__import__("masonry_heights").floor_summary(HW, [w for w in walls if w["id"] not in on_concrete]),
                                  "rule": "H = 3.20 - concrete depth above the wall (slab 0.20/0.35 zone or beam depth); "

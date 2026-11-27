@@ -41,6 +41,7 @@ pitfalls, open questions). Findings per topic are in `docs/findings/`.
 | question | run | read |
 |---|---|---|
 | quantities, conflicts, Excel | `python tools/read_plan.py` | `output/plan/summary.xlsx`, `output/plan/Fnn.json` |
+| **masonry takeoff of a floor for review: numbered wall plan + Excel in the same order (ALWAYS send both when the owner asks for a floor takeoff)** | `python tools/takeoff_sheet.py 6` (after `read_plan.py`) | `output/takeoff/Fnn_masonry.png`, `Fnn_masonry.xlsx` |
 | masonry height of each wall | `python tools/masonry_heights.py 6` | `Fnn.json` → `walls.records[].masonry_height`, `preliminary.masonry_heights` |
 | slab zones / beams / columns of the structural sheets | `python tools/str_slabs.py --json` | `output/structure_str/slabs.json` |
 | overlay structural on architectural / floors on each other | `python tools/str_arch_compare.py 6`, `--arch 9 8`, `--str 8 9` | `output/compare/*.png/json` |
