@@ -1,0 +1,56 @@
+{
+ "params": {
+  "storey": 3.2,
+  "slab": 0.2,
+  "beam": 0.0,
+  "door_h": 2.3,
+  "door_extra_w": 0.05,
+  "svc_window": [
+   0.8,
+   0.6
+  ],
+  "svc_extra": 0.05,
+  "plaster_ded_room": 0.1,
+  "plaster_ded_corridor": 0.5,
+  "lift_front_out": true,
+  "lift_c_leg_masonry": true,
+  "window_sill": 1.0,
+  "window_h": null,
+  "opening_h": null,
+  "plaster_h": null,
+  "facade_h": null,
+  "tr_concrete": true,
+  "str_concrete": true,
+  "heights": "structural",
+  "masonry_height": 3.0,
+  "window_height_used": 2.0,
+  "opening_height_used": 2.3,
+  "plaster_height_used": 3.0,
+  "facade_height_used": 3.2
+ },
+ "floors": {
+  "F06": {
+   "level": 21.7,
+   "walls_n": 236,
+   "walls_gross": 339.33,
+   "walls_net": 257.89,
+   "net_0.12": 195.64,
+   "net_0.25": 48.33,
+   "doors": 36,
+   "doors_width": 33.4,
+   "windows_masonry": 24,
+   "windows_masonry_width": 44.992,
+   "rooms": 53,
+   "net_indoor_area": 558.446,
+   "ceiling_area": 543.994,
+   "gross_floor_area": 634.06,
+   "concrete_model_space": 17,
+   "concrete_tr_only": 7,
+   "concrete_interior_faces_m": 83.72,
+   "masonry_net_m2_prelim": 785.31,
+   "plaster_internal_m2_prelim": 1708.86,
+   "external_m2_prelim": 261.84,
+   "conflicts": 10
+  }
+ }
+}

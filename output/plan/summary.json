@@ -4,6 +4,16 @@
   "slab": 0.2,
   "beam": 0.0,
   "door_h": 2.3,
+  "door_extra_w": 0.05,
+  "svc_window": [
+   0.8,
+   0.6
+  ],
+  "svc_extra": 0.05,
+  "plaster_ded_room": 0.1,
+  "plaster_ded_corridor": 0.5,
+  "lift_front_out": true,
+  "lift_c_leg_masonry": true,
   "window_sill": 1.0,
   "window_h": null,
   "opening_h": null,
@@ -37,9 +47,9 @@
    "concrete_model_space": 19,
    "concrete_tr_only": 7,
    "concrete_interior_faces_m": 87.39,
-   "masonry_net_m2_prelim": 751.33,
-   "plaster_internal_m2_prelim": 2103.96,
-   "external_m2_prelim": 260.1,
+   "masonry_net_m2_prelim": 760.18,
+   "plaster_internal_m2_prelim": 1661.46,
+   "external_m2_prelim": 264.58,
    "conflicts": 9
   },
   "F03": {
@@ -60,9 +70,9 @@
    "concrete_model_space": 17,
    "concrete_tr_only": 7,
    "concrete_interior_faces_m": 84.0,
-   "masonry_net_m2_prelim": 770.08,
-   "plaster_internal_m2_prelim": 2135.7,
-   "external_m2_prelim": 256.7,
+   "masonry_net_m2_prelim": 778.93,
+   "plaster_internal_m2_prelim": 1700.28,
+   "external_m2_prelim": 261.18,
    "conflicts": 7
   },
   "F04": {
@@ -83,9 +93,9 @@
    "concrete_model_space": 17,
    "concrete_tr_only": 7,
    "concrete_interior_faces_m": 83.72,
-   "masonry_net_m2_prelim": 766.78,
-   "plaster_internal_m2_prelim": 2128.98,
-   "external_m2_prelim": 256.7,
+   "masonry_net_m2_prelim": 775.63,
+   "plaster_internal_m2_prelim": 1667.54,
+   "external_m2_prelim": 261.18,
    "conflicts": 9
   },
   "F05": {
@@ -106,9 +116,9 @@
    "concrete_model_space": 17,
    "concrete_tr_only": 7,
    "concrete_interior_faces_m": 83.72,
-   "masonry_net_m2_prelim": 765.17,
-   "plaster_internal_m2_prelim": 2120.22,
-   "external_m2_prelim": 257.36,
+   "masonry_net_m2_prelim": 774.13,
+   "plaster_internal_m2_prelim": 1679.47,
+   "external_m2_prelim": 261.84,
    "conflicts": 12
   },
   "F06": {
@@ -129,9 +139,9 @@
    "concrete_model_space": 17,
    "concrete_tr_only": 7,
    "concrete_interior_faces_m": 83.72,
-   "masonry_net_m2_prelim": 776.35,
-   "plaster_internal_m2_prelim": 2151.34,
-   "external_m2_prelim": 257.36,
+   "masonry_net_m2_prelim": 785.31,
+   "plaster_internal_m2_prelim": 1708.86,
+   "external_m2_prelim": 261.84,
    "conflicts": 10
   },
   "F07": {
@@ -152,9 +162,9 @@
    "concrete_model_space": 17,
    "concrete_tr_only": 7,
    "concrete_interior_faces_m": 83.72,
-   "masonry_net_m2_prelim": 772.07,
-   "plaster_internal_m2_prelim": 2146.19,
-   "external_m2_prelim": 256.3,
+   "masonry_net_m2_prelim": 780.8,
+   "plaster_internal_m2_prelim": 1665.08,
+   "external_m2_prelim": 260.78,
    "conflicts": 7
   },
   "F08": {
@@ -175,9 +185,9 @@
    "concrete_model_space": 17,
    "concrete_tr_only": 7,
    "concrete_interior_faces_m": 83.72,
-   "masonry_net_m2_prelim": 766.47,
-   "plaster_internal_m2_prelim": 2123.03,
-   "external_m2_prelim": 259.79,
+   "masonry_net_m2_prelim": 775.43,
+   "plaster_internal_m2_prelim": 1686.38,
+   "external_m2_prelim": 264.27,
    "conflicts": 9
   },
   "F09": {
@@ -198,9 +208,9 @@
    "concrete_model_space": 18,
    "concrete_tr_only": 7,
    "concrete_interior_faces_m": 86.12,
-   "masonry_net_m2_prelim": 561.02,
-   "plaster_internal_m2_prelim": 1824.03,
-   "external_m2_prelim": 139.69,
+   "masonry_net_m2_prelim": 570.68,
+   "plaster_internal_m2_prelim": 1460.3,
+   "external_m2_prelim": 144.17,
    "conflicts": 11
   },
   "F10": {
@@ -221,9 +231,9 @@
    "concrete_model_space": 18,
    "concrete_tr_only": 7,
    "concrete_interior_faces_m": 85.28,
-   "masonry_net_m2_prelim": 544.89,
-   "plaster_internal_m2_prelim": 1762.77,
-   "external_m2_prelim": 133.34,
+   "masonry_net_m2_prelim": 555.47,
+   "plaster_internal_m2_prelim": 1387.5,
+   "external_m2_prelim": 138.94,
    "conflicts": 11
   },
   "F11": {
@@ -244,9 +254,9 @@
    "concrete_model_space": 18,
    "concrete_tr_only": 7,
    "concrete_interior_faces_m": 81.26,
-   "masonry_net_m2_prelim": 529.95,
-   "plaster_internal_m2_prelim": 1707.77,
-   "external_m2_prelim": 144.71,
+   "masonry_net_m2_prelim": 539.6,
+   "plaster_internal_m2_prelim": 1355.73,
+   "external_m2_prelim": 149.19,
    "conflicts": 11
   }
  }

@@ -97,7 +97,14 @@ class Params:
     storey: float = STOREY_HEIGHT     # floor-to-floor (level marks +8.90 ... +28.10)
     slab: float = 0.20                # slab thickness: UNKNOWN (0.20 -> H_m 3.00 = the owner's legacy height)
     beam: float = 0.0                 # beam drop below the slab over the walls: UNKNOWN (no beams in these plans)
-    door_h: float = 2.30              # door height: the owner's legacy convention (not in the plans)
+    door_h: float = 2.30              # door height (owner 2026-11-27: 2.30)
+    door_extra_w: float = 0.05        # masonry opening of a door = drawn width + 5 cm (owner 2026-11-27)
+    svc_window: tuple = (0.80, 0.60)  # service windows 80 x 60 (owner 2026-11-27); drawn width 0.80
+    svc_extra: float = 0.05           # ... their masonry opening is 5 cm larger (0.85 x 0.65)
+    plaster_ded_room: float = 0.10    # internal plaster: offices / shops / rooms lose 10 cm at the bottom (owner 2026-11-27)
+    plaster_ded_corridor: float = 0.50  # corridor (+ lift lobby): 10 cm bottom + 40 cm top (suspended ceiling, corridor only)
+    lift_front_out: bool = True       # lift front wall under the 25x90 beam: masonry LATER, out of the takeoff now (owner)
+    lift_c_leg_masonry: bool = True   # the long leg of the C lift core is MASONRY, not concrete (owner 2026-11-27)
     window_sill: float = 1.00         # window sill: the owner's legacy 5th-floor takeoff (19 sills x 1.00)
     window_h: float | None = None     # None -> window up to the masonry top (H_m - sill)
     opening_h: float | None = None    # door-less openings (lift landings, 0.80 gap): None -> door_h
@@ -297,6 +304,10 @@ def _wall_opening_heights(op_type, P):
     return {"door": P.door_h, "window": P.win_h, "opening": P.open_h}.get(op_type, P.door_h)
 
 
+def is_service_window(width, P):
+    return abs(width - P.svc_window[0]) <= 0.03
+
+
 def masonry_estimate(walls, P, exclude_ids=(), HW=None, conc_len=None):
     """PRELIMINARY masonry per family x kind: gross x H - sum(width x height) of the openings
     bridged in each wall record (widths = masonry gaps measured by walls.py).
@@ -312,11 +323,16 @@ def masonry_estimate(walls, P, exclude_ids=(), HW=None, conc_len=None):
         ded = defaultdict(float)
         for o in w["openings"]:
             Ho = (mh.height_at(HW, *o["at"]) if HW and o.get("at") else None) or H
-            if o["type"] == "window" and P.window_h is None:
+            ow = o["width"]
+            if o["type"] == "window" and is_service_window(ow, P):
+                ow, h = P.svc_window[0] + P.svc_extra, min(P.svc_window[1] + P.svc_extra, Ho)
+            elif o["type"] == "window" and P.window_h is None:
                 h = max(0.0, Ho - P.window_sill)
             else:
                 h = min(_wall_opening_heights(o["type"], P), Ho)
-            ded[o["type"]] += o["width"] * h
+                if o["type"] == "door":
+                    ow += P.door_extra_w
+            ded[o["type"]] += ow * h
         lc = min((conc_len or {}).get(w["id"], 0.0), g)
         ded["concrete"] = lc * H
         gross_a = g * H
@@ -334,6 +350,70 @@ def masonry_estimate(walls, P, exclude_ids=(), HW=None, conc_len=None):
             a["length_in_str_concrete"] += lc
             a["area_net"] += net_a
     return {k: {kk: (int(vv) if kk == "n" else _r(vv, 2)) for kk, vv in v.items()} for k, v in sorted(agg.items())}
+
+
+def lift_core_rules(HW, walls, rooms, P):
+    """Owner 2026-11-27 on the lift core (structural C shape around the two lift shafts, open towards the lobby):
+       * the front wall on the open side (under beam 25x90, H 2.30) will be masonry LATER -> out of the takeoff now;
+       * the LONG leg of the C (opposite the open side) is masonry, not concrete -> added as a masonry wall.
+    Returns (front wall ids, synthetic C-leg wall or None, info)."""
+    from shapely.geometry import LineString, Point, box
+    info = {}
+    plan = (HW or {}).get("_plan")
+    lifts = [r for r in rooms if r["category"] == "lift" and r.get("centroid")]
+    if plan is None or not lifts:
+        return [], None, {"note": "no structural plan / no lift room"}
+    dx, dy = HW["_shift"]
+    core = None
+    for c in plan["columns"]:
+        g = c["_poly"]
+        x0, y0, x1, y1 = g.bounds
+        A = (x1 - x0) * (y1 - y0)
+        if A > 4 and g.area < 0.6 * A and any(box(x0, y0, x1, y1).contains(Point(r["centroid"][0] + dx, r["centroid"][1] + dy))
+                                              for r in lifts):
+            core = g
+            break
+    if core is None:
+        return [], None, {"note": "no C-shaped core around the lift"}
+    x0, y0, x1, y1 = core.bounds
+    edges = {"W": LineString([(x0, y0), (x0, y1)]), "E": LineString([(x1, y0), (x1, y1)]),
+             "S": LineString([(x0, y0), (x1, y0)]), "N": LineString([(x0, y1), (x1, y1)])}
+    cover = {k: e.buffer(0.03).intersection(core).area / max(e.length, 1e-9) for k, e in edges.items()}
+    open_side = min(cover, key=cover.get)
+    long_side = {"W": "E", "E": "W", "S": "N", "N": "S"}[open_side]
+    # leg thicknesses: cut the polygon at mid-span
+    if long_side in "EW":
+        ym = (y0 + y1) / 2
+        t = LineString([(x0, ym), (x1, ym)]).intersection(core).length
+        xm = (x0 + x1) / 2
+        tl = LineString([(xm, y0), (xm, y1)]).intersection(core).length / 2
+        xc = x1 - t / 2 if long_side == "E" else x0 + t / 2
+        a, b_ = (xc, y0 + tl), (xc, y1 - tl)
+    else:
+        xm = (x0 + x1) / 2
+        t = LineString([(xm, y0), (xm, y1)]).intersection(core).length
+        ym = (y0 + y1) / 2
+        tl = LineString([(x0, ym), (x1, ym)]).intersection(core).length / 2
+        yc = y1 - t / 2 if long_side == "N" else y0 + t / 2
+        a, b_ = (x0 + tl, yc), (x1 - tl, yc)
+    a = (a[0] - dx, a[1] - dy)
+    b_ = (b_[0] - dx, b_[1] - dy)
+    L = math.dist(a, b_)
+    leg = {"id": "LIFT-C", "x1": round(a[0], 3), "y1": round(a[1], 3), "x2": round(b_[0], 3), "y2": round(b_[1], 3),
+           "angle": 90.0 if long_side in "EW" else 0.0, "thickness": round(t, 3), "family": f"{t:.2f}",
+           "kind": "stair_lift", "length_gross": round(L, 3), "length_net": round(L, 3), "openings": [],
+           "openings_width": 0.0, "needs_check": False, "reason": "long leg of the C lift core: masonry per owner 2026-11-27 (structural shows concrete)"}
+    # front wall(s): masonry walls inside the core box, along the open side
+    fb = box(x0 - 0.15, y0 - 0.15, x1 + 0.15, y1 + 0.15)
+    oe = edges[open_side]
+    front = []
+    for w in walls:
+        ln = LineString([(w["x1"] + dx, w["y1"] + dy), (w["x2"] + dx, w["y2"] + dy)])
+        if ln.length > 0.3 and fb.contains(ln) and ln.distance(oe) < 0.45:
+            front.append(w["id"])
+    info = {"core_bounds": [round(v, 3) for v in core.bounds], "open_side": open_side, "long_leg_side": long_side,
+            "long_leg_thickness": round(t, 3), "long_leg_length": round(L, 3), "front_walls_out": front}
+    return front, (leg if P.lift_c_leg_masonry else None), info
 
 
 def concrete_faces_on_rooms(b, tr_only=False, band=0.03):
@@ -368,30 +448,84 @@ def concrete_faces_on_rooms(b, tr_only=False, band=0.03):
 GLAZING_FOOTPRINT_TOL = 0.30   # m: full-height glazing counts on the facade only this close to the rooms footprint edge
 
 
-def plaster_estimate(rooms_j, op, st, walls_tot, P, conc_geom=None, footprint=None):
-    """PRELIMINARY internal plaster (room faces) + ceilings + external facade estimate."""
+PLASTER_GROUP = {"office": "room", "service": "room", "stair": "room", "corridor": "corridor", "lobby": "corridor",
+                 "wc": "none"}
+PLASTER_GROUP_AR = {"room": "مكاتب/محلات/غرف (−10 سم أسفل)", "corridor": "الطرقة وبهو المصعد (−10 أسفل −40 أعلى: سقف معلق)",
+                    "none": "حمامات (لا محارة من الداخل)"}
+
+
+def plaster_estimate(rooms_j, op, st, walls_tot, P, conc_geom=None, footprint=None, HW=None, lift_front_len=0.0):
+    """PRELIMINARY internal plaster per room + ceilings + external facade (owner rules 2026-11-27):
+       wall face height per room = clear height under the slab at the room (3.20 - slab depth there; flat H_p
+       without the structural) minus 10 cm at the bottom in offices / shops / rooms / stairs, minus 10 cm bottom
+       + 40 cm top in the corridor and lift lobby (suspended ceiling there only); bathrooms: no internal plaster.
+       Ceilings: plastered in the 'room' group only (corridor = suspended ceiling, wc = no plaster).
+       Openings: door 2.30 (plaster follows the drawn width), service windows 0.80 x 0.60, other windows from the
+       sill to the window top (sill 1.00, up to the soffit) - still to be confirmed by the owner."""
     from rooms import INDOOR_CEILING
-    Hp = P.H_p
+    import masonry_heights as mh
     ind = [r for r in rooms_j["rooms"] if r.get("indoor") and r["category"] in INDOOR_CEILING]
+    win_by_id = {w["id"]: w for w in op["windows"]}
     bd = defaultdict(float)
+    g = defaultdict(lambda: defaultdict(float))
     for r in ind:
         for k, v in r["boundary"].items():
             bd[k] += v
+        grp = PLASTER_GROUP.get(r["category"], "room")
+        base = None
+        if HW and r.get("centroid"):
+            base = mh.height_at(HW, *r["centroid"])
+        base = base if base is not None else P.H_p
+        G = g[grp]
+        G["rooms"] += 1
+        G["area"] += r["area"]
+        if grp == "none":
+            G["faces_m_not_plastered"] += sum(r["boundary"].get(k, 0.0) for k in SOLID_KINDS)
+            continue
+        Hp = max(0.0, base - (P.plaster_ded_room if grp == "room" else P.plaster_ded_corridor))
+        solid = sum(r["boundary"].get(k, 0.0) for k in SOLID_KINDS)
+        G["solid_m"] += solid
+        G["faces"] += solid * Hp
+        G["strip_door"] += r["boundary"].get("door", 0.0) * max(0.0, Hp - P.door_h)
+        G["strip_open"] += r["boundary"].get("opening", 0.0) * max(0.0, Hp - P.open_h)
+        for wid in r.get("windows") or []:
+            w = win_by_id.get(wid)
+            if not w or w["kind"] != "window in masonry opening" or w.get("in_assembly"):
+                continue
+            if is_service_window(w["width"], P):
+                G["strip_win"] += max(0.0, w["width"] * Hp - P.svc_window[0] * P.svc_window[1])
+            else:
+                top = P.window_sill + (P.window_h if P.window_h is not None else max(0.0, base - P.window_sill))
+                G["strip_win"] += w["width"] * (min(P.window_sill, Hp) + max(0.0, Hp - top))
+        G["Hp_x_len"] += Hp * solid
+        if grp == "room":
+            G["ceiling"] += r["area"]
+    # lift front wall under the beam: out of the takeoff for now -> its lobby face is not plastered either
+    gc = g["corridor"]
+    Hc = (gc["Hp_x_len"] / gc["solid_m"]) if gc["solid_m"] else max(0.0, P.H_p - P.plaster_ded_corridor)
+    lift_front_face = lift_front_len * Hc
+    gc["faces"] = max(0.0, gc["faces"] - lift_front_face)
+    asm_w = sum(a["width"] for a in op.get("assemblies", []))
+    gr = g["room"]
+    Hr = (gr["Hp_x_len"] / gr["solid_m"]) if gr["solid_m"] else max(0.0, P.H_p - P.plaster_ded_room)
+    strip_asm = asm_w * max(0.0, Hr - P.door_h)
+    faces = sum(G["faces"] for G in g.values())
+    strip_door = sum(G["strip_door"] for G in g.values())
+    strip_open = sum(G["strip_open"] for G in g.values())
+    strip_win = sum(G["strip_win"] for G in g.values())
+    walls_int = faces + strip_door + strip_open + strip_win + strip_asm
+    ceil = sum(G["ceiling"] for G in g.values())
     solid = sum(bd.get(k, 0.0) for k in SOLID_KINDS)
     col = conc_geom if conc_geom is not None else bd.get("column", 0.0)
-    door_len = bd.get("door", 0.0)                 # both sides (each room on either side)
-    open_len = bd.get("opening", 0.0)
     win_masonry = [w for w in op["windows"] if w["kind"] == "window in masonry opening" and not w.get("in_assembly")]
     win_w = sum(w["width"] for w in win_masonry)
-    asm_w = sum(a["width"] for a in op.get("assemblies", []))
-    win_top = P.window_sill + P.win_h
-    strip_door = door_len * max(0.0, Hp - P.door_h)
-    strip_open = open_len * max(0.0, Hp - P.open_h)
-    strip_win = win_w * (min(P.window_sill, Hp) + max(0.0, Hp - win_top))
-    strip_asm = asm_w * max(0.0, Hp - P.door_h)
-    faces = solid * Hp
-    walls_int = faces + strip_door + strip_open + strip_win + strip_asm
-    ceil = rooms_j["totals"]["ceiling_area"]
+    by_group = {k: {"name_ar": PLASTER_GROUP_AR[k], "rooms": int(G["rooms"]), "floor_area_m2": _r(G["area"], 2),
+                    "mean_plaster_height": _r(G["Hp_x_len"] / G["solid_m"], 3) if G["solid_m"] else None,
+                    "solid_faces_m": _r(G["solid_m"], 2),
+                    "walls_m2": _r(G["faces"] + G["strip_door"] + G["strip_open"] + G["strip_win"], 2),
+                    "ceiling_m2": _r(G["ceiling"], 2),
+                    **({"faces_m_not_plastered": _r(G["faces_m_not_plastered"], 2)} if k == "none" else {})}
+                for k, G in g.items()}
     # external: outer outline of the facade minus full-height glazing (curtain wall, curved corners)
     # only glazing ON the building outline (F11 drew a stair eye on WIN; any glazing line far from
     # the rooms footprint edge is not facade) - the distance is taken from the item's end chord
@@ -419,7 +553,8 @@ def plaster_estimate(rooms_j, op, st, walls_tot, P, conc_geom=None, footprint=No
         glz = keep
     full_glz = sum(w["width"] for w in glz)
     outline = rooms_j["totals"]["gross_outline_perimeter"]
-    ext_open = win_w * P.win_h + asm_w * P.door_h
+    ext_open = sum(P.svc_window[0] * P.svc_window[1] if is_service_window(w["width"], P) else w["width"] * P.win_h
+                   for w in win_masonry) + asm_w * P.door_h
     ext_area = max(0.0, outline - full_glz) * P.H_f - ext_open
     S = st["summary"]
     tr_extra = (S.get("plaster_perimeter_all") or 0.0) - (S.get("plaster_perimeter_model_space_only") or 0.0)
@@ -432,10 +567,13 @@ def plaster_estimate(rooms_j, op, st, walls_tot, P, conc_geom=None, footprint=No
         return (walls_tot.get(f"ALL|{k}") or {}).get("length_net", 0.0)
     walls_based = 2 * (tnet("interior") + tnet("stair_lift")) + tnet("exterior") + tnet("shaft")
     return {
-        "H_p": Hp,
+        "H_p": {k: v["mean_plaster_height"] for k, v in by_group.items()},
+        "by_group": by_group,
+        "lift_front_face_out_m2": _r(lift_front_face, 2),
         "faces_by_kind_m": {k: _r(v, 2) for k, v in sorted(bd.items())},
         "solid_faces_m": _r(solid, 2), "of_which_concrete_m": _r(col, 2),
         "wall_faces_m2": _r(faces, 2),
+        "ceilings_not_plastered_m2": _r(g["corridor"]["area"] + g["none"]["area"], 2),
         "strip_above_doors_m2": _r(strip_door, 2), "strip_above_openings_m2": _r(strip_open, 2),
         "strip_windows_m2": _r(strip_win, 2), "strip_above_assemblies_m2": _r(strip_asm, 2),
         "internal_walls_m2": _r(walls_int, 2),
@@ -451,7 +589,7 @@ def plaster_estimate(rooms_j, op, st, walls_tot, P, conc_geom=None, footprint=No
             "structure_lift_shaft_faces_m": S.get("lift_shaft_perimeter"),
             "shaft_faces_m": _r(sum(r["perimeter"] for r in shafts), 2),
             "tr_block_concrete_faces_m": _r(tr_extra, 2),
-            "tr_block_concrete_faces_m2": _r(tr_extra * Hp, 2),
+            "tr_block_concrete_faces_m2": _r(tr_extra * Hr, 2),
             "open_air_solid_faces_m": _r(sum(v for k, v in oa.items() if k in SOLID_KINDS + ("slab_edge",)), 2),
             "corridor_lobby_virtual_line_m": _r(bd.get("virtual", 0.0), 2),
         },
@@ -517,11 +655,24 @@ def merge_floor(b, P: Params):
     if P.str_concrete and HW:
         import masonry_heights as mh
         conc_len = mh.concrete_overlap(HW, walls)
-    excl = set(on_concrete) | (set(on_tr) if P.tr_concrete else set())
-    mas = masonry_estimate(walls, P, exclude_ids=excl, HW=HW, conc_len=conc_len)
-    mas_if_tr = masonry_estimate(walls, P, exclude_ids=set(on_concrete) | set(on_tr), HW=HW, conc_len=conc_len)
-    mas_tr_masonry = masonry_estimate(walls, P, exclude_ids=on_concrete, HW=HW, conc_len=conc_len)
-    pla = plaster_estimate(R, O, S, W["totals"], P, conc_geom=concrete_faces_on_rooms(b), footprint=b.get("footprint"))
+    # lift core (owner 2026-11-27): front wall under the beam out for now, long C leg = masonry
+    lift_front, c_leg, lift_info = lift_core_rules(HW, walls, R["rooms"], P) if HW else ([], None, {})
+    if not P.lift_front_out:
+        lift_front = []
+    walls_m = list(walls)
+    if c_leg is not None:
+        import masonry_heights as mh
+        HL = mh.wall_heights(b["floor_no"], [c_leg], elements)
+        HW[c_leg["id"]] = HL[c_leg["id"]]
+        walls_m.append(c_leg)
+        lift_info["long_leg_masonry_height"] = HL[c_leg["id"]]["H_mean"]
+    excl = set(on_concrete) | (set(on_tr) if P.tr_concrete else set()) | set(lift_front)
+    mas = masonry_estimate(walls_m, P, exclude_ids=excl, HW=HW, conc_len=conc_len)
+    mas_if_tr = masonry_estimate(walls_m, P, exclude_ids=set(on_concrete) | set(on_tr) | set(lift_front), HW=HW, conc_len=conc_len)
+    mas_tr_masonry = masonry_estimate(walls_m, P, exclude_ids=set(on_concrete) | set(lift_front), HW=HW, conc_len=conc_len)
+    front_len = sum(w["length_net"] for w in walls if w["id"] in lift_front)
+    pla = plaster_estimate(R, O, S, W["totals"], P, conc_geom=concrete_faces_on_rooms(b), footprint=b.get("footprint"),
+                           HW=HW, lift_front_len=front_len)
 
     # ---- cross-checks between readers
     wop = Counter()
@@ -649,7 +800,7 @@ def merge_floor(b, P: Params):
                   "needs_check": len(nc_w),
                   "records": [_compact_wall(w) | ({"masonry_height": HW[w["id"]]["H_mean"],
                                                    "masonry_height_runs": HW[w["id"]]["runs"]} if HW else {})
-                              for w in walls]},
+                              for w in walls_m]},
         "openings": {"summary": O["summary"], "doors": [_compact_door(d) for d in doors],
                      "windows": [_compact_window(w) for w in O["windows"]],
                      "openings": [{k: o[k] for k in ("id", "kind", "width", "wall_t", "ends", "side_a", "side_b")
@@ -676,6 +827,8 @@ def merge_floor(b, P: Params):
                                          "structural sheet = ceiling of this floor"}
                                 if HW else {"rule": f"flat H_m = {P.H_m}"}),
             "masonry_excluded_on_concrete": on_concrete,
+            "lift_core": lift_info,
+            "masonry_excluded_lift_front_later": lift_front,
             "masonry_if_tr_is_real": {"excluded_walls": on_tr, "ALL|ALL": mas_if_tr.get("ALL|ALL")},
             "masonry_if_tr_were_masonry": {"ALL|ALL": mas_tr_masonry.get("ALL|ALL")},
             "masonry_excluded_on_tr": on_tr if P.tr_concrete else [],
@@ -1160,13 +1313,17 @@ def write_workbook(plans, P: Params, out_xlsx):
         if P.heights == "structural" else
         (f"ارتفاع الدور = {P.storey:.2f} م؛ سمك البلاطة (افتراض) = {P.slab:.2f} م؛ سقوط الكمرات (افتراض) = {P.beam:.2f} م؛ "
          f"ارتفاع المباني المستخدم = {P.H_m:.2f} م"),
-        f"ارتفاع الباب = {P.door_h:.2f} م (عُرف الحصر السابق)؛ جلسة الشباك = {P.window_sill:.2f} م؛ ارتفاع الشباك = "
+        f"الباب: ارتفاع {P.door_h:.2f} م وفتحة المباني = عرض اللوحة + {P.door_extra_w * 100:.0f} سم؛ شبابيك الخدمات "
+        f"{P.svc_window[0] * 100:.0f}×{P.svc_window[1] * 100:.0f} وفتحتها في المباني أكبر {P.svc_extra * 100:.0f} سم (المالك 2026-11-27)؛ "
+        f"باقي الشبابيك: جلسة = {P.window_sill:.2f} م (لم تتأكد بعد)؛ ارتفاع الشباك = "
         + ("ارتفاع المباني عند الشباك − الجلسة؛ " if P.heights == "structural" and P.window_h is None else f"{P.win_h:.2f} م؛ ") +
         f"ارتفاع الفتحات بلا باب (فتحتا المصعد، فتحة 0.80) = {P.open_h:.2f} م",
         "المساحة = الطول الإجمالي (طول المحور عبر الفتحات) × ارتفاع المباني − Σ(عرض الفتحة × ارتفاعها)؛ عرض الفتحة كما قِيس في الحائط (walls.py).",
-        "غير مشمول: الحائط الستائري والزجاج المنحني (لا مباني)، الدروات، الأعتاب/الكمرات فوق الفتحات، الحوائط الواقعة على خرسانة "
+        "غير مشمول (المالك 2026-11-27): الحائط الستائري والزجاج المنحني (لا مباني ولا دروة تحته)، دروات وأحواض الزرع، تراسات الدور 2، "
+        "البروز الديكوري للبلاطات، حائط واجهة المصعد تحت الكمرة 25×90 (مباني لاحقًا — خارج الحصر الآن). مضاف: الضلع الطويل لكور المصعد (حرف C) مباني وليس خرسانة. "
+        "وغير مشمول أيضًا: الأعتاب/الكمرات فوق الفتحات، الحوائط الواقعة على خرسانة "
         "(خرسانة المسقط + عناصر بلوك tr المؤكدة)، وأجزاء الحوائط الداخلة في أعمدة/كور الإنشائي (حوائط القص 0.30 المنفذة، كور Z، الأعمدة غير المرسومة معماريًا).",
-        "الأرقام للمراجعة والمقارنة فقط — تتغير بتأكيد المهندس للأبواب والجلسات."])
+        "مفتوح: جلسة وارتفاع الشبابيك العادية (غير شبابيك الخدمات)."])
     sh.header(["البند"] + F + sumcol)
     mfams = [f for f in FAMILY_ORDER if any(f"{f}|ALL" in p["preliminary"]["masonry"] for p in plans)]
     for f in mfams:
@@ -1190,12 +1347,15 @@ def write_workbook(plans, P: Params, out_xlsx):
 
     # ---------------- 8. preliminary plaster
     sh = Sheet(wb, "محارة تقديري", [W_ITEM + 6] + [14] * (nF + 1))
-    sh.title("حصر المحارة — تقديري أوّلي (الارتفاعات افتراضات، ليست من اللوحات)", [
-        f"ارتفاع المحارة الداخلية = {P.H_p:.2f} م (= ارتفاع الدور − البلاطة، حتى بطنية البلاطة؛ لا يوجد سقف معلق في اللوحات)",
-        f"الباب {P.door_h:.2f} م (يُضاف شريط فوق الباب على الوجهين)، الشباك من جلسة {P.window_sill:.2f} م بارتفاع {P.win_h:.2f} م (يُضاف شريط الجلسة من الداخل)",
+    sh.title("حصر المحارة — قواعد المالك 2026-11-27", [
+        f"ارتفاع المحارة الداخلية لكل غرفة = الصافي تحت البلاطة عند الغرفة (3.00 تحت بلاطة 20، 2.85 تحت 35) ناقص: "
+        f"{P.plaster_ded_room * 100:.0f} سم أسفل في المكاتب/المحلات/الغرف والسلالم، و{P.plaster_ded_corridor * 100:.0f} سم في الطرقة وبهو المصعد "
+        "(10 أسفل + 40 أعلى لوجود سقف معلق بالطرقة فقط). الحمامات: لا محارة من الداخل.",
+        f"الباب {P.door_h:.2f} م (يُضاف شريط فوق الباب على الوجهين)، شبابيك الخدمات {P.svc_window[0]:.2f}×{P.svc_window[1]:.2f}، "
+        f"باقي الشبابيك من جلسة {P.window_sill:.2f} م لحد البلاطة (لم تتأكد بعد). حائط واجهة المصعد تحت الكمرة خارج الحصر الآن (مباني ومحارة).",
         "الأوجه الداخلية من حدود الفراغات المسقوفة (rooms.py): حائط + عمود/كور + زعانف مهشّرة + امتدادات — كل وجه مرة في كل غرفة (الحائط الداخلي = وجهان).",
-        "الأسقف = مساحات الفراغات المسقوفة الصافية. لا تُحسب: الرجوعات (جوانب الفتحات)، أوجه بئر المصعد والشفتات، أوجه عناصر بلوك tr.",
-        f"الخارجي (محارة أم تكسية؟ مجهول) = (محيط الوجه الخارجي − الزجاج كامل الارتفاع) × {P.H_f:.2f} م − الشبابيك؛ يشمل حواف البلاطات ولا يشمل الدروات."])
+        "الأسقف = مساحات المكاتب/المحلات/الغرف والسلالم فقط (الطرقة سقف معلق، الحمامات بلا محارة). لا تُحسب: الرجوعات (جوانب الفتحات)، أوجه بئر المصعد والشفتات، أوجه عناصر بلوك tr.",
+        f"الخارجي = محارة ثم دهان (المالك 2026-11-27) = (محيط الوجه الخارجي − الزجاج كامل الارتفاع) × {P.H_f:.2f} م − الشبابيك؛ يشمل حواف البلاطات ولا يشمل الدروات."])
     sh.header(["البند"] + F + sumcol)
     nc = 1 + nF + len(sumcol)
     pl = lambda p, *k: _get(p, "preliminary", "plaster", *k, default=0.0)  # noqa: E731
@@ -1203,15 +1363,21 @@ def write_workbook(plans, P: Params, out_xlsx):
     sh.line(["أطوال الأوجه المصمتة الداخلية م ط"] + row_vals(lambda p: pl(p, "solid_faces_m")))
     sh.line(["  منها أوجه أعمدة/كور خرسانية م ط"] + row_vals(lambda p: pl(p, "of_which_concrete_m")))
     sh.line(["الأوجه × ارتفاع المحارة م²"] + row_vals(lambda p: pl(p, "wall_faces_m2")))
+    for gk, glab in (("room", "  مكاتب/محلات/غرف وسلالم (−10 سم) م²"), ("corridor", "  الطرقة وبهو المصعد (−50 سم) م²")):
+        sh.line([glab] + row_vals(lambda p, gk=gk: pl(p, "by_group", gk, "walls_m2")))
+    sh.line(["  متوسط ارتفاع المحارة — مكاتب/غرف م"] + row_vals(lambda p: pl(p, "by_group", "room", "mean_plaster_height"), add_sum=False), fmt="0.000")
+    sh.line(["  متوسط ارتفاع المحارة — الطرقة م"] + row_vals(lambda p: pl(p, "by_group", "corridor", "mean_plaster_height"), add_sum=False), fmt="0.000")
+    sh.line(["أوجه الحمامات من الداخل (بلا محارة) م ط"] + row_vals(lambda p: pl(p, "by_group", "none", "faces_m_not_plastered")))
     sh.line(["شرائط فوق الأبواب (الوجهان) م²"] + row_vals(lambda p: pl(p, "strip_above_doors_m2")))
     sh.line(["شرائط فوق الفتحات بلا باب م²"] + row_vals(lambda p: pl(p, "strip_above_openings_m2")))
     sh.line(["شرائط تحت/فوق الشبابيك (من الداخل) م²"] + row_vals(lambda p: pl(p, "strip_windows_m2")))
     sh.line(["شرائط فوق مجموعات باب+زجاج (F02) م²"] + row_vals(lambda p: pl(p, "strip_above_assemblies_m2")))
     sh.line(["محارة الحوائط والأعمدة الداخلية م²"] + row_vals(lambda p: pl(p, "internal_walls_m2")), total=True)
     sh.section("الأسقف", nc)
-    sh.line(["محارة الأسقف م²"] + row_vals(lambda p: pl(p, "ceilings_m2")), total=True)
+    sh.line(["محارة الأسقف (مكاتب/غرف وسلالم) م²"] + row_vals(lambda p: pl(p, "ceilings_m2")), total=True)
+    sh.line(["أسقف بلا محارة (طرقة بسقف معلق + حمامات) م²"] + row_vals(lambda p: pl(p, "ceilings_not_plastered_m2")))
     sh.line(["إجمالي المحارة الداخلية (حوائط + أسقف) م²"] + row_vals(lambda p: pl(p, "internal_total_m2")), total=True)
-    sh.section("الخارجي (محارة أو تكسية — مجهول)", nc)
+    sh.section("الخارجي (محارة ثم دهان)", nc)
     sh.line(["محيط الوجه الخارجي م"] + row_vals(lambda p: pl(p, "external", "outline_m")))
     sh.line(["زجاج كامل الارتفاع (ستائري + منحني) م"] + row_vals(lambda p: pl(p, "external", "full_height_glazing_m")))
     sh.line(["شبابيك ومجموعات الواجهة (العرض) م"] + row_vals(lambda p: pl(p, "external", "facade_windows_m")))
@@ -1277,13 +1443,16 @@ def write_workbook(plans, P: Params, out_xlsx):
               (("سمك البلاطة", P.slab, "افتراض (--heights flat)"),
                ("سقوط الكمرات فوق الحوائط", P.beam, "افتراض (--heights flat)"),
                ("ارتفاع المباني", P.H_m, "محسوب"))),
-            ("ارتفاع الباب", P.door_h, "مجهول — عُرف الحصر السابق 2.30"),
-            ("جلسة الشباك", P.window_sill, "مجهول — حصر الدور الخامس السابق (19 جلسة × 1.00)"),
+            ("ارتفاع الباب", P.door_h, "المالك 2026-11-27: 2.30"),
+            ("زيادة عرض فتحة الباب في المباني", P.door_extra_w, "المالك 2026-11-27: أعرض 5 سم من اللوحة"),
+            ("شبابيك الخدمات", f"{P.svc_window[0]:.2f}×{P.svc_window[1]:.2f} (+{P.svc_extra:.2f})", "المالك 2026-11-27: 80×60 وفتحة المباني أكبر 5 سم"),
+            ("جلسة الشباك (باقي الشبابيك)", P.window_sill, "مجهول — حصر الدور الخامس السابق (19 جلسة × 1.00)"),
             ("ارتفاع الشباك", P.win_h if P.heights == "flat" or P.window_h is not None else "ارتفاع المباني عند الشباك − الجلسة",
              "افتراض: حتى أعلى المباني (بلا مباني فوق الشباك)"),
             ("ارتفاع الفتحات بلا باب", P.open_h, "مجهول (فتحتا المصعد 1.25 / فتحة 0.80)"),
-            ("ارتفاع المحارة الداخلية", P.H_p, "افتراض: حتى بطنية البلاطة (لا سقف معلق في اللوحات)"),
-            ("ارتفاع الواجهة لكل دور", P.H_f, "افتراض: ارتفاع الدور كاملًا (يشمل حافة البلاطة)")):
+            ("خصم المحارة: مكاتب/محلات/غرف", P.plaster_ded_room, "المالك 2026-11-27: 10 سم من أسفل"),
+            ("خصم المحارة: الطرقة", P.plaster_ded_corridor, "المالك 2026-11-27: 10 أسفل + 40 أعلى (سقف معلق بالطرقة فقط)؛ الحمامات بلا محارة"),
+            ("ارتفاع الواجهة لكل دور", P.H_f, "محارة ثم دهان (المالك 2026-11-27)؛ ارتفاع الدور كاملًا (يشمل حافة البلاطة)")):
         sh.line([lab, v, src])
     sh.blank()
     sh.header(["سؤال مفتوح للمهندس", "", "الأثر"])
@@ -1296,18 +1465,12 @@ def write_workbook(plans, P: Params, out_xlsx):
     return out_xlsx
 
 
-OPEN_QUESTIONS = [
-    ("ارتفاع الأبواب (2.20 أم 2.30)، وباب السلم D90W25، ومجموعات التراس في F02", "خصم الأبواب وشرائط المحارة"),
-    ("جلسات وعتبات الشبابيك لكل مقاس، وشبابيك الخدمات 0.80", "خصم الشبابيك والجلسات"),
-    ("الحائط الستائري الغربي 13 م والزجاج المنحني: بلا مباني تمامًا؟ أم بانيل/دروة أسفله؟", "مباني ومحارة الواجهة الغربية"),
-    ("التشطيب الخارجي: محارة أم تكسية (حجر/كلادينج)؟ وخطوط WIN المتقطعة خارج الواجهة؟", "بند المحارة الخارجية كله"),
-    ("محارة أوجه الخرسانة: تُحسب على مقاسات الإنشائي المنفذة (حوائط القص 0.30، كور Z، الأعمدة غير المرسومة) لا المعماري؟ وماذا يملأ فرق الـ 0.10 بين حائط القص المعماري 0.40 والمنفذ 0.30؟", "محارة أوجه الخرسانة + مباني بسيطة"),
-    ("الواجهة الشمالية الشرقية 0.40 حول الشباك 1.217 (SW01 من tr في نفس المكان)", "مباني الواجهة"),
-    ("قواطيع مفقودة في بعض الأدوار (مكتب 2/3 في F05/F08، مكتب 14/15 في F04/F07، F02 مكاتب 6/7/8) — مقصود أم سهو رسم؟", "مباني ومحارة الأدوار المعنية"),
-    ("حمامات تظهر وتختفي بين الأدوار — توزيع مقصود لكل مستأجر؟", "مباني 0.12 ومحارة وأبواب D80"),
-    ("حائط واجهة المصعد 0.30 بين الفتحتين: مباني أم جزء من الكور؟ وما فوق فتحتي المصعد؟", "مباني 0.30"),
-    ("بئر المصعد والشفتات: محارة داخلية أم لا؟", "محارة"),
-    ("F02: التراسات وأحواض الزرع والدروات (خطّا MASS 8B1/8B2) والمنطقة 'Waiting For The Update'", "مباني ومحارة F02"),
+OPEN_QUESTIONS = [   # still open after the owner's answers of 2026-11-27 (docs/owner_answers.md)
+    ("الشبابيك العادية (غير شبابيك الخدمات 80×60): الجلسة كام وارتفاع الشباك لحد فين؟ وفتحتها في المباني أكبر 5 سم برضه؟", "خصم الشبابيك وشرائط المحارة"),
+    ("محارة بئر المصعد والشفتات من الداخل: تتحسب ولا لا؟", "محارة"),
+    ("أسقف الحمامات والسلالم: عليها محارة؟ (الحالي: السلالم زي الغرف −10 سم وسقفها محارة، الحمامات بلا محارة خالص)", "محارة الأسقف"),
+    ("الدور 8: الحائط الشمالي الشرقي مرسوم بخط واحد — سمكه زي الدور 6؟", "مباني الدور 8"),
+    ("الخط القصير جوه مكتب 4 (كل الأدوار): قاطوع جزئي؟ حافة كمرة؟ خط تكسية؟", "مباني بسيطة"),
     ("المحور د: خط X عند x=9.755 أم 1.50 م شرقًا كما في سلسلة الأبعاد؟", "الإسناد للمحاور فقط"),
 ]
 

@@ -19,6 +19,16 @@
   "slab": 0.2,
   "beam": 0.0,
   "door_h": 2.3,
+  "door_extra_w": 0.05,
+  "svc_window": [
+   0.8,
+   0.6
+  ],
+  "svc_extra": 0.05,
+  "plaster_ded_room": 0.1,
+  "plaster_ded_corridor": 0.5,
+  "lift_front_out": true,
+  "lift_c_leg_masonry": true,
   "window_sill": 1.0,
   "window_h": null,
   "opening_h": null,
@@ -4755,6 +4765,33 @@
      [
       2.739,
       2.79,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
+   },
+   {
+    "id": "LIFT-C",
+    "x1": 12.764,
+    "y1": 18.778,
+    "x2": 12.764,
+    "y2": 22.378,
+    "angle": 90.0,
+    "thickness": 0.3,
+    "family": "0.30",
+    "kind": "stair_lift",
+    "length_gross": 3.6,
+    "length_net": 3.6,
+    "openings_width": 0.0,
+    "needs_check": false,
+    "reason": "long leg of the C lift core: masonry per owner 2026-11-27 (structural shows concrete)",
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      3.6,
       0.2,
       3.0,
       "slab"
@@ -9822,7 +9859,7 @@
   ],
   "shafts": [
    {
-    "id": "SH01",
+    "id": "SH04",
     "kind": "shaft (X)",
     "size_txt": "0.40 x 0.60",
     "bbox": [
@@ -9833,13 +9870,20 @@
     ],
     "area": 0.24,
     "floors": [
+     "F02",
+     "F03",
+     "F04",
+     "F05",
+     "F06",
+     "F07",
+     "F08",
      "F09",
      "F10",
      "F11"
     ]
    },
    {
-    "id": "SH02",
+    "id": "SH06",
     "kind": "shaft (X)",
     "size_txt": "0.40 x 0.60",
     "bbox": [
@@ -9850,12 +9894,19 @@
     ],
     "area": 0.24,
     "floors": [
+     "F02",
+     "F03",
+     "F04",
+     "F05",
+     "F06",
+     "F07",
+     "F08",
      "F09",
      "F10"
     ]
    },
    {
-    "id": "SH03",
+    "id": "SH07",
     "kind": "post_at_curtain_wall (hatched)",
     "size_txt": "0.60 x 0.25",
     "bbox": [
@@ -9866,13 +9917,20 @@
     ],
     "area": 0.15,
     "floors": [
+     "F02",
+     "F03",
+     "F04",
+     "F05",
+     "F06",
+     "F07",
+     "F08",
      "F09",
      "F10",
      "F11"
     ]
    },
    {
-    "id": "SH04",
+    "id": "SH08",
     "kind": "shaft (X, DASH only)",
     "size_txt": "1.00 x 0.40",
     "bbox": [
@@ -9883,13 +9941,20 @@
     ],
     "area": 0.406,
     "floors": [
+     "F02",
+     "F03",
+     "F04",
+     "F05",
+     "F06",
+     "F07",
+     "F08",
      "F09",
      "F10",
      "F11"
     ]
    },
    {
-    "id": "SH05",
+    "id": "SH09",
     "kind": "shaft (X)",
     "size_txt": "0.40 x 1.03",
     "bbox": [
@@ -9900,13 +9965,20 @@
     ],
     "area": 0.412,
     "floors": [
+     "F02",
+     "F03",
+     "F04",
+     "F05",
+     "F06",
+     "F07",
+     "F08",
      "F09",
      "F10",
      "F11"
     ]
    },
    {
-    "id": "SH06",
+    "id": "SH10",
     "kind": "shaft (X)",
     "size_txt": "1.72 x 0.60",
     "bbox": [
@@ -9917,13 +9989,20 @@
     ],
     "area": 1.029,
     "floors": [
+     "F02",
+     "F03",
+     "F04",
+     "F05",
+     "F06",
+     "F07",
+     "F08",
      "F09",
      "F10",
      "F11"
     ]
    },
    {
-    "id": "SH07",
+    "id": "SH11",
     "kind": "post_at_curtain_wall (hatched)",
     "size_txt": "0.60 x 0.30",
     "bbox": [
@@ -9934,13 +10013,20 @@
     ],
     "area": 0.18,
     "floors": [
+     "F02",
+     "F03",
+     "F04",
+     "F05",
+     "F06",
+     "F07",
+     "F08",
      "F09",
      "F10",
      "F11"
     ]
    },
    {
-    "id": "SH08",
+    "id": "SH12",
     "kind": "shaft (X, DASH only)",
     "size_txt": "0.92 x 1.52",
     "bbox": [
@@ -9951,13 +10037,20 @@
     ],
     "area": 1.403,
     "floors": [
+     "F02",
+     "F03",
+     "F04",
+     "F05",
+     "F06",
+     "F07",
+     "F08",
      "F09",
      "F10",
      "F11"
     ]
    },
    {
-    "id": "SH09",
+    "id": "SH13",
     "kind": "post_at_curtain_wall (hatched)",
     "size_txt": "0.60 x 0.25",
     "bbox": [
@@ -9968,13 +10061,20 @@
     ],
     "area": 0.15,
     "floors": [
+     "F02",
+     "F03",
+     "F04",
+     "F05",
+     "F06",
+     "F07",
+     "F08",
      "F09",
      "F10",
      "F11"
     ]
    },
    {
-    "id": "SH10",
+    "id": "SH14",
     "kind": "box (no X)",
     "size_txt": "1.72 x 0.60",
     "bbox": [
@@ -9985,13 +10085,20 @@
     ],
     "area": 1.029,
     "floors": [
+     "F02",
+     "F03",
+     "F04",
+     "F05",
+     "F06",
+     "F07",
+     "F08",
      "F09",
      "F10",
      "F11"
     ]
    },
    {
-    "id": "SH11",
+    "id": "SH16",
     "kind": "shaft (X)",
     "size_txt": "1.57 x 0.60",
     "bbox": [
@@ -10002,13 +10109,20 @@
     ],
     "area": 0.942,
     "floors": [
+     "F02",
+     "F03",
+     "F04",
+     "F05",
+     "F06",
+     "F07",
+     "F08",
      "F09",
      "F10",
      "F11"
     ]
    },
    {
-    "id": "SH12",
+    "id": "SH18",
     "kind": "box (no X)",
     "size_txt": "0.40 x 0.60",
     "bbox": [
@@ -10019,12 +10133,19 @@
     ],
     "area": 0.24,
     "floors": [
+     "F02",
+     "F03",
+     "F04",
+     "F05",
+     "F06",
+     "F07",
+     "F08",
      "F09",
      "F10"
     ]
    },
    {
-    "id": "SH13",
+    "id": "SH20",
     "kind": "stray hatched try object",
     "size_txt": "0.35 x 0.82",
     "bbox": [
@@ -10039,7 +10160,7 @@
     ]
    },
    {
-    "id": "SH14",
+    "id": "SH21",
     "kind": "stray hatched try object",
     "size_txt": "0.82 x 0.35",
     "bbox": [
@@ -10318,24 +10439,24 @@
     "length_gross": 170.1,
     "length_net": 142.24,
     "area_gross": 504.42,
-    "ded_door": 64.08,
+    "ded_door": 67.53,
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 1.9,
     "length_in_str_concrete": 0.7,
-    "area_net": 438.45
+    "area_net": 435.0
    },
    "0.12|interior": {
     "n": 66,
     "length_gross": 140.28,
     "length_net": 113.42,
     "area_gross": 418.84,
-    "ded_door": 61.78,
+    "ded_door": 65.11,
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.66,
     "length_in_str_concrete": 0.22,
-    "area_net": 356.4
+    "area_net": 353.07
    },
    "0.12|shaft": {
     "n": 30,
@@ -10354,24 +10475,24 @@
     "length_gross": 7.45,
     "length_net": 6.45,
     "area_gross": 18.87,
-    "ded_door": 2.3,
+    "ded_door": 2.42,
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 1.23,
     "length_in_str_concrete": 0.48,
-    "area_net": 15.33
+    "area_net": 15.22
    },
    "0.25|ALL": {
     "n": 23,
     "length_gross": 49.8,
     "length_net": 29.28,
     "area_gross": 140.14,
-    "ded_door": 2.07,
-    "ded_window": 38.68,
+    "ded_door": 2.19,
+    "ded_window": 34.0,
     "ded_opening": 0.0,
     "ded_concrete": 10.78,
     "length_in_str_concrete": 3.72,
-    "area_net": 88.61
+    "area_net": 93.18
    },
    "0.25|exterior": {
     "n": 17,
@@ -10379,11 +10500,11 @@
     "length_net": 18.31,
     "area_gross": 109.12,
     "ded_door": 0.0,
-    "ded_window": 38.68,
+    "ded_window": 34.0,
     "ded_opening": 0.0,
     "ded_concrete": 2.5,
     "length_in_str_concrete": 0.94,
-    "area_net": 67.94
+    "area_net": 72.61
    },
    "0.25|interior": {
     "n": 2,
@@ -10414,24 +10535,24 @@
     "length_gross": 9.3,
     "length_net": 8.4,
     "area_gross": 23.29,
-    "ded_door": 2.07,
+    "ded_door": 2.19,
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 8.27,
     "length_in_str_concrete": 2.78,
-    "area_net": 12.95
+    "area_net": 12.83
    },
    "0.30|ALL": {
     "n": 2,
-    "length_gross": 3.21,
-    "length_net": 0.78,
-    "area_gross": 7.52,
+    "length_gross": 3.81,
+    "length_net": 3.81,
+    "area_gross": 11.42,
     "ded_door": 0.0,
     "ded_window": 0.0,
-    "ded_opening": 5.57,
+    "ded_opening": 0.0,
     "ded_concrete": 0.0,
     "length_in_str_concrete": 0.0,
-    "area_net": 1.95
+    "area_net": 11.42
    },
    "0.30|exterior": {
     "n": 1,
@@ -10445,17 +10566,17 @@
     "length_in_str_concrete": 0.0,
     "area_net": 0.62
    },
-   "0.30|interior": {
+   "0.30|stair_lift": {
     "n": 1,
-    "length_gross": 3.0,
-    "length_net": 0.58,
-    "area_gross": 6.9,
+    "length_gross": 3.6,
+    "length_net": 3.6,
+    "area_gross": 10.8,
     "ded_door": 0.0,
     "ded_window": 0.0,
-    "ded_opening": 5.57,
+    "ded_opening": 0.0,
     "ded_concrete": 0.0,
     "length_in_str_concrete": 0.0,
-    "area_net": 1.33
+    "area_net": 10.8
    },
    "0.40|ALL": {
     "n": 3,
@@ -10519,15 +10640,15 @@
    },
    "ALL|ALL": {
     "n": 132,
-    "length_gross": 228.43,
-    "length_net": 177.62,
-    "area_gross": 667.96,
-    "ded_door": 66.15,
-    "ded_window": 38.68,
-    "ded_opening": 5.57,
+    "length_gross": 229.03,
+    "length_net": 180.65,
+    "area_gross": 671.86,
+    "ded_door": 69.71,
+    "ded_window": 34.0,
+    "ded_opening": 0.0,
     "ded_concrete": 12.67,
     "length_in_str_concrete": 4.42,
-    "area_net": 544.89
+    "area_net": 555.47
    },
    "ALL|exterior": {
     "n": 19,
@@ -10535,23 +10656,23 @@
     "length_net": 19.05,
     "area_gross": 111.27,
     "ded_door": 0.0,
-    "ded_window": 38.68,
+    "ded_window": 34.0,
     "ded_opening": 0.0,
     "ded_concrete": 2.5,
     "length_in_str_concrete": 0.94,
-    "area_net": 70.09
+    "area_net": 74.77
    },
    "ALL|interior": {
-    "n": 73,
-    "length_gross": 147.04,
-    "length_net": 117.76,
-    "area_gross": 437.02,
-    "ded_door": 61.78,
+    "n": 72,
+    "length_gross": 144.04,
+    "length_net": 117.18,
+    "area_gross": 430.12,
+    "ded_door": 65.11,
     "ded_window": 0.0,
-    "ded_opening": 5.57,
+    "ded_opening": 0.0,
     "ded_concrete": 0.66,
     "length_in_str_concrete": 0.22,
-    "area_net": 369.0
+    "area_net": 364.34
    },
    "ALL|shaft": {
     "n": 34,
@@ -10566,16 +10687,16 @@
     "area_net": 77.51
    },
    "ALL|stair_lift": {
-    "n": 6,
-    "length_gross": 16.74,
-    "length_net": 14.84,
-    "area_gross": 42.16,
-    "ded_door": 4.37,
+    "n": 7,
+    "length_gross": 20.34,
+    "length_net": 18.44,
+    "area_gross": 52.96,
+    "ded_door": 4.6,
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 9.51,
     "length_in_str_concrete": 3.26,
-    "area_net": 28.28
+    "area_net": 38.85
    },
    "other|ALL": {
     "n": 3,
@@ -10647,6 +10768,25 @@
    "rule": "H = 3.20 - concrete depth above the wall (slab 0.20/0.35 zone or beam depth); structural sheet = ceiling of this floor"
   },
   "masonry_excluded_on_concrete": [],
+  "lift_core": {
+   "core_bounds": [
+    10.354,
+    18.478,
+    12.914,
+    22.678
+   ],
+   "open_side": "W",
+   "long_leg_side": "E",
+   "long_leg_thickness": 0.3,
+   "long_leg_length": 3.6,
+   "front_walls_out": [
+    "W68"
+   ],
+   "long_leg_masonry_height": 3.0
+  },
+  "masonry_excluded_lift_front_later": [
+   "W68"
+  ],
   "masonry_if_tr_is_real": {
    "excluded_walls": [
     "W1",
@@ -10657,29 +10797,29 @@
    ],
    "ALL|ALL": {
     "n": 132,
-    "length_gross": 228.43,
-    "length_net": 177.62,
-    "area_gross": 667.96,
-    "ded_door": 66.15,
-    "ded_window": 38.68,
-    "ded_opening": 5.57,
+    "length_gross": 229.03,
+    "length_net": 180.65,
+    "area_gross": 671.86,
+    "ded_door": 69.71,
+    "ded_window": 34.0,
+    "ded_opening": 0.0,
     "ded_concrete": 12.67,
     "length_in_str_concrete": 4.42,
-    "area_net": 544.89
+    "area_net": 555.47
    }
   },
   "masonry_if_tr_were_masonry": {
    "ALL|ALL": {
     "n": 137,
-    "length_gross": 232.65,
-    "length_net": 181.85,
-    "area_gross": 680.3,
-    "ded_door": 66.15,
-    "ded_window": 38.68,
-    "ded_opening": 5.57,
+    "length_gross": 233.25,
+    "length_net": 184.87,
+    "area_gross": 684.2,
+    "ded_door": 69.71,
+    "ded_window": 34.0,
+    "ded_opening": 0.0,
     "ded_concrete": 24.79,
     "length_in_str_concrete": 8.57,
-    "area_net": 545.11
+    "area_net": 555.69
    }
   },
   "masonry_excluded_on_tr": [
@@ -10702,7 +10842,42 @@
    "W87": 0.94
   },
   "plaster": {
-   "H_p": 3.0,
+   "H_p": {
+    "room": 2.874,
+    "none": null,
+    "corridor": 2.5
+   },
+   "by_group": {
+    "room": {
+     "name_ar": "مكاتب/محلات/غرف (−10 سم أسفل)",
+     "rooms": 21,
+     "floor_area_m2": 392.09,
+     "mean_plaster_height": 2.874,
+     "solid_faces_m": 283.36,
+     "walls_m2": 847.71,
+     "ceiling_m2": 392.09
+    },
+    "none": {
+     "name_ar": "حمامات (لا محارة من الداخل)",
+     "rooms": 9,
+     "floor_area_m2": 31.32,
+     "mean_plaster_height": null,
+     "solid_faces_m": 0.0,
+     "walls_m2": 0.0,
+     "ceiling_m2": 0.0,
+     "faces_m_not_plastered": 56.97
+    },
+    "corridor": {
+     "name_ar": "الطرقة وبهو المصعد (−10 أسفل −40 أعلى: سقف معلق)",
+     "rooms": 2,
+     "floor_area_m2": 84.68,
+     "mean_plaster_height": 2.5,
+     "solid_faces_m": 57.54,
+     "walls_m2": 147.69,
+     "ceiling_m2": 0.0
+    }
+   },
+   "lift_front_face_out_m2": 1.44,
    "faces_by_kind_m": {
     "column": 65.89,
     "door": 57.35,
@@ -10717,14 +10892,15 @@
    },
    "solid_faces_m": 397.87,
    "of_which_concrete_m": 84.35,
-   "wall_faces_m2": 1193.6,
-   "strip_above_doors_m2": 40.14,
-   "strip_above_openings_m2": 1.74,
-   "strip_windows_m2": 19.2,
+   "wall_faces_m2": 956.79,
+   "ceilings_not_plastered_m2": 116.0,
+   "strip_above_doors_m2": 19.23,
+   "strip_above_openings_m2": 0.5,
+   "strip_windows_m2": 18.88,
    "strip_above_assemblies_m2": 0.0,
-   "internal_walls_m2": 1254.67,
-   "ceilings_m2": 508.1,
-   "internal_total_m2": 1762.77,
+   "internal_walls_m2": 995.4,
+   "ceilings_m2": 392.09,
+   "internal_total_m2": 1387.5,
    "masonry_windows_width_m": 19.2,
    "assemblies_width_m": 0.0,
    "external": {
@@ -10733,14 +10909,14 @@
     "glazing_off_footprint": [],
     "facade_windows_m": 19.2,
     "H_f": 3.2,
-    "area_m2": 133.34
+    "area_m2": 138.94
    },
    "not_included": {
     "lift_shaft_faces_m": 10.97,
     "structure_lift_shaft_faces_m": 7.94,
     "shaft_faces_m": 27.15,
     "tr_block_concrete_faces_m": 22.17,
-    "tr_block_concrete_faces_m2": 66.51,
+    "tr_block_concrete_faces_m2": 63.72,
     "open_air_solid_faces_m": 44.32,
     "corridor_lobby_virtual_line_m": 14.0
    },

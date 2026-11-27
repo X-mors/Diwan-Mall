@@ -28,6 +28,12 @@ pitfalls, open questions). Findings per topic are in `docs/findings/`.
 - ETABS `tr`-block elements are real concrete (walls on them are not masonry); columns that exist only in the
   structural exist on site. `read_plan.py` therefore excludes walls on tr elements and deducts wall lengths inside
   structural columns/cores (`Params.tr_concrete`, `Params.str_concrete`).
+- 2026-11-27: door 2.30, masonry door opening = drawn width + 5 cm; service windows 80x60, masonry opening +5 cm;
+  facades = plaster + paint, no masonry/parapet under curtain walls; planters, planter parapets, F02 terraces and the
+  decorative slab projections are OUT of the takeoff; partitions differing between floors are intentional.
+  Internal plaster per room = clear height under the slab − 10 cm (offices/shops/rooms/stairs) or − 50 cm (corridor +
+  lift lobby: suspended ceiling); bathrooms have NO internal plaster; corridor/wc ceilings not plastered.
+  Lift core: the front wall under beam 25x90 is masonry LATER (out now); the long leg of the C core is MASONRY (`lift_core_rules`).
 - The owner speaks in ACTUAL floor numbers (8, 9, 10, 11): never use the structural sheet names in replies.
 - When asking the owner a question, attach a screenshot of the drawing (`tools/snap.py`, images in `output/questions/`).
 

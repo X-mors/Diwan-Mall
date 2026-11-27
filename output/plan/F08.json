@@ -19,6 +19,16 @@
   "slab": 0.2,
   "beam": 0.0,
   "door_h": 2.3,
+  "door_extra_w": 0.05,
+  "svc_window": [
+   0.8,
+   0.6
+  ],
+  "svc_extra": 0.05,
+  "plaster_ded_room": 0.1,
+  "plaster_ded_corridor": 0.5,
+  "lift_front_out": true,
+  "lift_c_leg_masonry": true,
   "window_sill": 1.0,
   "window_h": null,
   "opening_h": null,
@@ -7561,6 +7571,33 @@
       "slab"
      ]
     ]
+   },
+   {
+    "id": "LIFT-C",
+    "x1": 12.76,
+    "y1": 18.777,
+    "x2": 12.76,
+    "y2": 22.377,
+    "angle": 90.0,
+    "thickness": 0.3,
+    "family": "0.30",
+    "kind": "stair_lift",
+    "length_gross": 3.6,
+    "length_net": 3.6,
+    "openings_width": 0.0,
+    "needs_check": false,
+    "reason": "long leg of the C lift core: masonry per owner 2026-11-27 (structural shows concrete)",
+    "openings": [],
+    "masonry_height": 3.0,
+    "masonry_height_runs": [
+     [
+      0.0,
+      3.6,
+      0.2,
+      3.0,
+      "slab"
+     ]
+    ]
    }
   ]
  },
@@ -13741,12 +13778,12 @@
     "length_gross": 222.08,
     "length_net": 189.62,
     "area_gross": 655.83,
-    "ded_door": 74.66,
+    "ded_door": 78.68,
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 5.61,
     "length_in_str_concrete": 1.94,
-    "area_net": 575.56
+    "area_net": 571.54
    },
    "0.12|exterior": {
     "n": 16,
@@ -13765,12 +13802,12 @@
     "length_gross": 174.32,
     "length_net": 142.85,
     "area_gross": 518.03,
-    "ded_door": 72.36,
+    "ded_door": 76.27,
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 4.14,
     "length_in_str_concrete": 1.38,
-    "area_net": 441.53
+    "area_net": 437.62
    },
    "0.12|shaft": {
     "n": 52,
@@ -13789,24 +13826,24 @@
     "length_gross": 7.45,
     "length_net": 6.45,
     "area_gross": 18.87,
-    "ded_door": 2.3,
+    "ded_door": 2.42,
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 1.24,
     "length_in_str_concrete": 0.48,
-    "area_net": 15.32
+    "area_net": 15.21
    },
    "0.25|ALL": {
     "n": 39,
     "length_gross": 91.67,
     "length_net": 46.45,
     "area_gross": 261.63,
-    "ded_door": 2.07,
-    "ded_window": 86.3,
+    "ded_door": 2.19,
+    "ded_window": 82.67,
     "ded_opening": 0.0,
     "ded_concrete": 10.71,
     "length_in_str_concrete": 3.69,
-    "area_net": 162.55
+    "area_net": 166.07
    },
    "0.25|exterior": {
     "n": 27,
@@ -13814,11 +13851,11 @@
     "length_net": 31.79,
     "area_gross": 220.02,
     "ded_door": 0.0,
-    "ded_window": 86.3,
+    "ded_window": 82.67,
     "ded_opening": 0.0,
     "ded_concrete": 2.5,
     "length_in_str_concrete": 0.94,
-    "area_net": 131.23
+    "area_net": 134.86
    },
    "0.25|interior": {
     "n": 4,
@@ -13849,24 +13886,24 @@
     "length_gross": 9.27,
     "length_net": 8.37,
     "area_gross": 23.24,
-    "ded_door": 2.07,
+    "ded_door": 2.19,
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 8.21,
     "length_in_str_concrete": 2.75,
-    "area_net": 12.96
+    "area_net": 12.84
    },
    "0.30|ALL": {
     "n": 5,
-    "length_gross": 3.51,
-    "length_net": 1.09,
-    "area_gross": 8.35,
+    "length_gross": 4.11,
+    "length_net": 4.11,
+    "area_gross": 12.25,
     "ded_door": 0.0,
     "ded_window": 0.0,
-    "ded_opening": 5.57,
+    "ded_opening": 0.0,
     "ded_concrete": 0.0,
     "length_in_str_concrete": 0.0,
-    "area_net": 2.78
+    "area_net": 12.25
    },
    "0.30|exterior": {
     "n": 3,
@@ -13881,16 +13918,28 @@
     "area_net": 1.11
    },
    "0.30|interior": {
-    "n": 2,
-    "length_gross": 3.12,
-    "length_net": 0.7,
-    "area_gross": 7.24,
+    "n": 1,
+    "length_gross": 0.12,
+    "length_net": 0.12,
+    "area_gross": 0.34,
     "ded_door": 0.0,
     "ded_window": 0.0,
-    "ded_opening": 5.57,
+    "ded_opening": 0.0,
     "ded_concrete": 0.0,
     "length_in_str_concrete": 0.0,
-    "area_net": 1.67
+    "area_net": 0.34
+   },
+   "0.30|stair_lift": {
+    "n": 1,
+    "length_gross": 3.6,
+    "length_net": 3.6,
+    "area_gross": 10.8,
+    "ded_door": 0.0,
+    "ded_window": 0.0,
+    "ded_opening": 0.0,
+    "ded_concrete": 0.0,
+    "length_in_str_concrete": 0.0,
+    "area_net": 10.8
    },
    "0.40|ALL": {
     "n": 6,
@@ -13978,15 +14027,15 @@
    },
    "ALL|ALL": {
     "n": 224,
-    "length_gross": 326.06,
-    "length_net": 245.97,
-    "area_gross": 951.39,
-    "ded_door": 76.73,
-    "ded_window": 86.3,
-    "ded_opening": 5.57,
+    "length_gross": 326.66,
+    "length_net": 248.99,
+    "area_gross": 955.29,
+    "ded_door": 80.87,
+    "ded_window": 82.67,
+    "ded_opening": 0.0,
     "ded_concrete": 16.32,
     "length_in_str_concrete": 5.63,
-    "area_net": 766.47
+    "area_net": 775.43
    },
    "ALL|exterior": {
     "n": 59,
@@ -13994,23 +14043,23 @@
     "length_net": 44.75,
     "area_gross": 257.25,
     "ded_door": 0.0,
-    "ded_window": 86.3,
+    "ded_window": 82.67,
     "ded_opening": 0.0,
     "ded_concrete": 2.5,
     "length_in_str_concrete": 0.94,
-    "area_net": 168.46
+    "area_net": 172.09
    },
    "ALL|interior": {
-    "n": 99,
-    "length_gross": 180.31,
-    "length_net": 146.43,
-    "area_gross": 533.77,
-    "ded_door": 72.36,
+    "n": 98,
+    "length_gross": 177.31,
+    "length_net": 145.85,
+    "area_gross": 526.87,
+    "ded_door": 76.27,
     "ded_window": 0.0,
-    "ded_opening": 5.57,
+    "ded_opening": 0.0,
     "ded_concrete": 4.14,
     "length_in_str_concrete": 1.38,
-    "area_net": 451.7
+    "area_net": 446.46
    },
    "ALL|shaft": {
     "n": 59,
@@ -14025,16 +14074,16 @@
     "area_net": 118.03
    },
    "ALL|stair_lift": {
-    "n": 7,
-    "length_gross": 16.72,
-    "length_net": 14.82,
-    "area_gross": 42.11,
-    "ded_door": 4.37,
+    "n": 8,
+    "length_gross": 20.32,
+    "length_net": 18.42,
+    "area_gross": 52.91,
+    "ded_door": 4.6,
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 9.45,
     "length_in_str_concrete": 3.23,
-    "area_net": 28.28
+    "area_net": 38.85
    },
    "other|ALL": {
     "n": 10,
@@ -14119,6 +14168,25 @@
    "rule": "H = 3.20 - concrete depth above the wall (slab 0.20/0.35 zone or beam depth); structural sheet = ceiling of this floor"
   },
   "masonry_excluded_on_concrete": [],
+  "lift_core": {
+   "core_bounds": [
+    10.35,
+    18.477,
+    12.91,
+    22.677
+   ],
+   "open_side": "W",
+   "long_leg_side": "E",
+   "long_leg_thickness": 0.3,
+   "long_leg_length": 3.6,
+   "front_walls_out": [
+    "W115"
+   ],
+   "long_leg_masonry_height": 3.0
+  },
+  "masonry_excluded_lift_front_later": [
+   "W115"
+  ],
   "masonry_if_tr_is_real": {
    "excluded_walls": [
     "W214",
@@ -14130,29 +14198,29 @@
    ],
    "ALL|ALL": {
     "n": 224,
-    "length_gross": 326.06,
-    "length_net": 245.97,
-    "area_gross": 951.39,
-    "ded_door": 76.73,
-    "ded_window": 86.3,
-    "ded_opening": 5.57,
+    "length_gross": 326.66,
+    "length_net": 248.99,
+    "area_gross": 955.29,
+    "ded_door": 80.87,
+    "ded_window": 82.67,
+    "ded_opening": 0.0,
     "ded_concrete": 16.32,
     "length_in_str_concrete": 5.63,
-    "area_net": 766.47
+    "area_net": 775.43
    }
   },
   "masonry_if_tr_were_masonry": {
    "ALL|ALL": {
     "n": 230,
-    "length_gross": 330.64,
-    "length_net": 250.54,
-    "area_gross": 964.71,
-    "ded_door": 76.73,
-    "ded_window": 86.3,
-    "ded_opening": 5.57,
+    "length_gross": 331.24,
+    "length_net": 253.56,
+    "area_gross": 968.61,
+    "ded_door": 80.87,
+    "ded_window": 82.67,
+    "ded_opening": 0.0,
     "ded_concrete": 29.5,
     "length_in_str_concrete": 10.16,
-    "area_net": 766.61
+    "area_net": 775.58
    }
   },
   "masonry_excluded_on_tr": [
@@ -14179,7 +14247,42 @@
    "W88": 0.124
   },
   "plaster": {
-   "H_p": 3.0,
+   "H_p": {
+    "room": 2.866,
+    "none": null,
+    "corridor": 2.5
+   },
+   "by_group": {
+    "room": {
+     "name_ar": "مكاتب/محلات/غرف (−10 سم أسفل)",
+     "rooms": 24,
+     "floor_area_m2": 423.91,
+     "mean_plaster_height": 2.866,
+     "solid_faces_m": 369.28,
+     "walls_m2": 1121.62,
+     "ceiling_m2": 423.91
+    },
+    "none": {
+     "name_ar": "حمامات (لا محارة من الداخل)",
+     "rooms": 11,
+     "floor_area_m2": 36.67,
+     "mean_plaster_height": null,
+     "solid_faces_m": 0.0,
+     "walls_m2": 0.0,
+     "ceiling_m2": 0.0,
+     "faces_m_not_plastered": 71.33
+    },
+    "corridor": {
+     "name_ar": "الطرقة وبهو المصعد (−10 أسفل −40 أعلى: سقف معلق)",
+     "rooms": 2,
+     "floor_area_m2": 84.85,
+     "mean_plaster_height": 2.5,
+     "solid_faces_m": 54.57,
+     "walls_m2": 140.85,
+     "ceiling_m2": 0.0
+    }
+   },
+   "lift_front_face_out_m2": 1.44,
    "faces_by_kind_m": {
     "column": 57.85,
     "door": 66.48,
@@ -14194,14 +14297,15 @@
    },
    "solid_faces_m": 495.18,
    "of_which_concrete_m": 82.93,
-   "wall_faces_m2": 1485.55,
-   "strip_above_doors_m2": 46.54,
-   "strip_above_openings_m2": 1.74,
-   "strip_windows_m2": 43.77,
+   "wall_faces_m2": 1193.33,
+   "ceilings_not_plastered_m2": 121.52,
+   "strip_above_doors_m2": 22.29,
+   "strip_above_openings_m2": 0.5,
+   "strip_windows_m2": 46.36,
    "strip_above_assemblies_m2": 0.0,
-   "internal_walls_m2": 1577.6,
-   "ceilings_m2": 545.43,
-   "internal_total_m2": 2123.03,
+   "internal_walls_m2": 1262.47,
+   "ceilings_m2": 423.91,
+   "internal_total_m2": 1686.38,
    "masonry_windows_width_m": 43.775,
    "assemblies_width_m": 0.0,
    "external": {
@@ -14210,14 +14314,14 @@
     "glazing_off_footprint": [],
     "facade_windows_m": 43.77,
     "H_f": 3.2,
-    "area_m2": 259.79
+    "area_m2": 264.27
    },
    "not_included": {
     "lift_shaft_faces_m": 10.97,
     "structure_lift_shaft_faces_m": 7.94,
     "shaft_faces_m": 41.79,
     "tr_block_concrete_faces_m": 23.38,
-    "tr_block_concrete_faces_m2": 70.14,
+    "tr_block_concrete_faces_m2": 67.01,
     "open_air_solid_faces_m": 0.0,
     "corridor_lobby_virtual_line_m": 14.25
    },
