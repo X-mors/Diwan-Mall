@@ -35,6 +35,8 @@ pitfalls, open questions). Findings per topic are in `docs/findings/`.
   Internal plaster per room = clear height under the slab − 10 cm (offices/shops/rooms/stairs) or − 50 cm (corridor +
   lift lobby: suspended ceiling); bathrooms have NO internal plaster; NO ceiling plaster anywhere.
   Lift core: the front wall under beam 25x90 is masonry LATER (out now); the long leg of the C core is MASONRY (`lift_core_rules`), height 2.30 under an ASSUMED beam 25x90 (`Params.lift_c_leg_beam`, not drawn in the structural; owner to confirm).
+- 2026-11-27: every shaft/duct (rooms category `shaft`) has a service door 60x80 not drawn: deduct 0.48 m2 per duct per floor from
+  masonry (its wall, `Params.shaft_door`), plaster and paint (`plaster.shaft_doors_m2`).
 - The owner speaks in ACTUAL floor numbers (8, 9, 10, 11): never use the structural sheet names in replies.
 - When asking the owner a question, attach a screenshot of the drawing (`tools/snap.py`, images in `output/questions/`).
 

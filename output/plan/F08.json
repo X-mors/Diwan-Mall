@@ -30,6 +30,10 @@
   "plaster_ded_corridor": 0.5,
   "lift_front_out": true,
   "lift_c_leg_masonry": true,
+  "shaft_door": [
+   0.6,
+   0.8
+  ],
   "lift_c_leg_beam": 0.9,
   "window_sill": 0.0,
   "sill_floors": [
@@ -13766,8 +13770,9 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.48,
     "length_in_str_concrete": 0.0,
-    "area_net": 4.92
+    "area_net": 4.44
    },
    "0.10|shaft": {
     "n": 1,
@@ -13778,8 +13783,9 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.48,
     "length_in_str_concrete": 0.0,
-    "area_net": 4.92
+    "area_net": 4.44
    },
    "0.12|ALL": {
     "n": 160,
@@ -13790,8 +13796,9 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 5.61,
+    "ded_shaft_door": 5.76,
     "length_in_str_concrete": 1.94,
-    "area_net": 571.54
+    "area_net": 565.78
    },
    "0.12|exterior": {
     "n": 16,
@@ -13802,6 +13809,7 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
     "length_in_str_concrete": 0.0,
     "area_net": 19.68
    },
@@ -13814,8 +13822,9 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 4.14,
+    "ded_shaft_door": 0.48,
     "length_in_str_concrete": 1.38,
-    "area_net": 437.62
+    "area_net": 437.14
    },
    "0.12|shaft": {
     "n": 52,
@@ -13826,8 +13835,9 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.23,
+    "ded_shaft_door": 5.28,
     "length_in_str_concrete": 0.08,
-    "area_net": 99.03
+    "area_net": 93.75
    },
    "0.12|stair_lift": {
     "n": 3,
@@ -13838,6 +13848,7 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 1.24,
+    "ded_shaft_door": 0.0,
     "length_in_str_concrete": 0.48,
     "area_net": 15.21
    },
@@ -13850,8 +13861,9 @@
     "ded_window": 123.78,
     "ded_opening": 0.0,
     "ded_concrete": 10.71,
+    "ded_shaft_door": 0.48,
     "length_in_str_concrete": 3.69,
-    "area_net": 124.95
+    "area_net": 124.47
    },
    "0.25|exterior": {
     "n": 27,
@@ -13862,6 +13874,7 @@
     "ded_window": 123.78,
     "ded_opening": 0.0,
     "ded_concrete": 2.5,
+    "ded_shaft_door": 0.0,
     "length_in_str_concrete": 0.94,
     "area_net": 93.74
    },
@@ -13874,6 +13887,7 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
     "length_in_str_concrete": 0.0,
     "area_net": 7.73
    },
@@ -13886,8 +13900,9 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.48,
     "length_in_str_concrete": 0.0,
-    "area_net": 10.64
+    "area_net": 10.16
    },
    "0.25|stair_lift": {
     "n": 4,
@@ -13898,6 +13913,7 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 8.21,
+    "ded_shaft_door": 0.0,
     "length_in_str_concrete": 2.75,
     "area_net": 12.84
    },
@@ -13910,6 +13926,7 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
     "length_in_str_concrete": 0.0,
     "area_net": 9.73
    },
@@ -13922,6 +13939,7 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
     "length_in_str_concrete": 0.0,
     "area_net": 1.11
    },
@@ -13934,6 +13952,7 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
     "length_in_str_concrete": 0.0,
     "area_net": 0.34
    },
@@ -13946,6 +13965,7 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
     "length_in_str_concrete": 0.0,
     "area_net": 8.28
    },
@@ -13958,6 +13978,7 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
     "length_in_str_concrete": 0.0,
     "area_net": 4.71
    },
@@ -13970,6 +13991,7 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
     "length_in_str_concrete": 0.0,
     "area_net": 4.09
    },
@@ -13982,6 +14004,7 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
     "length_in_str_concrete": 0.0,
     "area_net": 0.62
    },
@@ -13994,6 +14017,7 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
     "length_in_str_concrete": 0.0,
     "area_net": 1.99
    },
@@ -14006,6 +14030,7 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
     "length_in_str_concrete": 0.0,
     "area_net": 1.99
    },
@@ -14018,6 +14043,7 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
     "length_in_str_concrete": 0.0,
     "area_net": 2.33
    },
@@ -14030,6 +14056,7 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
     "length_in_str_concrete": 0.0,
     "area_net": 2.33
    },
@@ -14042,8 +14069,9 @@
     "ded_window": 123.78,
     "ded_opening": 0.0,
     "ded_concrete": 16.32,
+    "ded_shaft_door": 6.72,
     "length_in_str_concrete": 5.63,
-    "area_net": 731.8
+    "area_net": 725.08
    },
    "ALL|exterior": {
     "n": 59,
@@ -14054,6 +14082,7 @@
     "ded_window": 123.78,
     "ded_opening": 0.0,
     "ded_concrete": 2.5,
+    "ded_shaft_door": 0.0,
     "length_in_str_concrete": 0.94,
     "area_net": 130.97
    },
@@ -14066,8 +14095,9 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 4.14,
+    "ded_shaft_door": 0.48,
     "length_in_str_concrete": 1.38,
-    "area_net": 446.46
+    "area_net": 445.98
    },
    "ALL|shaft": {
     "n": 59,
@@ -14078,8 +14108,9 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.23,
+    "ded_shaft_door": 6.24,
     "length_in_str_concrete": 0.08,
-    "area_net": 118.03
+    "area_net": 111.79
    },
    "ALL|stair_lift": {
     "n": 8,
@@ -14090,6 +14121,7 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 9.45,
+    "ded_shaft_door": 0.0,
     "length_in_str_concrete": 3.23,
     "area_net": 36.33
    },
@@ -14102,6 +14134,7 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
     "length_in_str_concrete": 0.0,
     "area_net": 11.62
    },
@@ -14114,6 +14147,7 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
     "length_in_str_concrete": 0.0,
     "area_net": 8.02
    },
@@ -14126,6 +14160,7 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
     "length_in_str_concrete": 0.0,
     "area_net": 0.15
    },
@@ -14138,6 +14173,7 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
     "length_in_str_concrete": 0.0,
     "area_net": 3.44
    }
@@ -14159,6 +14195,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.169,
     "openings": [],
     "openings_in_concrete": [],
@@ -14180,6 +14218,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.624,
     "openings": [],
     "openings_in_concrete": [],
@@ -14201,6 +14241,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 4.332,
     "openings": [],
     "openings_in_concrete": [],
@@ -14222,6 +14264,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.855,
     "openings": [],
     "openings_in_concrete": [],
@@ -14243,6 +14287,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.855,
     "openings": [],
     "openings_in_concrete": [],
@@ -14264,6 +14310,8 @@
     "ded_window": 10.602,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 9.377,
     "openings": [
      {
@@ -14302,6 +14350,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.855,
     "openings": [],
     "openings_in_concrete": [],
@@ -14323,6 +14373,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.855,
     "openings": [],
     "openings_in_concrete": [],
@@ -14344,6 +14396,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.14,
     "openings": [],
     "openings_in_concrete": [],
@@ -14365,6 +14419,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.855,
     "openings": [],
     "openings_in_concrete": [],
@@ -14386,6 +14442,8 @@
     "ded_window": 5.13,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 5.059,
     "openings": [
      {
@@ -14416,6 +14474,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.427,
     "openings": [],
     "openings_in_concrete": [],
@@ -14437,6 +14497,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.527,
     "openings": [],
     "openings_in_concrete": [],
@@ -14458,6 +14520,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.365,
     "openings": [],
     "openings_in_concrete": [],
@@ -14479,6 +14543,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.074,
     "openings": [],
     "openings_in_concrete": [],
@@ -14500,6 +14566,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.855,
     "openings": [],
     "openings_in_concrete": [],
@@ -14521,6 +14589,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.995,
     "openings": [],
     "openings_in_concrete": [],
@@ -14542,6 +14612,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.342,
     "openings": [],
     "openings_in_concrete": [],
@@ -14563,6 +14635,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 7.872,
     "openings": [],
     "openings_in_concrete": [],
@@ -14584,7 +14658,11 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 1.713,
+    "ded_shaft_door": 0.48,
+    "shaft_doors": [
+     "F08-R39"
+    ],
+    "area_net": 1.233,
     "openings": [],
     "openings_in_concrete": [],
     "note": null
@@ -14605,6 +14683,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.231,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.439,
     "openings": [],
     "openings_in_concrete": [],
@@ -14626,6 +14706,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.577,
     "openings": [],
     "openings_in_concrete": [],
@@ -14647,6 +14729,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 13.537,
     "openings": [],
     "openings_in_concrete": [],
@@ -14668,6 +14752,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.482,
     "openings": [],
     "openings_in_concrete": [],
@@ -14689,6 +14775,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.192,
     "openings": [],
     "openings_in_concrete": [],
@@ -14710,6 +14798,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 4.191,
     "openings": [],
     "openings_in_concrete": [],
@@ -14731,6 +14821,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.311,
     "openings": [],
     "openings_in_concrete": [],
@@ -14752,6 +14844,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.206,
     "openings": [],
     "openings_in_concrete": [],
@@ -14773,6 +14867,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.5,
     "openings": [],
     "openings_in_concrete": [],
@@ -14794,6 +14890,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.898,
     "openings": [],
     "openings_in_concrete": [],
@@ -14815,6 +14913,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.362,
     "openings": [
      {
@@ -14845,6 +14945,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.863,
     "openings": [
      {
@@ -14875,6 +14977,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.5,
     "openings": [],
     "openings_in_concrete": [],
@@ -14896,6 +15000,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.361,
     "openings": [],
     "openings_in_concrete": [],
@@ -14917,7 +15023,11 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 2.041,
+    "ded_shaft_door": 0.48,
+    "shaft_doors": [
+     "F08-R40"
+    ],
+    "area_net": 1.561,
     "openings": [],
     "openings_in_concrete": [],
     "note": null
@@ -14938,6 +15048,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.364,
     "openings": [],
     "openings_in_concrete": [],
@@ -14959,6 +15071,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.87,
     "openings": [],
     "openings_in_concrete": [],
@@ -14980,6 +15094,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 5.905,
     "openings": [],
     "openings_in_concrete": [],
@@ -15001,6 +15117,8 @@
     "ded_window": 7.5,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.607,
     "openings": [
      {
@@ -15031,6 +15149,8 @@
     "ded_window": 7.05,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.786,
     "openings": [
      {
@@ -15061,6 +15181,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 18.495,
     "openings": [],
     "openings_in_concrete": [],
@@ -15082,6 +15204,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.37,
     "openings": [
      {
@@ -15112,6 +15236,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.545,
     "openings": [
      {
@@ -15142,6 +15268,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.355,
     "openings": [],
     "openings_in_concrete": [],
@@ -15163,6 +15291,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.365,
     "openings": [
      {
@@ -15193,6 +15323,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.6,
     "openings": [],
     "openings_in_concrete": [],
@@ -15214,6 +15346,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.56,
     "openings": [],
     "openings_in_concrete": [],
@@ -15235,6 +15369,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.785,
     "openings": [
      {
@@ -15265,6 +15401,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 17.955,
     "openings": [],
     "openings_in_concrete": [],
@@ -15286,6 +15424,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.9,
     "openings": [],
     "openings_in_concrete": [],
@@ -15307,6 +15447,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.37,
     "openings": [
      {
@@ -15337,6 +15479,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.545,
     "openings": [
      {
@@ -15367,7 +15511,11 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 1.98,
+    "ded_shaft_door": 0.48,
+    "shaft_doors": [
+     "F08-R41"
+    ],
+    "area_net": 1.5,
     "openings": [],
     "openings_in_concrete": [],
     "note": null
@@ -15388,6 +15536,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.56,
     "openings": [],
     "openings_in_concrete": [],
@@ -15409,6 +15559,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.98,
     "openings": [],
     "openings_in_concrete": [],
@@ -15430,6 +15582,8 @@
     "ded_window": 7.05,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.651,
     "openings": [
      {
@@ -15460,6 +15614,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 4.723,
     "openings": [],
     "openings_in_concrete": [],
@@ -15481,7 +15637,11 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 1.311,
+    "ded_shaft_door": 0.48,
+    "shaft_doors": [
+     "F08-R43"
+    ],
+    "area_net": 0.831,
     "openings": [],
     "openings_in_concrete": [],
     "note": null
@@ -15502,6 +15662,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 5.743,
     "openings": [],
     "openings_in_concrete": [],
@@ -15523,6 +15685,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 7.124,
     "openings": [
      {
@@ -15553,6 +15717,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.038,
     "openings": [],
     "openings_in_concrete": [],
@@ -15574,7 +15740,11 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 3.648,
+    "ded_shaft_door": 0.48,
+    "shaft_doors": [
+     "F08-R42"
+    ],
+    "area_net": 3.168,
     "openings": [],
     "openings_in_concrete": [],
     "note": null
@@ -15595,6 +15765,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.066,
     "openings": [],
     "openings_in_concrete": [],
@@ -15616,6 +15788,8 @@
     "ded_window": 7.5,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.039,
     "openings": [
      {
@@ -15646,6 +15820,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.855,
     "openings": [],
     "openings_in_concrete": [],
@@ -15667,6 +15843,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.622,
     "openings": [],
     "openings_in_concrete": [],
@@ -15688,6 +15866,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 4.018,
     "openings": [],
     "openings_in_concrete": [],
@@ -15709,6 +15889,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.029,
     "openings": [],
     "openings_in_concrete": [],
@@ -15730,6 +15912,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.02,
     "openings": [],
     "openings_in_concrete": [],
@@ -15751,6 +15935,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.482,
     "openings": [],
     "openings_in_concrete": [],
@@ -15772,6 +15958,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.029,
     "openings": [],
     "openings_in_concrete": [],
@@ -15793,6 +15981,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.02,
     "openings": [],
     "openings_in_concrete": [],
@@ -15814,6 +16004,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.406,
     "openings": [],
     "openings_in_concrete": [],
@@ -15835,6 +16027,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.122,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 9.567,
     "openings": [],
     "openings_in_concrete": [],
@@ -15856,6 +16050,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.357,
     "openings": [],
     "openings_in_concrete": [],
@@ -15877,6 +16073,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.522,
     "openings": [],
     "openings_in_concrete": [],
@@ -15898,6 +16096,8 @@
     "ded_window": 7.05,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.33,
     "openings": [
      {
@@ -15928,6 +16128,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 7.437,
     "openings": [
      {
@@ -15958,6 +16160,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 8.088,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.0,
     "openings": [],
     "openings_in_concrete": [],
@@ -15979,6 +16183,8 @@
     "ded_window": 1.105,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 8.153,
     "openings": [
      {
@@ -16017,6 +16223,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.145,
     "openings": [],
     "openings_in_concrete": [],
@@ -16038,6 +16246,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.269,
     "openings": [],
     "openings_in_concrete": [],
@@ -16059,6 +16269,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 18.495,
     "openings": [],
     "openings_in_concrete": [],
@@ -16080,6 +16292,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.842,
     "openings": [
      {
@@ -16110,6 +16324,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.92,
     "openings": [
      {
@@ -16140,6 +16356,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.946,
     "openings": [
      {
@@ -16170,6 +16388,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.084,
     "openings": [
      {
@@ -16200,6 +16420,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 8.811,
     "openings": [],
     "openings_in_concrete": [],
@@ -16221,6 +16443,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.456,
     "openings": [],
     "openings_in_concrete": [],
@@ -16242,6 +16466,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 4.683,
     "openings": [],
     "openings_in_concrete": [],
@@ -16263,6 +16489,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.37,
     "openings": [
      {
@@ -16293,6 +16521,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 4.683,
     "openings": [],
     "openings_in_concrete": [],
@@ -16314,6 +16544,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.805,
     "openings": [
      {
@@ -16344,6 +16576,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.56,
     "openings": [],
     "openings_in_concrete": [],
@@ -16365,6 +16599,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.595,
     "openings": [
      {
@@ -16395,6 +16631,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.636,
     "openings": [],
     "openings_in_concrete": [],
@@ -16416,6 +16654,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.066,
     "openings": [],
     "openings_in_concrete": [],
@@ -16437,6 +16677,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.762,
     "openings": [],
     "openings_in_concrete": [],
@@ -16458,6 +16700,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.567,
     "openings": [],
     "openings_in_concrete": [],
@@ -16479,6 +16723,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.218,
     "openings": [],
     "openings_in_concrete": [],
@@ -16500,7 +16746,11 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 5.145,
+    "ded_shaft_door": 0.48,
+    "shaft_doors": [
+     "F08-R45"
+    ],
+    "area_net": 4.665,
     "openings": [],
     "openings_in_concrete": [],
     "note": null
@@ -16521,6 +16771,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 5.145,
     "openings": [],
     "openings_in_concrete": [],
@@ -16542,6 +16794,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.16,
     "openings": [],
     "openings_in_concrete": [],
@@ -16563,6 +16817,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.039,
     "openings": [],
     "openings_in_concrete": [],
@@ -16584,7 +16840,11 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 2.859,
+    "ded_shaft_door": 0.48,
+    "shaft_doors": [
+     "F08-R44"
+    ],
+    "area_net": 2.379,
     "openings": [],
     "openings_in_concrete": [],
     "note": null
@@ -16605,6 +16865,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.039,
     "openings": [],
     "openings_in_concrete": [],
@@ -16626,6 +16888,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.965,
     "openings": [
      {
@@ -16656,6 +16920,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 7.009,
     "openings": [],
     "openings_in_concrete": [],
@@ -16677,6 +16943,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 4.827,
     "openings": [],
     "openings_in_concrete": [],
@@ -16698,6 +16966,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 5.085,
     "openings": [],
     "openings_in_concrete": [],
@@ -16719,6 +16989,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.471,
     "openings": [
      {
@@ -16749,6 +17021,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.339,
     "openings": [
      {
@@ -16779,6 +17053,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 6.87,
     "openings": [],
     "openings_in_concrete": [],
@@ -16800,6 +17076,8 @@
     "ded_window": 0.553,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 8.785,
     "openings": [
      {
@@ -16830,6 +17108,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 9.06,
     "openings": [],
     "openings_in_concrete": [],
@@ -16851,6 +17131,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.37,
     "openings": [
      {
@@ -16881,6 +17163,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.063,
     "openings": [
      {
@@ -16911,6 +17195,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.548,
     "openings": [],
     "openings_in_concrete": [],
@@ -16932,6 +17218,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 7.077,
     "openings": [],
     "openings_in_concrete": [],
@@ -16953,6 +17241,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.883,
     "openings": [],
     "openings_in_concrete": [],
@@ -16974,6 +17264,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.24,
     "openings": [],
     "openings_in_concrete": [],
@@ -16995,6 +17287,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.014,
     "openings": [
      {
@@ -17025,6 +17319,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 5.584,
     "openings": [
      {
@@ -17055,6 +17351,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.975,
     "openings": [],
     "openings_in_concrete": [],
@@ -17076,6 +17374,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 5.886,
     "openings": [],
     "openings_in_concrete": [],
@@ -17097,6 +17397,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.991,
     "openings": [],
     "openings_in_concrete": [],
@@ -17118,6 +17420,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.385,
     "openings": [],
     "openings_in_concrete": [],
@@ -17139,7 +17443,11 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 4.923,
+    "ded_shaft_door": 0.48,
+    "shaft_doors": [
+     "F08-R46"
+    ],
+    "area_net": 4.443,
     "openings": [],
     "openings_in_concrete": [],
     "note": null
@@ -17160,6 +17468,8 @@
     "ded_window": 0.553,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.923,
     "openings": [
      {
@@ -17190,6 +17500,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 2.498,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.195,
     "openings": [],
     "openings_in_concrete": [],
@@ -17211,6 +17523,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.08,
     "openings": [],
     "openings_in_concrete": [],
@@ -17232,7 +17546,11 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 5.325,
+    "ded_shaft_door": 0.48,
+    "shaft_doors": [
+     "F08-R47"
+    ],
+    "area_net": 4.845,
     "openings": [],
     "openings_in_concrete": [],
     "note": null
@@ -17253,6 +17571,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 6.549,
     "openings": [
      {
@@ -17283,6 +17603,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.453,
     "openings": [],
     "openings_in_concrete": [],
@@ -17304,6 +17626,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 14.94,
     "openings": [],
     "openings_in_concrete": [],
@@ -17325,6 +17649,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 4.785,
     "openings": [],
     "openings_in_concrete": [],
@@ -17346,6 +17672,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.08,
     "openings": [],
     "openings_in_concrete": [],
@@ -17367,6 +17695,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 5.145,
     "openings": [],
     "openings_in_concrete": [],
@@ -17388,6 +17718,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 4.785,
     "openings": [],
     "openings_in_concrete": [],
@@ -17409,6 +17741,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.16,
     "openings": [],
     "openings_in_concrete": [],
@@ -17430,6 +17764,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 7.881,
     "openings": [],
     "openings_in_concrete": [],
@@ -17451,6 +17787,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.15,
     "openings": [],
     "openings_in_concrete": [],
@@ -17472,6 +17810,8 @@
     "ded_window": 12.36,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.12,
     "openings": [
      {
@@ -17510,6 +17850,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.37,
     "openings": [
      {
@@ -17540,6 +17882,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.66,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.96,
     "openings": [
      {
@@ -17570,6 +17914,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 3.48,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 4.56,
     "openings": [
      {
@@ -17600,6 +17946,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.56,
     "openings": [],
     "openings_in_concrete": [],
@@ -17621,6 +17969,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.39,
     "openings": [],
     "openings_in_concrete": [],
@@ -17642,6 +17992,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.9,
     "openings": [],
     "openings_in_concrete": [],
@@ -17663,6 +18015,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.36,
     "openings": [],
     "openings_in_concrete": [],
@@ -17684,6 +18038,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 1.241,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 6.574,
     "openings": [],
     "openings_in_concrete": [],
@@ -17705,6 +18061,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.886,
     "openings": [],
     "openings_in_concrete": [],
@@ -17726,6 +18084,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.08,
     "openings": [],
     "openings_in_concrete": [],
@@ -17747,7 +18107,11 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 2.73,
+    "ded_shaft_door": 0.48,
+    "shaft_doors": [
+     "F08-R48"
+    ],
+    "area_net": 2.25,
     "openings": [],
     "openings_in_concrete": [],
     "note": null
@@ -17768,6 +18132,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.56,
     "openings": [],
     "openings_in_concrete": [],
@@ -17789,6 +18155,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.08,
     "openings": [],
     "openings_in_concrete": [],
@@ -17810,6 +18178,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.73,
     "openings": [],
     "openings_in_concrete": [],
@@ -17831,6 +18201,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 12.528,
     "openings": [],
     "openings_in_concrete": [],
@@ -17852,6 +18224,8 @@
     "ded_window": 5.76,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.655,
     "openings": [
      {
@@ -17882,6 +18256,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 4.773,
     "openings": [
      {
@@ -17912,6 +18288,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 6.48,
     "openings": [
      {
@@ -17942,6 +18320,8 @@
     "ded_window": 7.05,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.293,
     "openings": [
      {
@@ -17972,6 +18352,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.9,
     "openings": [],
     "openings_in_concrete": [],
@@ -17993,6 +18375,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.27,
     "openings": [],
     "openings_in_concrete": [],
@@ -18014,6 +18398,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.213,
     "openings": [],
     "openings_in_concrete": [],
@@ -18035,6 +18421,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.14,
     "openings": [],
     "openings_in_concrete": [],
@@ -18056,7 +18444,11 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 4.89,
+    "ded_shaft_door": 0.48,
+    "shaft_doors": [
+     "F08-R49"
+    ],
+    "area_net": 4.41,
     "openings": [],
     "openings_in_concrete": [],
     "note": null
@@ -18077,6 +18469,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.862,
     "openings": [],
     "openings_in_concrete": [],
@@ -18098,6 +18492,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.108,
     "openings": [],
     "openings_in_concrete": [],
@@ -18119,6 +18515,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 16.836,
     "openings": [],
     "openings_in_concrete": [],
@@ -18140,6 +18538,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.177,
     "openings": [],
     "openings_in_concrete": [],
@@ -18161,6 +18561,8 @@
     "ded_window": 7.05,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.864,
     "openings": [
      {
@@ -18191,6 +18593,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 7.173,
     "openings": [
      {
@@ -18221,6 +18625,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.501,
     "openings": [
      {
@@ -18251,6 +18657,8 @@
     "ded_window": 7.05,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.484,
     "openings": [
      {
@@ -18281,6 +18689,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.9,
     "openings": [],
     "openings_in_concrete": [],
@@ -18302,6 +18712,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 5.205,
     "openings": [],
     "openings_in_concrete": [],
@@ -18323,6 +18735,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 4.89,
     "openings": [],
     "openings_in_concrete": [],
@@ -18344,6 +18758,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.746,
     "openings": [],
     "openings_in_concrete": [],
@@ -18365,6 +18781,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.086,
     "openings": [],
     "openings_in_concrete": [],
@@ -18386,6 +18804,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.464,
     "openings": [],
     "openings_in_concrete": [],
@@ -18407,7 +18827,11 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 1.56,
+    "ded_shaft_door": 0.48,
+    "shaft_doors": [
+     "F08-R50"
+    ],
+    "area_net": 1.08,
     "openings": [],
     "openings_in_concrete": [],
     "note": null
@@ -18428,6 +18852,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.56,
     "openings": [],
     "openings_in_concrete": [],
@@ -18449,6 +18875,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.086,
     "openings": [],
     "openings_in_concrete": [],
@@ -18470,6 +18898,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.464,
     "openings": [],
     "openings_in_concrete": [],
@@ -18491,6 +18921,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 7.884,
     "openings": [],
     "openings_in_concrete": [],
@@ -18512,6 +18944,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.944,
     "openings": [],
     "openings_in_concrete": [],
@@ -18533,6 +18967,8 @@
     "ded_window": 7.05,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.162,
     "openings": [
      {
@@ -18563,6 +18999,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.9,
     "openings": [],
     "openings_in_concrete": [],
@@ -18584,6 +19022,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.482,
     "openings": [
      {
@@ -18614,6 +19054,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.98,
     "openings": [],
     "openings_in_concrete": [],
@@ -18635,6 +19077,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.485,
     "openings": [
      {
@@ -18665,6 +19109,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.935,
     "openings": [
      {
@@ -18695,6 +19141,8 @@
     "ded_window": 5.4,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.922,
     "openings": [
      {
@@ -18725,6 +19173,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.882,
     "openings": [],
     "openings_in_concrete": [],
@@ -18746,6 +19196,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.342,
     "openings": [],
     "openings_in_concrete": [],
@@ -18767,6 +19219,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 9.12,
     "openings": [],
     "openings_in_concrete": [],
@@ -18788,7 +19242,11 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 1.906,
+    "ded_shaft_door": 0.48,
+    "shaft_doors": [
+     "F08-R52"
+    ],
+    "area_net": 1.426,
     "openings": [],
     "openings_in_concrete": [],
     "note": null
@@ -18809,6 +19267,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.311,
     "openings": [],
     "openings_in_concrete": [],
@@ -18830,6 +19290,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.56,
     "openings": [],
     "openings_in_concrete": [],
@@ -18851,6 +19313,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.896,
     "openings": [],
     "openings_in_concrete": [],
@@ -18872,6 +19336,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.99,
     "openings": [],
     "openings_in_concrete": [],
@@ -18893,6 +19359,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 3.576,
     "openings": [],
     "openings_in_concrete": [],
@@ -18914,6 +19382,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 4.221,
     "openings": [
      {
@@ -18944,6 +19414,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.2,
     "openings": [],
     "openings_in_concrete": [],
@@ -18965,6 +19437,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.2,
     "openings": [],
     "openings_in_concrete": [],
@@ -18986,6 +19460,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.549,
     "openings": [],
     "openings_in_concrete": [],
@@ -19007,6 +19483,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 4.719,
     "openings": [],
     "openings_in_concrete": [],
@@ -19028,6 +19506,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.713,
     "openings": [],
     "openings_in_concrete": [],
@@ -19049,6 +19529,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 6.527,
     "openings": [],
     "openings_in_concrete": [],
@@ -19070,7 +19552,11 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
-    "area_net": 14.797,
+    "ded_shaft_door": 0.48,
+    "shaft_doors": [
+     "F08-R51"
+    ],
+    "area_net": 14.317,
     "openings": [],
     "openings_in_concrete": [],
     "note": null
@@ -19091,6 +19577,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.993,
     "openings": [],
     "openings_in_concrete": [],
@@ -19112,6 +19600,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 2.408,
     "openings": [],
     "openings_in_concrete": [],
@@ -19133,6 +19623,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 1.254,
     "openings": [],
     "openings_in_concrete": [],
@@ -19154,6 +19646,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.342,
     "openings": [],
     "openings_in_concrete": [],
@@ -19175,6 +19669,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.855,
     "openings": [],
     "openings_in_concrete": [],
@@ -19196,6 +19692,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.855,
     "openings": [],
     "openings_in_concrete": [],
@@ -19217,6 +19715,8 @@
     "ded_window": 17.969,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 7.552,
     "openings": [
      {
@@ -19263,6 +19763,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.855,
     "openings": [],
     "openings_in_concrete": [],
@@ -19284,6 +19786,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.713,
     "openings": [],
     "openings_in_concrete": [],
@@ -19305,6 +19809,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.371,
     "openings": [],
     "openings_in_concrete": [],
@@ -19326,6 +19832,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.143,
     "openings": [],
     "openings_in_concrete": [],
@@ -19347,6 +19855,8 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 0.214,
     "openings": [],
     "openings_in_concrete": [],
@@ -19368,12 +19878,66 @@
     "ded_window": 0.0,
     "ded_opening": 0.0,
     "ded_concrete": 0.0,
+    "ded_shaft_door": 0.0,
+    "shaft_doors": [],
     "area_net": 8.28,
     "openings": [],
     "openings_in_concrete": [],
     "note": "long leg of the C lift core: masonry per owner 2026-11-27 (structural shows concrete); height 2.30 under an assumed beam 25x90 (not drawn in the structural)"
    }
   ],
+  "shaft_doors": {
+   "size": [
+    0.6,
+    0.8
+   ],
+   "n_shafts": 14,
+   "by_wall": {
+    "W20": [
+     "F08-R39"
+    ],
+    "W35": [
+     "F08-R40"
+    ],
+    "W53": [
+     "F08-R41"
+    ],
+    "W62": [
+     "F08-R42"
+    ],
+    "W58": [
+     "F08-R43"
+    ],
+    "W109": [
+     "F08-R44"
+    ],
+    "W105": [
+     "F08-R45"
+    ],
+    "W133": [
+     "F08-R46"
+    ],
+    "W137": [
+     "F08-R47"
+    ],
+    "W159": [
+     "F08-R48"
+    ],
+    "W172": [
+     "F08-R49"
+    ],
+    "W187": [
+     "F08-R50"
+    ],
+    "W218": [
+     "F08-R51"
+    ],
+    "W203": [
+     "F08-R52"
+    ]
+   },
+   "no_masonry_wall": []
+  },
   "masonry_excluded": {
    "on_concrete": [],
    "on_tr": [
@@ -19461,6 +20025,7 @@
     "ded_window": 123.78,
     "ded_opening": 0.0,
     "ded_concrete": 16.32,
+    "ded_shaft_door": 0.0,
     "length_in_str_concrete": 5.63,
     "area_net": 731.8
    }
@@ -19475,6 +20040,7 @@
     "ded_window": 123.78,
     "ded_opening": 0.0,
     "ded_concrete": 29.5,
+    "ded_shaft_door": 0.0,
     "length_in_str_concrete": 10.16,
     "area_net": 731.94
    }
@@ -19559,9 +20125,9 @@
    "strip_above_openings_m2": 0.5,
    "strip_windows_m2": 3.68,
    "strip_above_assemblies_m2": 0.0,
-   "internal_walls_m2": 1219.79,
+   "internal_walls_m2": 1213.07,
    "ceilings_m2": 0.0,
-   "internal_total_m2": 1219.79,
+   "internal_total_m2": 1213.07,
    "masonry_windows_width_m": 43.775,
    "assemblies_width_m": 0.0,
    "external": {
@@ -19588,7 +20154,9 @@
     "rooms_boundary_labelled_column_m": 57.85,
     "structure_interior_free_faces_model_space_m": 83.72,
     "structure_interior_free_faces_all_m": 107.1
-   }
+   },
+   "shaft_doors_m2": 6.72,
+   "shaft_doors_n": 14
   }
  },
  "timing_s": {

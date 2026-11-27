@@ -106,6 +106,7 @@ class Params:
     plaster_ded_corridor: float = 0.50  # corridor (+ lift lobby): 10 cm bottom + 40 cm top (suspended ceiling, corridor only)
     lift_front_out: bool = True       # lift front wall under the 25x90 beam: masonry LATER, out of the takeoff now (owner)
     lift_c_leg_masonry: bool = True   # the long leg of the C lift core is MASONRY, not concrete (owner 2026-11-27)
+    shaft_door: tuple = (0.60, 0.80)  # owner 2026-11-27: every shaft/duct has a service door 60x80 -> deducted from its wall
     lift_c_leg_beam: float = 0.90     # owner 2026-11-27 ("maybe a beam there"): the structural draws the leg as concrete, so no
                                       # beam is drawn over it; assumed like the front beam k4 25x90 -> H 2.30.  0 = slab only (3.00)
     window_sill: float = 0.0          # owner 2026-11-27: NO masonry under the facade windows (opening = full masonry height)
@@ -314,7 +315,35 @@ def is_service_window(width, P):
     return abs(width - P.svc_window[0]) <= 0.03
 
 
-def masonry_estimate(walls, P, exclude_ids=(), HW=None, conc_len=None, rows=None):
+def shaft_door_walls(rooms, walls, exclude_ids, P):
+    """Owner 2026-11-27: each shaft/duct (rooms category 'shaft') has a service door P.shaft_door (60x80) not drawn in
+    the plans.  Assign it to the counted masonry wall running along the shaft's bbox side with the longest overlap.
+    Returns ({wall id: [shaft ids]}, [shaft ids with no masonry wall])."""
+    from shapely.geometry import LineString, box
+    out, none = defaultdict(list), []
+    cand = [w for w in walls if w["id"] not in exclude_ids]
+    for r in rooms:
+        if r.get("category") != "shaft" or not r.get("bbox"):
+            continue
+        x0, y0, x1, y1 = r["bbox"]
+        sides = [LineString([(x0, y0), (x1, y0)]), LineString([(x0, y1), (x1, y1)]),
+                 LineString([(x0, y0), (x0, y1)]), LineString([(x1, y0), (x1, y1)])]
+        best, bl = None, 0.0
+        for w in cand:
+            ln = LineString([(w["x1"], w["y1"]), (w["x2"], w["y2"])])
+            t = (w.get("thickness") or 0.12) / 2 + 0.12
+            for sd in sides:
+                ov = ln.intersection(sd.buffer(t, cap_style=2)).length
+                if ov >= min(0.45, 0.6 * sd.length) and ov > bl:
+                    best, bl = w["id"], ov
+        if best:
+            out[best].append(r["id"])
+        else:
+            none.append(r["id"])
+    return dict(out), none
+
+
+def masonry_estimate(walls, P, exclude_ids=(), HW=None, conc_len=None, rows=None, shaft_doors=None):
     """PRELIMINARY masonry per family x kind: gross x H - sum(width x height) of the openings
     bridged in each wall record (widths = masonry gaps measured by walls.py).
     HW (masonry_heights.wall_heights) -> H per wall = 3.20 - concrete depth above its centre line
@@ -343,6 +372,9 @@ def masonry_estimate(walls, P, exclude_ids=(), HW=None, conc_len=None, rows=None
                 if o["type"] == "door":
                     ow += P.door_extra_w
             ded[o["type"]] += ow * h
+        nsd = len((shaft_doors or {}).get(w["id"], []))
+        if nsd:
+            ded["shaft_door"] = nsd * P.shaft_door[0] * min(P.shaft_door[1], H)
         lc = min((conc_len or {}).get(w["id"], 0.0), g)
         ded["concrete"] = lc * H
         gross_a = g * H
@@ -353,6 +385,8 @@ def masonry_estimate(walls, P, exclude_ids=(), HW=None, conc_len=None, rows=None
                          "length_gross": _r(g, 3), "height": _r(H, 3), "area_gross": _r(gross_a, 3),
                          "ded_door": _r(ded["door"], 3), "ded_window": _r(ded["window"], 3),
                          "ded_opening": _r(ded["opening"], 3), "ded_concrete": _r(ded["concrete"], 3),
+                         "ded_shaft_door": _r(ded["shaft_door"], 3),
+                         "shaft_doors": (shaft_doors or {}).get(w["id"], []),
                          "area_net": _r(net_a, 3),
                          "openings": [{"type": o["type"], "width": o["width"], "at": o.get("at")} for o in w["openings"]
                                       if o not in skipped],
@@ -369,6 +403,7 @@ def masonry_estimate(walls, P, exclude_ids=(), HW=None, conc_len=None, rows=None
             a["ded_window"] += ded["window"]
             a["ded_opening"] += ded["opening"]
             a["ded_concrete"] += ded["concrete"]
+            a["ded_shaft_door"] += ded["shaft_door"]
             a["length_in_str_concrete"] += lc
             a["area_net"] += net_a
     return {k: {kk: (int(vv) if kk == "n" else _r(vv, 2)) for kk, vv in v.items()} for k, v in sorted(agg.items())}
@@ -711,12 +746,24 @@ def merge_floor(b, P: Params):
         lift_info["long_leg_masonry_height"] = HL[c_leg["id"]]["H_mean"]
     excl = set(on_concrete) | (set(on_tr) if P.tr_concrete else set()) | set(lift_front)
     mas_rows = []
-    mas = masonry_estimate(walls_m, P, exclude_ids=excl, HW=HW, conc_len=conc_len, rows=mas_rows)
+    sd_walls, sd_none = shaft_door_walls(R["rooms"], walls_m, excl, P) if P.shaft_door else ({}, [])
+    mas = masonry_estimate(walls_m, P, exclude_ids=excl, HW=HW, conc_len=conc_len, rows=mas_rows, shaft_doors=sd_walls)
     mas_if_tr = masonry_estimate(walls_m, P, exclude_ids=set(on_concrete) | set(on_tr) | set(lift_front), HW=HW, conc_len=conc_len)
     mas_tr_masonry = masonry_estimate(walls_m, P, exclude_ids=set(on_concrete) | set(lift_front), HW=HW, conc_len=conc_len)
     front_len = sum(w["length_net"] for w in walls if w["id"] in lift_front)
     pla = plaster_estimate(R, O, S, W["totals"], P, conc_geom=concrete_faces_on_rooms(b), footprint=b.get("footprint"),
                            HW=HW, lift_front_len=front_len)
+
+    # owner 2026-11-27: the duct service doors (60x80, one per shaft) are deducted from the plaster (and paint) too,
+    # on the face outside the duct (the duct inside is not plastered)
+    n_sh = sum(1 for r in R["rooms"] if r.get("category") == "shaft")
+    if P.shaft_door and n_sh:
+        sd_a = round(n_sh * P.shaft_door[0] * P.shaft_door[1], 3)
+        pla["shaft_doors_m2"] = sd_a
+        pla["shaft_doors_n"] = n_sh
+        for k in ("internal_walls_m2", "internal_total_m2"):
+            if pla.get(k) is not None:
+                pla[k] = round(pla[k] - sd_a, 2)
 
     # ---- cross-checks between readers
     wop = Counter()
@@ -866,6 +913,9 @@ def merge_floor(b, P: Params):
             "status": "PRELIMINARY / تقديري — heights are assumptions, not read from the plans",
             "masonry": mas,
             "masonry_walls": mas_rows,
+            "shaft_doors": {"size": list(P.shaft_door) if P.shaft_door else None,
+                            "n_shafts": sum(1 for r in R["rooms"] if r.get("category") == "shaft"),
+                            "by_wall": sd_walls, "no_masonry_wall": sd_none},
             "masonry_excluded": {"on_concrete": on_concrete, "on_tr": on_tr if P.tr_concrete else [], "on_tr_partial_masonry": on_tr_partial,
                                  "lift_front_later": lift_front},
             "masonry_heights": ({**{k: v for k, v in HW["_meta"].items()},

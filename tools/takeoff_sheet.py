@@ -51,6 +51,8 @@ def _load(n):
 
 def _note(r):
     parts = []
+    if r.get("shaft_doors"):
+        parts.append(f"باب خدمة دكت 60×80 × {len(r['shaft_doors'])}")
     if r.get("ded_concrete"):
         parts.append(f"خُصم {r['ded_concrete'] / (r['height'] or 1):.2f} م طول داخل عمود/حائط خرساني بالإنشائي")
     for o in r.get("openings_in_concrete") or []:
@@ -132,12 +134,19 @@ def image(n, d, rows, out_png):
         ax.text(mx + nx * off, my + ny * off, str(r["no"]), fontsize=7.5, ha="center", va="center", color=col,
                 fontweight="bold", zorder=8,
                 bbox=dict(boxstyle="round,pad=0.12", fc="white", ec=col, lw=0.6, alpha=0.95))
+    sh_rooms = {r["id"]: r for r in d["rooms"]["rooms"] if r.get("category") == "shaft"}
+    for r in rows:
+        for sid in r.get("shaft_doors") or []:
+            c = sh_rooms.get(sid, {}).get("centroid")
+            if c:
+                ax.plot([c[0]], [c[1]], marker="s", ms=7, mfc="#ff9800", mec="black", mew=0.6, zorder=9)
     fams = sorted({r["family"] for r in rows}, key=lambda f: (f == "other", f))
     hs = [Line2D([0], [0], color=FAM_COL.get(f, "#2ca02c"), lw=4, label=f"wall {f} m" if f != "other" else "non-standard")
           for f in fams]
     hs.append(Line2D([0], [0], color="#00bcd4", lw=1, ls=":", label="window opening"))
     from matplotlib.patches import Patch
     hs.append(Patch(fc="#9b59b6", ec="#6c3483", alpha=0.35, hatch="////", label="structural concrete (deducted from the wall)"))
+    hs.append(Line2D([0], [0], marker="s", ms=7, mfc="#ff9800", mec="black", lw=0, label="duct service door 60x80 (deducted)"))
     hs.append(Line2D([0], [0], color="#555555", lw=2.5, ls=(0, (2, 1.5)), label="NOT counted (concrete / lift front later)"))
     ax.legend(handles=hs, loc="upper left", bbox_to_anchor=(1.01, 1.0), fontsize=11, frameon=False)
     tot = sum(r["area_net"] for r in rows)
@@ -166,13 +175,14 @@ def workbook(n, d, rows, out_xlsx):
     ws["A1"].font = Font(bold=True, size=13)
     ws["A2"] = ("الارتفاع = 3.20 − عمق الخرسانة فوق الحائط (بلاطة 0.20 ← 3.00، 0.35 ← 2.85، كمرة 70 ← 2.50، كمرة 90 ← 2.30)؛ "
                 "الأبواب 2.30 وعرض اللوحة + 5 سم؛ شبابيك الخدمات 85×65؛ " + ("باقي الشبابيك جلسة 1.00 (مباني تحت الشباك)؛ " if d["params"].get("window_sill") else "باقي الشبابيك فراغ بالارتفاع كله؛ ") +
-                "خصم الخرسانة = طول الحائط داخل أعمدة/حوائط قص الإنشائي × الارتفاع")
+                "خصم الخرسانة = طول الحائط داخل أعمدة/حوائط قص الإنشائي × الارتفاع؛ "
+                "باب خدمة 60×80 لكل دكت (شفت) يُخصم من الحائط المحيط به")
     ws["A2"].alignment = Alignment(wrap_text=True)
-    ws.merge_cells("A2:N2")
+    ws.merge_cells("A2:O2")
     ws.row_dimensions[2].height = 45
     cols = ["م", "رقم الحائط في القراءة", "السمك (م)", "النوع", "الطول الإجمالي (م)", "الارتفاع (م)",
             "المساحة الإجمالية (م²)", "خصم الأبواب (م²)", "خصم الشبابيك (م²)", "خصم فتحات بلا باب (م²)",
-            "خصم الخرسانة (م²)", "الصافي (م²)", "الفتحات", "ملاحظة"]
+            "خصم الخرسانة (م²)", "خصم أبواب الدكت 60×80 (م²)", "الصافي (م²)", "الفتحات", "ملاحظة"]
     r0 = 4
     for j, c in enumerate(cols, 1):
         cell = ws.cell(r0, j, c)
@@ -187,28 +197,28 @@ def workbook(n, d, rows, out_xlsx):
                         for o in r["openings"])
         vals = [r["no"], r["id"], float(r["family"]) if r["family"] != "other" else (r.get("thickness") or "غير قياسي"),
                 KIND_AR.get(r["kind"], r["kind"]), r["length_gross"], r["height"], None,
-                r["ded_door"], r["ded_window"], r["ded_opening"], r["ded_concrete"], None, ops,
+                r["ded_door"], r["ded_window"], r["ded_opening"], r["ded_concrete"], r.get("ded_shaft_door", 0.0), None, ops,
                 ("مباني بقرار المالك (الضلع الطويل لحرف C حول المصعد)"
                  + (f"؛ الارتفاع {r['height']:.2f} تحت كمرة 25×90 مفترضة (غير مرسومة بالإنشائي)" if r["height"] < 2.9 else ""))
                 if r["id"] == "LIFT-C" else _note(r)]
         for j, v in enumerate(vals, 1):
             c = ws.cell(rr, j, v)
             c.border = B
-            if j in (5, 6, 7, 8, 9, 10, 11, 12):
+            if j in (5, 6, 7, 8, 9, 10, 11, 12, 13):
                 c.number_format = "0.00"
         ws.cell(rr, 7, f"=E{rr}*F{rr}").number_format = "0.00"
-        ws.cell(rr, 12, f"=G{rr}-H{rr}-I{rr}-J{rr}-K{rr}").number_format = "0.00"
+        ws.cell(rr, 13, f"=G{rr}-H{rr}-I{rr}-J{rr}-K{rr}-L{rr}").number_format = "0.00"
     last = r0 + len(rows)
     rt = last + 1
     ws.cell(rt, 1, "الإجمالي").font = Font(bold=True)
-    for j, L in ((5, "E"), (7, "G"), (8, "H"), (9, "I"), (10, "J"), (11, "K"), (12, "L")):
+    for j, L in ((5, "E"), (7, "G"), (8, "H"), (9, "I"), (10, "J"), (11, "K"), (12, "L"), (13, "M")):
         c = ws.cell(rt, j, f"=SUM({L}{r0 + 1}:{L}{last})")
         c.number_format = "0.00"
         c.font = Font(bold=True)
-    for j in range(1, 15):
+    for j in range(1, 16):
         ws.cell(rt, j).fill = tot_fill
         ws.cell(rt, j).border = B
-    for j, w in enumerate([5, 12, 9, 13, 11, 9, 12, 11, 11, 11, 11, 11, 26, 26], 1):
+    for j, w in enumerate([5, 12, 9, 13, 11, 9, 12, 11, 11, 11, 11, 11, 11, 26, 30], 1):
         ws.column_dimensions[chr(64 + j)].width = w
     ws.freeze_panes = ws.cell(r0 + 1, 1)
 
@@ -232,14 +242,14 @@ def workbook(n, d, rows, out_xlsx):
             q = f'"{k}"' if isinstance(k, str) else k
             s2.cell(row, 1, k).border = B
             s2.cell(row, 2, f"=COUNTIF('{sh}'!{col_letter}{r0 + 1}:{col_letter}{last},{q})").border = B
-            for j, L in ((3, "E"), (4, "L")):
+            for j, L in ((3, "E"), (4, "M")):
                 c = s2.cell(row, j, f"=SUMIF('{sh}'!{col_letter}{r0 + 1}:{col_letter}{last},{q},'{sh}'!{L}{r0 + 1}:{L}{last})")
                 c.number_format = "0.00"
                 c.border = B
             row += 1
         row += 1
     s2.cell(row, 1, "الإجمالي").font = Font(bold=True)
-    c = s2.cell(row, 4, f"='{sh}'!L{rt}")
+    c = s2.cell(row, 4, f"='{sh}'!M{rt}")
     c.number_format = "0.00"
     c.font = Font(bold=True)
     row += 2
